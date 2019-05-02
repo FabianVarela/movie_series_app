@@ -4,10 +4,10 @@ import 'package:movie_list_bloc/models/item_model.dart';
 
 class MovieList extends StatefulWidget {
   @override
-  MovieListState createState() => MovieListState();
+  _MovieListState createState() => _MovieListState();
 }
 
-class MovieListState extends State<MovieList> {
+class _MovieListState extends State<MovieList> {
   @override
   void initState() {
     super.initState();
@@ -22,20 +22,27 @@ class MovieListState extends State<MovieList> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: bloc.allMovies,
-      builder: (context, AsyncSnapshot<ItemModel> snapshot) {
-        if (snapshot.hasData) {
-          return buildList(snapshot);
-        } else if (snapshot.hasError) {
-          return Text(
-            snapshot.error.toString(),
-            style: TextStyle(color: Colors.redAccent),
-          );
-        }
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Popular Movies'),
+        ),
+        body: StreamBuilder(
+          stream: bloc.allMovies,
+          builder: (context, AsyncSnapshot<ItemModel> snapshot) {
+            if (snapshot.hasData) {
+              return buildList(snapshot);
+            } else if (snapshot.hasError) {
+              return Text(
+                snapshot.error.toString(),
+                style: TextStyle(color: Colors.redAccent),
+              );
+            }
 
-        return Center(child: CircularProgressIndicator());
-      },
+            return Center(child: CircularProgressIndicator());
+          },
+        ),
+      ),
     );
   }
 
