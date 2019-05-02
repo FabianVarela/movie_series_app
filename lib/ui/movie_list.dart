@@ -2,11 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:movie_list_bloc/bloc/movie_bloc.dart';
 import 'package:movie_list_bloc/models/item_model.dart';
 
-class MovieList extends StatelessWidget {
+class MovieList extends StatefulWidget {
+  @override
+  MovieListState createState() => MovieListState();
+}
+
+class MovieListState extends State<MovieList> {
+  @override
+  void initState() {
+    super.initState();
+    bloc.fetchAllMovies();
+  }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    bloc.fetchAllMovies();
-
     return StreamBuilder(
       stream: bloc.allMovies,
       builder: (context, AsyncSnapshot<ItemModel> snapshot) {
@@ -30,9 +45,11 @@ class MovieList extends StatelessWidget {
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (context, index) {
-        return Image.network(
-          "https://image.tmdb.org/t/p/w185${snapshot.data.results[index].posterPath}",
-          fit: BoxFit.cover,
+        return GridTile(
+          child: Image.network(
+            "https://image.tmdb.org/t/p/w185${snapshot.data.results[index].posterPath}",
+            fit: BoxFit.cover,
+          ),
         );
       },
     );
