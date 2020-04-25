@@ -1,58 +1,31 @@
-class TrailerModel {
-  int _id;
-  List<_Result> _results = [];
+class TrailersModel {
+  final int id;
+  final List<TrailerModel> trailers;
 
-  TrailerModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    List<_Result> temp = [];
-
-    for (int i = 0; i < json['results'].length; i++) {
-      _Result result = _Result(json['results'][i]);
-      temp.add(result);
-    }
-
-    _results = temp;
-  }
-
-  List<_Result> get results => _results;
-
-  int get id => _id;
+  TrailersModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        trailers = (json['results'] as List<dynamic>)
+            .map((dynamic item) => TrailerModel.fromJson(item))
+            .toList();
 }
 
-class _Result {
-  String _id;
-  String _iso_639_1;
-  String _iso_3166_1;
-  String _key;
-  String _name;
-  String _site;
-  int _size;
-  String _type;
+class TrailerModel {
+  final String id;
+  final String iso_639_1;
+  final String iso_3166_1;
+  final String key;
+  final String name;
+  final String site;
+  final int size;
+  final String type;
 
-  _Result(result) {
-    _id = result['id'];
-    _iso_639_1 = result['iso_639_1'];
-    _iso_3166_1 = result['iso_3166_1'];
-    _key = result['key'];
-    _name = result['name'];
-    _site = result['site'];
-    _size = result['size'];
-    _type = result['type'];
-  }
-
-  String get id => _id;
-
-  String get iso_639_1 => _iso_639_1;
-
-  String get iso_3166_1 => _iso_3166_1;
-
-  String get key => _key;
-
-  String get name => _name;
-
-  String get site => _site;
-
-  int get size => _size;
-
-  String get type => _type;
+  TrailerModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        iso_639_1 = json['iso_639_1'],
+        iso_3166_1 = json['iso_3166_1'],
+        key = json['key'],
+        name = json['name'],
+        site = json['site'],
+        size = json['size'],
+        type = json['type'];
 }
