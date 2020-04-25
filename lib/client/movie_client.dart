@@ -1,34 +1,68 @@
 import 'dart:convert';
 
-import 'package:movie_list_bloc/models/item_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:movie_list_bloc/models/credits_model.dart';
+import 'package:movie_list_bloc/models/movie_model.dart';
+import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:http/http.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
 
 class MovieClient {
-  Client client = Client();
-  final _apiKey = 'ccc1ba91e3751f14805f9a0b47e3d032';
-  final _baseUrl = "http://api.themoviedb.org/3/movie";
+  final Client _client = Client();
 
-  Future<ItemModel> fetchMovieList() async {
-    print("entered");
+  String _baseUrl;
+  String _apiKey;
 
-    final response = await client.get("$_baseUrl/popular?api_key=$_apiKey");
-
-    print(response.body.toString());
-
-    if (response.statusCode == 200)
-      return ItemModel.fromJson(json.decode(response.body));
-    else
-      throw Exception('Failed to load post');
+  MovieClient() {
+    _baseUrl = DotEnv().env['API_URL'];
+    _apiKey = DotEnv().env['API_KEY'];
   }
 
-  Future<TrailerModel> fetchTrailer(int movieId) async {
-    final response =
-        await client.get("$_baseUrl/$movieId/videos?api_key=$_apiKey");
+  Future<MoviesModel> fetchMovies() async {
+    final Response response =
+        await _client.get('$_baseUrl/3/movie/popular?api_key=$_apiKey');
+
+    print(response.body);
 
     if (response.statusCode == 200)
-      return TrailerModel.fromJson(json.decode(response.body));
+      return MoviesModel.fromJson(json.decode(response.body));
     else
-      throw Exception('Failed to load trailers');
+      throw Exception('Failed to load movies');
+  }
+
+  Future<MovieModel> fetchMovie(int movieId) async {
+    final Response response =
+        await _client.get('$_baseUrl/3/movie/$movieId?api_key=$_apiKey');
+
+    print(response.body);
+
+    if (response.statusCode == 200)
+      return MovieModel.fromJson(json.decode(response.body));
+    else
+      throw Exception('Failed to load movie with id $movieId');
+  }
+
+  Future<TrailersModel> fetchMovieTrailer(int movieId) async {
+    final Response response =
+        await _client.get('$_baseUrl/3/movie/$movieId/videos?api_key=$_apiKey');
+
+    print(response.body);
+
+    if (response.statusCode == 200)
+      return TrailersModel.fromJson(json.decode(response.body));
+    else
+      throw Exception('Failed to load movie trailers');
+  }
+
+  Future<CreditsModel> fetchCredits(int movieId) async {
+    final Response response = await _client
+        .get('$_baseUrl/3/movie/$movieId/credits?api_key=$_apiKey');
+
+    print(response.body);
+
+    if (response.statusCode == 200)
+      return CreditsModel.fromJson(json.decode(response.body));
+    else
+      throw Exception('Failed to load movie credits');
   }
 }
