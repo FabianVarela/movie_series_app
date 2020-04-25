@@ -48,51 +48,51 @@ class _MovieDetailState extends State<MovieDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        top: false,
-        bottom: false,
-        child: NestedScrollView(
-          headerSliverBuilder: (_, bool isScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                expandedHeight: 200,
-                floating: false,
-                pinned: true,
-                elevation: 0,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Hero(
-                    tag: 'Image_${widget.movieId}',
-                    child: Image.network(
-                      '${widget.movieImageUrl}',
-                      fit: BoxFit.cover,
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            GestureDetector(
+              onVerticalDragUpdate: (DragUpdateDetails details) {
+                print('Drag delta y: ${details.delta.dy}');
+                if(details.delta.dy > 0) {
+                  Navigator.pop(context);
+                }
+              },
+              child: Container(
+                height: 250,
+                width: MediaQuery.of(context).size.width,
+                child: Hero(
+                  tag: 'Image_${widget.movieId}',
+                  child: Image.network(
+                    '${widget.movieImageUrl}',
+                    fit: BoxFit.cover,
                   ),
                 ),
-              )
-            ];
-          },
-          body: StreamBuilder<MovieModel>(
-            stream: _bloc.movie,
-            builder: (_, AsyncSnapshot<MovieModel> movieSnapshot) {
-              if (!movieSnapshot.hasData) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+              ),
+            ),
+            StreamBuilder<MovieModel>(
+              stream: _bloc.movie,
+              builder: (_, AsyncSnapshot<MovieModel> movieSnapshot) {
+                if (!movieSnapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
 
-              return Container(
-                padding: EdgeInsets.all(10),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    _setDetailSection(movieSnapshot.data),
-                    _setCreditsSection(),
-                    _setTrailerSection(),
-                  ],
-                ),
-              );
-            },
-          ),
+                return Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    //shrinkWrap: true,
+                    children: <Widget>[
+                      _setDetailSection(movieSnapshot.data),
+                      _setCreditsSection(),
+                      _setTrailerSection(),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
