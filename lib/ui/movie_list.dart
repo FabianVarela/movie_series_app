@@ -1,9 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_list_bloc/bloc/movie_bloc.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/ui/movie_detail.dart';
+import 'package:movie_list_bloc/ui/movie_list_item.dart';
 
 class MovieList extends StatefulWidget {
   @override
@@ -11,9 +11,17 @@ class MovieList extends StatefulWidget {
 }
 
 class _MovieListState extends State<MovieList> {
+  final PageController _pageController = PageController(
+    initialPage: 0,
+    viewportFraction: .8,
+  );
+
   String _imageUri;
+
   int _currentIndex = 0;
   int _totalLength = 0;
+
+  bool _enableScroll = true;
 
   @override
   void initState() {
@@ -106,44 +114,26 @@ class _MovieListState extends State<MovieList> {
   }
 
   Widget _buildList(List<MoviesItemModel> movies) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
-
     return Align(
       alignment: Alignment.center,
-      child: CarouselSlider(
-        options: CarouselOptions(
-          height: height * 0.5,
-          reverse: false,
-          enlargeCenterPage: true,
-          enableInfiniteScroll: false,
-          scrollDirection: Axis.horizontal,
-          scrollPhysics: BouncingScrollPhysics(),
-          onPageChanged: (int index, _) {
-            setState(() => _currentIndex = index);
-          },
-        ),
-        items: movies.map((MoviesItemModel item) {
-          return Container(
-            width: width * 0.7,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: InkResponse(
-                enableFeedback: true,
-                child: Hero(
-                  tag: 'Image_${item.id}',
-                  child: Image.network(
-                    '$_imageUri${item.posterPath}',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                onTap: () => _openDetailPage(item),
-              ),
-            ),
+      child: PageView.builder(
+        itemCount: movies.length,
+        physics: _enableScroll
+            ? BouncingScrollPhysics()
+            : NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        controller: _pageController,
+        onPageChanged: (int index) => setState(() => _currentIndex = index),
+        itemBuilder: (_, int index) {
+          return MovieListItem(
+            itemModel: movies[index],
+            onPressItem: _openDetailPage,
+            imageUri: _imageUri,
+            isCurrent: _currentIndex == index,
+            onExpanded: (bool isExpanded) =>
+                setState(() => _enableScroll = !isExpanded),
           );
-        }).toList(),
+        },
       ),
     );
   }
