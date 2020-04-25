@@ -14,7 +14,6 @@ dependencies:
   rxdart: ^0.24.0
   http: ^0.12.0+4
   flutter_dotenv: ^2.1.0
-  carousel_slider: ^2.0.0
 
 dev_dependencies:
   flutter_test:
