@@ -60,7 +60,6 @@ class _MovieListItemState extends State<MovieListItem>
             alignment: Alignment.center,
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),
-              curve: Curves.fastOutSlowIn,
               width: width * _expandAnimation.value,
               height: widget.isCurrent ? height * 0.55 : height * 0.5,
               child: Card(
@@ -126,7 +125,6 @@ class _MovieListItemState extends State<MovieListItem>
                   },
                   onVerticalDragUpdate: (DragUpdateDetails details) {
                     if (details.delta.dy > 0) {
-                      print('Delta: ${details.delta.dy}');
                       _animationController.reverse();
 
                       if (widget.onExpanded != null) {
