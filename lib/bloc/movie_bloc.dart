@@ -1,19 +1,24 @@
-import 'package:movie_list_bloc/models/item_model.dart';
+import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MoviesBloc {
-  final _repository = MovieRepository();
-  final _moviesFetcher = PublishSubject<ItemModel>();
+  final MovieRepository _repository = MovieRepository();
 
-  Observable<ItemModel> get allMovies => _moviesFetcher.stream;
+  /// Subjects or StreamControllers
+  final PublishSubject<MoviesModel> _movies = PublishSubject<MoviesModel>();
 
-  fetchAllMovies() async {
-    ItemModel itemModel = await _repository.fetchAllMovies();
-    _moviesFetcher.sink.add(itemModel);
+  /// Get data from Stream
+
+  /// Observables
+  Stream<MoviesModel> get movies => _movies.stream;
+
+  void fetchAllMovies() async {
+    final MoviesModel itemModel = await _repository.fetchAllMovies();
+    _movies.sink.add(itemModel);
   }
 
-  dispose() => _moviesFetcher.close();
+  void dispose() => _movies.close();
 }
 
-final bloc = MoviesBloc();
+final MoviesBloc bloc = MoviesBloc();
