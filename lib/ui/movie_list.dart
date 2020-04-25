@@ -100,7 +100,8 @@ class _MovieListState extends State<MovieList> {
         }
 
         if (moviesSnapshot.hasData) {
-          _totalLength = moviesSnapshot.data.movies.length;
+          Future<void>.delayed(Duration(milliseconds: 200),
+              () => _totalLength = moviesSnapshot.data.movies.length);
           return _buildList(moviesSnapshot.data.movies);
         }
 
@@ -163,12 +164,15 @@ class _MovieListState extends State<MovieList> {
   void _openDetailPage(MoviesItemModel model) {
     Navigator.push(
       context,
-      MaterialPageRoute<dynamic>(builder: (_) {
-        return MovieDetail(
+      PageRouteBuilder<dynamic>(
+        pageBuilder: (_, __, ___) => MovieDetail(
           movieId: model.id,
           movieImageUrl: '$_imageUri${model.posterPath}',
-        );
-      }),
+        ),
+        transitionsBuilder:
+            (_, Animation<double> animation, __, Widget child) =>
+                Transform.scale(scale: animation.value, child: child),
+      ),
     );
   }
 }
