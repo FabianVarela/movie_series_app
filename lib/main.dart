@@ -23,6 +23,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Movie list',
+      theme: ThemeData(fontFamily: 'Ubuntu'),
       home: MovieList(),
     );
   }
