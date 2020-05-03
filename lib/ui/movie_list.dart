@@ -68,7 +68,7 @@ class _MovieListState extends State<MovieList> {
             Text(
               'Popular Movies',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
               ),
@@ -90,9 +90,10 @@ class _MovieListState extends State<MovieList> {
         if (moviesSnapshot.hasError) {
           return Center(
             child: Text(
-              moviesSnapshot.error ?? 'Prueba',
+              moviesSnapshot.error ?? '',
               style: TextStyle(
                 fontSize: 30,
+                fontWeight: FontWeight.w500,
                 color: Colors.redAccent,
               ),
             ),

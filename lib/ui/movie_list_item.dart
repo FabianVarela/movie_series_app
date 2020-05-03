@@ -80,7 +80,7 @@ class _MovieListItemState extends State<MovieListItem>
                             '${widget.itemModel.title}',
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 20,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -90,7 +90,7 @@ class _MovieListItemState extends State<MovieListItem>
                             '${widget.itemModel.voteAverage.toStringAsFixed(2)}',
                             textAlign: TextAlign.end,
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.w400,
                             ),
                           ),

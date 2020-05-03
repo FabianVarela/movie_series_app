@@ -53,8 +53,7 @@ class _MovieDetailState extends State<MovieDetail> {
           children: <Widget>[
             GestureDetector(
               onVerticalDragUpdate: (DragUpdateDetails details) {
-                print('Drag delta y: ${details.delta.dy}');
-                if(details.delta.dy > 0) {
+                if (details.delta.dy > 0) {
                   Navigator.pop(context);
                 }
               },
@@ -110,7 +109,7 @@ class _MovieDetailState extends State<MovieDetail> {
               movie.title,
               style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -130,13 +129,19 @@ class _MovieDetailState extends State<MovieDetail> {
                   ),
                   Text(
                     '${movie.voteAverage}',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
               Text(
                 movie.releaseDate,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ],
           ),
@@ -145,7 +150,10 @@ class _MovieDetailState extends State<MovieDetail> {
           padding: EdgeInsets.symmetric(vertical: 5),
           child: Text(
             movie.overview,
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ],
@@ -163,7 +171,7 @@ class _MovieDetailState extends State<MovieDetail> {
               'Cast',
               style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -179,7 +187,13 @@ class _MovieDetailState extends State<MovieDetail> {
             if (casts.isEmpty) {
               return Center(
                 child: Container(
-                  child: Text('No cast available'),
+                  child: Text(
+                    'No cast available',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               );
             }
@@ -247,7 +261,7 @@ class _MovieDetailState extends State<MovieDetail> {
             'Trailer',
             style: TextStyle(
               fontSize: 25,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
@@ -263,7 +277,13 @@ class _MovieDetailState extends State<MovieDetail> {
             if (trailersSnapshot.data.trailers.isEmpty) {
               return Center(
                 child: Container(
-                  child: Text('No trailer available'),
+                  child: Text(
+                    'No trailer available',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               );
             }
@@ -300,6 +320,10 @@ class _MovieDetailState extends State<MovieDetail> {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
               ],
             ),
