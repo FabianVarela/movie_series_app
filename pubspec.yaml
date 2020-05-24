@@ -14,6 +14,7 @@ dependencies:
   rxdart: ^0.24.0
   http: ^0.12.0+4
   flutter_dotenv: ^2.1.0
+  google_fonts: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -25,14 +26,3 @@ flutter:
 
   assets:
     - .env
-
-  fonts:
-    - family: Ubuntu
-      fonts:
-        - asset: assets/fonts/Ubuntu-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Ubuntu-Regular.ttf
-        - asset: assets/fonts/Ubuntu-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Ubuntu-Bold.ttf
-          weight: 700
