@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 
-class MovieListItem extends StatefulWidget {
+class MovieListItem extends HookWidget {
   MovieListItem({
     required this.itemModel,
     required this.onPressItem,
@@ -17,51 +18,28 @@ class MovieListItem extends StatefulWidget {
   final bool isCurrent;
 
   @override
-  _MovieListItemState createState() => _MovieListItemState();
-}
-
-class _MovieListItemState extends State<MovieListItem>
-    with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _translateAnimation;
-  late Animation<double> _expandAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 300),
-    )..addListener(() => setState(() {}));
-
-    _translateAnimation =
-        Tween<double>(begin: 0, end: -60).animate(_animationController);
-    _expandAnimation =
-        Tween<double>(begin: 0.7, end: 0.8).animate(_animationController);
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    var controller = useAnimationController(
+      duration: Duration(milliseconds: 300),
+    );
+    var translateAnimation = useAnimation<double>(
+        Tween<double>(begin: 0, end: -60).animate(controller));
+    var expandAnimation = useAnimation<double>(
+        Tween<double>(begin: 0.7, end: 0.8).animate(controller));
+
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
     return Opacity(
-      opacity: widget.isCurrent ? 1 : .4,
+      opacity: isCurrent ? 1 : .4,
       child: Stack(
         children: <Widget>[
           Align(
             alignment: Alignment.center,
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),
-              width: width * _expandAnimation.value,
-              height: widget.isCurrent ? height * 0.55 : height * 0.5,
+              width: width * expandAnimation,
+              height: isCurrent ? height * 0.55 : height * 0.5,
               child: Card(
                 elevation: 2,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -77,7 +55,7 @@ class _MovieListItemState extends State<MovieListItem>
                         Expanded(
                           flex: 4,
                           child: Text(
-                            '${widget.itemModel.title}',
+                            '${itemModel.title}',
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 20,
@@ -87,7 +65,7 @@ class _MovieListItemState extends State<MovieListItem>
                         ),
                         Expanded(
                           child: Text(
-                            '${widget.itemModel.voteAverage.toStringAsFixed(2)}',
+                            '${itemModel.voteAverage.toStringAsFixed(2)}',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                               fontSize: 18,
@@ -103,37 +81,35 @@ class _MovieListItemState extends State<MovieListItem>
             ),
           ),
           Transform.translate(
-            offset: Offset(0, _translateAnimation.value),
+            offset: Offset(0, translateAnimation),
             child: Align(
               alignment: Alignment.center,
               child: Container(
                 width: width * 0.7,
-                height: widget.isCurrent ? height * 0.55 : height * 0.5,
+                height: isCurrent ? height * 0.55 : height * 0.5,
                 child: GestureDetector(
                   onTap: () {
-                    if (_animationController.status ==
-                        AnimationStatus.dismissed) {
-                      _animationController.forward(from: 0.0);
+                    if (controller.status == AnimationStatus.dismissed) {
+                      controller.forward(from: 0.0);
 
-                      if (widget.onExpanded != null) {
-                        widget.onExpanded!(true);
+                      if (onExpanded != null) {
+                        onExpanded!(true);
                       }
-                    } else if (_animationController.status ==
-                        AnimationStatus.completed) {
-                      widget.onPressItem(widget.itemModel);
+                    } else if (controller.status == AnimationStatus.completed) {
+                      onPressItem(itemModel);
                     }
                   },
                   onVerticalDragUpdate: (DragUpdateDetails details) {
                     if (details.delta.dy > 0) {
-                      _animationController.reverse();
+                      controller.reverse();
 
-                      if (widget.onExpanded != null) {
-                        widget.onExpanded!(false);
+                      if (onExpanded != null) {
+                        onExpanded!(false);
                       }
                     }
                   },
                   child: Hero(
-                    tag: 'Image_${widget.itemModel.id}',
+                    tag: 'Image_${itemModel.id}',
                     child: Card(
                       elevation: 10,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -141,7 +117,7 @@ class _MovieListItemState extends State<MovieListItem>
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Image.network(
-                        '${widget.imageUri}${widget.itemModel.posterPath}',
+                        '$imageUri${itemModel.posterPath}',
                         fit: BoxFit.cover,
                       ),
                     ),
