@@ -10,7 +10,7 @@ class MovieModel {
   final int voteCount;
   final String originalLanguage;
   final String homepage;
-  final String tagLine;
+  final String? tagLine;
   final List<GenreMovies> genres;
 
   MovieModel.fromJson(Map<String, dynamic> json)

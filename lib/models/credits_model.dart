@@ -15,7 +15,7 @@ class CastModel {
   final String character;
   final String name;
   final int order;
-  final String profilePath;
+  final String? profilePath;
 
   CastModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],

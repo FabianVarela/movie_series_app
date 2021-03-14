@@ -10,7 +10,7 @@ class MovieDetail extends StatefulWidget {
   final int movieId;
   final String movieImageUrl;
 
-  MovieDetail({@required this.movieId, @required this.movieImageUrl});
+  MovieDetail({required this.movieId, required this.movieImageUrl});
 
   @override
   _MovieDetailState createState() => _MovieDetailState();
@@ -19,7 +19,7 @@ class MovieDetail extends StatefulWidget {
 class _MovieDetailState extends State<MovieDetail> {
   final MovieDetailBloc _bloc = MovieDetailBloc();
 
-  String _imageUri;
+  late String _imageUri;
 
   @override
   void initState() {
@@ -71,11 +71,9 @@ class _MovieDetailState extends State<MovieDetail> {
             ),
             StreamBuilder<MovieModel>(
               stream: _bloc.movie,
-              builder: (_, AsyncSnapshot<MovieModel> movieSnapshot) {
-                if (!movieSnapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
+              builder: (_, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
                 }
 
                 return Container(
@@ -83,7 +81,7 @@ class _MovieDetailState extends State<MovieDetail> {
                   child: Column(
                     //shrinkWrap: true,
                     children: <Widget>[
-                      _setDetailSection(movieSnapshot.data),
+                      _setDetailSection(snapshot.data!),
                       _setCreditsSection(),
                       _setTrailerSection(),
                     ],
@@ -178,12 +176,12 @@ class _MovieDetailState extends State<MovieDetail> {
         ),
         StreamBuilder<CreditsModel>(
           stream: _bloc.credits,
-          builder: (_, AsyncSnapshot<CreditsModel> creditsSnapshot) {
+          builder: (_, creditsSnapshot) {
             if (!creditsSnapshot.hasData) {
               return CircularProgressIndicator();
             }
 
-            final List<CastModel> casts = creditsSnapshot.data.casts;
+            final casts = creditsSnapshot.data!.casts;
             if (casts.isEmpty) {
               return Center(
                 child: Container(
@@ -204,7 +202,7 @@ class _MovieDetailState extends State<MovieDetail> {
                 itemCount: casts.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, int index) {
-                  final bool isImage = casts[index].profilePath != null;
+                  final isImage = casts[index].profilePath != null;
 
                   return Container(
                     width: 100,
@@ -218,6 +216,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                   '$_imageUri${casts[index].profilePath}',
                                 )
                               : null,
+                          radius: 40,
                           child: !isImage
                               ? Icon(
                                   Icons.account_circle,
@@ -225,7 +224,6 @@ class _MovieDetailState extends State<MovieDetail> {
                                   color: Colors.white,
                                 )
                               : null,
-                          radius: 40,
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 10),
@@ -274,7 +272,7 @@ class _MovieDetailState extends State<MovieDetail> {
               );
             }
 
-            if (trailersSnapshot.data.trailers.isEmpty) {
+            if (trailersSnapshot.data!.trailers.isEmpty) {
               return Center(
                 child: Container(
                   child: Text(
@@ -288,7 +286,7 @@ class _MovieDetailState extends State<MovieDetail> {
               );
             }
 
-            return _trailerLayout(trailersSnapshot.data.trailers);
+            return _trailerLayout(trailersSnapshot.data!.trailers);
           },
         ),
       ],
@@ -333,5 +331,5 @@ class _MovieDetailState extends State<MovieDetail> {
     );
   }
 
-  void _getImageUri() => _imageUri = DotEnv().env['IMAGE_URI'];
+  void _getImageUri() => _imageUri = env['IMAGE_URI']!;
 }

@@ -10,7 +10,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
       <DeviceOrientation>[DeviceOrientation.portraitUp]);
 
-  await DotEnv().load('.env');
+  await load(fileName: '.env');
 
   runApp(MyApp());
 }

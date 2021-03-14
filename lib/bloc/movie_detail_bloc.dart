@@ -26,7 +26,7 @@ class MovieDetailBloc {
 
   void getMovie(int movieId) async {
     try {
-      final MovieModel movieModel = await _repository.fetchMovie(movieId);
+      final movieModel = await _repository.fetchMovie(movieId);
       _movie.sink.add(movieModel);
     } on Exception catch (e) {
       _movie.sink.addError(e);
@@ -35,8 +35,7 @@ class MovieDetailBloc {
 
   void getTrailers(int movieId) async {
     try {
-      final TrailersModel trailersModel =
-          await _repository.fetchTrailers(movieId);
+      final trailersModel = await _repository.fetchTrailers(movieId);
       _trailers.sink.add(trailersModel);
     } on Exception catch (e) {
       _trailers.sink.addError(e);
@@ -45,7 +44,7 @@ class MovieDetailBloc {
 
   void getCredits(int movieId) async {
     try {
-      final CreditsModel creditsModel = await _repository.fetchCredits(movieId);
+      final creditsModel = await _repository.fetchCredits(movieId);
       _credits.sink.add(creditsModel);
     } on Exception catch (e) {
       _credits.sink.addError(e);

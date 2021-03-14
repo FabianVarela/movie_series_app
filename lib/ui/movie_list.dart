@@ -11,12 +11,12 @@ class MovieList extends StatefulWidget {
 }
 
 class _MovieListState extends State<MovieList> {
-  final PageController _pageController = PageController(
+  final _pageController = PageController(
     initialPage: 0,
     viewportFraction: .8,
   );
 
-  String _imageUri;
+  late String _imageUri;
 
   int _currentIndex = 0;
   int _totalLength = 0;
@@ -61,10 +61,7 @@ class _MovieListState extends State<MovieList> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
+            Icon(Icons.search, color: Colors.white),
             Text(
               'Popular Movies',
               style: TextStyle(
@@ -73,10 +70,7 @@ class _MovieListState extends State<MovieList> {
                 color: Colors.white,
               ),
             ),
-            Icon(
-              Icons.my_location,
-              color: Colors.white,
-            ),
+            Icon(Icons.my_location, color: Colors.white),
           ],
         ),
       ),
@@ -86,11 +80,19 @@ class _MovieListState extends State<MovieList> {
   Widget _setBody() {
     return StreamBuilder<MoviesModel>(
       stream: bloc.movies,
-      builder: (_, AsyncSnapshot<MoviesModel> moviesSnapshot) {
-        if (moviesSnapshot.hasError) {
+      builder: (_, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
+          );
+        }
+
+        if (snapshot.hasError) {
           return Center(
             child: Text(
-              moviesSnapshot.error ?? '',
+              snapshot.error.toString(),
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w500,
@@ -100,17 +102,10 @@ class _MovieListState extends State<MovieList> {
           );
         }
 
-        if (moviesSnapshot.hasData) {
-          Future<void>.delayed(Duration(milliseconds: 200),
-              () => _totalLength = moviesSnapshot.data.movies.length);
-          return _buildList(moviesSnapshot.data.movies);
-        }
-
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          ),
+        Future.microtask(
+          () => setState(() => _totalLength = snapshot.data!.movies.length),
         );
+        return _buildList(snapshot.data!.movies);
       },
     );
   }
@@ -160,7 +155,7 @@ class _MovieListState extends State<MovieList> {
     );
   }
 
-  void _getImageUri() => _imageUri = DotEnv().env['IMAGE_URI'];
+  void _getImageUri() => _imageUri = env['IMAGE_URI']!;
 
   void _openDetailPage(MoviesItemModel model) {
     Navigator.push(

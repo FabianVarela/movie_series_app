@@ -3,9 +3,9 @@ import 'package:movie_list_bloc/models/movies_model.dart';
 
 class MovieListItem extends StatefulWidget {
   MovieListItem({
-    @required this.itemModel,
-    @required this.onPressItem,
-    @required this.imageUri,
+    required this.itemModel,
+    required this.onPressItem,
+    required this.imageUri,
     this.onExpanded,
     this.isCurrent = false,
   });
@@ -13,7 +13,7 @@ class MovieListItem extends StatefulWidget {
   final MoviesItemModel itemModel;
   final Function(MoviesItemModel) onPressItem;
   final String imageUri;
-  final Function(bool) onExpanded;
+  final Function(bool)? onExpanded;
   final bool isCurrent;
 
   @override
@@ -22,9 +22,9 @@ class MovieListItem extends StatefulWidget {
 
 class _MovieListItemState extends State<MovieListItem>
     with TickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _translateAnimation;
-  Animation<double> _expandAnimation;
+  late AnimationController _animationController;
+  late Animation<double> _translateAnimation;
+  late Animation<double> _expandAnimation;
 
   @override
   void initState() {
@@ -49,8 +49,8 @@ class _MovieListItemState extends State<MovieListItem>
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return Opacity(
       opacity: widget.isCurrent ? 1 : .4,
@@ -116,7 +116,7 @@ class _MovieListItemState extends State<MovieListItem>
                       _animationController.forward(from: 0.0);
 
                       if (widget.onExpanded != null) {
-                        widget.onExpanded(true);
+                        widget.onExpanded!(true);
                       }
                     } else if (_animationController.status ==
                         AnimationStatus.completed) {
@@ -128,7 +128,7 @@ class _MovieListItemState extends State<MovieListItem>
                       _animationController.reverse();
 
                       if (widget.onExpanded != null) {
-                        widget.onExpanded(false);
+                        widget.onExpanded!(false);
                       }
                     }
                   },

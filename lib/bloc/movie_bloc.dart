@@ -14,7 +14,7 @@ class MoviesBloc {
   Stream<MoviesModel> get movies => _movies.stream;
 
   void fetchAllMovies() async {
-    final MoviesModel itemModel = await _repository.fetchAllMovies();
+    final itemModel = await _repository.fetchAllMovies();
     _movies.sink.add(itemModel);
   }
 
