@@ -1,4 +1,6 @@
-class CreditsModel {
+import 'package:equatable/equatable.dart';
+
+class CreditsModel extends Equatable {
   final int id;
   final List<CastModel> casts;
 
@@ -7,9 +9,12 @@ class CreditsModel {
         casts = (json['cast'] as List<dynamic>)
             .map((dynamic item) => CastModel.fromJson(item))
             .toList();
+
+  @override
+  List<Object> get props => [id, casts];
 }
 
-class CastModel {
+class CastModel extends Equatable {
   final int id;
   final int castId;
   final String character;
@@ -24,4 +29,7 @@ class CastModel {
         name = json['name'],
         order = json['order'],
         profilePath = json['profile_path'];
+
+  @override
+  List<Object?> get props => [id, castId, character, name, order, profilePath];
 }

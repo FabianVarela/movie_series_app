@@ -1,4 +1,6 @@
-class MovieModel {
+import 'package:equatable/equatable.dart';
+
+class MovieModel extends Equatable {
   final int id;
   final String posterPath;
   final String backdropPath;
@@ -31,13 +33,33 @@ class MovieModel {
             : (json['genres'] as List<dynamic>)
                 .map((dynamic item) => GenreMovies.fromJson(item))
                 .toList();
+
+  @override
+  List<Object?> get props => [
+        id,
+        posterPath,
+        backdropPath,
+        originalTitle,
+        title,
+        overview,
+        releaseDate,
+        voteAverage,
+        voteCount,
+        originalLanguage,
+        homepage,
+        tagLine,
+        genres,
+      ];
 }
 
-class GenreMovies {
+class GenreMovies extends Equatable {
   final int id;
   final String name;
 
   GenreMovies.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'];
+
+  @override
+  List<Object> get props => [id, name];
 }

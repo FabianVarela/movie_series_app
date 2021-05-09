@@ -1,4 +1,6 @@
-class TrailersModel {
+import 'package:equatable/equatable.dart';
+
+class TrailersModel extends Equatable {
   final int id;
   final List<TrailerModel> trailers;
 
@@ -7,9 +9,12 @@ class TrailersModel {
         trailers = (json['results'] as List<dynamic>)
             .map((dynamic item) => TrailerModel.fromJson(item))
             .toList();
+
+  @override
+  List<Object> get props => [id, trailers];
 }
 
-class TrailerModel {
+class TrailerModel extends Equatable {
   final String id;
   final String iso_639_1;
   final String iso_3166_1;
@@ -28,4 +33,16 @@ class TrailerModel {
         site = json['site'],
         size = json['size'],
         type = json['type'];
+
+  @override
+  List<Object> get props => [
+        id,
+        iso_639_1,
+        iso_3166_1,
+        key,
+        name,
+        site,
+        size,
+        type,
+      ];
 }
