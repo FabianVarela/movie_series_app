@@ -8,12 +8,12 @@ import 'package:http/http.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
 
 class MovieClient {
-  final Client _client = Client();
+  late final Client _client;
 
   late String? _baseUrl;
   late String? _apiKey;
 
-  MovieClient() {
+  MovieClient(this._client) {
     _baseUrl = env['API_URL'];
     _apiKey = env['API_KEY'];
   }
@@ -44,7 +44,7 @@ class MovieClient {
     }
   }
 
-  Future<TrailersModel> fetchMovieTrailer(int movieId) async {
+  Future<TrailersModel> fetchTrailers(int movieId) async {
     final response = await _client.get(
         Uri.https(_baseUrl!, '/3/movie/$movieId/videos', _getApiKeyParam()));
 
