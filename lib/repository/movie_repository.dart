@@ -5,16 +5,18 @@ import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
 
 class MovieRepository {
-  final MovieClient _movieApiClient = MovieClient();
+  late final MovieClient _movieClient;
 
-  Future<MoviesModel> fetchAllMovies() => _movieApiClient.fetchMovies();
+  MovieRepository(this._movieClient);
+
+  Future<MoviesModel> fetchMovies() => _movieClient.fetchMovies();
 
   Future<MovieModel> fetchMovie(int movieId) =>
-      _movieApiClient.fetchMovie(movieId);
+      _movieClient.fetchMovie(movieId);
 
   Future<TrailersModel> fetchTrailers(int movieId) =>
-      _movieApiClient.fetchMovieTrailer(movieId);
+      _movieClient.fetchTrailers(movieId);
 
   Future<CreditsModel> fetchCredits(int movieId) =>
-      _movieApiClient.fetchCredits(movieId);
+      _movieClient.fetchCredits(movieId);
 }
