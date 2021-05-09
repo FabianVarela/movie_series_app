@@ -5,9 +5,9 @@ import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
 
 class MovieRepository {
-  late final MovieClient _movieClient;
-
   MovieRepository(this._movieClient);
+
+  late final MovieClient _movieClient;
 
   Future<MoviesModel> fetchMovies() => _movieClient.fetchMovies();
 

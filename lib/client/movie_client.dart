@@ -8,15 +8,15 @@ import 'package:http/http.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
 
 class MovieClient {
-  late final Client _client;
-
-  late String? _baseUrl;
-  late String? _apiKey;
-
   MovieClient(this._client) {
     _baseUrl = env['API_URL'];
     _apiKey = env['API_KEY'];
   }
+
+  late final Client _client;
+
+  late String? _baseUrl;
+  late String? _apiKey;
 
   Future<MoviesModel> fetchMovies() async {
     final response = await _client
