@@ -1,24 +1,18 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
-import 'package:rxdart/rxdart.dart';
 
-class MoviesBloc {
-  final MovieRepository _repository = MovieRepository();
+class MoviesBloc extends Cubit<MoviesModel?> {
+  MoviesBloc(this._repository) : super(null);
 
-  /// Subjects or StreamControllers
-  final PublishSubject<MoviesModel> _movies = PublishSubject<MoviesModel>();
+  late final MovieRepository _repository;
 
-  /// Get data from Stream
-
-  /// Observables
-  Stream<MoviesModel> get movies => _movies.stream;
-
-  void fetchAllMovies() async {
-    final itemModel = await _repository.fetchAllMovies();
-    _movies.sink.add(itemModel);
+  void fetchMovies() async {
+    try {
+      final itemModel = await _repository.fetchMovies();
+      emit(itemModel);
+    } on Exception catch (e) {
+      addError(e, StackTrace.current);
+    }
   }
-
-  void dispose() => _movies.close();
 }
-
-final MoviesBloc bloc = MoviesBloc();
