@@ -8,12 +8,7 @@ import 'package:movie_list_bloc/bloc/detail/movie/movie_bloc.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/view/movie_list_view.dart';
 
-class App extends StatefulWidget {
-  @override
-  _AppState createState() => _AppState();
-}
-
-class _AppState extends State<App> {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -26,7 +21,9 @@ class _AppState extends State<App> {
       child: MaterialApp(
         title: 'Movie list',
         theme: ThemeData(
-          textTheme: GoogleFonts.ubuntuTextTheme(Theme.of(context).textTheme),
+          textTheme: GoogleFonts.ubuntuTextTheme(
+            Theme.of(context).textTheme,
+          ),
         ),
         home: MovieList(),
       ),
