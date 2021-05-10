@@ -1,57 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:movie_list_bloc/bloc/movie_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
+import 'package:movie_list_bloc/bloc/movie_list/movie_state.dart';
+import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/ui/movie_detail.dart';
 import 'package:movie_list_bloc/ui/movie_list_item.dart';
 
-class MovieList extends StatefulWidget {
-  @override
-  _MovieListState createState() => _MovieListState();
-}
-
-class _MovieListState extends State<MovieList> {
-  final _pageController = PageController(
-    initialPage: 0,
-    viewportFraction: .8,
-  );
-
-  late String _imageUri;
-
-  int _currentIndex = 0;
-  int _totalLength = 0;
-
-  bool _enableScroll = true;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _getImageUri();
-    bloc.fetchAllMovies();
-  }
-
-  @override
-  void dispose() {
-    bloc.dispose();
-    super.dispose();
-  }
-
+class MovieList extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final currentIndex = useState(0);
+    final length = useState(0);
+
+    final isEnabledScroll = useState(true);
+
+    final pageController =
+        usePageController(initialPage: 0, viewportFraction: .8);
+
+    useEffect(() {
+      Future.microtask(() => locator<MoviesBloc>().fetchMovies());
+    }, []);
+
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: Stack(
         children: <Widget>[
-          _setBody(),
-          _setHeader(),
-          _setFooter(),
+          _body(
+            currentIndex.value,
+            isEnabledScroll.value,
+            pageController,
+            (index, size) {
+              currentIndex.value = index;
+              length.value = size;
+            },
+            (enabled) => isEnabledScroll.value = !enabled,
+          ),
+          _header(),
+          _footer(currentIndex.value, length.value),
         ],
       ),
     );
   }
 
-  Widget _setHeader() {
+  Widget _header() {
     return SafeArea(
       top: true,
       bottom: false,
@@ -77,65 +71,63 @@ class _MovieListState extends State<MovieList> {
     );
   }
 
-  Widget _setBody() {
-    return StreamBuilder<MoviesModel>(
-      stream: bloc.movies,
-      builder: (_, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
-          );
-        }
-
-        if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              snapshot.error.toString(),
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w500,
-                color: Colors.redAccent,
-              ),
-            ),
-          );
-        }
-
-        Future.microtask(
-          () => setState(() => _totalLength = snapshot.data!.movies.length),
+  Widget _body(int idx, bool enabled, PageController controller,
+      Function(int, int) onChange, Function(bool) onEnabled) {
+    return BlocBuilder<MoviesBloc, MovieListState>(builder: (context, state) {
+      if (state is MovieListLoadingState) {
+        Future.microtask(() => onChange(-1, 0));
+        return Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          ),
         );
-        return _buildList(snapshot.data!.movies);
-      },
-    );
+      }
+
+      if (state is MovieListErrorState) {
+        Future.microtask(() => onChange(-1, 0));
+        return Center(
+          child: Text(
+            state.message,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w500,
+              color: Colors.redAccent,
+            ),
+          ),
+        );
+      }
+
+      if (state is MovieListSuccessState) {
+        final movies = state.movies.movies;
+        Future.microtask(() => onChange(idx == -1 ? 0 : idx, movies.length));
+
+        return Align(
+          alignment: Alignment.center,
+          child: PageView.builder(
+            itemCount: movies.length,
+            physics: enabled
+                ? BouncingScrollPhysics()
+                : NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            controller: controller,
+            onPageChanged: (i) => onChange(i, movies.length),
+            itemBuilder: (_, i) => MovieListItem(
+              itemModel: movies[i],
+              onPressItem: (model) => _openDetailPage(context, model),
+              imageUri: env['IMAGE_URI']!,
+              isCurrent: idx == i,
+              onExpanded: onEnabled,
+            ),
+          ),
+        );
+      }
+
+      return Offstage();
+    });
   }
 
-  Widget _buildList(List<MoviesItemModel> movies) {
-    return Align(
-      alignment: Alignment.center,
-      child: PageView.builder(
-        itemCount: movies.length,
-        physics: _enableScroll
-            ? BouncingScrollPhysics()
-            : NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        controller: _pageController,
-        onPageChanged: (int index) => setState(() => _currentIndex = index),
-        itemBuilder: (_, int index) {
-          return MovieListItem(
-            itemModel: movies[index],
-            onPressItem: _openDetailPage,
-            imageUri: _imageUri,
-            isCurrent: _currentIndex == index,
-            onExpanded: (bool isExpanded) =>
-                setState(() => _enableScroll = !isExpanded),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _setFooter() {
+  Widget _footer(int index, int length) {
     return Positioned.fill(
       bottom: 0,
       child: Padding(
@@ -143,7 +135,7 @@ class _MovieListState extends State<MovieList> {
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Text(
-            '${_currentIndex + 1} / $_totalLength',
+            '${index + 1} / $length',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w300,
@@ -155,15 +147,13 @@ class _MovieListState extends State<MovieList> {
     );
   }
 
-  void _getImageUri() => _imageUri = env['IMAGE_URI']!;
-
-  void _openDetailPage(MoviesItemModel model) {
+  void _openDetailPage(BuildContext ctx, MoviesItemModel model) {
     Navigator.push(
-      context,
+      ctx,
       PageRouteBuilder<dynamic>(
         pageBuilder: (_, __, ___) => MovieDetail(
           movieId: model.id,
-          movieImageUrl: '$_imageUri${model.posterPath}',
+          movieImageUrl: '${env['IMAGE_URI']!}${model.posterPath}',
         ),
         transitionsBuilder:
             (_, Animation<double> animation, __, Widget child) =>
