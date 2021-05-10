@@ -7,6 +7,7 @@ import 'package:movie_list_bloc/bloc/movie_list/movie_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/view/movie_detail_view.dart';
+import 'package:movie_list_bloc/view/widget/error_message.dart';
 import 'package:movie_list_bloc/view/widget/movie_list_item.dart';
 
 class MovieList extends HookWidget {
@@ -85,17 +86,7 @@ class MovieList extends HookWidget {
 
       if (state is MovieListErrorState) {
         Future.microtask(() => onChange(-1, 0));
-        return Center(
-          child: Text(
-            state.message,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w500,
-              color: Colors.redAccent,
-            ),
-          ),
-        );
+        return ErrorMessage(message: state.message);
       }
 
       if (state is MovieListSuccessState) {
