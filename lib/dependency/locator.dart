@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
-import 'package:movie_list_bloc/bloc/movie_bloc.dart';
-import 'package:movie_list_bloc/bloc/movie_details_bloc.dart';
+import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
+import 'package:movie_list_bloc/bloc/movie_detail/movie_details_bloc.dart';
 import 'package:movie_list_bloc/client/movie_client.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 
