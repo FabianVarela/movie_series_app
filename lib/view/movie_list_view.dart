@@ -6,8 +6,8 @@ import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
-import 'package:movie_list_bloc/ui/movie_detail.dart';
-import 'package:movie_list_bloc/ui/movie_list_item.dart';
+import 'package:movie_list_bloc/view/movie_detail_view.dart';
+import 'package:movie_list_bloc/view/widget/movie_list_item.dart';
 
 class MovieList extends HookWidget {
   @override
