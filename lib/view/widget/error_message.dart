@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ErrorMessage extends StatelessWidget {
-  const ErrorMessage({Key? key, required this.message}) : super(key: key);
+  const ErrorMessage({Key? key, required this.message, this.fontSize = 30})
+      : super(key: key);
 
   final String message;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class ErrorMessage extends StatelessWidget {
         message,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 30,
+          fontSize: fontSize,
           fontWeight: FontWeight.w500,
           color: Colors.redAccent,
         ),
