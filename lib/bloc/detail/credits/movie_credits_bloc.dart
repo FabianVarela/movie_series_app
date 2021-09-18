@@ -7,7 +7,7 @@ class CreditsBloc extends Cubit<CreditsState> {
 
   late final MovieRepository _repository;
 
-  void getCredits(int movieId) async {
+  Future<void> getCredits(int movieId) async {
     try {
       emit(CreditsLoadingState());
       final credits = await _repository.fetchCredits(movieId);

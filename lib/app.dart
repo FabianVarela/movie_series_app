@@ -9,6 +9,8 @@ import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/view/movie_list_view.dart';
 
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -25,7 +27,7 @@ class App extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: MovieList(),
+        home: const MovieList(),
       ),
     );
   }

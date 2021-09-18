@@ -9,8 +9,8 @@ import 'package:movie_list_bloc/models/trailer_model.dart';
 
 class MovieClient {
   MovieClient(this._client) {
-    _baseUrl = env['API_URL'];
-    _apiKey = env['API_KEY'];
+    _baseUrl = dotenv.env['API_URL'];
+    _apiKey = dotenv.env['API_KEY'];
   }
 
   late final Client _client;

@@ -10,8 +10,8 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
     <DeviceOrientation>[DeviceOrientation.portraitUp],
   );
-  await load();
+  await dotenv.load();
 
   setupLocator();
-  runApp(App());
+  runApp(const App());
 }

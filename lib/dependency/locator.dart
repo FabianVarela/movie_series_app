@@ -13,12 +13,12 @@ import 'package:movie_list_bloc/repository/movie_repository.dart';
 final locator = GetIt.I;
 
 void setupLocator() {
-  locator.registerLazySingleton(() => Client());
-  locator.registerLazySingleton(() => MovieClient(locator<Client>()));
-  locator.registerLazySingleton(() => MovieRepository(locator<MovieClient>()));
-
-  locator.registerLazySingleton(() => MoviesBloc(locator<MovieRepository>()));
-  locator.registerLazySingleton(() => MovieBloc(locator<MovieRepository>()));
-  locator.registerLazySingleton(() => TrailersBloc(locator<MovieRepository>()));
-  locator.registerLazySingleton(() => CreditsBloc(locator<MovieRepository>()));
+  locator
+    ..registerLazySingleton(() => Client())
+    ..registerLazySingleton(() => MovieClient(locator<Client>()))
+    ..registerLazySingleton(() => MovieRepository(locator<MovieClient>()))
+    ..registerLazySingleton(() => MoviesBloc(locator<MovieRepository>()))
+    ..registerLazySingleton(() => MovieBloc(locator<MovieRepository>()))
+    ..registerLazySingleton(() => TrailersBloc(locator<MovieRepository>()))
+    ..registerLazySingleton(() => CreditsBloc(locator<MovieRepository>()));
 }

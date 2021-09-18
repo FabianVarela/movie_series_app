@@ -9,37 +9,32 @@ class MovieDetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
               movie.title,
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w700,
-              ),
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Icon(Icons.favorite, color: Colors.red),
                   ),
                   Text(
                     '${movie.voteAverage}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                     ),
@@ -48,7 +43,7 @@ class MovieDetailItem extends StatelessWidget {
               ),
               Text(
                 movie.releaseDate,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
                 ),
@@ -57,13 +52,10 @@ class MovieDetailItem extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Text(
             movie.overview,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
         ),
       ],

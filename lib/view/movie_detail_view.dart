@@ -15,10 +15,14 @@ import 'package:movie_list_bloc/view/widget/movie_detail_item.dart';
 import 'package:movie_list_bloc/view/widget/trailer_item.dart';
 
 class MovieDetail extends HookWidget {
+  const MovieDetail({
+    Key? key,
+    required this.movieId,
+    required this.movieImageUrl,
+  }) : super(key: key);
+
   final int movieId;
   final String movieImageUrl;
-
-  MovieDetail({required this.movieId, required this.movieImageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class MovieDetail extends HookWidget {
           children: <Widget>[
             _bannerImage(context),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
                   _detailSection(),
@@ -58,15 +62,12 @@ class MovieDetail extends HookWidget {
           Navigator.pop(context);
         }
       },
-      child: Container(
+      child: SizedBox(
         height: 250,
         width: MediaQuery.of(context).size.width,
         child: Hero(
           tag: 'Image_$movieId',
-          child: Image.network(
-            '$movieImageUrl',
-            fit: BoxFit.cover,
-          ),
+          child: Image.network(movieImageUrl, fit: BoxFit.cover),
         ),
       ),
     );
@@ -75,7 +76,7 @@ class MovieDetail extends HookWidget {
   Widget _detailSection() {
     return BlocBuilder<MovieBloc, MovieState>(builder: (context, state) {
       if (state is MovieLoadingState) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }
 
       if (state is MovieErrorState) {
@@ -86,14 +87,14 @@ class MovieDetail extends HookWidget {
         return MovieDetailItem(movie: state.movie);
       }
 
-      return Offstage();
+      return const Offstage();
     });
   }
 
   Widget _creditsSection() {
     return Column(
       children: <Widget>[
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(vertical: 8),
           child: Align(
             alignment: Alignment.centerLeft,
@@ -105,7 +106,7 @@ class MovieDetail extends HookWidget {
         ),
         BlocBuilder<CreditsBloc, CreditsState>(builder: (context, state) {
           if (state is CreditsLoadingState) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           if (state is CreditsErrorState) {
@@ -114,14 +115,14 @@ class MovieDetail extends HookWidget {
 
           if (state is CreditsSuccessState) {
             if (state.credits.casts.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text(
                   'No cast available',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                 ),
               );
             } else {
-              return Container(
+              return SizedBox(
                 height: 120,
                 child: ListView.builder(
                   itemCount: state.credits.casts.length,
@@ -133,7 +134,7 @@ class MovieDetail extends HookWidget {
             }
           }
 
-          return Offstage();
+          return const Offstage();
         }),
       ],
     );
@@ -143,7 +144,7 @@ class MovieDetail extends HookWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(vertical: 8),
           child: Text(
             'Trailer',
@@ -152,7 +153,7 @@ class MovieDetail extends HookWidget {
         ),
         BlocBuilder<TrailersBloc, TrailersState>(builder: (context, state) {
           if (state is TrailersLoadingState) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (state is TrailersErrorState) {
@@ -161,14 +162,14 @@ class MovieDetail extends HookWidget {
 
           if (state is TrailersSuccessState) {
             if (state.trailers.trailers.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text(
                   'No trailer available',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                 ),
               );
             } else {
-              return Container(
+              return SizedBox(
                 height: 100,
                 child: ListView.builder(
                   itemCount: state.trailers.trailers.length,
@@ -180,7 +181,7 @@ class MovieDetail extends HookWidget {
             }
           }
 
-          return Offstage();
+          return const Offstage();
         }),
       ],
     );

@@ -13,19 +13,19 @@ class CreditItem extends StatelessWidget {
 
     return Container(
       width: 100,
-      padding: EdgeInsets.only(right: 10),
+      padding: const EdgeInsets.only(right: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           CircleAvatar(
             backgroundImage: isImage
                 ? NetworkImage(
-                    '${env['IMAGE_URI']!}${cast.profilePath}',
+                    '${dotenv.env['IMAGE_URI']!}${cast.profilePath}',
                   )
                 : null,
             radius: 40,
             child: !isImage
-                ? Icon(
+                ? const Icon(
                     Icons.account_circle,
                     size: 30,
                     color: Colors.white,
@@ -33,15 +33,12 @@ class CreditItem extends StatelessWidget {
                 : null,
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: Text(
-              '${cast.name}',
+              cast.name,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
             ),
           ),
         ],

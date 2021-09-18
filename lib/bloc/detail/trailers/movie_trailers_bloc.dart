@@ -7,7 +7,7 @@ class TrailersBloc extends Cubit<TrailersState> {
 
   late final MovieRepository _repository;
 
-  void getTrailers(int movieId) async {
+  Future<void> getTrailers(int movieId) async {
     try {
       emit(TrailersLoadingState());
       final trailers = await _repository.fetchTrailers(movieId);

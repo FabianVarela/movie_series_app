@@ -10,23 +10,21 @@ class TrailerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 150,
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
             height: 72,
             color: Colors.grey,
-            child: Center(
-              child: Icon(Icons.play_circle_filled),
-            ),
+            child: const Center(child: Icon(Icons.play_circle_filled)),
           ),
           Text(
             trailer.name,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
           ),
         ],
       ),

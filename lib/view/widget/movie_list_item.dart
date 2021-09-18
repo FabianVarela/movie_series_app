@@ -3,13 +3,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 
 class MovieListItem extends HookWidget {
-  MovieListItem({
+  const MovieListItem({
+    Key? key,
     required this.itemModel,
     required this.onPressItem,
     required this.imageUri,
     this.onExpanded,
     this.isCurrent = false,
-  });
+  }) : super(key: key);
 
   final MoviesItemModel itemModel;
   final Function(MoviesItemModel) onPressItem;
@@ -19,13 +20,15 @@ class MovieListItem extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = useAnimationController(
-      duration: Duration(milliseconds: 300),
+    final controller = useAnimationController(
+      duration: const Duration(milliseconds: 300),
     );
-    var translateAnimation = useAnimation<double>(
-        Tween<double>(begin: 0, end: -60).animate(controller));
-    var expandAnimation = useAnimation<double>(
-        Tween<double>(begin: 0.7, end: 0.8).animate(controller));
+    final translateAnimation = useAnimation<double>(
+      Tween<double>(begin: 0, end: -60).animate(controller),
+    );
+    final expandAnimation = useAnimation<double>(
+      Tween<double>(begin: 0.7, end: 0.8).animate(controller),
+    );
 
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
@@ -35,9 +38,8 @@ class MovieListItem extends HookWidget {
       child: Stack(
         children: <Widget>[
           Align(
-            alignment: Alignment.center,
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               width: width * expandAnimation,
               height: isCurrent ? height * 0.55 : height * 0.5,
               child: Card(
@@ -49,15 +51,15 @@ class MovieListItem extends HookWidget {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Row(
                       children: <Widget>[
                         Expanded(
                           flex: 4,
                           child: Text(
-                            '${itemModel.title}',
+                            itemModel.title,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
                             ),
@@ -65,9 +67,9 @@ class MovieListItem extends HookWidget {
                         ),
                         Expanded(
                           child: Text(
-                            '${itemModel.voteAverage.toStringAsFixed(2)}',
+                            itemModel.voteAverage.toStringAsFixed(2),
                             textAlign: TextAlign.end,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                             ),
@@ -83,14 +85,13 @@ class MovieListItem extends HookWidget {
           Transform.translate(
             offset: Offset(0, translateAnimation),
             child: Align(
-              alignment: Alignment.center,
-              child: Container(
+              child: SizedBox(
                 width: width * 0.7,
                 height: isCurrent ? height * 0.55 : height * 0.5,
                 child: GestureDetector(
                   onTap: () {
                     if (controller.status == AnimationStatus.dismissed) {
-                      controller.forward(from: 0.0);
+                      controller.forward(from: 0);
 
                       if (onExpanded != null) {
                         onExpanded!(true);

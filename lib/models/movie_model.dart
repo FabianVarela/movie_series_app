@@ -1,20 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class MovieModel extends Equatable {
-  final int id;
-  final String posterPath;
-  final String? backdropPath;
-  final String originalTitle;
-  final String title;
-  final String overview;
-  final String releaseDate;
-  final double voteAverage;
-  final int voteCount;
-  final String originalLanguage;
-  final String homepage;
-  final String? tagLine;
-  final List<GenreMovies> genres;
-
   MovieModel.fromJson(Map<String, dynamic> json)
       : id = json['id'] as int,
         posterPath = json['poster_path'] as String,
@@ -35,6 +21,20 @@ class MovieModel extends Equatable {
                     GenreMovies.fromJson(item as Map<String, dynamic>))
                 .toList();
 
+  final int id;
+  final String posterPath;
+  final String? backdropPath;
+  final String originalTitle;
+  final String title;
+  final String overview;
+  final String releaseDate;
+  final double voteAverage;
+  final int voteCount;
+  final String originalLanguage;
+  final String homepage;
+  final String? tagLine;
+  final List<GenreMovies> genres;
+
   @override
   List<Object?> get props => [
         id,
@@ -54,12 +54,12 @@ class MovieModel extends Equatable {
 }
 
 class GenreMovies extends Equatable {
-  final int id;
-  final String name;
-
   GenreMovies.fromJson(Map<String, dynamic> json)
       : id = json['id'] as int,
         name = json['name'] as String;
+
+  final int id;
+  final String name;
 
   @override
   List<Object> get props => [id, name];
