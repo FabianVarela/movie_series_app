@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_list_bloc/bloc/detail/credits/credits_state.dart';
+import 'package:movie_list_bloc/bloc/detail/credits/movie_credits_state.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 
 class CreditsBloc extends Cubit<CreditsState> {

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
-import 'package:movie_list_bloc/bloc/movie_list/movie_state.dart';
+import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/view/movie_detail_view.dart';

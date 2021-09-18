@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_list_bloc/bloc/movie_list/movie_state.dart';
+import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 
 class MoviesBloc extends Cubit<MovieListState> {
