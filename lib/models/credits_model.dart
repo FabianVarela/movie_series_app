@@ -5,9 +5,10 @@ class CreditsModel extends Equatable {
   final List<CastModel> casts;
 
   CreditsModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
+      : id = json['id'] as int,
         casts = (json['cast'] as List<dynamic>)
-            .map((dynamic item) => CastModel.fromJson(item))
+            .map((dynamic item) =>
+                CastModel.fromJson(item as Map<String, dynamic>))
             .toList();
 
   @override
@@ -23,12 +24,12 @@ class CastModel extends Equatable {
   final String? profilePath;
 
   CastModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        castId = json['cast_id'],
-        character = json['character'],
-        name = json['name'],
-        order = json['order'],
-        profilePath = json['profile_path'];
+      : id = json['id'] as int,
+        castId = json['cast_id'] as int,
+        character = json['character'] as String,
+        name = json['name'] as String,
+        order = json['order'] as int,
+        profilePath = json['profile_path'] as String;
 
   @override
   List<Object?> get props => [id, castId, character, name, order, profilePath];

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class MovieModel extends Equatable {
   final int id;
   final String posterPath;
-  final String backdropPath;
+  final String? backdropPath;
   final String originalTitle;
   final String title;
   final String overview;
@@ -16,22 +16,23 @@ class MovieModel extends Equatable {
   final List<GenreMovies> genres;
 
   MovieModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        posterPath = json['poster_path'],
-        backdropPath = json['backdrop_path'] ?? '',
-        originalTitle = json['original_title'],
-        title = json['title'],
-        overview = json['overview'],
-        releaseDate = json['release_date'],
-        voteAverage = json['vote_average'].toDouble(),
-        voteCount = json['vote_count'],
-        originalLanguage = json['original_language'],
-        homepage = json['homepage'],
-        tagLine = json['tagLine'],
+      : id = json['id'] as int,
+        posterPath = json['poster_path'] as String,
+        backdropPath = json['backdrop_path'] as String?,
+        originalTitle = json['original_title'] as String,
+        title = json['title'] as String,
+        overview = json['overview'] as String,
+        releaseDate = json['release_date'] as String,
+        voteAverage = json['vote_average'] as double,
+        voteCount = json['vote_count'] as int,
+        originalLanguage = json['original_language'] as String,
+        homepage = json['homepage'] as String,
+        tagLine = json['tagLine'] as String?,
         genres = json['genres'] == null
             ? <GenreMovies>[]
             : (json['genres'] as List<dynamic>)
-                .map((dynamic item) => GenreMovies.fromJson(item))
+                .map((dynamic item) =>
+                    GenreMovies.fromJson(item as Map<String, dynamic>))
                 .toList();
 
   @override
@@ -57,8 +58,8 @@ class GenreMovies extends Equatable {
   final String name;
 
   GenreMovies.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'];
+      : id = json['id'] as int,
+        name = json['name'] as String;
 
   @override
   List<Object> get props => [id, name];

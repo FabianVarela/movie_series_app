@@ -7,11 +7,12 @@ class MoviesModel extends Equatable {
   final List<MoviesItemModel> movies;
 
   MoviesModel.fromJson(Map<String, dynamic> json)
-      : page = json['page'],
-        totalResults = json['total_results'],
-        totalPages = json['total_pages'],
+      : page = json['page'] as int,
+        totalResults = json['total_results'] as int,
+        totalPages = json['total_pages'] as int,
         movies = (json['results'] as List<dynamic>)
-            .map((dynamic item) => MoviesItemModel.fromJson(item))
+            .map((dynamic item) =>
+                MoviesItemModel.fromJson(item as Map<String, dynamic>))
             .toList();
 
   @override
@@ -26,11 +27,11 @@ class MoviesItemModel extends Equatable {
   final double voteAverage;
 
   MoviesItemModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        posterPath = json['poster_path'],
-        backdropPath = json['backdrop_path'],
-        title = json['title'],
-        voteAverage = json['vote_average'].toDouble();
+      : id = json['id'] as int,
+        posterPath = json['poster_path'] as String,
+        backdropPath = json['backdrop_path'] as String,
+        title = json['title'] as String,
+        voteAverage = json['vote_average'] as double;
 
   @override
   List<Object> get props => [id, posterPath, backdropPath, title, voteAverage];

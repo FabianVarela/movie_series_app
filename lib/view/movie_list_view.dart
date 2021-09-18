@@ -76,7 +76,7 @@ class MovieList extends HookWidget {
       Function(int, int) onChange, Function(bool) onEnabled) {
     return BlocBuilder<MoviesBloc, MovieListState>(builder: (context, state) {
       if (state is MovieListLoadingState) {
-        Future.microtask(() => onChange(-1, 0));
+        Future<void>.microtask(() => onChange(-1, 0));
         return Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -85,13 +85,15 @@ class MovieList extends HookWidget {
       }
 
       if (state is MovieListErrorState) {
-        Future.microtask(() => onChange(-1, 0));
+        Future<void>.microtask(() => onChange(-1, 0));
         return ErrorMessage(message: state.message);
       }
 
       if (state is MovieListSuccessState) {
         final movies = state.movies.movies;
-        Future.microtask(() => onChange(idx == -1 ? 0 : idx, movies.length));
+        Future<void>.microtask(
+          () => onChange(idx == -1 ? 0 : idx, movies.length),
+        );
 
         return Align(
           alignment: Alignment.center,
@@ -139,7 +141,7 @@ class MovieList extends HookWidget {
   }
 
   void _openDetailPage(BuildContext ctx, MoviesItemModel model) {
-    Navigator.push(
+    Navigator.push<void>(
       ctx,
       PageRouteBuilder<dynamic>(
         pageBuilder: (_, __, ___) => MovieDetail(

@@ -19,26 +19,30 @@ class MovieClient {
   late String? _apiKey;
 
   Future<MoviesModel> fetchMovies() async {
-    final response = await _client
-        .get(Uri.https(_baseUrl!, '/3/movie/popular', _getApiKeyParam()));
+    final response = await _client.get(
+      Uri.https(_baseUrl!, '/3/movie/popular', _getApiKeyParam()),
+    );
 
     print(response.body);
 
     if (response.statusCode == 200) {
-      return MoviesModel.fromJson(json.decode(response.body));
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return MoviesModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load movies');
     }
   }
 
   Future<MovieModel> fetchMovie(int movieId) async {
-    final response = await _client
-        .get(Uri.https(_baseUrl!, '/3/movie/$movieId', _getApiKeyParam()));
+    final response = await _client.get(
+      Uri.https(_baseUrl!, '/3/movie/$movieId', _getApiKeyParam()),
+    );
 
     print(response.body);
 
     if (response.statusCode == 200) {
-      return MovieModel.fromJson(json.decode(response.body));
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return MovieModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load movie with id $movieId');
     }
@@ -46,12 +50,14 @@ class MovieClient {
 
   Future<TrailersModel> fetchTrailers(int movieId) async {
     final response = await _client.get(
-        Uri.https(_baseUrl!, '/3/movie/$movieId/videos', _getApiKeyParam()));
+      Uri.https(_baseUrl!, '/3/movie/$movieId/videos', _getApiKeyParam()),
+    );
 
     print(response.body);
 
     if (response.statusCode == 200) {
-      return TrailersModel.fromJson(json.decode(response.body));
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return TrailersModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load movie trailers');
     }
@@ -59,12 +65,14 @@ class MovieClient {
 
   Future<CreditsModel> fetchCredits(int movieId) async {
     final response = await _client.get(
-        Uri.https(_baseUrl!, '/3/movie/$movieId/credits', _getApiKeyParam()));
+      Uri.https(_baseUrl!, '/3/movie/$movieId/credits', _getApiKeyParam()),
+    );
 
     print(response.body);
 
     if (response.statusCode == 200) {
-      return CreditsModel.fromJson(json.decode(response.body));
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return CreditsModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load movie credits');
     }

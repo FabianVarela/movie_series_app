@@ -8,8 +8,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations(
-      <DeviceOrientation>[DeviceOrientation.portraitUp]);
-  await load(fileName: '.env');
+    <DeviceOrientation>[DeviceOrientation.portraitUp],
+  );
+  await load();
 
   setupLocator();
   runApp(App());
