@@ -1,33 +1,17 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_list_bloc/models/credits_model.dart';
 
-@immutable
-abstract class CreditsState extends Equatable {
-  const CreditsState();
+part 'movie_credits_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+class MovieCreditsState with _$MovieCreditsState {
+  const factory MovieCreditsState.initial() = MovieCreditsStateInitial;
 
-class CreditsInitialState extends CreditsState {}
+  const factory MovieCreditsState.loading() = MovieCreditsStateLoading;
 
-class CreditsLoadingState extends CreditsState {}
+  const factory MovieCreditsState.success(CreditsModel credits) =
+      MovieCreditsStateSuccess;
 
-class CreditsSuccessState extends CreditsState {
-  const CreditsSuccessState(this.credits);
-
-  final CreditsModel credits;
-
-  @override
-  List<Object> get props => [credits];
-}
-
-class CreditsErrorState extends CreditsState {
-  const CreditsErrorState(this.message);
-
-  final String message;
-
-  @override
-  List<Object> get props => [message];
+  const factory MovieCreditsState.error(String message) =
+      MovieCreditsStateError;
 }
