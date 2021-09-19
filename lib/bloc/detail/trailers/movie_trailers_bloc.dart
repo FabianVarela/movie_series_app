@@ -2,18 +2,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_state.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 
-class TrailersBloc extends Cubit<TrailersState> {
-  TrailersBloc(this._repository) : super(TrailersInitialState());
+class TrailersBloc extends Cubit<MovieTrailersState> {
+  TrailersBloc(this._repository) : super(const MovieTrailersStateInitial());
 
   late final MovieRepository _repository;
 
   Future<void> getTrailers(int movieId) async {
     try {
-      emit(TrailersLoadingState());
+      emit(const MovieTrailersStateLoading());
       final trailers = await _repository.fetchTrailers(movieId);
-      emit(TrailersSuccessState(trailers));
+      emit(MovieTrailersStateSuccess(trailers));
     } on Exception catch (e) {
-      emit(TrailersErrorState(e.toString()));
+      emit(MovieTrailersStateError(e.toString()));
       addError(e, StackTrace.current);
     }
   }
