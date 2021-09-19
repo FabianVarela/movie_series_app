@@ -1,33 +1,15 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_list_bloc/models/movie_model.dart';
 
-@immutable
-abstract class MovieState extends Equatable {
-  const MovieState();
+part 'movie_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+class MovieState with _$MovieState {
+  const factory MovieState.initial() = MovieStateInitial;
 
-class MovieInitialState extends MovieState {}
+  const factory MovieState.loading() = MovieStateLoading;
 
-class MovieLoadingState extends MovieState {}
+  const factory MovieState.success(MovieModel movie) = MovieStateSuccess;
 
-class MovieSuccessState extends MovieState {
-  const MovieSuccessState(this.movie);
-
-  final MovieModel movie;
-
-  @override
-  List<Object> get props => [movie];
-}
-
-class MovieErrorState extends MovieState {
-  const MovieErrorState(this.message);
-
-  final String message;
-
-  @override
-  List<Object> get props => [message];
+  const factory MovieState.error(String message) = MovieStateError;
 }
