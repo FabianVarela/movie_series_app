@@ -3,17 +3,17 @@ import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 
 class MoviesBloc extends Cubit<MovieListState> {
-  MoviesBloc(this._repository) : super(MovieListInitialState());
+  MoviesBloc(this._repository) : super(const MovieListStateInitial());
 
   late final MovieRepository _repository;
 
   Future<void> fetchMovies() async {
     try {
-      emit(MovieListLoadingState());
+      emit(const MovieListStateLoading());
       final movies = await _repository.fetchMovies();
-      emit(MovieListSuccessState(movies));
+      emit(MovieListStateSuccess(movies));
     } on Exception catch (e) {
-      emit(MovieListErrorState(e.toString()));
+      emit(MovieListStateError(e.toString()));
       addError(e, StackTrace.current);
     }
   }
