@@ -73,46 +73,44 @@ class MovieList extends HookWidget {
   Widget _body(int idx, bool enabled, PageController controller,
       Function(int, int) onChange, Function(bool) onEnabled) {
     return BlocBuilder<MoviesBloc, MovieListState>(builder: (context, state) {
-      if (state is MovieListLoadingState) {
-        Future<void>.microtask(() => onChange(-1, 0));
-        return const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          ),
-        );
-      }
-
-      if (state is MovieListErrorState) {
-        Future<void>.microtask(() => onChange(-1, 0));
-        return ErrorMessage(message: state.message);
-      }
-
-      if (state is MovieListSuccessState) {
-        final movies = state.movies.movies;
-        Future<void>.microtask(
-          () => onChange(idx == -1 ? 0 : idx, movies.length),
-        );
-
-        return Align(
-          child: PageView.builder(
-            itemCount: movies.length,
-            physics: enabled
-                ? const BouncingScrollPhysics()
-                : const NeverScrollableScrollPhysics(),
-            controller: controller,
-            onPageChanged: (i) => onChange(i, movies.length),
-            itemBuilder: (_, i) => MovieListItem(
-              itemModel: movies[i],
-              onPressItem: (model) => _openDetailPage(context, model),
-              imageUri: dotenv.env['IMAGE_URI']!,
-              isCurrent: idx == i,
-              onExpanded: onEnabled,
+      return state.when(
+        initial: () => const Offstage(),
+        loading: () {
+          Future<void>.microtask(() => onChange(-1, 0));
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
-          ),
-        );
-      }
+          );
+        },
+        success: (data) {
+          Future<void>.microtask(
+            () => onChange(idx == -1 ? 0 : idx, data.movies.length),
+          );
 
-      return const Offstage();
+          return Align(
+            child: PageView.builder(
+              itemCount: data.movies.length,
+              physics: enabled
+                  ? const BouncingScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
+              controller: controller,
+              onPageChanged: (i) => onChange(i, data.movies.length),
+              itemBuilder: (_, i) => MovieListItem(
+                itemModel: data.movies[i],
+                onPressItem: (model) => _openDetailPage(context, model),
+                imageUri: dotenv.env['IMAGE_URI']!,
+                isCurrent: idx == i,
+                onExpanded: onEnabled,
+              ),
+            ),
+          );
+        },
+        error: (error) {
+          Future<void>.microtask(() => onChange(-1, 0));
+          return ErrorMessage(message: error);
+        },
+      );
     });
   }
 

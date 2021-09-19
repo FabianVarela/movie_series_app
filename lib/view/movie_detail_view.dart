@@ -58,9 +58,7 @@ class MovieDetail extends HookWidget {
   Widget _bannerImage(BuildContext context) {
     return GestureDetector(
       onVerticalDragUpdate: (DragUpdateDetails details) {
-        if (details.delta.dy > 0) {
-          Navigator.pop(context);
-        }
+        if (details.delta.dy > 0) Navigator.pop(context);
       },
       child: SizedBox(
         height: 250,
@@ -74,20 +72,13 @@ class MovieDetail extends HookWidget {
   }
 
   Widget _detailSection() {
-    return BlocBuilder<MovieBloc, MovieState>(builder: (context, state) {
-      if (state is MovieLoadingState) {
-        return const Center(child: CircularProgressIndicator());
-      }
-
-      if (state is MovieErrorState) {
-        return ErrorMessage(message: state.message, fontSize: 15);
-      }
-
-      if (state is MovieSuccessState) {
-        return MovieDetailItem(movie: state.movie);
-      }
-
-      return const Offstage();
+    return BlocBuilder<MovieBloc, MovieState>(builder: (_, state) {
+      return state.when(
+        initial: () => const Offstage(),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        success: (movie) => MovieDetailItem(movie: movie),
+        error: (error) => ErrorMessage(message: error, fontSize: 15),
+      );
     });
   }
 
@@ -104,37 +95,31 @@ class MovieDetail extends HookWidget {
             ),
           ),
         ),
-        BlocBuilder<CreditsBloc, CreditsState>(builder: (context, state) {
-          if (state is CreditsLoadingState) {
-            return const CircularProgressIndicator();
-          }
-
-          if (state is CreditsErrorState) {
-            return ErrorMessage(message: state.message, fontSize: 15);
-          }
-
-          if (state is CreditsSuccessState) {
-            if (state.credits.casts.isEmpty) {
-              return const Center(
-                child: Text(
-                  'No cast available',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                ),
-              );
-            } else {
-              return SizedBox(
-                height: 120,
-                child: ListView.builder(
-                  itemCount: state.credits.casts.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, index) =>
-                      CreditItem(cast: state.credits.casts[index]),
-                ),
-              );
-            }
-          }
-
-          return const Offstage();
+        BlocBuilder<CreditsBloc, MovieCreditsState>(builder: (_, state) {
+          return state.when(
+            initial: () => const Offstage(),
+            loading: () => const CircularProgressIndicator(),
+            success: (credits) {
+              if (credits.casts.isEmpty) {
+                return const Center(
+                  child: Text(
+                    'No cast available',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                  ),
+                );
+              } else {
+                return SizedBox(
+                  height: 120,
+                  child: ListView.builder(
+                    itemCount: credits.casts.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) => CreditItem(cast: credits.casts[i]),
+                  ),
+                );
+              }
+            },
+            error: (error) => ErrorMessage(message: error, fontSize: 15),
+          );
         }),
       ],
     );
@@ -151,37 +136,32 @@ class MovieDetail extends HookWidget {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
           ),
         ),
-        BlocBuilder<TrailersBloc, TrailersState>(builder: (context, state) {
-          if (state is TrailersLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (state is TrailersErrorState) {
-            return ErrorMessage(message: state.message, fontSize: 15);
-          }
-
-          if (state is TrailersSuccessState) {
-            if (state.trailers.trailers.isEmpty) {
-              return const Center(
-                child: Text(
-                  'No trailer available',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                ),
-              );
-            } else {
-              return SizedBox(
-                height: 100,
-                child: ListView.builder(
-                  itemCount: state.trailers.trailers.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, index) =>
-                      TrailerItem(trailer: state.trailers.trailers[index]),
-                ),
-              );
-            }
-          }
-
-          return const Offstage();
+        BlocBuilder<TrailersBloc, MovieTrailersState>(builder: (_, state) {
+          return state.when(
+            initial: () => const Offstage(),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            success: (trailers) {
+              if (trailers.trailers.isEmpty) {
+                return const Center(
+                  child: Text(
+                    'No trailer available',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                  ),
+                );
+              } else {
+                return SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                    itemCount: trailers.trailers.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) =>
+                        TrailerItem(trailer: trailers.trailers[i]),
+                  ),
+                );
+              }
+            },
+            error: (error) => ErrorMessage(message: error, fontSize: 15),
+          );
         }),
       ],
     );
