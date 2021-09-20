@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
@@ -99,7 +98,7 @@ class MovieList extends HookWidget {
               itemBuilder: (_, i) => MovieListItem(
                 itemModel: data.movies[i],
                 onPressItem: (model) => _openDetailPage(context, model),
-                imageUri: dotenv.env['IMAGE_URI']!,
+                imageUri: 'https://image.tmdb.org/t/p/w185',
                 isCurrent: idx == i,
                 onExpanded: onEnabled,
               ),
@@ -139,7 +138,7 @@ class MovieList extends HookWidget {
       PageRouteBuilder<dynamic>(
         pageBuilder: (_, __, ___) => MovieDetail(
           movieId: model.id,
-          movieImageUrl: '${dotenv.env['IMAGE_URI']!}${model.posterPath}',
+          movieImageUrl: 'https://image.tmdb.org/t/p/w185${model.posterPath}',
         ),
         transitionsBuilder:
             (_, Animation<double> animation, __, Widget child) =>

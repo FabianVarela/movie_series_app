@@ -113,7 +113,10 @@ class MovieDetail extends HookWidget {
                   child: ListView.builder(
                     itemCount: credits.casts.length,
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) => CreditItem(cast: credits.casts[i]),
+                    itemBuilder: (_, i) => CreditItem(
+                      imageUri: 'https://image.tmdb.org/t/p/w185',
+                      cast: credits.casts[i],
+                    ),
                   ),
                 );
               }

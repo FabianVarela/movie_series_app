@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_list_bloc/models/credits_model.dart';
 
 class CreditItem extends StatelessWidget {
-  const CreditItem({Key? key, required this.cast}) : super(key: key);
+  const CreditItem({Key? key, required this.imageUri, required this.cast})
+      : super(key: key);
 
+  final String imageUri;
   final CastModel cast;
 
   @override
@@ -18,11 +19,8 @@ class CreditItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           CircleAvatar(
-            backgroundImage: isImage
-                ? NetworkImage(
-                    '${dotenv.env['IMAGE_URI']!}${cast.profilePath}',
-                  )
-                : null,
+            backgroundImage:
+                isImage ? NetworkImage('$imageUri${cast.profilePath}') : null,
             radius: 40,
             child: !isImage
                 ? const Icon(

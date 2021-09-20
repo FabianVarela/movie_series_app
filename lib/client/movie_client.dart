@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_list_bloc/models/credits_model.dart';
 import 'package:movie_list_bloc/models/movie_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
@@ -9,8 +8,8 @@ import 'package:movie_list_bloc/models/trailer_model.dart';
 
 class MovieClient {
   MovieClient(this._client) {
-    _baseUrl = dotenv.env['API_URL'];
-    _apiKey = dotenv.env['API_KEY'];
+    _baseUrl = 'api.themoviedb.org';
+    _apiKey = const String.fromEnvironment('API_KEY');
   }
 
   late final Client _client;
