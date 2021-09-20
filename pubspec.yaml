@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^7.2.0
-  flutter_dotenv: ^5.0.2
   flutter_hooks: ^0.17.0
   freezed_annotation: ^0.14.2
   get_it: ^7.2.0
