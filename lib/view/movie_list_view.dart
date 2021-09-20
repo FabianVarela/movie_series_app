@@ -69,7 +69,7 @@ class MovieList extends HookWidget {
     );
   }
 
-  Widget _body(int idx, bool enabled, PageController controller,
+  Widget _body(int index, bool enabled, PageController controller,
       Function(int, int) onChange, Function(bool) onEnabled) {
     return BlocBuilder<MoviesBloc, MovieListState>(builder: (context, state) {
       return state.when(
@@ -84,7 +84,7 @@ class MovieList extends HookWidget {
         },
         success: (data) {
           Future<void>.microtask(
-            () => onChange(idx == -1 ? 0 : idx, data.movies.length),
+            () => onChange(index == -1 ? 0 : index, data.movies.length),
           );
 
           return Align(
@@ -99,7 +99,7 @@ class MovieList extends HookWidget {
                 itemModel: data.movies[i],
                 onPressItem: (model) => _openDetailPage(context, model),
                 imageUri: 'https://image.tmdb.org/t/p/w185',
-                isCurrent: idx == i,
+                isCurrent: index == i,
                 onExpanded: onEnabled,
               ),
             ),
@@ -140,9 +140,8 @@ class MovieList extends HookWidget {
           movieId: model.id,
           movieImageUrl: 'https://image.tmdb.org/t/p/w185${model.posterPath}',
         ),
-        transitionsBuilder:
-            (_, Animation<double> animation, __, Widget child) =>
-                Transform.scale(scale: animation.value, child: child),
+        transitionsBuilder: (_, animation, __, child) =>
+            Transform.scale(scale: animation.value, child: child),
       ),
     );
   }

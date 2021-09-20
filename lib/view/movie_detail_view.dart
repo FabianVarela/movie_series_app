@@ -57,7 +57,7 @@ class MovieDetail extends HookWidget {
 
   Widget _bannerImage(BuildContext context) {
     return GestureDetector(
-      onVerticalDragUpdate: (DragUpdateDetails details) {
+      onVerticalDragUpdate: (details) {
         if (details.delta.dy > 0) Navigator.pop(context);
       },
       child: SizedBox(
@@ -143,8 +143,8 @@ class MovieDetail extends HookWidget {
           return state.when(
             initial: () => const Offstage(),
             loading: () => const Center(child: CircularProgressIndicator()),
-            success: (trailers) {
-              if (trailers.trailers.isEmpty) {
+            success: (data) {
+              if (data.trailers.isEmpty) {
                 return const Center(
                   child: Text(
                     'No trailer available',
@@ -155,10 +155,10 @@ class MovieDetail extends HookWidget {
                 return SizedBox(
                   height: 100,
                   child: ListView.builder(
-                    itemCount: trailers.trailers.length,
+                    itemCount: data.trailers.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (_, i) =>
-                        TrailerItem(trailer: trailers.trailers[i]),
+                        TrailerItem(trailer: data.trailers[i]),
                   ),
                 );
               }

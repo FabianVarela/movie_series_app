@@ -100,7 +100,7 @@ class MovieListItem extends HookWidget {
                       onPressItem(itemModel);
                     }
                   },
-                  onVerticalDragUpdate: (DragUpdateDetails details) {
+                  onVerticalDragUpdate: (details) {
                     if (details.delta.dy > 0) {
                       controller.reverse();
 
