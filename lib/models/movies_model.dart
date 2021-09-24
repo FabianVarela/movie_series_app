@@ -28,7 +28,7 @@ class MovieModel extends Equatable {
         originalTitle = json['original_title'] as String,
         title = json['title'] as String,
         overview = json['overview'] as String,
-        releaseDate = json['release_date'] as String,
+        releaseDate = json['release_date'] as String?,
         voteAverage = (json['vote_average'] as num).toDouble(),
         voteCount = json['vote_count'] as int,
         originalLanguage = json['original_language'] as String,
@@ -42,7 +42,7 @@ class MovieModel extends Equatable {
   final String originalTitle;
   final String title;
   final String overview;
-  final String releaseDate;
+  final String? releaseDate;
   final double voteAverage;
   final int voteCount;
   final String originalLanguage;
