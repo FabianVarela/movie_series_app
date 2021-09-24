@@ -1,5 +1,6 @@
 import 'package:movie_list_bloc/client/movie_client.dart';
 import 'package:movie_list_bloc/models/credits_model.dart';
+import 'package:movie_list_bloc/models/genre_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
 
@@ -8,15 +9,17 @@ class MovieRepository {
 
   late final MovieClient _movieClient;
 
-  Future<MoviesModel> fetchMovies({String? genreId}) =>
+  Future<GenresModel> fetchGenres() => _movieClient.fetchGenres();
+
+  Future<MoviesModel> fetchMovies({int? genreId}) =>
       _movieClient.fetchMovies(genreId: genreId);
 
   Future<MovieModel> fetchMovie(int movieId) =>
       _movieClient.fetchMovie(movieId);
 
-  Future<TrailersModel> fetchTrailers(int movieId) =>
-      _movieClient.fetchTrailers(movieId);
-
   Future<CreditsModel> fetchCredits(int movieId) =>
       _movieClient.fetchCredits(movieId);
+
+  Future<TrailersModel> fetchTrailers(int movieId) =>
+      _movieClient.fetchTrailers(movieId);
 }

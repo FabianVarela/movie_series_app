@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:movie_list_bloc/models/credits_model.dart';
+import 'package:movie_list_bloc/models/genre_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:http/http.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
@@ -16,10 +17,25 @@ class MovieClient {
   late String? _baseUrl;
   late String? _apiKey;
 
-  Future<MoviesModel> fetchMovies({String? genreId}) async {
+  Future<GenresModel> fetchGenres() async {
+    final response = await _client.get(
+      Uri.https(_baseUrl!, '/3/genre/movie/list', _getApiKeyParam()),
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return GenresModel.fromJson(jsonMap);
+    } else {
+      throw Exception('Failed to load movie genre list');
+    }
+  }
+
+  Future<MoviesModel> fetchMovies({int? genreId}) async {
     final url = genreId != null ? '/3/discover/movie' : '/3/movie/popular';
     final params = genreId != null
-        ? <String, dynamic>{..._getApiKeyParam(), 'with_genres': genreId}
+        ? <String, dynamic>{..._getApiKeyParam(), 'with_genres': '$genreId'}
         : _getApiKeyParam();
 
     final response = await _client.get(Uri.https(_baseUrl!, url, params));
@@ -49,21 +65,6 @@ class MovieClient {
     }
   }
 
-  Future<TrailersModel> fetchTrailers(int movieId) async {
-    final response = await _client.get(
-      Uri.https(_baseUrl!, '/3/movie/$movieId/videos', _getApiKeyParam()),
-    );
-
-    print(response.body);
-
-    if (response.statusCode == 200) {
-      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
-      return TrailersModel.fromJson(jsonMap);
-    } else {
-      throw Exception('Failed to load movie trailers');
-    }
-  }
-
   Future<CreditsModel> fetchCredits(int movieId) async {
     final response = await _client.get(
       Uri.https(_baseUrl!, '/3/movie/$movieId/credits', _getApiKeyParam()),
@@ -76,6 +77,21 @@ class MovieClient {
       return CreditsModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load movie credits');
+    }
+  }
+
+  Future<TrailersModel> fetchTrailers(int movieId) async {
+    final response = await _client.get(
+      Uri.https(_baseUrl!, '/3/movie/$movieId/videos', _getApiKeyParam()),
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return TrailersModel.fromJson(jsonMap);
+    } else {
+      throw Exception('Failed to load movie trailers');
     }
   }
 
