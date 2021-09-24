@@ -9,7 +9,7 @@ class MovieRepository {
 
   late final MovieClient _movieClient;
 
-  Future<GenresModel> fetchGenres() => _movieClient.fetchGenres();
+  Future<GenresModel> fetchGenderList() => _movieClient.fetchGenderList();
 
   Future<MoviesModel> fetchMovies({int? genreId}) =>
       _movieClient.fetchMovies(genreId: genreId);

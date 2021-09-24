@@ -17,7 +17,7 @@ class MovieClient {
   late String? _baseUrl;
   late String? _apiKey;
 
-  Future<GenresModel> fetchGenres() async {
+  Future<GenresModel> fetchGenderList() async {
     final response = await _client.get(
       Uri.https(_baseUrl!, '/3/genre/movie/list', _getApiKeyParam()),
     );
