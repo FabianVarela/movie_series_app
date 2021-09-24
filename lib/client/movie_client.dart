@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:movie_list_bloc/models/credits_model.dart';
-import 'package:movie_list_bloc/models/movie_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:http/http.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
@@ -17,10 +16,13 @@ class MovieClient {
   late String? _baseUrl;
   late String? _apiKey;
 
-  Future<MoviesModel> fetchMovies() async {
-    final response = await _client.get(
-      Uri.https(_baseUrl!, '/3/movie/popular', _getApiKeyParam()),
-    );
+  Future<MoviesModel> fetchMovies({String? genreId}) async {
+    final url = genreId != null ? '/3/discover/movie' : '/3/movie/popular';
+    final params = genreId != null
+        ? <String, dynamic>{..._getApiKeyParam(), 'with_genres': genreId}
+        : _getApiKeyParam();
+
+    final response = await _client.get(Uri.https(_baseUrl!, url, params));
 
     print(response.body);
 
