@@ -7,7 +7,7 @@ class MoviesBloc extends Cubit<MovieListState> {
 
   late final MovieRepository _repository;
 
-  Future<void> fetchMovies({String? genreId}) async {
+  Future<void> fetchMovies({int? genreId}) async {
     try {
       emit(const MovieListStateLoading());
       final movies = await _repository.fetchMovies(genreId: genreId);
