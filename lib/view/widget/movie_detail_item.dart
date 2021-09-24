@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/models/movie_model.dart';
+import 'package:movie_list_bloc/models/movies_model.dart';
 
 class MovieDetailItem extends StatelessWidget {
   const MovieDetailItem({Key? key, required this.movie}) : super(key: key);

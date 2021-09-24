@@ -12,8 +12,8 @@ class MovieListItem extends HookWidget {
     this.isCurrent = false,
   }) : super(key: key);
 
-  final MoviesItemModel itemModel;
-  final Function(MoviesItemModel) onPressItem;
+  final MovieModel itemModel;
+  final Function(MovieModel) onPressItem;
   final String imageUri;
   final Function(bool)? onExpanded;
   final bool isCurrent;
@@ -92,10 +92,7 @@ class MovieListItem extends HookWidget {
                   onTap: () {
                     if (controller.status == AnimationStatus.dismissed) {
                       controller.forward(from: 0);
-
-                      if (onExpanded != null) {
-                        onExpanded!(true);
-                      }
+                      if (onExpanded != null) onExpanded!(true);
                     } else if (controller.status == AnimationStatus.completed) {
                       onPressItem(itemModel);
                     }
@@ -103,10 +100,7 @@ class MovieListItem extends HookWidget {
                   onVerticalDragUpdate: (details) {
                     if (details.delta.dy > 0) {
                       controller.reverse();
-
-                      if (onExpanded != null) {
-                        onExpanded!(false);
-                      }
+                      if (onExpanded != null) onExpanded!(false);
                     }
                   },
                   child: Hero(
