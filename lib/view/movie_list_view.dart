@@ -14,68 +14,106 @@ class MovieList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentGender = useState<String?>(null);
+
     final currentIndex = useState(0);
     final length = useState(0);
 
-    final isEnabledScroll = useState(true);
-    final pageController = usePageController(viewportFraction: .8);
-
     useEffect(() {
-      Future.microtask(() => locator<MoviesBloc>().fetchMovies());
-    }, []);
+      Future.microtask(
+        () => locator<MoviesBloc>().fetchMovies(genreId: currentGender.value),
+      );
+    }, [currentGender]);
 
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: Stack(
         children: <Widget>[
-          _body(
-            currentIndex.value,
-            isEnabledScroll.value,
-            pageController,
-            (index, size) {
+          _Body(
+            index: currentIndex.value,
+            onSelectMovie: (movie) => _openDetailPage(context, movie),
+            onChangePage: (index, size) {
               currentIndex.value = index;
               length.value = size;
             },
-            (enabled) => isEnabledScroll.value = !enabled,
           ),
-          _header(),
-          _footer(currentIndex.value, length.value),
+          const _Header(title: 'Popular Movies'),
+          Positioned.fill(
+            child: _Footer(index: currentIndex.value, length: length.value),
+          ),
         ],
       ),
     );
   }
 
-  Widget _header() {
+  void _openDetailPage(BuildContext ctx, MovieModel movie) {
+    Navigator.push<void>(
+      ctx,
+      PageRouteBuilder<dynamic>(
+        pageBuilder: (_, __, ___) => MovieDetail(
+          movieId: movie.id,
+          movieImageUrl: 'https://image.tmdb.org/t/p/w185${movie.posterPath}',
+        ),
+        transitionsBuilder: (_, animation, __, child) =>
+            Transform.scale(scale: animation.value, child: child),
+      ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       bottom: false,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const <Widget>[
-            Icon(Icons.search, color: Colors.white),
+          children: <Widget>[
+            const Icon(Icons.search, color: Colors.white),
             Text(
-              'Popular Movies',
-              style: TextStyle(
+              title,
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
               ),
             ),
-            Icon(Icons.my_location, color: Colors.white),
+            const Icon(Icons.my_location, color: Colors.white),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _body(int index, bool enabled, PageController controller,
-      Function(int, int) onChange, Function(bool) onEnabled) {
+class _Body extends HookWidget {
+  const _Body({
+    Key? key,
+    this.index = -1,
+    required this.onSelectMovie,
+    required this.onChangePage,
+  }) : super(key: key);
+
+  final int index;
+  final ValueSetter<MovieModel> onSelectMovie;
+  final Function(int, int) onChangePage;
+
+  @override
+  Widget build(BuildContext context) {
+    final isEnabledScroll = useState(true);
+    final pageController = usePageController(viewportFraction: .8);
+
     return BlocBuilder<MoviesBloc, MovieListState>(builder: (context, state) {
       return state.when(
         initial: () => const Offstage(),
         loading: () {
-          Future<void>.microtask(() => onChange(-1, 0));
+          Future<void>.microtask(() => onChangePage(-1, 0));
           return const Center(
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -84,64 +122,56 @@ class MovieList extends HookWidget {
         },
         success: (data) {
           Future<void>.microtask(
-            () => onChange(index == -1 ? 0 : index, data.movies.length),
+            () => onChangePage(index == -1 ? 0 : index, data.movies.length),
           );
 
           return Align(
             child: PageView.builder(
               itemCount: data.movies.length,
-              physics: enabled
+              physics: isEnabledScroll.value
                   ? const BouncingScrollPhysics()
                   : const NeverScrollableScrollPhysics(),
-              controller: controller,
-              onPageChanged: (i) => onChange(i, data.movies.length),
+              controller: pageController,
+              onPageChanged: (i) => onChangePage(i, data.movies.length),
               itemBuilder: (_, i) => MovieListItem(
                 itemModel: data.movies[i],
-                onPressItem: (model) => _openDetailPage(context, model),
+                onPressItem: onSelectMovie,
                 imageUri: 'https://image.tmdb.org/t/p/w185',
                 isCurrent: index == i,
-                onExpanded: onEnabled,
+                onExpanded: (enabled) => isEnabledScroll.value = enabled,
               ),
             ),
           );
         },
         error: (error) {
-          Future<void>.microtask(() => onChange(-1, 0));
+          Future<void>.microtask(() => onChangePage(-1, 0));
           return ErrorMessage(message: error);
         },
       );
     });
   }
+}
 
-  Widget _footer(int index, int length) {
-    return Positioned.fill(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Text(
-            '${index + 1} / $length',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w300,
-              color: Colors.white,
-            ),
+class _Footer extends StatelessWidget {
+  const _Footer({Key? key, this.index = 0, this.length = 0}) : super(key: key);
+
+  final int index;
+  final int length;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Text(
+          '${index + 1} / $length',
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w300,
+            color: Colors.white,
           ),
         ),
-      ),
-    );
-  }
-
-  void _openDetailPage(BuildContext ctx, MoviesItemModel model) {
-    Navigator.push<void>(
-      ctx,
-      PageRouteBuilder<dynamic>(
-        pageBuilder: (_, __, ___) => MovieDetail(
-          movieId: model.id,
-          movieImageUrl: 'https://image.tmdb.org/t/p/w185${model.posterPath}',
-        ),
-        transitionsBuilder: (_, animation, __, child) =>
-            Transform.scale(scale: animation.value, child: child),
       ),
     );
   }
