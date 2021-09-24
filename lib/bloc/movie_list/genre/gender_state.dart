@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:movie_list_bloc/models/genre_model.dart';
+import 'package:movie_list_bloc/models/gender_model.dart';
 
 part 'gender_state.freezed.dart';
 
@@ -9,7 +9,7 @@ class GenderState with _$GenderState {
 
   const factory GenderState.loading() = GenderStateLoading;
 
-  const factory GenderState.success(GenresModel genres) = GenderStateSuccess;
+  const factory GenderState.success(GendersModel genres) = GenderStateSuccess;
 
   const factory GenderState.error(String message) = GenderStateError;
 }

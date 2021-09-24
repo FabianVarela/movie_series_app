@@ -24,7 +24,7 @@ class _$GenderStateTearOff {
     return const GenderStateLoading();
   }
 
-  GenderStateSuccess success(GenresModel genres) {
+  GenderStateSuccess success(GendersModel genres) {
     return GenderStateSuccess(
       genres,
     );
@@ -46,7 +46,7 @@ mixin _$GenderState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GenresModel genres) success,
+    required TResult Function(GendersModel genres) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ mixin _$GenderState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GenresModel genres)? success,
+    TResult Function(GendersModel genres)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -136,7 +136,7 @@ class _$GenderStateInitial implements GenderStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GenresModel genres) success,
+    required TResult Function(GendersModel genres) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -147,7 +147,7 @@ class _$GenderStateInitial implements GenderStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GenresModel genres)? success,
+    TResult Function(GendersModel genres)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -230,7 +230,7 @@ class _$GenderStateLoading implements GenderStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GenresModel genres) success,
+    required TResult Function(GendersModel genres) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -241,7 +241,7 @@ class _$GenderStateLoading implements GenderStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GenresModel genres)? success,
+    TResult Function(GendersModel genres)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -287,7 +287,7 @@ abstract class $GenderStateSuccessCopyWith<$Res> {
   factory $GenderStateSuccessCopyWith(
           GenderStateSuccess value, $Res Function(GenderStateSuccess) then) =
       _$GenderStateSuccessCopyWithImpl<$Res>;
-  $Res call({GenresModel genres});
+  $Res call({GendersModel genres});
 }
 
 /// @nodoc
@@ -309,7 +309,7 @@ class _$GenderStateSuccessCopyWithImpl<$Res>
       genres == freezed
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as GenresModel,
+              as GendersModel,
     ));
   }
 }
@@ -320,7 +320,7 @@ class _$GenderStateSuccess implements GenderStateSuccess {
   const _$GenderStateSuccess(this.genres);
 
   @override
-  final GenresModel genres;
+  final GendersModel genres;
 
   @override
   String toString() {
@@ -349,7 +349,7 @@ class _$GenderStateSuccess implements GenderStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GenresModel genres) success,
+    required TResult Function(GendersModel genres) success,
     required TResult Function(String message) error,
   }) {
     return success(genres);
@@ -360,7 +360,7 @@ class _$GenderStateSuccess implements GenderStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GenresModel genres)? success,
+    TResult Function(GendersModel genres)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -398,9 +398,9 @@ class _$GenderStateSuccess implements GenderStateSuccess {
 }
 
 abstract class GenderStateSuccess implements GenderState {
-  const factory GenderStateSuccess(GenresModel genres) = _$GenderStateSuccess;
+  const factory GenderStateSuccess(GendersModel genres) = _$GenderStateSuccess;
 
-  GenresModel get genres => throw _privateConstructorUsedError;
+  GendersModel get genres => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenderStateSuccessCopyWith<GenderStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -473,7 +473,7 @@ class _$GenderStateError implements GenderStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GenresModel genres) success,
+    required TResult Function(GendersModel genres) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -484,7 +484,7 @@ class _$GenderStateError implements GenderStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GenresModel genres)? success,
+    TResult Function(GendersModel genres)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

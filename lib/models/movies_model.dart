@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_list_bloc/models/genre_model.dart';
+import 'package:movie_list_bloc/models/gender_model.dart';
 
 class MoviesModel extends Equatable {
   MoviesModel.fromJson(Map<String, dynamic> json)
@@ -34,7 +34,7 @@ class MovieModel extends Equatable {
         originalLanguage = json['original_language'] as String,
         homepage = json['homepage'] as String?,
         tagLine = json['tagLine'] as String?,
-        genres = GenresModel.fromJson(json).genres;
+        genres = GendersModel.fromJson(json).genders;
 
   final int id;
   final String posterPath;
@@ -48,7 +48,7 @@ class MovieModel extends Equatable {
   final String originalLanguage;
   final String? homepage;
   final String? tagLine;
-  final List<GenreModel> genres;
+  final List<GenderModel> genres;
 
   @override
   List<Object?> get props => [

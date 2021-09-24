@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:movie_list_bloc/models/credits_model.dart';
-import 'package:movie_list_bloc/models/genre_model.dart';
+import 'package:movie_list_bloc/models/gender_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:http/http.dart';
 import 'package:movie_list_bloc/models/trailer_model.dart';
@@ -17,7 +17,7 @@ class MovieClient {
   late String? _baseUrl;
   late String? _apiKey;
 
-  Future<GenresModel> fetchGenderList() async {
+  Future<GendersModel> fetchGenderList() async {
     final response = await _client.get(
       Uri.https(_baseUrl!, '/3/genre/movie/list', _getApiKeyParam()),
     );
@@ -26,7 +26,7 @@ class MovieClient {
 
     if (response.statusCode == 200) {
       final jsonMap = json.decode(response.body) as Map<String, dynamic>;
-      return GenresModel.fromJson(jsonMap);
+      return GendersModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load movie genre list');
     }
