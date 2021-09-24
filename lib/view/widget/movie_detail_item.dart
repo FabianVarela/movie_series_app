@@ -42,7 +42,9 @@ class MovieDetailItem extends StatelessWidget {
                 ],
               ),
               Text(
-                movie.releaseDate,
+                movie.releaseDate != null && movie.releaseDate!.isNotEmpty
+                    ? movie.releaseDate!
+                    : 'No date available',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
