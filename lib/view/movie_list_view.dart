@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:movie_list_bloc/bloc/movie_list/genre/gender_bloc.dart';
+import 'package:movie_list_bloc/bloc/movie_list/genre/gender_state.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
+import 'package:movie_list_bloc/models/gender_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
 import 'package:movie_list_bloc/view/movie_detail_view.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
+import 'package:movie_list_bloc/view/widget/gender_item.dart';
 import 'package:movie_list_bloc/view/widget/movie_list_item.dart';
 
 class MovieList extends HookWidget {
@@ -14,30 +18,61 @@ class MovieList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentGender = useState<String?>(null);
+    final currentGender = useState<int?>(null);
+    final genderTitle = useState('Popular');
 
     final currentIndex = useState(0);
     final length = useState(0);
 
     useEffect(() {
-      Future.microtask(
-        () => locator<MoviesBloc>().fetchMovies(genreId: currentGender.value),
-      );
-    }, [currentGender]);
+      Future.microtask(() {
+        locator<GenderBloc>().fetchMovieGenderList();
+        locator<MoviesBloc>().fetchMovies();
+      });
+    }, const []);
+
+    useValueChanged<int?, void>(currentGender.value, (oldValue, _) {
+      if (currentGender.value != oldValue) {
+        locator<MoviesBloc>().fetchMovies(genreId: currentGender.value);
+      }
+    });
 
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: Stack(
         children: <Widget>[
-          _Body(
-            index: currentIndex.value,
-            onSelectMovie: (movie) => _openDetailPage(context, movie),
-            onChangePage: (index, size) {
-              currentIndex.value = index;
-              length.value = size;
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 120),
+                child: _BodyGenreList(
+                  currentId: currentGender.value,
+                  onSelectGenre: (genre) {
+                    currentGender.value = genre.id;
+                    genderTitle.value = genre.name;
+                  },
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .75,
+                child: _BodyMovieList(
+                  index: currentIndex.value,
+                  onSelectMovie: (movie) => _openDetailPage(context, movie),
+                  onChangePage: (index, size) {
+                    currentIndex.value = index;
+                    length.value = size;
+                  },
+                ),
+              ),
+            ],
+          ),
+          _Header(
+            title: '${genderTitle.value} Movies',
+            onSetPopular: () {
+              currentGender.value = null;
+              genderTitle.value = 'Popular';
             },
           ),
-          const _Header(title: 'Popular Movies'),
           Positioned.fill(
             child: _Footer(index: currentIndex.value, length: length.value),
           ),
@@ -62,16 +97,18 @@ class MovieList extends HookWidget {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({Key? key, required this.title}) : super(key: key);
+  const _Header({Key? key, required this.title, required this.onSetPopular})
+      : super(key: key);
 
   final String title;
+  final VoidCallback onSetPopular;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -84,7 +121,13 @@ class _Header extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const Icon(Icons.my_location, color: Colors.white),
+            GestureDetector(
+              onTap: onSetPopular,
+              child: const Icon(
+                Icons.collections_bookmark,
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),
@@ -92,8 +135,57 @@ class _Header extends StatelessWidget {
   }
 }
 
-class _Body extends HookWidget {
-  const _Body({
+class _BodyGenreList extends StatelessWidget {
+  const _BodyGenreList({Key? key, required this.onSelectGenre, this.currentId})
+      : super(key: key);
+
+  final int? currentId;
+  final ValueSetter<GenderModel> onSelectGenre;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GenderBloc, GenderState>(builder: (_, state) {
+      return state.when(
+        initial: () => const Offstage(),
+        loading: () => const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(Colors.white),
+          ),
+        ),
+        success: (gender) {
+          return gender.genders.isEmpty
+              ? const Center(
+                  child: Text(
+                    'No genres available',
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                )
+              : SizedBox(
+                  height: 40,
+                  child: ListView.builder(
+                    itemCount: gender.genders.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) => GenderItem(
+                      gender: gender.genders[i],
+                      onSelectGender: onSelectGenre,
+                      backgroundColor: gender.genders[i].id == currentId
+                          ? Colors.blueAccent
+                          : null,
+                      textColor: gender.genders[i].id == currentId
+                          ? Colors.white
+                          : null,
+                    ),
+                  ),
+                );
+        },
+        error: (error) => ErrorMessage(message: error, fontSize: 15),
+      );
+    });
+  }
+}
+
+class _BodyMovieList extends HookWidget {
+  const _BodyMovieList({
     Key? key,
     this.index = -1,
     required this.onSelectMovie,
@@ -125,21 +217,19 @@ class _Body extends HookWidget {
             () => onChangePage(index == -1 ? 0 : index, data.movies.length),
           );
 
-          return Align(
-            child: PageView.builder(
-              itemCount: data.movies.length,
-              physics: isEnabledScroll.value
-                  ? const BouncingScrollPhysics()
-                  : const NeverScrollableScrollPhysics(),
-              controller: pageController,
-              onPageChanged: (i) => onChangePage(i, data.movies.length),
-              itemBuilder: (_, i) => MovieListItem(
-                itemModel: data.movies[i],
-                onPressItem: onSelectMovie,
-                imageUri: 'https://image.tmdb.org/t/p/w185',
-                isCurrent: index == i,
-                onExpanded: (enabled) => isEnabledScroll.value = enabled,
-              ),
+          return PageView.builder(
+            itemCount: data.movies.length,
+            physics: isEnabledScroll.value
+                ? const BouncingScrollPhysics()
+                : const NeverScrollableScrollPhysics(),
+            controller: pageController,
+            onPageChanged: (i) => onChangePage(i, data.movies.length),
+            itemBuilder: (_, i) => MovieListItem(
+              itemModel: data.movies[i],
+              onPressItem: onSelectMovie,
+              imageUri: 'https://image.tmdb.org/t/p/w185',
+              isCurrent: index == i,
+              onExpanded: (enabled) => isEnabledScroll.value = !enabled,
             ),
           );
         },
