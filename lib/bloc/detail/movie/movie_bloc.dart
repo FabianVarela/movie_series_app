@@ -14,7 +14,6 @@ class MovieBloc extends Cubit<MovieState> {
       emit(MovieStateSuccess(movie));
     } on Exception catch (e) {
       emit(MovieStateError(e.toString()));
-      addError(e, StackTrace.current);
     }
   }
 }
