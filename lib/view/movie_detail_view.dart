@@ -38,14 +38,26 @@ class MovieDetail extends HookWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            _bannerImage(context),
+            GestureDetector(
+              onVerticalDragUpdate: (details) {
+                if (details.delta.dy > 0) Navigator.pop(context);
+              },
+              child: SizedBox(
+                height: 250,
+                width: MediaQuery.of(context).size.width,
+                child: Hero(
+                  tag: 'Image_$movieId',
+                  child: Image.network(movieImageUrl, fit: BoxFit.cover),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
-                children: <Widget>[
-                  _detailSection(),
-                  _creditsSection(),
-                  _trailerSection(),
+                children: const <Widget>[
+                  _DetailSection(),
+                  _CreditsSection(),
+                  _TrailerSection(),
                 ],
               ),
             ),
@@ -54,24 +66,13 @@ class MovieDetail extends HookWidget {
       ),
     );
   }
+}
 
-  Widget _bannerImage(BuildContext context) {
-    return GestureDetector(
-      onVerticalDragUpdate: (details) {
-        if (details.delta.dy > 0) Navigator.pop(context);
-      },
-      child: SizedBox(
-        height: 250,
-        width: MediaQuery.of(context).size.width,
-        child: Hero(
-          tag: 'Image_$movieId',
-          child: Image.network(movieImageUrl, fit: BoxFit.cover),
-        ),
-      ),
-    );
-  }
+class _DetailSection extends StatelessWidget {
+  const _DetailSection({Key? key}) : super(key: key);
 
-  Widget _detailSection() {
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<MovieBloc, MovieState>(builder: (_, state) {
       return state.when(
         initial: () => const Offstage(),
@@ -81,8 +82,13 @@ class MovieDetail extends HookWidget {
       );
     });
   }
+}
 
-  Widget _creditsSection() {
+class _CreditsSection extends StatelessWidget {
+  const _CreditsSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const Padding(
@@ -99,36 +105,40 @@ class MovieDetail extends HookWidget {
           return state.when(
             initial: () => const Offstage(),
             loading: () => const CircularProgressIndicator(),
-            success: (credits) {
-              if (credits.casts.isEmpty) {
-                return const Center(
-                  child: Text(
-                    'No cast available',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                  ),
-                );
-              } else {
-                return SizedBox(
-                  height: 120,
-                  child: ListView.builder(
-                    itemCount: credits.casts.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) => CreditItem(
-                      imageUri: 'https://image.tmdb.org/t/p/w185',
-                      cast: credits.casts[i],
+            success: (credits) => credits.casts.isEmpty
+                ? const Center(
+                    child: Text(
+                      'No cast available',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  )
+                : SizedBox(
+                    height: 120,
+                    child: ListView.builder(
+                      itemCount: credits.casts.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (_, i) => CreditItem(
+                        imageUri: 'https://image.tmdb.org/t/p/w185',
+                        cast: credits.casts[i],
+                      ),
                     ),
                   ),
-                );
-              }
-            },
             error: (error) => ErrorMessage(message: error, fontSize: 15),
           );
         }),
       ],
     );
   }
+}
 
-  Widget _trailerSection() {
+class _TrailerSection extends StatelessWidget {
+  const _TrailerSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -143,26 +153,25 @@ class MovieDetail extends HookWidget {
           return state.when(
             initial: () => const Offstage(),
             loading: () => const Center(child: CircularProgressIndicator()),
-            success: (data) {
-              if (data.trailers.isEmpty) {
-                return const Center(
-                  child: Text(
-                    'No trailer available',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            success: (data) => data.trailers.isEmpty
+                ? const Center(
+                    child: Text(
+                      'No trailer available',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  )
+                : SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      itemCount: data.trailers.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (_, i) =>
+                          TrailerItem(trailer: data.trailers[i]),
+                    ),
                   ),
-                );
-              } else {
-                return SizedBox(
-                  height: 100,
-                  child: ListView.builder(
-                    itemCount: data.trailers.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) =>
-                        TrailerItem(trailer: data.trailers[i]),
-                  ),
-                );
-              }
-            },
             error: (error) => ErrorMessage(message: error, fontSize: 15),
           );
         }),
