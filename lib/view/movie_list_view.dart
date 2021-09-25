@@ -152,20 +152,20 @@ class _BodyGenreList extends StatelessWidget {
             valueColor: AlwaysStoppedAnimation(Colors.white),
           ),
         ),
-        success: (gender) {
-          return gender.genders.isEmpty
-              ? const Center(
-                  child: Text(
-                    'No genres available',
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                )
-              : SizedBox(
-                  height: 40,
-                  child: ListView.builder(
-                    itemCount: gender.genders.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) => GenderItem(
+        success: (gender) => gender.genders.isEmpty
+            ? const Center(
+                child: Text(
+                  'No genres available',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              )
+            : SizedBox(
+                height: 40,
+                child: ListView.builder(
+                  itemCount: gender.genders.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, i) {
+                    return GenderItem(
                       gender: gender.genders[i],
                       onSelectGender: onSelectGenre,
                       backgroundColor: gender.genders[i].id == currentId
@@ -174,10 +174,10 @@ class _BodyGenreList extends StatelessWidget {
                       textColor: gender.genders[i].id == currentId
                           ? Colors.white
                           : null,
-                    ),
-                  ),
-                );
-        },
+                    );
+                  },
+                ),
+              ),
         error: (error) => ErrorMessage(message: error, fontSize: 15),
       );
     });
