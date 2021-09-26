@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:movie_list_bloc/models/actor_model.dart';
 import 'package:movie_list_bloc/models/credits_model.dart';
 import 'package:movie_list_bloc/models/gender_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
@@ -92,6 +93,21 @@ class MovieClient {
       return TrailersModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load movie trailers');
+    }
+  }
+
+  Future<ActorModel> fetchActorData(int personId) async {
+    final response = await _client.get(
+      Uri.https(_baseUrl!, '/3/person/$personId', _getApiKeyParam()),
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return ActorModel.fromJson(jsonMap);
+    } else {
+      throw Exception('Failed to load actor data');
     }
   }
 

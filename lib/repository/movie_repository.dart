@@ -1,4 +1,5 @@
 import 'package:movie_list_bloc/client/movie_client.dart';
+import 'package:movie_list_bloc/models/actor_model.dart';
 import 'package:movie_list_bloc/models/credits_model.dart';
 import 'package:movie_list_bloc/models/gender_model.dart';
 import 'package:movie_list_bloc/models/movies_model.dart';
@@ -22,4 +23,7 @@ class MovieRepository {
 
   Future<TrailersModel> fetchTrailers(int movieId) =>
       _movieClient.fetchTrailers(movieId);
+
+  Future<ActorModel> fetchActor(int personId) =>
+      _movieClient.fetchActorData(personId);
 }
