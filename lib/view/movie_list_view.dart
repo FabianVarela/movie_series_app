@@ -26,14 +26,14 @@ class MovieList extends HookWidget {
 
     useEffect(() {
       Future.microtask(() {
-        locator<GenderBloc>().fetchMovieGenderList();
-        locator<MoviesBloc>().fetchMovies();
+        locator<GenderBloc>().getMovieGenderList();
+        locator<MoviesBloc>().getMovies();
       });
     }, const []);
 
     useValueChanged<int?, void>(currentGender.value, (oldValue, _) {
       if (currentGender.value != oldValue) {
-        locator<MoviesBloc>().fetchMovies(genreId: currentGender.value);
+        locator<MoviesBloc>().getMovies(genreId: currentGender.value);
       }
     });
 

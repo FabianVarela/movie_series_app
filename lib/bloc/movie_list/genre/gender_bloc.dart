@@ -7,7 +7,7 @@ class GenderBloc extends Cubit<GenderState> {
 
   late final MovieRepository _repository;
 
-  Future<void> fetchMovieGenderList() async {
+  Future<void> getMovieGenderList() async {
     try {
       emit(const GenderStateLoading());
       final genres = await _repository.fetchGenderList();
