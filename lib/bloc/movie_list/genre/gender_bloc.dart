@@ -5,7 +5,7 @@ import 'package:movie_list_bloc/repository/movie_repository.dart';
 class GenderBloc extends Cubit<GenderState> {
   GenderBloc(this._repository) : super(const GenderStateInitial());
 
-  final MovieRepository _repository;
+  late final MovieRepository _repository;
 
   Future<void> fetchMovieGenderList() async {
     try {
