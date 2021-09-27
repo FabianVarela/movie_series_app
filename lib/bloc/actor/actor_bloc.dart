@@ -11,7 +11,7 @@ class ActorBloc extends Cubit<ActorState> {
     try {
       emit(const ActorStateLoading());
       final actor = await _repository.fetchActor(personId);
-      emit(ActorStateSucess(actor));
+      emit(ActorStateSuccess(actor));
     } on Exception catch (e) {
       emit(ActorStateError(e.toString()));
     }

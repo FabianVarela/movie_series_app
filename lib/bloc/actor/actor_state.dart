@@ -9,7 +9,7 @@ class ActorState with _$ActorState {
 
   const factory ActorState.loading() = ActorStateLoading;
 
-  const factory ActorState.success(ActorModel actor) = ActorStateSucess;
+  const factory ActorState.success(ActorModel actor) = ActorStateSuccess;
 
   const factory ActorState.error(String message) = ActorStateError;
 }

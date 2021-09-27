@@ -24,8 +24,8 @@ class _$ActorStateTearOff {
     return const ActorStateLoading();
   }
 
-  ActorStateSucess success(ActorModel actor) {
-    return ActorStateSucess(
+  ActorStateSuccess success(ActorModel actor) {
+    return ActorStateSuccess(
       actor,
     );
   }
@@ -63,7 +63,7 @@ mixin _$ActorState {
   TResult map<TResult extends Object?>({
     required TResult Function(ActorStateInitial value) initial,
     required TResult Function(ActorStateLoading value) loading,
-    required TResult Function(ActorStateSucess value) success,
+    required TResult Function(ActorStateSuccess value) success,
     required TResult Function(ActorStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ mixin _$ActorState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorStateInitial value)? initial,
     TResult Function(ActorStateLoading value)? loading,
-    TResult Function(ActorStateSucess value)? success,
+    TResult Function(ActorStateSuccess value)? success,
     TResult Function(ActorStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -162,7 +162,7 @@ class _$ActorStateInitial implements ActorStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(ActorStateInitial value) initial,
     required TResult Function(ActorStateLoading value) loading,
-    required TResult Function(ActorStateSucess value) success,
+    required TResult Function(ActorStateSuccess value) success,
     required TResult Function(ActorStateError value) error,
   }) {
     return initial(this);
@@ -173,7 +173,7 @@ class _$ActorStateInitial implements ActorStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorStateInitial value)? initial,
     TResult Function(ActorStateLoading value)? loading,
-    TResult Function(ActorStateSucess value)? success,
+    TResult Function(ActorStateSuccess value)? success,
     TResult Function(ActorStateError value)? error,
     required TResult orElse(),
   }) {
@@ -256,7 +256,7 @@ class _$ActorStateLoading implements ActorStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(ActorStateInitial value) initial,
     required TResult Function(ActorStateLoading value) loading,
-    required TResult Function(ActorStateSucess value) success,
+    required TResult Function(ActorStateSuccess value) success,
     required TResult Function(ActorStateError value) error,
   }) {
     return loading(this);
@@ -267,7 +267,7 @@ class _$ActorStateLoading implements ActorStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorStateInitial value)? initial,
     TResult Function(ActorStateLoading value)? loading,
-    TResult Function(ActorStateSucess value)? success,
+    TResult Function(ActorStateSuccess value)? success,
     TResult Function(ActorStateError value)? error,
     required TResult orElse(),
   }) {
@@ -283,29 +283,29 @@ abstract class ActorStateLoading implements ActorState {
 }
 
 /// @nodoc
-abstract class $ActorStateSucessCopyWith<$Res> {
-  factory $ActorStateSucessCopyWith(
-          ActorStateSucess value, $Res Function(ActorStateSucess) then) =
-      _$ActorStateSucessCopyWithImpl<$Res>;
+abstract class $ActorStateSuccessCopyWith<$Res> {
+  factory $ActorStateSuccessCopyWith(
+          ActorStateSuccess value, $Res Function(ActorStateSuccess) then) =
+      _$ActorStateSuccessCopyWithImpl<$Res>;
   $Res call({ActorModel actor});
 }
 
 /// @nodoc
-class _$ActorStateSucessCopyWithImpl<$Res>
+class _$ActorStateSuccessCopyWithImpl<$Res>
     extends _$ActorStateCopyWithImpl<$Res>
-    implements $ActorStateSucessCopyWith<$Res> {
-  _$ActorStateSucessCopyWithImpl(
-      ActorStateSucess _value, $Res Function(ActorStateSucess) _then)
-      : super(_value, (v) => _then(v as ActorStateSucess));
+    implements $ActorStateSuccessCopyWith<$Res> {
+  _$ActorStateSuccessCopyWithImpl(
+      ActorStateSuccess _value, $Res Function(ActorStateSuccess) _then)
+      : super(_value, (v) => _then(v as ActorStateSuccess));
 
   @override
-  ActorStateSucess get _value => super._value as ActorStateSucess;
+  ActorStateSuccess get _value => super._value as ActorStateSuccess;
 
   @override
   $Res call({
     Object? actor = freezed,
   }) {
-    return _then(ActorStateSucess(
+    return _then(ActorStateSuccess(
       actor == freezed
           ? _value.actor
           : actor // ignore: cast_nullable_to_non_nullable
@@ -316,8 +316,8 @@ class _$ActorStateSucessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ActorStateSucess implements ActorStateSucess {
-  const _$ActorStateSucess(this.actor);
+class _$ActorStateSuccess implements ActorStateSuccess {
+  const _$ActorStateSuccess(this.actor);
 
   @override
   final ActorModel actor;
@@ -330,7 +330,7 @@ class _$ActorStateSucess implements ActorStateSucess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ActorStateSucess &&
+        (other is ActorStateSuccess &&
             (identical(other.actor, actor) ||
                 const DeepCollectionEquality().equals(other.actor, actor)));
   }
@@ -341,8 +341,8 @@ class _$ActorStateSucess implements ActorStateSucess {
 
   @JsonKey(ignore: true)
   @override
-  $ActorStateSucessCopyWith<ActorStateSucess> get copyWith =>
-      _$ActorStateSucessCopyWithImpl<ActorStateSucess>(this, _$identity);
+  $ActorStateSuccessCopyWith<ActorStateSuccess> get copyWith =>
+      _$ActorStateSuccessCopyWithImpl<ActorStateSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -375,7 +375,7 @@ class _$ActorStateSucess implements ActorStateSucess {
   TResult map<TResult extends Object?>({
     required TResult Function(ActorStateInitial value) initial,
     required TResult Function(ActorStateLoading value) loading,
-    required TResult Function(ActorStateSucess value) success,
+    required TResult Function(ActorStateSuccess value) success,
     required TResult Function(ActorStateError value) error,
   }) {
     return success(this);
@@ -386,7 +386,7 @@ class _$ActorStateSucess implements ActorStateSucess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorStateInitial value)? initial,
     TResult Function(ActorStateLoading value)? loading,
-    TResult Function(ActorStateSucess value)? success,
+    TResult Function(ActorStateSuccess value)? success,
     TResult Function(ActorStateError value)? error,
     required TResult orElse(),
   }) {
@@ -397,12 +397,12 @@ class _$ActorStateSucess implements ActorStateSucess {
   }
 }
 
-abstract class ActorStateSucess implements ActorState {
-  const factory ActorStateSucess(ActorModel actor) = _$ActorStateSucess;
+abstract class ActorStateSuccess implements ActorState {
+  const factory ActorStateSuccess(ActorModel actor) = _$ActorStateSuccess;
 
   ActorModel get actor => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ActorStateSucessCopyWith<ActorStateSucess> get copyWith =>
+  $ActorStateSuccessCopyWith<ActorStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -498,7 +498,7 @@ class _$ActorStateError implements ActorStateError {
   TResult map<TResult extends Object?>({
     required TResult Function(ActorStateInitial value) initial,
     required TResult Function(ActorStateLoading value) loading,
-    required TResult Function(ActorStateSucess value) success,
+    required TResult Function(ActorStateSuccess value) success,
     required TResult Function(ActorStateError value) error,
   }) {
     return error(this);
@@ -509,7 +509,7 @@ class _$ActorStateError implements ActorStateError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorStateInitial value)? initial,
     TResult Function(ActorStateLoading value)? loading,
-    TResult Function(ActorStateSucess value)? success,
+    TResult Function(ActorStateSuccess value)? success,
     TResult Function(ActorStateError value)? error,
     required TResult orElse(),
   }) {
