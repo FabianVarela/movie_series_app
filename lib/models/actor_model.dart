@@ -6,7 +6,7 @@ class ActorModel extends Equatable {
   ActorModel.fromJson(Map<String, dynamic> json)
       : id = json['id'] as int,
         name = json['name'] as String,
-        birthday = json['birthday'] as String,
+        birthday = json['birthday'] as String?,
         department = json['known_for_department'] as String,
         deathDay = json['deathday'] as String?,
         gender = json['gender'] as int,
