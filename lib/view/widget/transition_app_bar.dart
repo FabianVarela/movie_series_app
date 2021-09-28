@@ -43,8 +43,8 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
   final _avatarPositionedTopTween = Tween<double>(begin: 50, end: 0);
 
   final _titleMarginTween = EdgeInsetsTween(
-    begin: const EdgeInsets.only(top: 185 + 5),
-    end: const EdgeInsets.only(top: 30, left: 50 + 50 + 25),
+    begin: const EdgeInsets.only(top: 190),
+    end: const EdgeInsets.only(top: 30, left: 125),
   );
 
   final _titleAlignTween = AlignmentTween(
