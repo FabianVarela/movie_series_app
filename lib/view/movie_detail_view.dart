@@ -9,6 +9,7 @@ import 'package:movie_list_bloc/bloc/detail/movie/movie_state.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
+import 'package:movie_list_bloc/view/actor_detail_view.dart';
 import 'package:movie_list_bloc/view/widget/credit_item.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
 import 'package:movie_list_bloc/view/widget/movie_detail_item.dart';
@@ -54,15 +55,32 @@ class MovieDetail extends HookWidget {
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
-                children: const <Widget>[
-                  _DetailSection(),
-                  _CreditsSection(),
-                  _TrailerSection(),
+                children: <Widget>[
+                  const _DetailSection(),
+                  _CreditsSection(
+                    onSelectActor: (id, path) =>
+                        _openActorDetailPage(context, id, path),
+                  ),
+                  const _TrailerSection(),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _openActorDetailPage(BuildContext ctx, int personId, String? actorPath) {
+    Navigator.push<void>(
+      ctx,
+      PageRouteBuilder<dynamic>(
+        pageBuilder: (_, __, ___) => ActorDetailView(
+          personId: personId,
+          actorImageUrl: actorPath,
+        ),
+        transitionsBuilder: (_, animation, __, child) =>
+            FadeTransition(opacity: animation, child: child),
       ),
     );
   }
@@ -85,7 +103,10 @@ class _DetailSection extends StatelessWidget {
 }
 
 class _CreditsSection extends StatelessWidget {
-  const _CreditsSection({Key? key}) : super(key: key);
+  const _CreditsSection({Key? key, required this.onSelectActor})
+      : super(key: key);
+
+  final Function(int, String?) onSelectActor;
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +141,15 @@ class _CreditsSection extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: credits.casts.length,
                       scrollDirection: Axis.horizontal,
-                      itemBuilder: (_, i) => CreditItem(
-                        imageUri: 'https://image.tmdb.org/t/p/w185',
-                        cast: credits.casts[i],
+                      itemBuilder: (_, i) => GestureDetector(
+                        onTap: () => onSelectActor(
+                          credits.casts[i].id,
+                          credits.casts[i].profilePath,
+                        ),
+                        child: CreditItem(
+                          imageUri: 'https://image.tmdb.org/t/p/w185',
+                          cast: credits.casts[i],
+                        ),
                       ),
                     ),
                   ),
