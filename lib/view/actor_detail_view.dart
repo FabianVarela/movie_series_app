@@ -6,6 +6,7 @@ import 'package:movie_list_bloc/bloc/actor/actor_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/actor_model.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
+import 'package:movie_list_bloc/view/widget/section_staggered_animation.dart';
 import 'package:movie_list_bloc/view/widget/title_subtitle.dart';
 import 'package:movie_list_bloc/view/widget/transition_app_bar.dart';
 
@@ -22,6 +23,9 @@ class ActorDetailView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     const imageUri = 'https://image.tmdb.org/t/p/w185';
+    final animationController = useAnimationController(
+      duration: const Duration(milliseconds: 2000),
+    );
 
     useEffect(() {
       Future.microtask(() {
@@ -44,7 +48,9 @@ class ActorDetailView extends HookWidget {
       } else if (state is ActorStateSuccess) {
         title = state.actor.name;
         sliverChild = SliverList(
-          delegate: SliverChildListDelegate([_ActorData(actor: state.actor)]),
+          delegate: SliverChildListDelegate([
+            _ActorData(controller: animationController, actor: state.actor),
+          ]),
         );
       } else if (state is ActorStateError) {
         title = 'Error';
@@ -98,61 +104,90 @@ class ActorDetailView extends HookWidget {
   }
 }
 
-class _ActorData extends StatelessWidget {
-  const _ActorData({Key? key, required this.actor}) : super(key: key);
+class _ActorData extends HookWidget {
+  const _ActorData({Key? key, required this.controller, required this.actor})
+      : super(key: key);
 
+  final AnimationController controller;
   final ActorModel actor;
 
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      Future.delayed(const Duration(milliseconds: 500), controller.forward);
+      return null;
+    }, const []);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              TitleSubtitle(
-                title: 'Birth date: ',
-                subtitle: actor.birthday ?? 'No birth date',
-                isRow: actor.deathDay == null,
-              ),
-              if (actor.deathDay != null)
+        SectionStaggeredAnimation(
+          controller: controller,
+          endInterval: .100,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
                 TitleSubtitle(
-                  title: 'Death date: ',
-                  subtitle: actor.deathDay!,
-                  isRow: false,
+                  title: 'Birth date: ',
+                  subtitle: actor.birthday ?? 'No birth date',
+                  isRow: actor.deathDay == null,
                 ),
-            ],
+                if (actor.deathDay != null)
+                  TitleSubtitle(
+                    title: 'Death date: ',
+                    subtitle: actor.deathDay!,
+                    isRow: false,
+                  ),
+              ],
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: TitleSubtitle(
-            title: 'Birth place: ',
-            subtitle: actor.placeBirth ?? 'No birth place',
-            isRow: false,
+        SectionStaggeredAnimation(
+          controller: controller,
+          startInterval: .100,
+          endInterval: .300,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: TitleSubtitle(
+              title: 'Birth place: ',
+              subtitle: actor.placeBirth ?? 'No birth place',
+              isRow: false,
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              TitleSubtitle(title: 'Rol: ', subtitle: actor.department),
-              TitleSubtitle(
-                title: 'Popularity: ',
-                subtitle: actor.popularity.toStringAsFixed(2),
+        SectionStaggeredAnimation(
+          controller: controller,
+          startInterval: .300,
+          endInterval: .500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                TitleSubtitle(title: 'Rol: ', subtitle: actor.department),
+                TitleSubtitle(
+                  title: 'Popularity: ',
+                  subtitle: actor.popularity.toStringAsFixed(2),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SectionStaggeredAnimation(
+          controller: controller,
+          startInterval: .500,
+          endInterval: .700,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            child: Text(
+              actor.biography,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
               ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-          child: Text(
-            actor.biography,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+            ),
           ),
         ),
       ],
