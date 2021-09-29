@@ -96,7 +96,7 @@ class MovieClient {
     }
   }
 
-  Future<ActorModel> fetchActorData(int personId) async {
+  Future<ActorModel> fetchActor(int personId) async {
     final response = await _client.get(
       Uri.https(_baseUrl!, '/3/person/$personId', _getApiKeyParam()),
     );
@@ -108,6 +108,22 @@ class MovieClient {
       return ActorModel.fromJson(jsonMap);
     } else {
       throw Exception('Failed to load actor data');
+    }
+  }
+
+  Future<ActorCreditsModel> fetchActorCredits(int personId) async {
+    final params = _getApiKeyParam();
+    final response = await _client.get(
+      Uri.https(_baseUrl!, '/3/person/$personId/movie_credits', params),
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body) as Map<String, dynamic>;
+      return ActorCreditsModel.fromJson(jsonMap);
+    } else {
+      throw Exception('Failed to load actor credit list');
     }
   }
 

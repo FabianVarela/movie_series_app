@@ -25,5 +25,8 @@ class MovieRepository {
       _movieClient.fetchTrailers(movieId);
 
   Future<ActorModel> fetchActor(int personId) =>
-      _movieClient.fetchActorData(personId);
+      _movieClient.fetchActor(personId);
+
+  Future<ActorCreditsModel> fetchActorCredits(int personId) =>
+      _movieClient.fetchActorCredits(personId);
 }
