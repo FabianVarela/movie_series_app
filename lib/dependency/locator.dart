@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:movie_list_bloc/bloc/actor/actor_bloc.dart';
+import 'package:movie_list_bloc/bloc/actor/credits/actor_credits_bloc.dart';
 
 import 'package:movie_list_bloc/bloc/detail/credits/movie_credits_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_bloc.dart';
@@ -24,5 +25,6 @@ void setupLocator() {
     ..registerLazySingleton(() => MovieBloc(locator<MovieRepository>()))
     ..registerLazySingleton(() => TrailersBloc(locator<MovieRepository>()))
     ..registerLazySingleton(() => CreditsBloc(locator<MovieRepository>()))
-    ..registerLazySingleton(() => ActorBloc(locator<MovieRepository>()));
+    ..registerLazySingleton(() => ActorBloc(locator<MovieRepository>()))
+    ..registerLazySingleton(() => ActorCreditsBloc(locator<MovieRepository>()));
 }
