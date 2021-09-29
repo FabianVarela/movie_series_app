@@ -49,3 +49,34 @@ class ActorModel extends Equatable {
         isAdult,
       ];
 }
+
+class ActorCreditsModel extends Equatable {
+  ActorCreditsModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'] as int,
+        casts = (json['cast'] as List<dynamic>)
+            .map((dynamic item) =>
+                ActorCreditModel.fromJson(item as Map<String, dynamic>))
+            .toList();
+
+  final int id;
+  final List<ActorCreditModel> casts;
+
+  @override
+  List<Object?> get props => [id, casts];
+}
+
+class ActorCreditModel extends Equatable {
+  ActorCreditModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'] as int,
+        character = json['character'] as String?,
+        title = json['title'] as String,
+        posterPath = json['poster_path'] as String?;
+
+  final int id;
+  final String? character;
+  final String title;
+  final String? posterPath;
+
+  @override
+  List<Object?> get props => [id, character, title, posterPath];
+}
