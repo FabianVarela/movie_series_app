@@ -8,6 +8,7 @@ import 'package:movie_list_bloc/bloc/actor/credits/actor_credits_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/actor_model.dart';
 import 'package:movie_list_bloc/view/widget/actor_cast_item.dart';
+import 'package:movie_list_bloc/view/widget/circle_image.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
 import 'package:movie_list_bloc/view/widget/section_staggered_animation.dart';
 import 'package:movie_list_bloc/view/widget/title_subtitle.dart';
@@ -25,7 +26,6 @@ class ActorDetailView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imageUri = 'https://image.tmdb.org/t/p/w185';
     final animationController = useAnimationController(
       duration: const Duration(milliseconds: 2000),
     );
@@ -75,19 +75,7 @@ class ActorDetailView extends HookWidget {
                   title: title,
                   child: Hero(
                     tag: '$personId',
-                    child: CircleAvatar(
-                      backgroundImage: actorImageUrl != null
-                          ? NetworkImage('$imageUri$actorImageUrl')
-                          : null,
-                      radius: 40,
-                      child: actorImageUrl == null
-                          ? const Icon(
-                              Icons.account_circle,
-                              size: 50,
-                              color: Colors.white,
-                            )
-                          : null,
-                    ),
+                    child: CircleImage(imageUrl: actorImageUrl, iconSize: 50),
                   ),
                 ),
                 sliverChild,

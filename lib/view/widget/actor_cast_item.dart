@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_list_bloc/models/actor_model.dart';
+import 'package:movie_list_bloc/view/widget/circle_image.dart';
 
 class ActorCastItem extends StatelessWidget {
   const ActorCastItem({
@@ -15,14 +16,10 @@ class ActorCastItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 5),
-      leading: CircleAvatar(
-        backgroundImage: actorCredit.posterPath != null
-            ? NetworkImage('$imageUri${actorCredit.posterPath}')
-            : null,
-        radius: 25,
-        child: actorCredit.posterPath == null
-            ? const Icon(Icons.account_circle, size: 25, color: Colors.white)
-            : null,
+      leading: CircleImage(
+        imageUrl: actorCredit.posterPath,
+        imageSize: 25,
+        iconSize: 25,
       ),
       title: Text(
         (actorCredit.character ?? '').isNotEmpty
