@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:movie_list_bloc/bloc/actor/actor_bloc.dart';
 import 'package:movie_list_bloc/bloc/actor/actor_state.dart';
+import 'package:movie_list_bloc/bloc/actor/credits/actor_credits_bloc.dart';
+import 'package:movie_list_bloc/bloc/actor/credits/actor_credits_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/actor_model.dart';
+import 'package:movie_list_bloc/view/widget/actor_cast_item.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
 import 'package:movie_list_bloc/view/widget/section_staggered_animation.dart';
 import 'package:movie_list_bloc/view/widget/title_subtitle.dart';
@@ -30,6 +33,7 @@ class ActorDetailView extends HookWidget {
     useEffect(() {
       Future.microtask(() {
         locator<ActorBloc>().getActorData(personId);
+        locator<ActorCreditsBloc>().getActorCredits(personId);
       });
     }, []);
 
@@ -190,6 +194,54 @@ class _ActorData extends HookWidget {
             ),
           ),
         ),
+        SectionStaggeredAnimation(
+          controller: controller,
+          startInterval: .700,
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: _ActorCredits(),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ActorCredits extends StatelessWidget {
+  const _ActorCredits({Key? key}) : super(key: key);
+
+  // TODO: Set first ten and check "load more" button to display more items
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const Text(
+          'Characters',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: 10),
+        BlocBuilder<ActorCreditsBloc, ActorCreditsState>(builder: (_, state) {
+          return state.when(
+            initial: () => const Offstage(),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            success: (credits) {
+              return ListView.separated(
+                itemCount: credits.casts.length,
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (_, __) => const Divider(height: 5),
+                itemBuilder: (_, i) => ActorCastItem(
+                  imageUri: 'https://image.tmdb.org/t/p/w185',
+                  actorCredit: credits.casts[i],
+                ),
+              );
+            },
+            error: (message) => ErrorMessage(message: message, fontSize: 16),
+          );
+        }),
       ],
     );
   }
