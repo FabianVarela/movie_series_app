@@ -195,13 +195,13 @@ class _ActorData extends HookWidget {
   }
 }
 
-class _ActorCredits extends StatelessWidget {
+class _ActorCredits extends HookWidget {
   const _ActorCredits({Key? key}) : super(key: key);
-
-  // TODO: Set first ten and check "load more" button to display more items
 
   @override
   Widget build(BuildContext context) {
+    final isExpanded = useState(false);
+
     return BlocBuilder<ActorCreditsBloc, ActorCreditsState>(
       builder: (_, state) => state.when(
         initial: () => const Offstage(),
@@ -215,15 +215,25 @@ class _ActorCredits extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ListView.separated(
-              itemCount: credits.casts.length,
+              itemCount: (!isExpanded.value && credits.casts.length >= 21)
+                  ? 21
+                  : credits.casts.length,
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               physics: const NeverScrollableScrollPhysics(),
               separatorBuilder: (_, __) => const Divider(height: 5),
-              itemBuilder: (_, i) => ActorCastItem(
-                imageUri: 'https://image.tmdb.org/t/p/w185',
-                actorCredit: credits.casts[i],
-              ),
+              itemBuilder: (_, i) {
+                return (i == 20 && !isExpanded.value)
+                    ? ListTile(
+                        onTap: () => isExpanded.value = true,
+                        leading: const Icon(Icons.keyboard_arrow_down),
+                        title: Text('Load ${credits.casts.length - 20} more'),
+                      )
+                    : ActorCastItem(
+                        imageUri: 'https://image.tmdb.org/t/p/w185',
+                        actorCredit: credits.casts[i],
+                      );
+              },
             ),
           ],
         ),
