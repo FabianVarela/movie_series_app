@@ -202,35 +202,33 @@ class _ActorCredits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          'Characters',
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+    return BlocBuilder<ActorCreditsBloc, ActorCreditsState>(
+      builder: (_, state) => state.when(
+        initial: () => const Offstage(),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        success: (credits) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              '${credits.casts.length} Character(s)',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 10),
+            ListView.separated(
+              itemCount: credits.casts.length,
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              physics: const NeverScrollableScrollPhysics(),
+              separatorBuilder: (_, __) => const Divider(height: 5),
+              itemBuilder: (_, i) => ActorCastItem(
+                imageUri: 'https://image.tmdb.org/t/p/w185',
+                actorCredit: credits.casts[i],
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: 10),
-        BlocBuilder<ActorCreditsBloc, ActorCreditsState>(builder: (_, state) {
-          return state.when(
-            initial: () => const Offstage(),
-            loading: () => const Center(child: CircularProgressIndicator()),
-            success: (credits) {
-              return ListView.separated(
-                itemCount: credits.casts.length,
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (_, __) => const Divider(height: 5),
-                itemBuilder: (_, i) => ActorCastItem(
-                  imageUri: 'https://image.tmdb.org/t/p/w185',
-                  actorCredit: credits.casts[i],
-                ),
-              );
-            },
-            error: (message) => ErrorMessage(message: message, fontSize: 16),
-          );
-        }),
-      ],
+        error: (message) => ErrorMessage(message: message, fontSize: 16),
+      ),
     );
   }
 }
