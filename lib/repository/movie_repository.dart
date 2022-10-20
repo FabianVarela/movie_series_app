@@ -1,9 +1,9 @@
 import 'package:movie_list_bloc/client/movie_client.dart';
-import 'package:movie_list_bloc/models/actor_model.dart';
-import 'package:movie_list_bloc/models/credits_model.dart';
-import 'package:movie_list_bloc/models/gender_model.dart';
-import 'package:movie_list_bloc/models/movies_model.dart';
-import 'package:movie_list_bloc/models/trailer_model.dart';
+import 'package:movie_list_bloc/models/actor/actor_model.dart';
+import 'package:movie_list_bloc/models/credits/credits_model.dart';
+import 'package:movie_list_bloc/models/gender/gender_model.dart';
+import 'package:movie_list_bloc/models/movies/movies_model.dart';
+import 'package:movie_list_bloc/models/trailers/trailer_model.dart';
 
 class MovieRepository {
   MovieRepository(this._movieClient);
