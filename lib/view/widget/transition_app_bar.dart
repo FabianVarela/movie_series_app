@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TransitionAppBar extends StatelessWidget {
-  const TransitionAppBar({Key? key, required this.child, required this.title})
-      : super(key: key);
+  const TransitionAppBar({super.key, required this.child, required this.title});
 
   final Widget child;
   final String title;
@@ -67,7 +66,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
     final titleAlign = _titleAlignTween.lerp(progress);
     final titleSize = _titleSizeTween.transform(progress);
 
-    return Container(
+    return ColoredBox(
       color: Colors.blueGrey,
       child: Stack(
         fit: StackFit.expand,

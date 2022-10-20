@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/models/actor_model.dart';
+import 'package:movie_list_bloc/models/actor/actor_model.dart';
 import 'package:movie_list_bloc/view/widget/circle_image.dart';
 
 class ActorCastItem extends StatelessWidget {
   const ActorCastItem({
-    Key? key,
+    super.key,
     required this.imageUri,
     required this.actorCredit,
-  }) : super(key: key);
+  });
 
   final String imageUri;
   final ActorCreditModel actorCredit;

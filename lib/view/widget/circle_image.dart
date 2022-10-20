@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class CircleImage extends StatelessWidget {
   const CircleImage({
-    Key? key,
+    super.key,
     this.imageUrl,
     this.imageSize = 40,
     this.iconSize = 30,
-  }) : super(key: key);
+  });
 
   final String? imageUrl;
   final double imageSize;

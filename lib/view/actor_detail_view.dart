@@ -6,7 +6,7 @@ import 'package:movie_list_bloc/bloc/actor/actor_state.dart';
 import 'package:movie_list_bloc/bloc/actor/credits/actor_credits_bloc.dart';
 import 'package:movie_list_bloc/bloc/actor/credits/actor_credits_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
-import 'package:movie_list_bloc/models/actor_model.dart';
+import 'package:movie_list_bloc/models/actor/actor_model.dart';
 import 'package:movie_list_bloc/view/widget/actor_cast_item.dart';
 import 'package:movie_list_bloc/view/widget/circle_image.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
@@ -16,10 +16,10 @@ import 'package:movie_list_bloc/view/widget/transition_app_bar.dart';
 
 class ActorDetailView extends HookWidget {
   const ActorDetailView({
-    Key? key,
+    super.key,
     required this.personId,
     this.actorImageUrl,
-  }) : super(key: key);
+  });
 
   final int personId;
   final String? actorImageUrl;
@@ -30,85 +30,93 @@ class ActorDetailView extends HookWidget {
       duration: const Duration(milliseconds: 2000),
     );
 
-    useEffect(() {
-      Future.microtask(() {
-        locator<ActorBloc>().getActorData(personId);
-        locator<ActorCreditsBloc>().getActorCredits(personId);
-      });
-    }, []);
+    useEffect(
+      () {
+        Future.microtask(() {
+          locator<ActorBloc>().getActorData(personId);
+          locator<ActorCreditsBloc>().getActorCredits(personId);
+        });
+        return null;
+      },
+      const [],
+    );
 
-    return BlocBuilder<ActorBloc, ActorState>(builder: (_, state) {
-      var title = '';
-      Widget sliverChild = const SliverToBoxAdapter(child: Offstage());
+    return BlocBuilder<ActorBloc, ActorState>(
+      builder: (_, state) {
+        var title = '';
+        Widget sliverChild = const SliverToBoxAdapter(child: Offstage());
 
-      if (state is ActorStateLoading) {
-        title = 'Loading';
-        sliverChild = SliverToBoxAdapter(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * .6,
-            child: const Center(child: CircularProgressIndicator()),
-          ),
-        );
-      } else if (state is ActorStateSuccess) {
-        title = state.actor.name;
-        sliverChild = SliverList(
-          delegate: SliverChildListDelegate([
-            _ActorData(controller: animationController, actor: state.actor),
-          ]),
-        );
-      } else if (state is ActorStateError) {
-        title = 'Error';
-        sliverChild = SliverToBoxAdapter(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * .6,
-            child: ErrorMessage(message: state.message),
-          ),
-        );
-      }
+        if (state is ActorStateLoading) {
+          title = 'Loading';
+          sliverChild = SliverToBoxAdapter(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * .6,
+              child: const Center(child: CircularProgressIndicator()),
+            ),
+          );
+        } else if (state is ActorStateSuccess) {
+          title = state.actor.name;
+          sliverChild = SliverList(
+            delegate: SliverChildListDelegate([
+              _ActorData(controller: animationController, actor: state.actor),
+            ]),
+          );
+        } else if (state is ActorStateError) {
+          title = 'Error';
+          sliverChild = SliverToBoxAdapter(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * .6,
+              child: ErrorMessage(message: state.message),
+            ),
+          );
+        }
 
-      return Scaffold(
-        body: Stack(
-          children: <Widget>[
-            CustomScrollView(
-              slivers: <Widget>[
-                TransitionAppBar(
-                  title: title,
-                  child: Hero(
-                    tag: '$personId',
-                    child: CircleImage(imageUrl: actorImageUrl, iconSize: 50),
+        return Scaffold(
+          body: Stack(
+            children: <Widget>[
+              CustomScrollView(
+                slivers: <Widget>[
+                  TransitionAppBar(
+                    title: title,
+                    child: Hero(
+                      tag: '$personId',
+                      child: CircleImage(imageUrl: actorImageUrl, iconSize: 50),
+                    ),
                   ),
-                ),
-                sliverChild,
-              ],
-            ),
-            Positioned(
-              top: 40,
-              left: 10,
-              child: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+                  sliverChild,
+                ],
               ),
-            ),
-          ],
-        ),
-      );
-    });
+              Positioned(
+                top: 40,
+                left: 10,
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
 
 class _ActorData extends HookWidget {
-  const _ActorData({Key? key, required this.controller, required this.actor})
-      : super(key: key);
+  const _ActorData({required this.controller, required this.actor});
 
   final AnimationController controller;
   final ActorModel actor;
 
   @override
   Widget build(BuildContext context) {
-    useEffect(() {
-      Future.delayed(const Duration(milliseconds: 500), controller.forward);
-      return null;
-    }, const []);
+    useEffect(
+      () {
+        Future.delayed(const Duration(milliseconds: 500), controller.forward);
+        return null;
+      },
+      const [],
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,7 +204,7 @@ class _ActorData extends HookWidget {
 }
 
 class _ActorCredits extends HookWidget {
-  const _ActorCredits({Key? key}) : super(key: key);
+  const _ActorCredits();
 
   @override
   Widget build(BuildContext context) {

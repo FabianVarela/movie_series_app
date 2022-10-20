@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/models/trailer_model.dart';
+import 'package:movie_list_bloc/models/trailers/trailer_model.dart';
 
 class TrailerItem extends StatelessWidget {
-  const TrailerItem({Key? key, required this.trailer}) : super(key: key);
+  const TrailerItem({super.key, required this.trailer});
 
   final TrailerModel trailer;
 

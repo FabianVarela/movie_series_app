@@ -6,15 +6,15 @@ import 'package:movie_list_bloc/bloc/movie_list/genre/gender_state.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
-import 'package:movie_list_bloc/models/gender_model.dart';
-import 'package:movie_list_bloc/models/movies_model.dart';
+import 'package:movie_list_bloc/models/gender/gender_model.dart';
+import 'package:movie_list_bloc/models/movies/movies_model.dart';
 import 'package:movie_list_bloc/view/movie_detail_view.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
 import 'package:movie_list_bloc/view/widget/gender_item.dart';
 import 'package:movie_list_bloc/view/widget/movie_list_item.dart';
 
 class MovieList extends HookWidget {
-  const MovieList({Key? key}) : super(key: key);
+  const MovieList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,16 @@ class MovieList extends HookWidget {
     final currentIndex = useState(0);
     final length = useState(0);
 
-    useEffect(() {
-      Future.microtask(() {
-        locator<GenderBloc>().getMovieGenderList();
-        locator<MoviesBloc>().getMovies();
-      });
-    }, const []);
+    useEffect(
+      () {
+        Future.microtask(() {
+          locator<GenderBloc>().getMovieGenderList();
+          locator<MoviesBloc>().getMovies();
+        });
+        return null;
+      },
+      const [],
+    );
 
     useValueChanged<int?, void>(currentGender.value, (oldValue, _) {
       if (currentGender.value != oldValue) {
@@ -97,8 +101,7 @@ class MovieList extends HookWidget {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({Key? key, required this.title, required this.onSetPopular})
-      : super(key: key);
+  const _Header({required this.title, required this.onSetPopular});
 
   final String title;
   final VoidCallback onSetPopular;
@@ -136,114 +139,116 @@ class _Header extends StatelessWidget {
 }
 
 class _BodyGenreList extends StatelessWidget {
-  const _BodyGenreList({Key? key, required this.onSelectGenre, this.currentId})
-      : super(key: key);
+  const _BodyGenreList({required this.onSelectGenre, this.currentId});
 
   final int? currentId;
   final ValueSetter<GenderModel> onSelectGenre;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenderBloc, GenderState>(builder: (_, state) {
-      return state.when(
-        initial: () => const Offstage(),
-        loading: () => const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation(Colors.white),
+    return BlocBuilder<GenderBloc, GenderState>(
+      builder: (_, state) {
+        return state.when(
+          initial: () => const Offstage(),
+          loading: () => const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(Colors.white),
+            ),
           ),
-        ),
-        success: (gender) => gender.genders.isEmpty
-            ? const Center(
-                child: Text(
-                  'No genres available',
-                  style: TextStyle(fontSize: 15, color: Colors.white),
+          success: (gender) => gender.genders.isEmpty
+              ? const Center(
+                  child: Text(
+                    'No genres available',
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                )
+              : SizedBox(
+                  height: 40,
+                  child: ListView.builder(
+                    itemCount: gender.genders.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) {
+                      return GenderItem(
+                        gender: gender.genders[i],
+                        onSelectGender: onSelectGenre,
+                        backgroundColor: gender.genders[i].id == currentId
+                            ? Colors.blueAccent
+                            : null,
+                        textColor: gender.genders[i].id == currentId
+                            ? Colors.white
+                            : null,
+                      );
+                    },
+                  ),
                 ),
-              )
-            : SizedBox(
-                height: 40,
-                child: ListView.builder(
-                  itemCount: gender.genders.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) {
-                    return GenderItem(
-                      gender: gender.genders[i],
-                      onSelectGender: onSelectGenre,
-                      backgroundColor: gender.genders[i].id == currentId
-                          ? Colors.blueAccent
-                          : null,
-                      textColor: gender.genders[i].id == currentId
-                          ? Colors.white
-                          : null,
-                    );
-                  },
-                ),
-              ),
-        error: (error) => ErrorMessage(message: error, fontSize: 15),
-      );
-    });
+          error: (error) => ErrorMessage(message: error, fontSize: 15),
+        );
+      },
+    );
   }
 }
 
 class _BodyMovieList extends HookWidget {
   const _BodyMovieList({
-    Key? key,
     this.index = -1,
     required this.onSelectMovie,
     required this.onChangePage,
-  }) : super(key: key);
+  });
 
   final int index;
   final ValueSetter<MovieModel> onSelectMovie;
-  final Function(int, int) onChangePage;
+  final void Function(int, int) onChangePage;
 
   @override
   Widget build(BuildContext context) {
     final isEnabledScroll = useState(true);
     final pageController = usePageController(viewportFraction: .8);
 
-    return BlocBuilder<MoviesBloc, MovieListState>(builder: (context, state) {
-      return state.when(
-        initial: () => const Offstage(),
-        loading: () {
-          Future<void>.microtask(() => onChangePage(-1, 0));
-          return const Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
-          );
-        },
-        success: (data) {
-          Future<void>.microtask(
-            () => onChangePage(index == -1 ? 0 : index, data.movies.length),
-          );
+    return BlocBuilder<MoviesBloc, MovieListState>(
+      builder: (context, state) {
+        return state.when(
+          initial: () => const Offstage(),
+          loading: () {
+            Future<void>.microtask(() => onChangePage(-1, 0));
+            return const Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            );
+          },
+          success: (data) {
+            Future<void>.microtask(
+              () => onChangePage(index == -1 ? 0 : index, data.movies.length),
+            );
 
-          return PageView.builder(
-            itemCount: data.movies.length,
-            physics: isEnabledScroll.value
-                ? const BouncingScrollPhysics()
-                : const NeverScrollableScrollPhysics(),
-            controller: pageController,
-            onPageChanged: (i) => onChangePage(i, data.movies.length),
-            itemBuilder: (_, i) => MovieListItem(
-              itemModel: data.movies[i],
-              onPressItem: onSelectMovie,
-              imageUri: 'https://image.tmdb.org/t/p/w185',
-              isCurrent: index == i,
-              onExpanded: (enabled) => isEnabledScroll.value = !enabled,
-            ),
-          );
-        },
-        error: (error) {
-          Future<void>.microtask(() => onChangePage(-1, 0));
-          return ErrorMessage(message: error);
-        },
-      );
-    });
+            return PageView.builder(
+              itemCount: data.movies.length,
+              physics: isEnabledScroll.value
+                  ? const BouncingScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
+              controller: pageController,
+              onPageChanged: (i) => onChangePage(i, data.movies.length),
+              itemBuilder: (_, i) => MovieListItem(
+                itemModel: data.movies[i],
+                onPressItem: onSelectMovie,
+                imageUri: 'https://image.tmdb.org/t/p/w185',
+                isCurrent: index == i,
+                onExpanded: (enabled) => isEnabledScroll.value = !enabled,
+              ),
+            );
+          },
+          error: (error) {
+            Future<void>.microtask(() => onChangePage(-1, 0));
+            return ErrorMessage(message: error);
+          },
+        );
+      },
+    );
   }
 }
 
 class _Footer extends StatelessWidget {
-  const _Footer({Key? key, this.index = 0, this.length = 0}) : super(key: key);
+  const _Footer({this.index = 0, this.length = 0});
 
   final int index;
   final int length;

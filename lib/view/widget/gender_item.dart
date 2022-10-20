@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/models/gender_model.dart';
+import 'package:movie_list_bloc/models/gender/gender_model.dart';
 
 class GenderItem extends StatelessWidget {
   const GenderItem({
-    Key? key,
+    super.key,
     required this.gender,
     this.onSelectGender,
     this.backgroundColor,
     this.textColor,
-  }) : super(key: key);
+  });
 
   final GenderModel gender;
   final ValueSetter<GenderModel>? onSelectGender;

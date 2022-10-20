@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/models/movies_model.dart';
+import 'package:movie_list_bloc/models/movies/movies_model.dart';
 import 'package:movie_list_bloc/view/widget/gender_item.dart';
 
 class MovieDetailItem extends StatelessWidget {
-  const MovieDetailItem({Key? key, required this.movie}) : super(key: key);
+  const MovieDetailItem({super.key, required this.movie});
 
   final MovieModel movie;
 
@@ -63,7 +63,7 @@ class MovieDetailItem extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
-          child: movie.genres.isEmpty
+          child: (movie.genres ?? []).isEmpty
               ? const Center(
                   child: Text(
                     'No genres available',
@@ -73,9 +73,9 @@ class MovieDetailItem extends StatelessWidget {
               : SizedBox(
                   height: 40,
                   child: ListView.builder(
-                    itemCount: movie.genres.length,
+                    itemCount: movie.genres!.length,
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) => GenderItem(gender: movie.genres[i]),
+                    itemBuilder: (_, i) => GenderItem(gender: movie.genres![i]),
                   ),
                 ),
         ),

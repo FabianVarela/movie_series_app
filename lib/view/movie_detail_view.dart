@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:movie_list_bloc/bloc/detail/credits/movie_credits_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/credits/movie_credits_state.dart';
 import 'package:movie_list_bloc/bloc/detail/movie/movie_bloc.dart';
-import 'package:movie_list_bloc/bloc/detail/credits/movie_credits_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/movie/movie_state.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_state.dart';
@@ -17,23 +16,27 @@ import 'package:movie_list_bloc/view/widget/trailer_item.dart';
 
 class MovieDetail extends HookWidget {
   const MovieDetail({
-    Key? key,
+    super.key,
     required this.movieId,
     required this.movieImageUrl,
-  }) : super(key: key);
+  });
 
   final int movieId;
   final String movieImageUrl;
 
   @override
   Widget build(BuildContext context) {
-    useEffect(() {
-      Future.microtask(() {
-        locator<MovieBloc>().getMovie(movieId);
-        locator<TrailersBloc>().getTrailers(movieId);
-        locator<CreditsBloc>().getCredits(movieId);
-      });
-    }, []);
+    useEffect(
+      () {
+        Future.microtask(() {
+          locator<MovieBloc>().getMovie(movieId);
+          locator<TrailersBloc>().getTrailers(movieId);
+          locator<CreditsBloc>().getCredits(movieId);
+        });
+        return null;
+      },
+      const [],
+    );
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -87,26 +90,27 @@ class MovieDetail extends HookWidget {
 }
 
 class _DetailSection extends StatelessWidget {
-  const _DetailSection({Key? key}) : super(key: key);
+  const _DetailSection();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieBloc, MovieState>(builder: (_, state) {
-      return state.when(
-        initial: () => const Offstage(),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        success: (movie) => MovieDetailItem(movie: movie),
-        error: (error) => ErrorMessage(message: error, fontSize: 15),
-      );
-    });
+    return BlocBuilder<MovieBloc, MovieState>(
+      builder: (_, state) {
+        return state.when(
+          initial: () => const Offstage(),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          success: (movie) => MovieDetailItem(movie: movie),
+          error: (error) => ErrorMessage(message: error, fontSize: 15),
+        );
+      },
+    );
   }
 }
 
 class _CreditsSection extends StatelessWidget {
-  const _CreditsSection({Key? key, required this.onSelectActor})
-      : super(key: key);
+  const _CreditsSection({required this.onSelectActor});
 
-  final Function(int, String?) onSelectActor;
+  final void Function(int, String?) onSelectActor;
 
   @override
   Widget build(BuildContext context) {
@@ -122,47 +126,49 @@ class _CreditsSection extends StatelessWidget {
             ),
           ),
         ),
-        BlocBuilder<CreditsBloc, MovieCreditsState>(builder: (_, state) {
-          return state.when(
-            initial: () => const Offstage(),
-            loading: () => const CircularProgressIndicator(),
-            success: (credits) => credits.casts.isEmpty
-                ? const Center(
-                    child: Text(
-                      'No cast available',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  )
-                : SizedBox(
-                    height: 120,
-                    child: ListView.builder(
-                      itemCount: credits.casts.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (_, i) => GestureDetector(
-                        onTap: () => onSelectActor(
-                          credits.casts[i].id,
-                          credits.casts[i].profilePath,
-                        ),
-                        child: CreditItem(
-                          imageUri: 'https://image.tmdb.org/t/p/w185',
-                          cast: credits.casts[i],
+        BlocBuilder<CreditsBloc, MovieCreditsState>(
+          builder: (_, state) {
+            return state.when(
+              initial: () => const Offstage(),
+              loading: () => const CircularProgressIndicator(),
+              success: (credits) => credits.casts.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'No cast available',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
+                    )
+                  : SizedBox(
+                      height: 120,
+                      child: ListView.builder(
+                        itemCount: credits.casts.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, i) => GestureDetector(
+                          onTap: () => onSelectActor(
+                            credits.casts[i].id,
+                            credits.casts[i].profilePath,
+                          ),
+                          child: CreditItem(
+                            imageUri: 'https://image.tmdb.org/t/p/w185',
+                            cast: credits.casts[i],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-            error: (error) => ErrorMessage(message: error, fontSize: 15),
-          );
-        }),
+              error: (error) => ErrorMessage(message: error, fontSize: 15),
+            );
+          },
+        ),
       ],
     );
   }
 }
 
 class _TrailerSection extends StatelessWidget {
-  const _TrailerSection({Key? key}) : super(key: key);
+  const _TrailerSection();
 
   @override
   Widget build(BuildContext context) {
@@ -176,32 +182,34 @@ class _TrailerSection extends StatelessWidget {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
           ),
         ),
-        BlocBuilder<TrailersBloc, MovieTrailersState>(builder: (_, state) {
-          return state.when(
-            initial: () => const Offstage(),
-            loading: () => const Center(child: CircularProgressIndicator()),
-            success: (data) => data.trailers.isEmpty
-                ? const Center(
-                    child: Text(
-                      'No trailer available',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
+        BlocBuilder<TrailersBloc, MovieTrailersState>(
+          builder: (_, state) {
+            return state.when(
+              initial: () => const Offstage(),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              success: (data) => data.trailers.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'No trailer available',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
+                  : SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                        itemCount: data.trailers.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, i) =>
+                            TrailerItem(trailer: data.trailers[i]),
                       ),
                     ),
-                  )
-                : SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      itemCount: data.trailers.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (_, i) =>
-                          TrailerItem(trailer: data.trailers[i]),
-                    ),
-                  ),
-            error: (error) => ErrorMessage(message: error, fontSize: 15),
-          );
-        }),
+              error: (error) => ErrorMessage(message: error, fontSize: 15),
+            );
+          },
+        ),
       ],
     );
   }

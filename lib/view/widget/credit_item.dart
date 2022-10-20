@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/models/credits_model.dart';
+import 'package:movie_list_bloc/models/credits/credits_model.dart';
 import 'package:movie_list_bloc/view/widget/circle_image.dart';
 
 class CreditItem extends StatelessWidget {
-  const CreditItem({Key? key, required this.imageUri, required this.cast})
-      : super(key: key);
+  const CreditItem({super.key, required this.imageUri, required this.cast});
 
   final String imageUri;
   final CastModel cast;

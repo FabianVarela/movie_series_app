@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ErrorMessage extends StatelessWidget {
-  const ErrorMessage({Key? key, required this.message, this.fontSize = 30})
-      : super(key: key);
+  const ErrorMessage({super.key, required this.message, this.fontSize = 30});
 
   final String message;
   final double fontSize;

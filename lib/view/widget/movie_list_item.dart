@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:movie_list_bloc/models/movies_model.dart';
+import 'package:movie_list_bloc/models/movies/movies_model.dart';
 
 class MovieListItem extends HookWidget {
   const MovieListItem({
-    Key? key,
+    super.key,
     required this.itemModel,
     required this.onPressItem,
     required this.imageUri,
     this.onExpanded,
     this.isCurrent = false,
-  }) : super(key: key);
+  });
 
   final MovieModel itemModel;
-  final Function(MovieModel) onPressItem;
+  final ValueSetter<MovieModel> onPressItem;
   final String imageUri;
-  final Function(bool)? onExpanded;
+  final ValueSetter<bool>? onExpanded;
   final bool isCurrent;
 
   @override
@@ -92,7 +92,7 @@ class MovieListItem extends HookWidget {
                   onTap: () {
                     if (controller.status == AnimationStatus.dismissed) {
                       controller.forward(from: 0);
-                      if (onExpanded != null) onExpanded!(true);
+                      onExpanded?.call(true);
                     } else if (controller.status == AnimationStatus.completed) {
                       onPressItem(itemModel);
                     }
@@ -100,7 +100,7 @@ class MovieListItem extends HookWidget {
                   onVerticalDragUpdate: (details) {
                     if (details.delta.dy > 0) {
                       controller.reverse();
-                      if (onExpanded != null) onExpanded!(false);
+                      onExpanded?.call(false);
                     }
                   },
                   child: Hero(
