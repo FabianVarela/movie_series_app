@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'movie_list_state.dart';
 
@@ -10,35 +12,7 @@ part of 'movie_list_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MovieListStateTearOff {
-  const _$MovieListStateTearOff();
-
-  MovieListStateInitial initial() {
-    return const MovieListStateInitial();
-  }
-
-  MovieListStateLoading loading() {
-    return const MovieListStateLoading();
-  }
-
-  MovieListStateSuccess success(MoviesModel movies) {
-    return MovieListStateSuccess(
-      movies,
-    );
-  }
-
-  MovieListStateError error(String message) {
-    return MovieListStateError(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $MovieListState = _$MovieListStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MovieListState {
@@ -48,6 +22,14 @@ mixin _$MovieListState {
     required TResult Function() loading,
     required TResult Function(MoviesModel movies) success,
     required TResult Function(String message) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MoviesModel movies)? success,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +50,14 @@ mixin _$MovieListState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieListStateInitial value)? initial,
+    TResult? Function(MovieListStateLoading value)? loading,
+    TResult? Function(MovieListStateSuccess value)? success,
+    TResult? Function(MovieListStateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieListStateInitial value)? initial,
     TResult Function(MovieListStateLoading value)? loading,
@@ -82,36 +72,34 @@ mixin _$MovieListState {
 abstract class $MovieListStateCopyWith<$Res> {
   factory $MovieListStateCopyWith(
           MovieListState value, $Res Function(MovieListState) then) =
-      _$MovieListStateCopyWithImpl<$Res>;
+      _$MovieListStateCopyWithImpl<$Res, MovieListState>;
 }
 
 /// @nodoc
-class _$MovieListStateCopyWithImpl<$Res>
+class _$MovieListStateCopyWithImpl<$Res, $Val extends MovieListState>
     implements $MovieListStateCopyWith<$Res> {
   _$MovieListStateCopyWithImpl(this._value, this._then);
 
-  final MovieListState _value;
   // ignore: unused_field
-  final $Res Function(MovieListState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $MovieListStateInitialCopyWith<$Res> {
-  factory $MovieListStateInitialCopyWith(MovieListStateInitial value,
-          $Res Function(MovieListStateInitial) then) =
-      _$MovieListStateInitialCopyWithImpl<$Res>;
+abstract class _$$MovieListStateInitialCopyWith<$Res> {
+  factory _$$MovieListStateInitialCopyWith(_$MovieListStateInitial value,
+          $Res Function(_$MovieListStateInitial) then) =
+      __$$MovieListStateInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieListStateInitialCopyWithImpl<$Res>
-    extends _$MovieListStateCopyWithImpl<$Res>
-    implements $MovieListStateInitialCopyWith<$Res> {
-  _$MovieListStateInitialCopyWithImpl(
-      MovieListStateInitial _value, $Res Function(MovieListStateInitial) _then)
-      : super(_value, (v) => _then(v as MovieListStateInitial));
-
-  @override
-  MovieListStateInitial get _value => super._value as MovieListStateInitial;
+class __$$MovieListStateInitialCopyWithImpl<$Res>
+    extends _$MovieListStateCopyWithImpl<$Res, _$MovieListStateInitial>
+    implements _$$MovieListStateInitialCopyWith<$Res> {
+  __$$MovieListStateInitialCopyWithImpl(_$MovieListStateInitial _value,
+      $Res Function(_$MovieListStateInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -126,7 +114,8 @@ class _$MovieListStateInitial implements MovieListStateInitial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieListStateInitial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MovieListStateInitial);
   }
 
   @override
@@ -141,6 +130,17 @@ class _$MovieListStateInitial implements MovieListStateInitial {
     required TResult Function(String message) error,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MoviesModel movies)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -171,6 +171,17 @@ class _$MovieListStateInitial implements MovieListStateInitial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieListStateInitial value)? initial,
+    TResult? Function(MovieListStateLoading value)? loading,
+    TResult? Function(MovieListStateSuccess value)? success,
+    TResult? Function(MovieListStateError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieListStateInitial value)? initial,
     TResult Function(MovieListStateLoading value)? loading,
@@ -190,22 +201,19 @@ abstract class MovieListStateInitial implements MovieListState {
 }
 
 /// @nodoc
-abstract class $MovieListStateLoadingCopyWith<$Res> {
-  factory $MovieListStateLoadingCopyWith(MovieListStateLoading value,
-          $Res Function(MovieListStateLoading) then) =
-      _$MovieListStateLoadingCopyWithImpl<$Res>;
+abstract class _$$MovieListStateLoadingCopyWith<$Res> {
+  factory _$$MovieListStateLoadingCopyWith(_$MovieListStateLoading value,
+          $Res Function(_$MovieListStateLoading) then) =
+      __$$MovieListStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieListStateLoadingCopyWithImpl<$Res>
-    extends _$MovieListStateCopyWithImpl<$Res>
-    implements $MovieListStateLoadingCopyWith<$Res> {
-  _$MovieListStateLoadingCopyWithImpl(
-      MovieListStateLoading _value, $Res Function(MovieListStateLoading) _then)
-      : super(_value, (v) => _then(v as MovieListStateLoading));
-
-  @override
-  MovieListStateLoading get _value => super._value as MovieListStateLoading;
+class __$$MovieListStateLoadingCopyWithImpl<$Res>
+    extends _$MovieListStateCopyWithImpl<$Res, _$MovieListStateLoading>
+    implements _$$MovieListStateLoadingCopyWith<$Res> {
+  __$$MovieListStateLoadingCopyWithImpl(_$MovieListStateLoading _value,
+      $Res Function(_$MovieListStateLoading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -220,7 +228,8 @@ class _$MovieListStateLoading implements MovieListStateLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieListStateLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MovieListStateLoading);
   }
 
   @override
@@ -235,6 +244,17 @@ class _$MovieListStateLoading implements MovieListStateLoading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MoviesModel movies)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -265,6 +285,17 @@ class _$MovieListStateLoading implements MovieListStateLoading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieListStateInitial value)? initial,
+    TResult? Function(MovieListStateLoading value)? loading,
+    TResult? Function(MovieListStateSuccess value)? success,
+    TResult? Function(MovieListStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieListStateInitial value)? initial,
     TResult Function(MovieListStateLoading value)? loading,
@@ -284,30 +315,29 @@ abstract class MovieListStateLoading implements MovieListState {
 }
 
 /// @nodoc
-abstract class $MovieListStateSuccessCopyWith<$Res> {
-  factory $MovieListStateSuccessCopyWith(MovieListStateSuccess value,
-          $Res Function(MovieListStateSuccess) then) =
-      _$MovieListStateSuccessCopyWithImpl<$Res>;
+abstract class _$$MovieListStateSuccessCopyWith<$Res> {
+  factory _$$MovieListStateSuccessCopyWith(_$MovieListStateSuccess value,
+          $Res Function(_$MovieListStateSuccess) then) =
+      __$$MovieListStateSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({MoviesModel movies});
 }
 
 /// @nodoc
-class _$MovieListStateSuccessCopyWithImpl<$Res>
-    extends _$MovieListStateCopyWithImpl<$Res>
-    implements $MovieListStateSuccessCopyWith<$Res> {
-  _$MovieListStateSuccessCopyWithImpl(
-      MovieListStateSuccess _value, $Res Function(MovieListStateSuccess) _then)
-      : super(_value, (v) => _then(v as MovieListStateSuccess));
+class __$$MovieListStateSuccessCopyWithImpl<$Res>
+    extends _$MovieListStateCopyWithImpl<$Res, _$MovieListStateSuccess>
+    implements _$$MovieListStateSuccessCopyWith<$Res> {
+  __$$MovieListStateSuccessCopyWithImpl(_$MovieListStateSuccess _value,
+      $Res Function(_$MovieListStateSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  MovieListStateSuccess get _value => super._value as MovieListStateSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? movies = freezed,
+    Object? movies = null,
   }) {
-    return _then(MovieListStateSuccess(
-      movies == freezed
+    return _then(_$MovieListStateSuccess(
+      null == movies
           ? _value.movies
           : movies // ignore: cast_nullable_to_non_nullable
               as MoviesModel,
@@ -331,19 +361,19 @@ class _$MovieListStateSuccess implements MovieListStateSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieListStateSuccess &&
-            (identical(other.movies, movies) ||
-                const DeepCollectionEquality().equals(other.movies, movies)));
+        (other.runtimeType == runtimeType &&
+            other is _$MovieListStateSuccess &&
+            (identical(other.movies, movies) || other.movies == movies));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(movies);
+  int get hashCode => Object.hash(runtimeType, movies);
 
   @JsonKey(ignore: true)
   @override
-  $MovieListStateSuccessCopyWith<MovieListStateSuccess> get copyWith =>
-      _$MovieListStateSuccessCopyWithImpl<MovieListStateSuccess>(
+  @pragma('vm:prefer-inline')
+  _$$MovieListStateSuccessCopyWith<_$MovieListStateSuccess> get copyWith =>
+      __$$MovieListStateSuccessCopyWithImpl<_$MovieListStateSuccess>(
           this, _$identity);
 
   @override
@@ -355,6 +385,17 @@ class _$MovieListStateSuccess implements MovieListStateSuccess {
     required TResult Function(String message) error,
   }) {
     return success(movies);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MoviesModel movies)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return success?.call(movies);
   }
 
   @override
@@ -385,6 +426,17 @@ class _$MovieListStateSuccess implements MovieListStateSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieListStateInitial value)? initial,
+    TResult? Function(MovieListStateLoading value)? loading,
+    TResult? Function(MovieListStateSuccess value)? success,
+    TResult? Function(MovieListStateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieListStateInitial value)? initial,
     TResult Function(MovieListStateLoading value)? loading,
@@ -400,40 +452,39 @@ class _$MovieListStateSuccess implements MovieListStateSuccess {
 }
 
 abstract class MovieListStateSuccess implements MovieListState {
-  const factory MovieListStateSuccess(MoviesModel movies) =
+  const factory MovieListStateSuccess(final MoviesModel movies) =
       _$MovieListStateSuccess;
 
-  MoviesModel get movies => throw _privateConstructorUsedError;
+  MoviesModel get movies;
   @JsonKey(ignore: true)
-  $MovieListStateSuccessCopyWith<MovieListStateSuccess> get copyWith =>
+  _$$MovieListStateSuccessCopyWith<_$MovieListStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MovieListStateErrorCopyWith<$Res> {
-  factory $MovieListStateErrorCopyWith(
-          MovieListStateError value, $Res Function(MovieListStateError) then) =
-      _$MovieListStateErrorCopyWithImpl<$Res>;
+abstract class _$$MovieListStateErrorCopyWith<$Res> {
+  factory _$$MovieListStateErrorCopyWith(_$MovieListStateError value,
+          $Res Function(_$MovieListStateError) then) =
+      __$$MovieListStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$MovieListStateErrorCopyWithImpl<$Res>
-    extends _$MovieListStateCopyWithImpl<$Res>
-    implements $MovieListStateErrorCopyWith<$Res> {
-  _$MovieListStateErrorCopyWithImpl(
-      MovieListStateError _value, $Res Function(MovieListStateError) _then)
-      : super(_value, (v) => _then(v as MovieListStateError));
+class __$$MovieListStateErrorCopyWithImpl<$Res>
+    extends _$MovieListStateCopyWithImpl<$Res, _$MovieListStateError>
+    implements _$$MovieListStateErrorCopyWith<$Res> {
+  __$$MovieListStateErrorCopyWithImpl(
+      _$MovieListStateError _value, $Res Function(_$MovieListStateError) _then)
+      : super(_value, _then);
 
-  @override
-  MovieListStateError get _value => super._value as MovieListStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(MovieListStateError(
-      message == freezed
+    return _then(_$MovieListStateError(
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -457,19 +508,20 @@ class _$MovieListStateError implements MovieListStateError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieListStateError &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$MovieListStateError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $MovieListStateErrorCopyWith<MovieListStateError> get copyWith =>
-      _$MovieListStateErrorCopyWithImpl<MovieListStateError>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$MovieListStateErrorCopyWith<_$MovieListStateError> get copyWith =>
+      __$$MovieListStateErrorCopyWithImpl<_$MovieListStateError>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -480,6 +532,17 @@ class _$MovieListStateError implements MovieListStateError {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MoviesModel movies)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -510,6 +573,17 @@ class _$MovieListStateError implements MovieListStateError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieListStateInitial value)? initial,
+    TResult? Function(MovieListStateLoading value)? loading,
+    TResult? Function(MovieListStateSuccess value)? success,
+    TResult? Function(MovieListStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieListStateInitial value)? initial,
     TResult Function(MovieListStateLoading value)? loading,
@@ -525,10 +599,11 @@ class _$MovieListStateError implements MovieListStateError {
 }
 
 abstract class MovieListStateError implements MovieListState {
-  const factory MovieListStateError(String message) = _$MovieListStateError;
+  const factory MovieListStateError(final String message) =
+      _$MovieListStateError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
-  $MovieListStateErrorCopyWith<MovieListStateError> get copyWith =>
+  _$$MovieListStateErrorCopyWith<_$MovieListStateError> get copyWith =>
       throw _privateConstructorUsedError;
 }

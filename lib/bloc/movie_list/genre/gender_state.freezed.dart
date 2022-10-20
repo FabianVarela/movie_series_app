@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gender_state.dart';
 
@@ -10,35 +12,7 @@ part of 'gender_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GenderStateTearOff {
-  const _$GenderStateTearOff();
-
-  GenderStateInitial initial() {
-    return const GenderStateInitial();
-  }
-
-  GenderStateLoading loading() {
-    return const GenderStateLoading();
-  }
-
-  GenderStateSuccess success(GendersModel genres) {
-    return GenderStateSuccess(
-      genres,
-    );
-  }
-
-  GenderStateError error(String message) {
-    return GenderStateError(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $GenderState = _$GenderStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GenderState {
@@ -48,6 +22,14 @@ mixin _$GenderState {
     required TResult Function() loading,
     required TResult Function(GendersModel genres) success,
     required TResult Function(String message) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(GendersModel genres)? success,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +50,14 @@ mixin _$GenderState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenderStateInitial value)? initial,
+    TResult? Function(GenderStateLoading value)? loading,
+    TResult? Function(GenderStateSuccess value)? success,
+    TResult? Function(GenderStateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderStateInitial value)? initial,
     TResult Function(GenderStateLoading value)? loading,
@@ -82,35 +72,34 @@ mixin _$GenderState {
 abstract class $GenderStateCopyWith<$Res> {
   factory $GenderStateCopyWith(
           GenderState value, $Res Function(GenderState) then) =
-      _$GenderStateCopyWithImpl<$Res>;
+      _$GenderStateCopyWithImpl<$Res, GenderState>;
 }
 
 /// @nodoc
-class _$GenderStateCopyWithImpl<$Res> implements $GenderStateCopyWith<$Res> {
+class _$GenderStateCopyWithImpl<$Res, $Val extends GenderState>
+    implements $GenderStateCopyWith<$Res> {
   _$GenderStateCopyWithImpl(this._value, this._then);
 
-  final GenderState _value;
   // ignore: unused_field
-  final $Res Function(GenderState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $GenderStateInitialCopyWith<$Res> {
-  factory $GenderStateInitialCopyWith(
-          GenderStateInitial value, $Res Function(GenderStateInitial) then) =
-      _$GenderStateInitialCopyWithImpl<$Res>;
+abstract class _$$GenderStateInitialCopyWith<$Res> {
+  factory _$$GenderStateInitialCopyWith(_$GenderStateInitial value,
+          $Res Function(_$GenderStateInitial) then) =
+      __$$GenderStateInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GenderStateInitialCopyWithImpl<$Res>
-    extends _$GenderStateCopyWithImpl<$Res>
-    implements $GenderStateInitialCopyWith<$Res> {
-  _$GenderStateInitialCopyWithImpl(
-      GenderStateInitial _value, $Res Function(GenderStateInitial) _then)
-      : super(_value, (v) => _then(v as GenderStateInitial));
-
-  @override
-  GenderStateInitial get _value => super._value as GenderStateInitial;
+class __$$GenderStateInitialCopyWithImpl<$Res>
+    extends _$GenderStateCopyWithImpl<$Res, _$GenderStateInitial>
+    implements _$$GenderStateInitialCopyWith<$Res> {
+  __$$GenderStateInitialCopyWithImpl(
+      _$GenderStateInitial _value, $Res Function(_$GenderStateInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -125,7 +114,8 @@ class _$GenderStateInitial implements GenderStateInitial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GenderStateInitial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GenderStateInitial);
   }
 
   @override
@@ -140,6 +130,17 @@ class _$GenderStateInitial implements GenderStateInitial {
     required TResult Function(String message) error,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(GendersModel genres)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -170,6 +171,17 @@ class _$GenderStateInitial implements GenderStateInitial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenderStateInitial value)? initial,
+    TResult? Function(GenderStateLoading value)? loading,
+    TResult? Function(GenderStateSuccess value)? success,
+    TResult? Function(GenderStateError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderStateInitial value)? initial,
     TResult Function(GenderStateLoading value)? loading,
@@ -189,22 +201,19 @@ abstract class GenderStateInitial implements GenderState {
 }
 
 /// @nodoc
-abstract class $GenderStateLoadingCopyWith<$Res> {
-  factory $GenderStateLoadingCopyWith(
-          GenderStateLoading value, $Res Function(GenderStateLoading) then) =
-      _$GenderStateLoadingCopyWithImpl<$Res>;
+abstract class _$$GenderStateLoadingCopyWith<$Res> {
+  factory _$$GenderStateLoadingCopyWith(_$GenderStateLoading value,
+          $Res Function(_$GenderStateLoading) then) =
+      __$$GenderStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GenderStateLoadingCopyWithImpl<$Res>
-    extends _$GenderStateCopyWithImpl<$Res>
-    implements $GenderStateLoadingCopyWith<$Res> {
-  _$GenderStateLoadingCopyWithImpl(
-      GenderStateLoading _value, $Res Function(GenderStateLoading) _then)
-      : super(_value, (v) => _then(v as GenderStateLoading));
-
-  @override
-  GenderStateLoading get _value => super._value as GenderStateLoading;
+class __$$GenderStateLoadingCopyWithImpl<$Res>
+    extends _$GenderStateCopyWithImpl<$Res, _$GenderStateLoading>
+    implements _$$GenderStateLoadingCopyWith<$Res> {
+  __$$GenderStateLoadingCopyWithImpl(
+      _$GenderStateLoading _value, $Res Function(_$GenderStateLoading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -219,7 +228,8 @@ class _$GenderStateLoading implements GenderStateLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GenderStateLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GenderStateLoading);
   }
 
   @override
@@ -234,6 +244,17 @@ class _$GenderStateLoading implements GenderStateLoading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(GendersModel genres)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -264,6 +285,17 @@ class _$GenderStateLoading implements GenderStateLoading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenderStateInitial value)? initial,
+    TResult? Function(GenderStateLoading value)? loading,
+    TResult? Function(GenderStateSuccess value)? success,
+    TResult? Function(GenderStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderStateInitial value)? initial,
     TResult Function(GenderStateLoading value)? loading,
@@ -283,30 +315,29 @@ abstract class GenderStateLoading implements GenderState {
 }
 
 /// @nodoc
-abstract class $GenderStateSuccessCopyWith<$Res> {
-  factory $GenderStateSuccessCopyWith(
-          GenderStateSuccess value, $Res Function(GenderStateSuccess) then) =
-      _$GenderStateSuccessCopyWithImpl<$Res>;
+abstract class _$$GenderStateSuccessCopyWith<$Res> {
+  factory _$$GenderStateSuccessCopyWith(_$GenderStateSuccess value,
+          $Res Function(_$GenderStateSuccess) then) =
+      __$$GenderStateSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({GendersModel genres});
 }
 
 /// @nodoc
-class _$GenderStateSuccessCopyWithImpl<$Res>
-    extends _$GenderStateCopyWithImpl<$Res>
-    implements $GenderStateSuccessCopyWith<$Res> {
-  _$GenderStateSuccessCopyWithImpl(
-      GenderStateSuccess _value, $Res Function(GenderStateSuccess) _then)
-      : super(_value, (v) => _then(v as GenderStateSuccess));
+class __$$GenderStateSuccessCopyWithImpl<$Res>
+    extends _$GenderStateCopyWithImpl<$Res, _$GenderStateSuccess>
+    implements _$$GenderStateSuccessCopyWith<$Res> {
+  __$$GenderStateSuccessCopyWithImpl(
+      _$GenderStateSuccess _value, $Res Function(_$GenderStateSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  GenderStateSuccess get _value => super._value as GenderStateSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? genres = freezed,
+    Object? genres = null,
   }) {
-    return _then(GenderStateSuccess(
-      genres == freezed
+    return _then(_$GenderStateSuccess(
+      null == genres
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
               as GendersModel,
@@ -330,19 +361,20 @@ class _$GenderStateSuccess implements GenderStateSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GenderStateSuccess &&
-            (identical(other.genres, genres) ||
-                const DeepCollectionEquality().equals(other.genres, genres)));
+        (other.runtimeType == runtimeType &&
+            other is _$GenderStateSuccess &&
+            (identical(other.genres, genres) || other.genres == genres));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(genres);
+  int get hashCode => Object.hash(runtimeType, genres);
 
   @JsonKey(ignore: true)
   @override
-  $GenderStateSuccessCopyWith<GenderStateSuccess> get copyWith =>
-      _$GenderStateSuccessCopyWithImpl<GenderStateSuccess>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GenderStateSuccessCopyWith<_$GenderStateSuccess> get copyWith =>
+      __$$GenderStateSuccessCopyWithImpl<_$GenderStateSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -353,6 +385,17 @@ class _$GenderStateSuccess implements GenderStateSuccess {
     required TResult Function(String message) error,
   }) {
     return success(genres);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(GendersModel genres)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return success?.call(genres);
   }
 
   @override
@@ -383,6 +426,17 @@ class _$GenderStateSuccess implements GenderStateSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenderStateInitial value)? initial,
+    TResult? Function(GenderStateLoading value)? loading,
+    TResult? Function(GenderStateSuccess value)? success,
+    TResult? Function(GenderStateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderStateInitial value)? initial,
     TResult Function(GenderStateLoading value)? loading,
@@ -398,39 +452,39 @@ class _$GenderStateSuccess implements GenderStateSuccess {
 }
 
 abstract class GenderStateSuccess implements GenderState {
-  const factory GenderStateSuccess(GendersModel genres) = _$GenderStateSuccess;
+  const factory GenderStateSuccess(final GendersModel genres) =
+      _$GenderStateSuccess;
 
-  GendersModel get genres => throw _privateConstructorUsedError;
+  GendersModel get genres;
   @JsonKey(ignore: true)
-  $GenderStateSuccessCopyWith<GenderStateSuccess> get copyWith =>
+  _$$GenderStateSuccessCopyWith<_$GenderStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GenderStateErrorCopyWith<$Res> {
-  factory $GenderStateErrorCopyWith(
-          GenderStateError value, $Res Function(GenderStateError) then) =
-      _$GenderStateErrorCopyWithImpl<$Res>;
+abstract class _$$GenderStateErrorCopyWith<$Res> {
+  factory _$$GenderStateErrorCopyWith(
+          _$GenderStateError value, $Res Function(_$GenderStateError) then) =
+      __$$GenderStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$GenderStateErrorCopyWithImpl<$Res>
-    extends _$GenderStateCopyWithImpl<$Res>
-    implements $GenderStateErrorCopyWith<$Res> {
-  _$GenderStateErrorCopyWithImpl(
-      GenderStateError _value, $Res Function(GenderStateError) _then)
-      : super(_value, (v) => _then(v as GenderStateError));
+class __$$GenderStateErrorCopyWithImpl<$Res>
+    extends _$GenderStateCopyWithImpl<$Res, _$GenderStateError>
+    implements _$$GenderStateErrorCopyWith<$Res> {
+  __$$GenderStateErrorCopyWithImpl(
+      _$GenderStateError _value, $Res Function(_$GenderStateError) _then)
+      : super(_value, _then);
 
-  @override
-  GenderStateError get _value => super._value as GenderStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(GenderStateError(
-      message == freezed
+    return _then(_$GenderStateError(
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -454,19 +508,19 @@ class _$GenderStateError implements GenderStateError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GenderStateError &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$GenderStateError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $GenderStateErrorCopyWith<GenderStateError> get copyWith =>
-      _$GenderStateErrorCopyWithImpl<GenderStateError>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GenderStateErrorCopyWith<_$GenderStateError> get copyWith =>
+      __$$GenderStateErrorCopyWithImpl<_$GenderStateError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -477,6 +531,17 @@ class _$GenderStateError implements GenderStateError {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(GendersModel genres)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -507,6 +572,17 @@ class _$GenderStateError implements GenderStateError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenderStateInitial value)? initial,
+    TResult? Function(GenderStateLoading value)? loading,
+    TResult? Function(GenderStateSuccess value)? success,
+    TResult? Function(GenderStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderStateInitial value)? initial,
     TResult Function(GenderStateLoading value)? loading,
@@ -522,10 +598,10 @@ class _$GenderStateError implements GenderStateError {
 }
 
 abstract class GenderStateError implements GenderState {
-  const factory GenderStateError(String message) = _$GenderStateError;
+  const factory GenderStateError(final String message) = _$GenderStateError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
-  $GenderStateErrorCopyWith<GenderStateError> get copyWith =>
+  _$$GenderStateErrorCopyWith<_$GenderStateError> get copyWith =>
       throw _privateConstructorUsedError;
 }

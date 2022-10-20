@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'movie_trailers_state.dart';
 
@@ -10,35 +12,7 @@ part of 'movie_trailers_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MovieTrailersStateTearOff {
-  const _$MovieTrailersStateTearOff();
-
-  MovieTrailersStateInitial initial() {
-    return const MovieTrailersStateInitial();
-  }
-
-  MovieTrailersStateLoading loading() {
-    return const MovieTrailersStateLoading();
-  }
-
-  MovieTrailersStateSuccess success(TrailersModel trailers) {
-    return MovieTrailersStateSuccess(
-      trailers,
-    );
-  }
-
-  MovieTrailersStateError error(String message) {
-    return MovieTrailersStateError(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $MovieTrailersState = _$MovieTrailersStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MovieTrailersState {
@@ -48,6 +22,14 @@ mixin _$MovieTrailersState {
     required TResult Function() loading,
     required TResult Function(TrailersModel trailers) success,
     required TResult Function(String message) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(TrailersModel trailers)? success,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +50,14 @@ mixin _$MovieTrailersState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieTrailersStateInitial value)? initial,
+    TResult? Function(MovieTrailersStateLoading value)? loading,
+    TResult? Function(MovieTrailersStateSuccess value)? success,
+    TResult? Function(MovieTrailersStateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieTrailersStateInitial value)? initial,
     TResult Function(MovieTrailersStateLoading value)? loading,
@@ -82,37 +72,35 @@ mixin _$MovieTrailersState {
 abstract class $MovieTrailersStateCopyWith<$Res> {
   factory $MovieTrailersStateCopyWith(
           MovieTrailersState value, $Res Function(MovieTrailersState) then) =
-      _$MovieTrailersStateCopyWithImpl<$Res>;
+      _$MovieTrailersStateCopyWithImpl<$Res, MovieTrailersState>;
 }
 
 /// @nodoc
-class _$MovieTrailersStateCopyWithImpl<$Res>
+class _$MovieTrailersStateCopyWithImpl<$Res, $Val extends MovieTrailersState>
     implements $MovieTrailersStateCopyWith<$Res> {
   _$MovieTrailersStateCopyWithImpl(this._value, this._then);
 
-  final MovieTrailersState _value;
   // ignore: unused_field
-  final $Res Function(MovieTrailersState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $MovieTrailersStateInitialCopyWith<$Res> {
-  factory $MovieTrailersStateInitialCopyWith(MovieTrailersStateInitial value,
-          $Res Function(MovieTrailersStateInitial) then) =
-      _$MovieTrailersStateInitialCopyWithImpl<$Res>;
+abstract class _$$MovieTrailersStateInitialCopyWith<$Res> {
+  factory _$$MovieTrailersStateInitialCopyWith(
+          _$MovieTrailersStateInitial value,
+          $Res Function(_$MovieTrailersStateInitial) then) =
+      __$$MovieTrailersStateInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieTrailersStateInitialCopyWithImpl<$Res>
-    extends _$MovieTrailersStateCopyWithImpl<$Res>
-    implements $MovieTrailersStateInitialCopyWith<$Res> {
-  _$MovieTrailersStateInitialCopyWithImpl(MovieTrailersStateInitial _value,
-      $Res Function(MovieTrailersStateInitial) _then)
-      : super(_value, (v) => _then(v as MovieTrailersStateInitial));
-
-  @override
-  MovieTrailersStateInitial get _value =>
-      super._value as MovieTrailersStateInitial;
+class __$$MovieTrailersStateInitialCopyWithImpl<$Res>
+    extends _$MovieTrailersStateCopyWithImpl<$Res, _$MovieTrailersStateInitial>
+    implements _$$MovieTrailersStateInitialCopyWith<$Res> {
+  __$$MovieTrailersStateInitialCopyWithImpl(_$MovieTrailersStateInitial _value,
+      $Res Function(_$MovieTrailersStateInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -127,7 +115,9 @@ class _$MovieTrailersStateInitial implements MovieTrailersStateInitial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieTrailersStateInitial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MovieTrailersStateInitial);
   }
 
   @override
@@ -142,6 +132,17 @@ class _$MovieTrailersStateInitial implements MovieTrailersStateInitial {
     required TResult Function(String message) error,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(TrailersModel trailers)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -172,6 +173,17 @@ class _$MovieTrailersStateInitial implements MovieTrailersStateInitial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieTrailersStateInitial value)? initial,
+    TResult? Function(MovieTrailersStateLoading value)? loading,
+    TResult? Function(MovieTrailersStateSuccess value)? success,
+    TResult? Function(MovieTrailersStateError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieTrailersStateInitial value)? initial,
     TResult Function(MovieTrailersStateLoading value)? loading,
@@ -191,23 +203,20 @@ abstract class MovieTrailersStateInitial implements MovieTrailersState {
 }
 
 /// @nodoc
-abstract class $MovieTrailersStateLoadingCopyWith<$Res> {
-  factory $MovieTrailersStateLoadingCopyWith(MovieTrailersStateLoading value,
-          $Res Function(MovieTrailersStateLoading) then) =
-      _$MovieTrailersStateLoadingCopyWithImpl<$Res>;
+abstract class _$$MovieTrailersStateLoadingCopyWith<$Res> {
+  factory _$$MovieTrailersStateLoadingCopyWith(
+          _$MovieTrailersStateLoading value,
+          $Res Function(_$MovieTrailersStateLoading) then) =
+      __$$MovieTrailersStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieTrailersStateLoadingCopyWithImpl<$Res>
-    extends _$MovieTrailersStateCopyWithImpl<$Res>
-    implements $MovieTrailersStateLoadingCopyWith<$Res> {
-  _$MovieTrailersStateLoadingCopyWithImpl(MovieTrailersStateLoading _value,
-      $Res Function(MovieTrailersStateLoading) _then)
-      : super(_value, (v) => _then(v as MovieTrailersStateLoading));
-
-  @override
-  MovieTrailersStateLoading get _value =>
-      super._value as MovieTrailersStateLoading;
+class __$$MovieTrailersStateLoadingCopyWithImpl<$Res>
+    extends _$MovieTrailersStateCopyWithImpl<$Res, _$MovieTrailersStateLoading>
+    implements _$$MovieTrailersStateLoadingCopyWith<$Res> {
+  __$$MovieTrailersStateLoadingCopyWithImpl(_$MovieTrailersStateLoading _value,
+      $Res Function(_$MovieTrailersStateLoading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -222,7 +231,9 @@ class _$MovieTrailersStateLoading implements MovieTrailersStateLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieTrailersStateLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MovieTrailersStateLoading);
   }
 
   @override
@@ -237,6 +248,17 @@ class _$MovieTrailersStateLoading implements MovieTrailersStateLoading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(TrailersModel trailers)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -267,6 +289,17 @@ class _$MovieTrailersStateLoading implements MovieTrailersStateLoading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieTrailersStateInitial value)? initial,
+    TResult? Function(MovieTrailersStateLoading value)? loading,
+    TResult? Function(MovieTrailersStateSuccess value)? success,
+    TResult? Function(MovieTrailersStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieTrailersStateInitial value)? initial,
     TResult Function(MovieTrailersStateLoading value)? loading,
@@ -286,31 +319,30 @@ abstract class MovieTrailersStateLoading implements MovieTrailersState {
 }
 
 /// @nodoc
-abstract class $MovieTrailersStateSuccessCopyWith<$Res> {
-  factory $MovieTrailersStateSuccessCopyWith(MovieTrailersStateSuccess value,
-          $Res Function(MovieTrailersStateSuccess) then) =
-      _$MovieTrailersStateSuccessCopyWithImpl<$Res>;
+abstract class _$$MovieTrailersStateSuccessCopyWith<$Res> {
+  factory _$$MovieTrailersStateSuccessCopyWith(
+          _$MovieTrailersStateSuccess value,
+          $Res Function(_$MovieTrailersStateSuccess) then) =
+      __$$MovieTrailersStateSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({TrailersModel trailers});
 }
 
 /// @nodoc
-class _$MovieTrailersStateSuccessCopyWithImpl<$Res>
-    extends _$MovieTrailersStateCopyWithImpl<$Res>
-    implements $MovieTrailersStateSuccessCopyWith<$Res> {
-  _$MovieTrailersStateSuccessCopyWithImpl(MovieTrailersStateSuccess _value,
-      $Res Function(MovieTrailersStateSuccess) _then)
-      : super(_value, (v) => _then(v as MovieTrailersStateSuccess));
+class __$$MovieTrailersStateSuccessCopyWithImpl<$Res>
+    extends _$MovieTrailersStateCopyWithImpl<$Res, _$MovieTrailersStateSuccess>
+    implements _$$MovieTrailersStateSuccessCopyWith<$Res> {
+  __$$MovieTrailersStateSuccessCopyWithImpl(_$MovieTrailersStateSuccess _value,
+      $Res Function(_$MovieTrailersStateSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  MovieTrailersStateSuccess get _value =>
-      super._value as MovieTrailersStateSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? trailers = freezed,
+    Object? trailers = null,
   }) {
-    return _then(MovieTrailersStateSuccess(
-      trailers == freezed
+    return _then(_$MovieTrailersStateSuccess(
+      null == trailers
           ? _value.trailers
           : trailers // ignore: cast_nullable_to_non_nullable
               as TrailersModel,
@@ -334,21 +366,21 @@ class _$MovieTrailersStateSuccess implements MovieTrailersStateSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieTrailersStateSuccess &&
+        (other.runtimeType == runtimeType &&
+            other is _$MovieTrailersStateSuccess &&
             (identical(other.trailers, trailers) ||
-                const DeepCollectionEquality()
-                    .equals(other.trailers, trailers)));
+                other.trailers == trailers));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(trailers);
+  int get hashCode => Object.hash(runtimeType, trailers);
 
   @JsonKey(ignore: true)
   @override
-  $MovieTrailersStateSuccessCopyWith<MovieTrailersStateSuccess> get copyWith =>
-      _$MovieTrailersStateSuccessCopyWithImpl<MovieTrailersStateSuccess>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$MovieTrailersStateSuccessCopyWith<_$MovieTrailersStateSuccess>
+      get copyWith => __$$MovieTrailersStateSuccessCopyWithImpl<
+          _$MovieTrailersStateSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -359,6 +391,17 @@ class _$MovieTrailersStateSuccess implements MovieTrailersStateSuccess {
     required TResult Function(String message) error,
   }) {
     return success(trailers);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(TrailersModel trailers)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return success?.call(trailers);
   }
 
   @override
@@ -389,6 +432,17 @@ class _$MovieTrailersStateSuccess implements MovieTrailersStateSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieTrailersStateInitial value)? initial,
+    TResult? Function(MovieTrailersStateLoading value)? loading,
+    TResult? Function(MovieTrailersStateSuccess value)? success,
+    TResult? Function(MovieTrailersStateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieTrailersStateInitial value)? initial,
     TResult Function(MovieTrailersStateLoading value)? loading,
@@ -404,40 +458,39 @@ class _$MovieTrailersStateSuccess implements MovieTrailersStateSuccess {
 }
 
 abstract class MovieTrailersStateSuccess implements MovieTrailersState {
-  const factory MovieTrailersStateSuccess(TrailersModel trailers) =
+  const factory MovieTrailersStateSuccess(final TrailersModel trailers) =
       _$MovieTrailersStateSuccess;
 
-  TrailersModel get trailers => throw _privateConstructorUsedError;
+  TrailersModel get trailers;
   @JsonKey(ignore: true)
-  $MovieTrailersStateSuccessCopyWith<MovieTrailersStateSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$MovieTrailersStateSuccessCopyWith<_$MovieTrailersStateSuccess>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MovieTrailersStateErrorCopyWith<$Res> {
-  factory $MovieTrailersStateErrorCopyWith(MovieTrailersStateError value,
-          $Res Function(MovieTrailersStateError) then) =
-      _$MovieTrailersStateErrorCopyWithImpl<$Res>;
+abstract class _$$MovieTrailersStateErrorCopyWith<$Res> {
+  factory _$$MovieTrailersStateErrorCopyWith(_$MovieTrailersStateError value,
+          $Res Function(_$MovieTrailersStateError) then) =
+      __$$MovieTrailersStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$MovieTrailersStateErrorCopyWithImpl<$Res>
-    extends _$MovieTrailersStateCopyWithImpl<$Res>
-    implements $MovieTrailersStateErrorCopyWith<$Res> {
-  _$MovieTrailersStateErrorCopyWithImpl(MovieTrailersStateError _value,
-      $Res Function(MovieTrailersStateError) _then)
-      : super(_value, (v) => _then(v as MovieTrailersStateError));
+class __$$MovieTrailersStateErrorCopyWithImpl<$Res>
+    extends _$MovieTrailersStateCopyWithImpl<$Res, _$MovieTrailersStateError>
+    implements _$$MovieTrailersStateErrorCopyWith<$Res> {
+  __$$MovieTrailersStateErrorCopyWithImpl(_$MovieTrailersStateError _value,
+      $Res Function(_$MovieTrailersStateError) _then)
+      : super(_value, _then);
 
-  @override
-  MovieTrailersStateError get _value => super._value as MovieTrailersStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(MovieTrailersStateError(
-      message == freezed
+    return _then(_$MovieTrailersStateError(
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -461,19 +514,19 @@ class _$MovieTrailersStateError implements MovieTrailersStateError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieTrailersStateError &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$MovieTrailersStateError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $MovieTrailersStateErrorCopyWith<MovieTrailersStateError> get copyWith =>
-      _$MovieTrailersStateErrorCopyWithImpl<MovieTrailersStateError>(
+  @pragma('vm:prefer-inline')
+  _$$MovieTrailersStateErrorCopyWith<_$MovieTrailersStateError> get copyWith =>
+      __$$MovieTrailersStateErrorCopyWithImpl<_$MovieTrailersStateError>(
           this, _$identity);
 
   @override
@@ -485,6 +538,17 @@ class _$MovieTrailersStateError implements MovieTrailersStateError {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(TrailersModel trailers)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -515,6 +579,17 @@ class _$MovieTrailersStateError implements MovieTrailersStateError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieTrailersStateInitial value)? initial,
+    TResult? Function(MovieTrailersStateLoading value)? loading,
+    TResult? Function(MovieTrailersStateSuccess value)? success,
+    TResult? Function(MovieTrailersStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieTrailersStateInitial value)? initial,
     TResult Function(MovieTrailersStateLoading value)? loading,
@@ -530,11 +605,11 @@ class _$MovieTrailersStateError implements MovieTrailersStateError {
 }
 
 abstract class MovieTrailersStateError implements MovieTrailersState {
-  const factory MovieTrailersStateError(String message) =
+  const factory MovieTrailersStateError(final String message) =
       _$MovieTrailersStateError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
-  $MovieTrailersStateErrorCopyWith<MovieTrailersStateError> get copyWith =>
+  _$$MovieTrailersStateErrorCopyWith<_$MovieTrailersStateError> get copyWith =>
       throw _privateConstructorUsedError;
 }

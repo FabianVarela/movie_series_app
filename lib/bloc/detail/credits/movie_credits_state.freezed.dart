@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'movie_credits_state.dart';
 
@@ -10,35 +12,7 @@ part of 'movie_credits_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MovieCreditsStateTearOff {
-  const _$MovieCreditsStateTearOff();
-
-  MovieCreditsStateInitial initial() {
-    return const MovieCreditsStateInitial();
-  }
-
-  MovieCreditsStateLoading loading() {
-    return const MovieCreditsStateLoading();
-  }
-
-  MovieCreditsStateSuccess success(CreditsModel credits) {
-    return MovieCreditsStateSuccess(
-      credits,
-    );
-  }
-
-  MovieCreditsStateError error(String message) {
-    return MovieCreditsStateError(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $MovieCreditsState = _$MovieCreditsStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MovieCreditsState {
@@ -48,6 +22,14 @@ mixin _$MovieCreditsState {
     required TResult Function() loading,
     required TResult Function(CreditsModel credits) success,
     required TResult Function(String message) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(CreditsModel credits)? success,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +50,14 @@ mixin _$MovieCreditsState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieCreditsStateInitial value)? initial,
+    TResult? Function(MovieCreditsStateLoading value)? loading,
+    TResult? Function(MovieCreditsStateSuccess value)? success,
+    TResult? Function(MovieCreditsStateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieCreditsStateInitial value)? initial,
     TResult Function(MovieCreditsStateLoading value)? loading,
@@ -82,37 +72,34 @@ mixin _$MovieCreditsState {
 abstract class $MovieCreditsStateCopyWith<$Res> {
   factory $MovieCreditsStateCopyWith(
           MovieCreditsState value, $Res Function(MovieCreditsState) then) =
-      _$MovieCreditsStateCopyWithImpl<$Res>;
+      _$MovieCreditsStateCopyWithImpl<$Res, MovieCreditsState>;
 }
 
 /// @nodoc
-class _$MovieCreditsStateCopyWithImpl<$Res>
+class _$MovieCreditsStateCopyWithImpl<$Res, $Val extends MovieCreditsState>
     implements $MovieCreditsStateCopyWith<$Res> {
   _$MovieCreditsStateCopyWithImpl(this._value, this._then);
 
-  final MovieCreditsState _value;
   // ignore: unused_field
-  final $Res Function(MovieCreditsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $MovieCreditsStateInitialCopyWith<$Res> {
-  factory $MovieCreditsStateInitialCopyWith(MovieCreditsStateInitial value,
-          $Res Function(MovieCreditsStateInitial) then) =
-      _$MovieCreditsStateInitialCopyWithImpl<$Res>;
+abstract class _$$MovieCreditsStateInitialCopyWith<$Res> {
+  factory _$$MovieCreditsStateInitialCopyWith(_$MovieCreditsStateInitial value,
+          $Res Function(_$MovieCreditsStateInitial) then) =
+      __$$MovieCreditsStateInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieCreditsStateInitialCopyWithImpl<$Res>
-    extends _$MovieCreditsStateCopyWithImpl<$Res>
-    implements $MovieCreditsStateInitialCopyWith<$Res> {
-  _$MovieCreditsStateInitialCopyWithImpl(MovieCreditsStateInitial _value,
-      $Res Function(MovieCreditsStateInitial) _then)
-      : super(_value, (v) => _then(v as MovieCreditsStateInitial));
-
-  @override
-  MovieCreditsStateInitial get _value =>
-      super._value as MovieCreditsStateInitial;
+class __$$MovieCreditsStateInitialCopyWithImpl<$Res>
+    extends _$MovieCreditsStateCopyWithImpl<$Res, _$MovieCreditsStateInitial>
+    implements _$$MovieCreditsStateInitialCopyWith<$Res> {
+  __$$MovieCreditsStateInitialCopyWithImpl(_$MovieCreditsStateInitial _value,
+      $Res Function(_$MovieCreditsStateInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -127,7 +114,9 @@ class _$MovieCreditsStateInitial implements MovieCreditsStateInitial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieCreditsStateInitial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MovieCreditsStateInitial);
   }
 
   @override
@@ -142,6 +131,17 @@ class _$MovieCreditsStateInitial implements MovieCreditsStateInitial {
     required TResult Function(String message) error,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(CreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -172,6 +172,17 @@ class _$MovieCreditsStateInitial implements MovieCreditsStateInitial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieCreditsStateInitial value)? initial,
+    TResult? Function(MovieCreditsStateLoading value)? loading,
+    TResult? Function(MovieCreditsStateSuccess value)? success,
+    TResult? Function(MovieCreditsStateError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieCreditsStateInitial value)? initial,
     TResult Function(MovieCreditsStateLoading value)? loading,
@@ -191,23 +202,19 @@ abstract class MovieCreditsStateInitial implements MovieCreditsState {
 }
 
 /// @nodoc
-abstract class $MovieCreditsStateLoadingCopyWith<$Res> {
-  factory $MovieCreditsStateLoadingCopyWith(MovieCreditsStateLoading value,
-          $Res Function(MovieCreditsStateLoading) then) =
-      _$MovieCreditsStateLoadingCopyWithImpl<$Res>;
+abstract class _$$MovieCreditsStateLoadingCopyWith<$Res> {
+  factory _$$MovieCreditsStateLoadingCopyWith(_$MovieCreditsStateLoading value,
+          $Res Function(_$MovieCreditsStateLoading) then) =
+      __$$MovieCreditsStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieCreditsStateLoadingCopyWithImpl<$Res>
-    extends _$MovieCreditsStateCopyWithImpl<$Res>
-    implements $MovieCreditsStateLoadingCopyWith<$Res> {
-  _$MovieCreditsStateLoadingCopyWithImpl(MovieCreditsStateLoading _value,
-      $Res Function(MovieCreditsStateLoading) _then)
-      : super(_value, (v) => _then(v as MovieCreditsStateLoading));
-
-  @override
-  MovieCreditsStateLoading get _value =>
-      super._value as MovieCreditsStateLoading;
+class __$$MovieCreditsStateLoadingCopyWithImpl<$Res>
+    extends _$MovieCreditsStateCopyWithImpl<$Res, _$MovieCreditsStateLoading>
+    implements _$$MovieCreditsStateLoadingCopyWith<$Res> {
+  __$$MovieCreditsStateLoadingCopyWithImpl(_$MovieCreditsStateLoading _value,
+      $Res Function(_$MovieCreditsStateLoading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -222,7 +229,9 @@ class _$MovieCreditsStateLoading implements MovieCreditsStateLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieCreditsStateLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MovieCreditsStateLoading);
   }
 
   @override
@@ -237,6 +246,17 @@ class _$MovieCreditsStateLoading implements MovieCreditsStateLoading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(CreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -267,6 +287,17 @@ class _$MovieCreditsStateLoading implements MovieCreditsStateLoading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieCreditsStateInitial value)? initial,
+    TResult? Function(MovieCreditsStateLoading value)? loading,
+    TResult? Function(MovieCreditsStateSuccess value)? success,
+    TResult? Function(MovieCreditsStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieCreditsStateInitial value)? initial,
     TResult Function(MovieCreditsStateLoading value)? loading,
@@ -286,31 +317,29 @@ abstract class MovieCreditsStateLoading implements MovieCreditsState {
 }
 
 /// @nodoc
-abstract class $MovieCreditsStateSuccessCopyWith<$Res> {
-  factory $MovieCreditsStateSuccessCopyWith(MovieCreditsStateSuccess value,
-          $Res Function(MovieCreditsStateSuccess) then) =
-      _$MovieCreditsStateSuccessCopyWithImpl<$Res>;
+abstract class _$$MovieCreditsStateSuccessCopyWith<$Res> {
+  factory _$$MovieCreditsStateSuccessCopyWith(_$MovieCreditsStateSuccess value,
+          $Res Function(_$MovieCreditsStateSuccess) then) =
+      __$$MovieCreditsStateSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({CreditsModel credits});
 }
 
 /// @nodoc
-class _$MovieCreditsStateSuccessCopyWithImpl<$Res>
-    extends _$MovieCreditsStateCopyWithImpl<$Res>
-    implements $MovieCreditsStateSuccessCopyWith<$Res> {
-  _$MovieCreditsStateSuccessCopyWithImpl(MovieCreditsStateSuccess _value,
-      $Res Function(MovieCreditsStateSuccess) _then)
-      : super(_value, (v) => _then(v as MovieCreditsStateSuccess));
+class __$$MovieCreditsStateSuccessCopyWithImpl<$Res>
+    extends _$MovieCreditsStateCopyWithImpl<$Res, _$MovieCreditsStateSuccess>
+    implements _$$MovieCreditsStateSuccessCopyWith<$Res> {
+  __$$MovieCreditsStateSuccessCopyWithImpl(_$MovieCreditsStateSuccess _value,
+      $Res Function(_$MovieCreditsStateSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  MovieCreditsStateSuccess get _value =>
-      super._value as MovieCreditsStateSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? credits = freezed,
+    Object? credits = null,
   }) {
-    return _then(MovieCreditsStateSuccess(
-      credits == freezed
+    return _then(_$MovieCreditsStateSuccess(
+      null == credits
           ? _value.credits
           : credits // ignore: cast_nullable_to_non_nullable
               as CreditsModel,
@@ -334,20 +363,21 @@ class _$MovieCreditsStateSuccess implements MovieCreditsStateSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieCreditsStateSuccess &&
-            (identical(other.credits, credits) ||
-                const DeepCollectionEquality().equals(other.credits, credits)));
+        (other.runtimeType == runtimeType &&
+            other is _$MovieCreditsStateSuccess &&
+            (identical(other.credits, credits) || other.credits == credits));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(credits);
+  int get hashCode => Object.hash(runtimeType, credits);
 
   @JsonKey(ignore: true)
   @override
-  $MovieCreditsStateSuccessCopyWith<MovieCreditsStateSuccess> get copyWith =>
-      _$MovieCreditsStateSuccessCopyWithImpl<MovieCreditsStateSuccess>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$MovieCreditsStateSuccessCopyWith<_$MovieCreditsStateSuccess>
+      get copyWith =>
+          __$$MovieCreditsStateSuccessCopyWithImpl<_$MovieCreditsStateSuccess>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -358,6 +388,17 @@ class _$MovieCreditsStateSuccess implements MovieCreditsStateSuccess {
     required TResult Function(String message) error,
   }) {
     return success(credits);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(CreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return success?.call(credits);
   }
 
   @override
@@ -388,6 +429,17 @@ class _$MovieCreditsStateSuccess implements MovieCreditsStateSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieCreditsStateInitial value)? initial,
+    TResult? Function(MovieCreditsStateLoading value)? loading,
+    TResult? Function(MovieCreditsStateSuccess value)? success,
+    TResult? Function(MovieCreditsStateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieCreditsStateInitial value)? initial,
     TResult Function(MovieCreditsStateLoading value)? loading,
@@ -403,40 +455,39 @@ class _$MovieCreditsStateSuccess implements MovieCreditsStateSuccess {
 }
 
 abstract class MovieCreditsStateSuccess implements MovieCreditsState {
-  const factory MovieCreditsStateSuccess(CreditsModel credits) =
+  const factory MovieCreditsStateSuccess(final CreditsModel credits) =
       _$MovieCreditsStateSuccess;
 
-  CreditsModel get credits => throw _privateConstructorUsedError;
+  CreditsModel get credits;
   @JsonKey(ignore: true)
-  $MovieCreditsStateSuccessCopyWith<MovieCreditsStateSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$MovieCreditsStateSuccessCopyWith<_$MovieCreditsStateSuccess>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MovieCreditsStateErrorCopyWith<$Res> {
-  factory $MovieCreditsStateErrorCopyWith(MovieCreditsStateError value,
-          $Res Function(MovieCreditsStateError) then) =
-      _$MovieCreditsStateErrorCopyWithImpl<$Res>;
+abstract class _$$MovieCreditsStateErrorCopyWith<$Res> {
+  factory _$$MovieCreditsStateErrorCopyWith(_$MovieCreditsStateError value,
+          $Res Function(_$MovieCreditsStateError) then) =
+      __$$MovieCreditsStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$MovieCreditsStateErrorCopyWithImpl<$Res>
-    extends _$MovieCreditsStateCopyWithImpl<$Res>
-    implements $MovieCreditsStateErrorCopyWith<$Res> {
-  _$MovieCreditsStateErrorCopyWithImpl(MovieCreditsStateError _value,
-      $Res Function(MovieCreditsStateError) _then)
-      : super(_value, (v) => _then(v as MovieCreditsStateError));
+class __$$MovieCreditsStateErrorCopyWithImpl<$Res>
+    extends _$MovieCreditsStateCopyWithImpl<$Res, _$MovieCreditsStateError>
+    implements _$$MovieCreditsStateErrorCopyWith<$Res> {
+  __$$MovieCreditsStateErrorCopyWithImpl(_$MovieCreditsStateError _value,
+      $Res Function(_$MovieCreditsStateError) _then)
+      : super(_value, _then);
 
-  @override
-  MovieCreditsStateError get _value => super._value as MovieCreditsStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(MovieCreditsStateError(
-      message == freezed
+    return _then(_$MovieCreditsStateError(
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -460,19 +511,19 @@ class _$MovieCreditsStateError implements MovieCreditsStateError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieCreditsStateError &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$MovieCreditsStateError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $MovieCreditsStateErrorCopyWith<MovieCreditsStateError> get copyWith =>
-      _$MovieCreditsStateErrorCopyWithImpl<MovieCreditsStateError>(
+  @pragma('vm:prefer-inline')
+  _$$MovieCreditsStateErrorCopyWith<_$MovieCreditsStateError> get copyWith =>
+      __$$MovieCreditsStateErrorCopyWithImpl<_$MovieCreditsStateError>(
           this, _$identity);
 
   @override
@@ -484,6 +535,17 @@ class _$MovieCreditsStateError implements MovieCreditsStateError {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(CreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -514,6 +576,17 @@ class _$MovieCreditsStateError implements MovieCreditsStateError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieCreditsStateInitial value)? initial,
+    TResult? Function(MovieCreditsStateLoading value)? loading,
+    TResult? Function(MovieCreditsStateSuccess value)? success,
+    TResult? Function(MovieCreditsStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieCreditsStateInitial value)? initial,
     TResult Function(MovieCreditsStateLoading value)? loading,
@@ -529,11 +602,11 @@ class _$MovieCreditsStateError implements MovieCreditsStateError {
 }
 
 abstract class MovieCreditsStateError implements MovieCreditsState {
-  const factory MovieCreditsStateError(String message) =
+  const factory MovieCreditsStateError(final String message) =
       _$MovieCreditsStateError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
-  $MovieCreditsStateErrorCopyWith<MovieCreditsStateError> get copyWith =>
+  _$$MovieCreditsStateErrorCopyWith<_$MovieCreditsStateError> get copyWith =>
       throw _privateConstructorUsedError;
 }

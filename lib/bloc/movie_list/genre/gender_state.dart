@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:movie_list_bloc/models/gender_model.dart';
+import 'package:movie_list_bloc/models/gender/gender_model.dart';
 
 part 'gender_state.freezed.dart';
 

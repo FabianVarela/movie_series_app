@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'movie_state.dart';
 
@@ -10,35 +12,7 @@ part of 'movie_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MovieStateTearOff {
-  const _$MovieStateTearOff();
-
-  MovieStateInitial initial() {
-    return const MovieStateInitial();
-  }
-
-  MovieStateLoading loading() {
-    return const MovieStateLoading();
-  }
-
-  MovieStateSuccess success(MovieModel movie) {
-    return MovieStateSuccess(
-      movie,
-    );
-  }
-
-  MovieStateError error(String message) {
-    return MovieStateError(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $MovieState = _$MovieStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MovieState {
@@ -48,6 +22,14 @@ mixin _$MovieState {
     required TResult Function() loading,
     required TResult Function(MovieModel movie) success,
     required TResult Function(String message) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MovieModel movie)? success,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +50,14 @@ mixin _$MovieState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieStateInitial value)? initial,
+    TResult? Function(MovieStateLoading value)? loading,
+    TResult? Function(MovieStateSuccess value)? success,
+    TResult? Function(MovieStateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieStateInitial value)? initial,
     TResult Function(MovieStateLoading value)? loading,
@@ -82,35 +72,34 @@ mixin _$MovieState {
 abstract class $MovieStateCopyWith<$Res> {
   factory $MovieStateCopyWith(
           MovieState value, $Res Function(MovieState) then) =
-      _$MovieStateCopyWithImpl<$Res>;
+      _$MovieStateCopyWithImpl<$Res, MovieState>;
 }
 
 /// @nodoc
-class _$MovieStateCopyWithImpl<$Res> implements $MovieStateCopyWith<$Res> {
+class _$MovieStateCopyWithImpl<$Res, $Val extends MovieState>
+    implements $MovieStateCopyWith<$Res> {
   _$MovieStateCopyWithImpl(this._value, this._then);
 
-  final MovieState _value;
   // ignore: unused_field
-  final $Res Function(MovieState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $MovieStateInitialCopyWith<$Res> {
-  factory $MovieStateInitialCopyWith(
-          MovieStateInitial value, $Res Function(MovieStateInitial) then) =
-      _$MovieStateInitialCopyWithImpl<$Res>;
+abstract class _$$MovieStateInitialCopyWith<$Res> {
+  factory _$$MovieStateInitialCopyWith(
+          _$MovieStateInitial value, $Res Function(_$MovieStateInitial) then) =
+      __$$MovieStateInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieStateInitialCopyWithImpl<$Res>
-    extends _$MovieStateCopyWithImpl<$Res>
-    implements $MovieStateInitialCopyWith<$Res> {
-  _$MovieStateInitialCopyWithImpl(
-      MovieStateInitial _value, $Res Function(MovieStateInitial) _then)
-      : super(_value, (v) => _then(v as MovieStateInitial));
-
-  @override
-  MovieStateInitial get _value => super._value as MovieStateInitial;
+class __$$MovieStateInitialCopyWithImpl<$Res>
+    extends _$MovieStateCopyWithImpl<$Res, _$MovieStateInitial>
+    implements _$$MovieStateInitialCopyWith<$Res> {
+  __$$MovieStateInitialCopyWithImpl(
+      _$MovieStateInitial _value, $Res Function(_$MovieStateInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -125,7 +114,8 @@ class _$MovieStateInitial implements MovieStateInitial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieStateInitial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MovieStateInitial);
   }
 
   @override
@@ -140,6 +130,17 @@ class _$MovieStateInitial implements MovieStateInitial {
     required TResult Function(String message) error,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MovieModel movie)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -170,6 +171,17 @@ class _$MovieStateInitial implements MovieStateInitial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieStateInitial value)? initial,
+    TResult? Function(MovieStateLoading value)? loading,
+    TResult? Function(MovieStateSuccess value)? success,
+    TResult? Function(MovieStateError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieStateInitial value)? initial,
     TResult Function(MovieStateLoading value)? loading,
@@ -189,22 +201,19 @@ abstract class MovieStateInitial implements MovieState {
 }
 
 /// @nodoc
-abstract class $MovieStateLoadingCopyWith<$Res> {
-  factory $MovieStateLoadingCopyWith(
-          MovieStateLoading value, $Res Function(MovieStateLoading) then) =
-      _$MovieStateLoadingCopyWithImpl<$Res>;
+abstract class _$$MovieStateLoadingCopyWith<$Res> {
+  factory _$$MovieStateLoadingCopyWith(
+          _$MovieStateLoading value, $Res Function(_$MovieStateLoading) then) =
+      __$$MovieStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MovieStateLoadingCopyWithImpl<$Res>
-    extends _$MovieStateCopyWithImpl<$Res>
-    implements $MovieStateLoadingCopyWith<$Res> {
-  _$MovieStateLoadingCopyWithImpl(
-      MovieStateLoading _value, $Res Function(MovieStateLoading) _then)
-      : super(_value, (v) => _then(v as MovieStateLoading));
-
-  @override
-  MovieStateLoading get _value => super._value as MovieStateLoading;
+class __$$MovieStateLoadingCopyWithImpl<$Res>
+    extends _$MovieStateCopyWithImpl<$Res, _$MovieStateLoading>
+    implements _$$MovieStateLoadingCopyWith<$Res> {
+  __$$MovieStateLoadingCopyWithImpl(
+      _$MovieStateLoading _value, $Res Function(_$MovieStateLoading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -219,7 +228,8 @@ class _$MovieStateLoading implements MovieStateLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MovieStateLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MovieStateLoading);
   }
 
   @override
@@ -234,6 +244,17 @@ class _$MovieStateLoading implements MovieStateLoading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MovieModel movie)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -264,6 +285,17 @@ class _$MovieStateLoading implements MovieStateLoading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieStateInitial value)? initial,
+    TResult? Function(MovieStateLoading value)? loading,
+    TResult? Function(MovieStateSuccess value)? success,
+    TResult? Function(MovieStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieStateInitial value)? initial,
     TResult Function(MovieStateLoading value)? loading,
@@ -283,30 +315,29 @@ abstract class MovieStateLoading implements MovieState {
 }
 
 /// @nodoc
-abstract class $MovieStateSuccessCopyWith<$Res> {
-  factory $MovieStateSuccessCopyWith(
-          MovieStateSuccess value, $Res Function(MovieStateSuccess) then) =
-      _$MovieStateSuccessCopyWithImpl<$Res>;
+abstract class _$$MovieStateSuccessCopyWith<$Res> {
+  factory _$$MovieStateSuccessCopyWith(
+          _$MovieStateSuccess value, $Res Function(_$MovieStateSuccess) then) =
+      __$$MovieStateSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({MovieModel movie});
 }
 
 /// @nodoc
-class _$MovieStateSuccessCopyWithImpl<$Res>
-    extends _$MovieStateCopyWithImpl<$Res>
-    implements $MovieStateSuccessCopyWith<$Res> {
-  _$MovieStateSuccessCopyWithImpl(
-      MovieStateSuccess _value, $Res Function(MovieStateSuccess) _then)
-      : super(_value, (v) => _then(v as MovieStateSuccess));
+class __$$MovieStateSuccessCopyWithImpl<$Res>
+    extends _$MovieStateCopyWithImpl<$Res, _$MovieStateSuccess>
+    implements _$$MovieStateSuccessCopyWith<$Res> {
+  __$$MovieStateSuccessCopyWithImpl(
+      _$MovieStateSuccess _value, $Res Function(_$MovieStateSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  MovieStateSuccess get _value => super._value as MovieStateSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? movie = freezed,
+    Object? movie = null,
   }) {
-    return _then(MovieStateSuccess(
-      movie == freezed
+    return _then(_$MovieStateSuccess(
+      null == movie
           ? _value.movie
           : movie // ignore: cast_nullable_to_non_nullable
               as MovieModel,
@@ -330,19 +361,19 @@ class _$MovieStateSuccess implements MovieStateSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieStateSuccess &&
-            (identical(other.movie, movie) ||
-                const DeepCollectionEquality().equals(other.movie, movie)));
+        (other.runtimeType == runtimeType &&
+            other is _$MovieStateSuccess &&
+            (identical(other.movie, movie) || other.movie == movie));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(movie);
+  int get hashCode => Object.hash(runtimeType, movie);
 
   @JsonKey(ignore: true)
   @override
-  $MovieStateSuccessCopyWith<MovieStateSuccess> get copyWith =>
-      _$MovieStateSuccessCopyWithImpl<MovieStateSuccess>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$MovieStateSuccessCopyWith<_$MovieStateSuccess> get copyWith =>
+      __$$MovieStateSuccessCopyWithImpl<_$MovieStateSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -353,6 +384,17 @@ class _$MovieStateSuccess implements MovieStateSuccess {
     required TResult Function(String message) error,
   }) {
     return success(movie);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MovieModel movie)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return success?.call(movie);
   }
 
   @override
@@ -383,6 +425,17 @@ class _$MovieStateSuccess implements MovieStateSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieStateInitial value)? initial,
+    TResult? Function(MovieStateLoading value)? loading,
+    TResult? Function(MovieStateSuccess value)? success,
+    TResult? Function(MovieStateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieStateInitial value)? initial,
     TResult Function(MovieStateLoading value)? loading,
@@ -398,38 +451,38 @@ class _$MovieStateSuccess implements MovieStateSuccess {
 }
 
 abstract class MovieStateSuccess implements MovieState {
-  const factory MovieStateSuccess(MovieModel movie) = _$MovieStateSuccess;
+  const factory MovieStateSuccess(final MovieModel movie) = _$MovieStateSuccess;
 
-  MovieModel get movie => throw _privateConstructorUsedError;
+  MovieModel get movie;
   @JsonKey(ignore: true)
-  $MovieStateSuccessCopyWith<MovieStateSuccess> get copyWith =>
+  _$$MovieStateSuccessCopyWith<_$MovieStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MovieStateErrorCopyWith<$Res> {
-  factory $MovieStateErrorCopyWith(
-          MovieStateError value, $Res Function(MovieStateError) then) =
-      _$MovieStateErrorCopyWithImpl<$Res>;
+abstract class _$$MovieStateErrorCopyWith<$Res> {
+  factory _$$MovieStateErrorCopyWith(
+          _$MovieStateError value, $Res Function(_$MovieStateError) then) =
+      __$$MovieStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$MovieStateErrorCopyWithImpl<$Res> extends _$MovieStateCopyWithImpl<$Res>
-    implements $MovieStateErrorCopyWith<$Res> {
-  _$MovieStateErrorCopyWithImpl(
-      MovieStateError _value, $Res Function(MovieStateError) _then)
-      : super(_value, (v) => _then(v as MovieStateError));
+class __$$MovieStateErrorCopyWithImpl<$Res>
+    extends _$MovieStateCopyWithImpl<$Res, _$MovieStateError>
+    implements _$$MovieStateErrorCopyWith<$Res> {
+  __$$MovieStateErrorCopyWithImpl(
+      _$MovieStateError _value, $Res Function(_$MovieStateError) _then)
+      : super(_value, _then);
 
-  @override
-  MovieStateError get _value => super._value as MovieStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(MovieStateError(
-      message == freezed
+    return _then(_$MovieStateError(
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -453,19 +506,19 @@ class _$MovieStateError implements MovieStateError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MovieStateError &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$MovieStateError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $MovieStateErrorCopyWith<MovieStateError> get copyWith =>
-      _$MovieStateErrorCopyWithImpl<MovieStateError>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$MovieStateErrorCopyWith<_$MovieStateError> get copyWith =>
+      __$$MovieStateErrorCopyWithImpl<_$MovieStateError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -476,6 +529,17 @@ class _$MovieStateError implements MovieStateError {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(MovieModel movie)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -506,6 +570,17 @@ class _$MovieStateError implements MovieStateError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MovieStateInitial value)? initial,
+    TResult? Function(MovieStateLoading value)? loading,
+    TResult? Function(MovieStateSuccess value)? success,
+    TResult? Function(MovieStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MovieStateInitial value)? initial,
     TResult Function(MovieStateLoading value)? loading,
@@ -521,10 +596,10 @@ class _$MovieStateError implements MovieStateError {
 }
 
 abstract class MovieStateError implements MovieState {
-  const factory MovieStateError(String message) = _$MovieStateError;
+  const factory MovieStateError(final String message) = _$MovieStateError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
-  $MovieStateErrorCopyWith<MovieStateError> get copyWith =>
+  _$$MovieStateErrorCopyWith<_$MovieStateError> get copyWith =>
       throw _privateConstructorUsedError;
 }

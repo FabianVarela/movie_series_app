@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:movie_list_bloc/models/trailer_model.dart';
+import 'package:movie_list_bloc/models/trailers/trailer_model.dart';
 
 part 'movie_trailers_state.freezed.dart';
 

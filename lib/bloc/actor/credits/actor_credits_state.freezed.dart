@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'actor_credits_state.dart';
 
@@ -10,35 +12,7 @@ part of 'actor_credits_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ActorCreditsStateTearOff {
-  const _$ActorCreditsStateTearOff();
-
-  ActorCreditsStateInitial initial() {
-    return const ActorCreditsStateInitial();
-  }
-
-  ActorCreditsStateLoading loading() {
-    return const ActorCreditsStateLoading();
-  }
-
-  ActorCreditsStateSuccess success(ActorCreditsModel credits) {
-    return ActorCreditsStateSuccess(
-      credits,
-    );
-  }
-
-  ActorCreditsStateError error(String message) {
-    return ActorCreditsStateError(
-      message,
-    );
-  }
-}
-
-/// @nodoc
-const $ActorCreditsState = _$ActorCreditsStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ActorCreditsState {
@@ -48,6 +22,14 @@ mixin _$ActorCreditsState {
     required TResult Function() loading,
     required TResult Function(ActorCreditsModel credits) success,
     required TResult Function(String message) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ActorCreditsModel credits)? success,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +50,14 @@ mixin _$ActorCreditsState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ActorCreditsStateInitial value)? initial,
+    TResult? Function(ActorCreditsStateLoading value)? loading,
+    TResult? Function(ActorCreditsStateSuccess value)? success,
+    TResult? Function(ActorCreditsStateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorCreditsStateInitial value)? initial,
     TResult Function(ActorCreditsStateLoading value)? loading,
@@ -82,37 +72,34 @@ mixin _$ActorCreditsState {
 abstract class $ActorCreditsStateCopyWith<$Res> {
   factory $ActorCreditsStateCopyWith(
           ActorCreditsState value, $Res Function(ActorCreditsState) then) =
-      _$ActorCreditsStateCopyWithImpl<$Res>;
+      _$ActorCreditsStateCopyWithImpl<$Res, ActorCreditsState>;
 }
 
 /// @nodoc
-class _$ActorCreditsStateCopyWithImpl<$Res>
+class _$ActorCreditsStateCopyWithImpl<$Res, $Val extends ActorCreditsState>
     implements $ActorCreditsStateCopyWith<$Res> {
   _$ActorCreditsStateCopyWithImpl(this._value, this._then);
 
-  final ActorCreditsState _value;
   // ignore: unused_field
-  final $Res Function(ActorCreditsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $ActorCreditsStateInitialCopyWith<$Res> {
-  factory $ActorCreditsStateInitialCopyWith(ActorCreditsStateInitial value,
-          $Res Function(ActorCreditsStateInitial) then) =
-      _$ActorCreditsStateInitialCopyWithImpl<$Res>;
+abstract class _$$ActorCreditsStateInitialCopyWith<$Res> {
+  factory _$$ActorCreditsStateInitialCopyWith(_$ActorCreditsStateInitial value,
+          $Res Function(_$ActorCreditsStateInitial) then) =
+      __$$ActorCreditsStateInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ActorCreditsStateInitialCopyWithImpl<$Res>
-    extends _$ActorCreditsStateCopyWithImpl<$Res>
-    implements $ActorCreditsStateInitialCopyWith<$Res> {
-  _$ActorCreditsStateInitialCopyWithImpl(ActorCreditsStateInitial _value,
-      $Res Function(ActorCreditsStateInitial) _then)
-      : super(_value, (v) => _then(v as ActorCreditsStateInitial));
-
-  @override
-  ActorCreditsStateInitial get _value =>
-      super._value as ActorCreditsStateInitial;
+class __$$ActorCreditsStateInitialCopyWithImpl<$Res>
+    extends _$ActorCreditsStateCopyWithImpl<$Res, _$ActorCreditsStateInitial>
+    implements _$$ActorCreditsStateInitialCopyWith<$Res> {
+  __$$ActorCreditsStateInitialCopyWithImpl(_$ActorCreditsStateInitial _value,
+      $Res Function(_$ActorCreditsStateInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -127,7 +114,9 @@ class _$ActorCreditsStateInitial implements ActorCreditsStateInitial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ActorCreditsStateInitial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActorCreditsStateInitial);
   }
 
   @override
@@ -142,6 +131,17 @@ class _$ActorCreditsStateInitial implements ActorCreditsStateInitial {
     required TResult Function(String message) error,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ActorCreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -172,6 +172,17 @@ class _$ActorCreditsStateInitial implements ActorCreditsStateInitial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ActorCreditsStateInitial value)? initial,
+    TResult? Function(ActorCreditsStateLoading value)? loading,
+    TResult? Function(ActorCreditsStateSuccess value)? success,
+    TResult? Function(ActorCreditsStateError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorCreditsStateInitial value)? initial,
     TResult Function(ActorCreditsStateLoading value)? loading,
@@ -191,23 +202,19 @@ abstract class ActorCreditsStateInitial implements ActorCreditsState {
 }
 
 /// @nodoc
-abstract class $ActorCreditsStateLoadingCopyWith<$Res> {
-  factory $ActorCreditsStateLoadingCopyWith(ActorCreditsStateLoading value,
-          $Res Function(ActorCreditsStateLoading) then) =
-      _$ActorCreditsStateLoadingCopyWithImpl<$Res>;
+abstract class _$$ActorCreditsStateLoadingCopyWith<$Res> {
+  factory _$$ActorCreditsStateLoadingCopyWith(_$ActorCreditsStateLoading value,
+          $Res Function(_$ActorCreditsStateLoading) then) =
+      __$$ActorCreditsStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ActorCreditsStateLoadingCopyWithImpl<$Res>
-    extends _$ActorCreditsStateCopyWithImpl<$Res>
-    implements $ActorCreditsStateLoadingCopyWith<$Res> {
-  _$ActorCreditsStateLoadingCopyWithImpl(ActorCreditsStateLoading _value,
-      $Res Function(ActorCreditsStateLoading) _then)
-      : super(_value, (v) => _then(v as ActorCreditsStateLoading));
-
-  @override
-  ActorCreditsStateLoading get _value =>
-      super._value as ActorCreditsStateLoading;
+class __$$ActorCreditsStateLoadingCopyWithImpl<$Res>
+    extends _$ActorCreditsStateCopyWithImpl<$Res, _$ActorCreditsStateLoading>
+    implements _$$ActorCreditsStateLoadingCopyWith<$Res> {
+  __$$ActorCreditsStateLoadingCopyWithImpl(_$ActorCreditsStateLoading _value,
+      $Res Function(_$ActorCreditsStateLoading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -222,7 +229,9 @@ class _$ActorCreditsStateLoading implements ActorCreditsStateLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ActorCreditsStateLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActorCreditsStateLoading);
   }
 
   @override
@@ -237,6 +246,17 @@ class _$ActorCreditsStateLoading implements ActorCreditsStateLoading {
     required TResult Function(String message) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ActorCreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -267,6 +287,17 @@ class _$ActorCreditsStateLoading implements ActorCreditsStateLoading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ActorCreditsStateInitial value)? initial,
+    TResult? Function(ActorCreditsStateLoading value)? loading,
+    TResult? Function(ActorCreditsStateSuccess value)? success,
+    TResult? Function(ActorCreditsStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorCreditsStateInitial value)? initial,
     TResult Function(ActorCreditsStateLoading value)? loading,
@@ -286,31 +317,29 @@ abstract class ActorCreditsStateLoading implements ActorCreditsState {
 }
 
 /// @nodoc
-abstract class $ActorCreditsStateSuccessCopyWith<$Res> {
-  factory $ActorCreditsStateSuccessCopyWith(ActorCreditsStateSuccess value,
-          $Res Function(ActorCreditsStateSuccess) then) =
-      _$ActorCreditsStateSuccessCopyWithImpl<$Res>;
+abstract class _$$ActorCreditsStateSuccessCopyWith<$Res> {
+  factory _$$ActorCreditsStateSuccessCopyWith(_$ActorCreditsStateSuccess value,
+          $Res Function(_$ActorCreditsStateSuccess) then) =
+      __$$ActorCreditsStateSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({ActorCreditsModel credits});
 }
 
 /// @nodoc
-class _$ActorCreditsStateSuccessCopyWithImpl<$Res>
-    extends _$ActorCreditsStateCopyWithImpl<$Res>
-    implements $ActorCreditsStateSuccessCopyWith<$Res> {
-  _$ActorCreditsStateSuccessCopyWithImpl(ActorCreditsStateSuccess _value,
-      $Res Function(ActorCreditsStateSuccess) _then)
-      : super(_value, (v) => _then(v as ActorCreditsStateSuccess));
+class __$$ActorCreditsStateSuccessCopyWithImpl<$Res>
+    extends _$ActorCreditsStateCopyWithImpl<$Res, _$ActorCreditsStateSuccess>
+    implements _$$ActorCreditsStateSuccessCopyWith<$Res> {
+  __$$ActorCreditsStateSuccessCopyWithImpl(_$ActorCreditsStateSuccess _value,
+      $Res Function(_$ActorCreditsStateSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  ActorCreditsStateSuccess get _value =>
-      super._value as ActorCreditsStateSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? credits = freezed,
+    Object? credits = null,
   }) {
-    return _then(ActorCreditsStateSuccess(
-      credits == freezed
+    return _then(_$ActorCreditsStateSuccess(
+      null == credits
           ? _value.credits
           : credits // ignore: cast_nullable_to_non_nullable
               as ActorCreditsModel,
@@ -334,20 +363,21 @@ class _$ActorCreditsStateSuccess implements ActorCreditsStateSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ActorCreditsStateSuccess &&
-            (identical(other.credits, credits) ||
-                const DeepCollectionEquality().equals(other.credits, credits)));
+        (other.runtimeType == runtimeType &&
+            other is _$ActorCreditsStateSuccess &&
+            (identical(other.credits, credits) || other.credits == credits));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(credits);
+  int get hashCode => Object.hash(runtimeType, credits);
 
   @JsonKey(ignore: true)
   @override
-  $ActorCreditsStateSuccessCopyWith<ActorCreditsStateSuccess> get copyWith =>
-      _$ActorCreditsStateSuccessCopyWithImpl<ActorCreditsStateSuccess>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$ActorCreditsStateSuccessCopyWith<_$ActorCreditsStateSuccess>
+      get copyWith =>
+          __$$ActorCreditsStateSuccessCopyWithImpl<_$ActorCreditsStateSuccess>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -358,6 +388,17 @@ class _$ActorCreditsStateSuccess implements ActorCreditsStateSuccess {
     required TResult Function(String message) error,
   }) {
     return success(credits);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ActorCreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return success?.call(credits);
   }
 
   @override
@@ -388,6 +429,17 @@ class _$ActorCreditsStateSuccess implements ActorCreditsStateSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ActorCreditsStateInitial value)? initial,
+    TResult? Function(ActorCreditsStateLoading value)? loading,
+    TResult? Function(ActorCreditsStateSuccess value)? success,
+    TResult? Function(ActorCreditsStateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorCreditsStateInitial value)? initial,
     TResult Function(ActorCreditsStateLoading value)? loading,
@@ -403,40 +455,39 @@ class _$ActorCreditsStateSuccess implements ActorCreditsStateSuccess {
 }
 
 abstract class ActorCreditsStateSuccess implements ActorCreditsState {
-  const factory ActorCreditsStateSuccess(ActorCreditsModel credits) =
+  const factory ActorCreditsStateSuccess(final ActorCreditsModel credits) =
       _$ActorCreditsStateSuccess;
 
-  ActorCreditsModel get credits => throw _privateConstructorUsedError;
+  ActorCreditsModel get credits;
   @JsonKey(ignore: true)
-  $ActorCreditsStateSuccessCopyWith<ActorCreditsStateSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ActorCreditsStateSuccessCopyWith<_$ActorCreditsStateSuccess>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ActorCreditsStateErrorCopyWith<$Res> {
-  factory $ActorCreditsStateErrorCopyWith(ActorCreditsStateError value,
-          $Res Function(ActorCreditsStateError) then) =
-      _$ActorCreditsStateErrorCopyWithImpl<$Res>;
+abstract class _$$ActorCreditsStateErrorCopyWith<$Res> {
+  factory _$$ActorCreditsStateErrorCopyWith(_$ActorCreditsStateError value,
+          $Res Function(_$ActorCreditsStateError) then) =
+      __$$ActorCreditsStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$ActorCreditsStateErrorCopyWithImpl<$Res>
-    extends _$ActorCreditsStateCopyWithImpl<$Res>
-    implements $ActorCreditsStateErrorCopyWith<$Res> {
-  _$ActorCreditsStateErrorCopyWithImpl(ActorCreditsStateError _value,
-      $Res Function(ActorCreditsStateError) _then)
-      : super(_value, (v) => _then(v as ActorCreditsStateError));
+class __$$ActorCreditsStateErrorCopyWithImpl<$Res>
+    extends _$ActorCreditsStateCopyWithImpl<$Res, _$ActorCreditsStateError>
+    implements _$$ActorCreditsStateErrorCopyWith<$Res> {
+  __$$ActorCreditsStateErrorCopyWithImpl(_$ActorCreditsStateError _value,
+      $Res Function(_$ActorCreditsStateError) _then)
+      : super(_value, _then);
 
-  @override
-  ActorCreditsStateError get _value => super._value as ActorCreditsStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(ActorCreditsStateError(
-      message == freezed
+    return _then(_$ActorCreditsStateError(
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -460,19 +511,19 @@ class _$ActorCreditsStateError implements ActorCreditsStateError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ActorCreditsStateError &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$ActorCreditsStateError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $ActorCreditsStateErrorCopyWith<ActorCreditsStateError> get copyWith =>
-      _$ActorCreditsStateErrorCopyWithImpl<ActorCreditsStateError>(
+  @pragma('vm:prefer-inline')
+  _$$ActorCreditsStateErrorCopyWith<_$ActorCreditsStateError> get copyWith =>
+      __$$ActorCreditsStateErrorCopyWithImpl<_$ActorCreditsStateError>(
           this, _$identity);
 
   @override
@@ -484,6 +535,17 @@ class _$ActorCreditsStateError implements ActorCreditsStateError {
     required TResult Function(String message) error,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ActorCreditsModel credits)? success,
+    TResult? Function(String message)? error,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -514,6 +576,17 @@ class _$ActorCreditsStateError implements ActorCreditsStateError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ActorCreditsStateInitial value)? initial,
+    TResult? Function(ActorCreditsStateLoading value)? loading,
+    TResult? Function(ActorCreditsStateSuccess value)? success,
+    TResult? Function(ActorCreditsStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ActorCreditsStateInitial value)? initial,
     TResult Function(ActorCreditsStateLoading value)? loading,
@@ -529,11 +602,11 @@ class _$ActorCreditsStateError implements ActorCreditsStateError {
 }
 
 abstract class ActorCreditsStateError implements ActorCreditsState {
-  const factory ActorCreditsStateError(String message) =
+  const factory ActorCreditsStateError(final String message) =
       _$ActorCreditsStateError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
-  $ActorCreditsStateErrorCopyWith<ActorCreditsStateError> get copyWith =>
+  _$$ActorCreditsStateErrorCopyWith<_$ActorCreditsStateError> get copyWith =>
       throw _privateConstructorUsedError;
 }
