@@ -8,8 +8,8 @@ import 'package:movie_list_bloc/bloc/detail/movie/movie_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/genre/gender_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
+import 'package:movie_list_bloc/common/routes.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
-import 'package:movie_list_bloc/view/movie_list_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -26,14 +26,14 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => locator<ActorBloc>()),
         BlocProvider(create: (_) => locator<ActorCreditsBloc>()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Movie list',
+        routerConfig: movieRouter,
         theme: ThemeData(
           textTheme: GoogleFonts.ubuntuTextTheme(
             Theme.of(context).textTheme,
           ),
         ),
-        home: const MovieList(),
       ),
     );
   }
