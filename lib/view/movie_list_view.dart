@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/bloc/movie_list/genre/gender_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/genre/gender_state.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
 import 'package:movie_list_bloc/models/gender/gender_model.dart';
 import 'package:movie_list_bloc/models/movies/movies_model.dart';
-import 'package:movie_list_bloc/view/movie_detail_view.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
 import 'package:movie_list_bloc/view/widget/gender_item.dart';
 import 'package:movie_list_bloc/view/widget/movie_list_item.dart';
@@ -61,7 +61,10 @@ class MovieList extends HookWidget {
                 height: MediaQuery.of(context).size.height * .75,
                 child: _BodyMovieList(
                   index: currentIndex.value,
-                  onSelectMovie: (movie) => _openDetailPage(context, movie),
+                  onSelectMovie: (movie) => context.go(
+                    '/detail/${movie.id}',
+                    extra: {'posterPath': movie.posterPath},
+                  ),
                   onChangePage: (index, size) {
                     currentIndex.value = index;
                     length.value = size;
@@ -81,20 +84,6 @@ class MovieList extends HookWidget {
             child: _Footer(index: currentIndex.value, length: length.value),
           ),
         ],
-      ),
-    );
-  }
-
-  void _openDetailPage(BuildContext ctx, MovieModel movie) {
-    Navigator.push<void>(
-      ctx,
-      PageRouteBuilder<dynamic>(
-        pageBuilder: (_, __, ___) => MovieDetail(
-          movieId: movie.id,
-          movieImageUrl: 'https://image.tmdb.org/t/p/w185${movie.posterPath}',
-        ),
-        transitionsBuilder: (_, animation, __, child) =>
-            Transform.scale(scale: animation.value, child: child),
       ),
     );
   }

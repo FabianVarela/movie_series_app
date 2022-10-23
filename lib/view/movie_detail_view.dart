@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/bloc/detail/credits/movie_credits_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/credits/movie_credits_state.dart';
 import 'package:movie_list_bloc/bloc/detail/movie/movie_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:movie_list_bloc/bloc/detail/movie/movie_state.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/trailers/movie_trailers_state.dart';
 import 'package:movie_list_bloc/dependency/locator.dart';
-import 'package:movie_list_bloc/view/actor_detail_view.dart';
 import 'package:movie_list_bloc/view/widget/credit_item.dart';
 import 'package:movie_list_bloc/view/widget/error_message.dart';
 import 'package:movie_list_bloc/view/widget/movie_detail_item.dart';
@@ -51,7 +51,10 @@ class MovieDetail extends HookWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Hero(
                   tag: 'Image_$movieId',
-                  child: Image.network(movieImageUrl, fit: BoxFit.cover),
+                  child: Image.network(
+                    'https://image.tmdb.org/t/p/w185$movieImageUrl',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -61,8 +64,13 @@ class MovieDetail extends HookWidget {
                 children: <Widget>[
                   const _DetailSection(),
                   _CreditsSection(
-                    onSelectActor: (id, path) =>
-                        _openActorDetailPage(context, id, path),
+                    onSelectActor: (id, path) => context.go(
+                      '/detail/$movieId/actor/$id',
+                      extra: {
+                        'posterPath': movieImageUrl,
+                        'actorImage': path,
+                      },
+                    ),
                   ),
                   const _TrailerSection(),
                 ],
@@ -70,20 +78,6 @@ class MovieDetail extends HookWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  void _openActorDetailPage(BuildContext ctx, int personId, String? actorPath) {
-    Navigator.push<void>(
-      ctx,
-      PageRouteBuilder<dynamic>(
-        pageBuilder: (_, __, ___) => ActorDetailView(
-          personId: personId,
-          actorImageUrl: actorPath,
-        ),
-        transitionsBuilder: (_, animation, __, child) =>
-            FadeTransition(opacity: animation, child: child),
       ),
     );
   }
