@@ -23,6 +23,7 @@ ActorModel _$ActorModelFromJson(Map<String, dynamic> json) => ActorModel(
 const _$GenderEnumMap = {
   Gender.female: 1,
   Gender.male: 2,
+  Gender.other: 3,
 };
 
 ActorCreditsModel _$ActorCreditsModelFromJson(Map<String, dynamic> json) =>
