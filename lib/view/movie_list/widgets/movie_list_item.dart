@@ -6,23 +6,23 @@ class MovieListItem extends HookWidget {
   const MovieListItem({
     super.key,
     required this.itemModel,
-    required this.onPressItem,
     required this.imageUri,
+    required this.onPressItem,
     this.onExpanded,
     this.isCurrent = false,
   });
 
   final MovieModel itemModel;
-  final ValueSetter<MovieModel> onPressItem;
   final String imageUri;
+  final ValueSetter<MovieModel> onPressItem;
   final ValueSetter<bool>? onExpanded;
   final bool isCurrent;
 
   @override
   Widget build(BuildContext context) {
-    final controller = useAnimationController(
-      duration: const Duration(milliseconds: 300),
-    );
+    const duration = Duration(milliseconds: 300);
+
+    final controller = useAnimationController(duration: duration);
     final translateAnimation = useAnimation<double>(
       Tween<double>(begin: 0, end: -60).animate(controller),
     );
@@ -33,13 +33,14 @@ class MovieListItem extends HookWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    return Opacity(
+    return AnimatedOpacity(
+      duration: duration,
       opacity: isCurrent ? 1 : .4,
       child: Stack(
         children: <Widget>[
           Align(
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: duration,
               width: width * expandAnimation,
               height: isCurrent ? height * 0.55 : height * 0.5,
               child: Card(
@@ -85,7 +86,8 @@ class MovieListItem extends HookWidget {
           Transform.translate(
             offset: Offset(0, translateAnimation),
             child: Align(
-              child: SizedBox(
+              child: AnimatedContainer(
+                duration: duration,
                 width: width * 0.7,
                 height: isCurrent ? height * 0.55 : height * 0.5,
                 child: GestureDetector(
