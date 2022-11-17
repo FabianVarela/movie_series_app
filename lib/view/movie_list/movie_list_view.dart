@@ -139,8 +139,7 @@ class _BodyGenreList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GenderBloc, GenderState>(
-      builder: (_, state) => state.when(
-        initial: Offstage.new,
+      builder: (_, state) => state.maybeWhen(
         loading: () => Center(
           child: Transform.scale(
             scale: .7,
@@ -164,7 +163,7 @@ class _BodyGenreList extends StatelessWidget {
             ),
           );
         },
-        error: (error) => ErrorMessage(message: error, fontSize: 15),
+        orElse: Offstage.new,
       ),
     );
   }
@@ -207,11 +206,11 @@ class _BodyMovieList extends HookWidget {
               ? const BouncingScrollPhysics()
               : const NeverScrollableScrollPhysics(),
           onPageChanged: (i) => onChangePage?.call(i + 1, data.movies.length),
-          itemBuilder: (_, index) => MovieListItem(
-            itemModel: data.movies[index],
+          itemBuilder: (_, i) => MovieListItem(
+            itemModel: data.movies[i],
             onPressItem: onSelectMovie,
             imageUri: 'https://image.tmdb.org/t/p/w185',
-            isCurrent: (index - 1) == index,
+            isCurrent: (index - 1) == i,
             onExpanded: (enabled) => isEnabledScroll.value = !enabled,
           ),
         ),
