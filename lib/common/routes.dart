@@ -14,7 +14,7 @@ final movieRouter = GoRouter(
       path: '/',
       pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
         pageKey: state.pageKey,
-        child: const MovieList(),
+        child: const MovieListPage(),
       ),
       routes: <GoRoute>[
         GoRoute(
