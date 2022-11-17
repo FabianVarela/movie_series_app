@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/common/page_routes.dart';
 import 'package:movie_list_bloc/view/actor_detail_view.dart';
 import 'package:movie_list_bloc/view/movie_detail_view.dart';
-import 'package:movie_list_bloc/view/movie_list_view.dart';
+import 'package:movie_list_bloc/view/movie_list/movie_list_view.dart';
 import 'package:movie_list_bloc/view/no_found_view.dart';
 
 final movieRouter = GoRouter(
