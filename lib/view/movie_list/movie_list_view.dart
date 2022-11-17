@@ -68,7 +68,7 @@ class MovieList extends HookWidget {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.only(top: 20),
                   child: _BodyGenreList(
                     id: currentGender.value,
                     onSelectGenre: (genre) {
