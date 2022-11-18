@@ -15,12 +15,6 @@ class MovieListGenres extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GenderBloc, GenderState>(
       builder: (_, state) => state.maybeWhen(
-        loading: () => Center(
-          child: Transform.scale(
-            scale: .7,
-            child: const CircularProgressIndicator(),
-          ),
-        ),
         success: (gender) {
           final genders = gender.genders;
           return SizedBox(
