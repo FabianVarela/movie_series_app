@@ -20,7 +20,7 @@ class GenderItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: GestureDetector(
-        onTap: onSelectGender != null ? () => onSelectGender!(gender) : null,
+        onTap: () => onSelectGender?.call(gender),
         child: Chip(
           avatar: CircleAvatar(
             backgroundColor: (backgroundColor ?? Colors.white).withOpacity(.6),
