@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movie_list_bloc/models/gender/gender_model.dart';
 import 'package:movie_list_bloc/models/movies/movies_model.dart';
 
 part 'movie_list_state.freezed.dart';
@@ -9,8 +10,10 @@ class MovieListState with _$MovieListState {
 
   const factory MovieListState.loading() = MovieListStateLoading;
 
-  const factory MovieListState.success(MoviesModel movies) =
-      MovieListStateSuccess;
+  const factory MovieListState.success({
+    required MoviesModel movies,
+    required GendersModel genres,
+  }) = MovieListStateSuccess;
 
   const factory MovieListState.error(String message) = MovieListStateError;
 }
