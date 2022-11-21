@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/bloc/movie_list/genre/gender_bloc.dart';
+import 'package:movie_list_bloc/bloc/movie_list/genre/gender_state.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
+import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 import 'package:movie_list_bloc/view/movie_list/widgets/movie_list_body.dart';
 import 'package:movie_list_bloc/view/movie_list/widgets/movie_list_genres.dart';
 import 'package:movie_list_bloc/view/movie_list/widgets/movie_list_header.dart';
+import 'package:movie_list_bloc/view/widget/error_message.dart';
 
 class MovieListPage extends StatelessWidget {
   const MovieListPage({super.key});
@@ -60,17 +63,39 @@ class MovieListView extends HookWidget {
         bottom: false,
         child: Stack(
           children: <Widget>[
-            Center(
-              child: MovieListBody(
-                index: currentIndex.value,
-                onSelectMovie: (movie) => context.go(
-                  '/detail/${movie.id}',
-                  extra: {'posterPath': movie.posterPath},
+            BlocConsumer<MoviesBloc, MovieListState>(
+              listenWhen: (current, next) => current != next,
+              listener: (_, state) {
+                if (state is MovieListStateSuccess) {
+                  if (state.movies.movies.isNotEmpty) {
+                    currentIndex.value++;
+                    length.value = state.movies.movies.length;
+
+                    return;
+                  }
+                }
+
+                currentIndex.value = 0;
+                length.value = 0;
+              },
+              builder: (_, state) => state.when(
+                initial: Offstage.new,
+                loading: () => const Center(child: CircularProgressIndicator()),
+                success: (data) => MovieListBody(
+                  movies: data.movies,
+                  index: currentIndex.value,
+                  onSelectMovie: (movie) => context.go(
+                    '/detail/${movie.id}',
+                    extra: {'posterPath': movie.posterPath},
+                  ),
+                  onChangePage: (index, size) {
+                    currentIndex.value = index;
+                    length.value = size;
+                  },
                 ),
-                onChangePage: (index, size) {
-                  currentIndex.value = index;
-                  length.value = size;
-                },
+                error: (_) => const ErrorMessage(
+                  message: 'Error getting movie list',
+                ),
               ),
             ),
             Column(
@@ -82,14 +107,17 @@ class MovieListView extends HookWidget {
                     genderTitle.value = null;
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: MovieListGenres(
-                    id: currentGender.value,
-                    onSelectGenre: (genre) {
-                      currentGender.value = genre.id;
-                      genderTitle.value = genre.name;
-                    },
+                BlocBuilder<GenderBloc, GenderState>(
+                  builder: (_, state) => state.maybeWhen(
+                    success: (gender) => MovieListGenres(
+                      id: currentGender.value,
+                      genders: gender.genders,
+                      onSelectGenre: (genre) {
+                        currentGender.value = genre.id;
+                        genderTitle.value = genre.name;
+                      },
+                    ),
+                    orElse: Offstage.new,
                   ),
                 ),
               ],
