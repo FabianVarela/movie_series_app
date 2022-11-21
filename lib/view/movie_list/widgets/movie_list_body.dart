@@ -7,14 +7,14 @@ class MovieListBody extends HookWidget {
   const MovieListBody({
     super.key,
     required this.movies,
-    required this.onSelectMovie,
     this.index = 0,
+    this.onSelectMovie,
     this.onChangePage,
   });
 
   final List<MovieModel> movies;
-  final ValueSetter<MovieModel> onSelectMovie;
   final int index;
+  final ValueSetter<MovieModel>? onSelectMovie;
   final void Function(int, int)? onChangePage;
 
   @override
@@ -32,7 +32,7 @@ class MovieListBody extends HookWidget {
         onPageChanged: (i) => onChangePage?.call(i + 1, movies.length),
         itemBuilder: (_, i) => MovieListItem(
           itemModel: movies[i],
-          onPressItem: onSelectMovie,
+          onPressItem: (movie) => onSelectMovie?.call(movie),
           imageUri: 'https://image.tmdb.org/t/p/w185',
           isCurrent: (index - 1) == i,
           onExpanded: (enabled) => isEnabledScroll.value = !enabled,

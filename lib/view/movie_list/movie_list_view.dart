@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_list_bloc/bloc/movie_list/genre/gender_bloc.dart';
-import 'package:movie_list_bloc/bloc/movie_list/genre/gender_state.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
@@ -21,9 +19,6 @@ class MovieListPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => MoviesBloc(context.read<MovieRepository>()),
-        ),
-        BlocProvider(
-          create: (_) => GenderBloc(context.read<MovieRepository>()),
         ),
       ],
       child: const MovieListView(),
@@ -45,8 +40,6 @@ class MovieListView extends HookWidget {
     useEffect(
       () {
         context.read<MoviesBloc>().getMovies();
-        context.read<GenderBloc>().getMovieGenderList();
-
         return null;
       },
       const [],
@@ -81,35 +74,10 @@ class MovieListView extends HookWidget {
               builder: (_, state) => state.when(
                 initial: Offstage.new,
                 loading: () => const Center(child: CircularProgressIndicator()),
-                success: (data) => MovieListBody(
-                  movies: data.movies,
-                  index: currentIndex.value,
-                  onSelectMovie: (movie) => context.go(
-                    '/detail/${movie.id}',
-                    extra: {'posterPath': movie.posterPath},
-                  ),
-                  onChangePage: (index, size) {
-                    currentIndex.value = index;
-                    length.value = size;
-                  },
-                ),
-                error: (_) => const ErrorMessage(
-                  message: 'Error getting movie list',
-                ),
-              ),
-            ),
-            Column(
-              children: <Widget>[
-                MovieListHeader(
-                  title: '${genderTitle.value ?? 'Popular'} Movies',
-                  onRestore: () {
-                    currentGender.value = null;
-                    genderTitle.value = null;
-                  },
-                ),
-                BlocBuilder<GenderBloc, GenderState>(
-                  builder: (_, state) => state.maybeWhen(
-                    success: (gender) => MovieListGenres(
+                success: (movie, gender) => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    MovieListGenres(
                       id: currentGender.value,
                       genders: gender.genders,
                       onSelectGenre: (genre) {
@@ -117,10 +85,33 @@ class MovieListView extends HookWidget {
                         genderTitle.value = genre.name;
                       },
                     ),
-                    orElse: Offstage.new,
-                  ),
+                    Expanded(
+                      child: MovieListBody(
+                        movies: movie.movies,
+                        index: currentIndex.value,
+                        onSelectMovie: (movie) => context.go(
+                          '/detail/${movie.id}',
+                          extra: {'posterPath': movie.posterPath},
+                        ),
+                        onChangePage: (index, size) {
+                          currentIndex.value = index;
+                          length.value = size;
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+                error: (_) => const ErrorMessage(
+                  message: 'Error getting movie list',
+                ),
+              ),
+            ),
+            MovieListHeader(
+              title: '${genderTitle.value ?? 'Popular'} Movies',
+              onRestore: () {
+                currentGender.value = null;
+                genderTitle.value = null;
+              },
             ),
             Positioned.fill(
               child: Container(
