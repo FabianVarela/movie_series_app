@@ -15,12 +15,8 @@ class MovieListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => MoviesBloc(context.read<MovieRepository>()),
-        ),
-      ],
+    return BlocProvider(
+      create: (_) => MoviesBloc(context.read<MovieRepository>()),
       child: const MovieListView(),
     );
   }
