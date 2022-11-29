@@ -33,7 +33,6 @@ class MovieListBody extends HookWidget {
         itemBuilder: (_, i) => MovieListItem(
           itemModel: movies[i],
           onPressItem: (movie) => onSelectMovie?.call(movie),
-          imageUri: 'https://image.tmdb.org/t/p/w185',
           isCurrent: (index - 1) == i,
           onExpanded: (enabled) => isEnabledScroll.value = !enabled,
         ),
