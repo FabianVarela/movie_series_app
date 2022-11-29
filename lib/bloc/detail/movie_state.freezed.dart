@@ -20,7 +20,9 @@ mixin _$MovieState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(MovieModel movie) success,
+    required TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)
+        success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +30,9 @@ mixin _$MovieState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(MovieModel movie)? success,
+    TResult? Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +40,9 @@ mixin _$MovieState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(MovieModel movie)? success,
+    TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +132,9 @@ class _$MovieStateInitial implements MovieStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(MovieModel movie) success,
+    required TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)
+        success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +145,9 @@ class _$MovieStateInitial implements MovieStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(MovieModel movie)? success,
+    TResult? Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +158,9 @@ class _$MovieStateInitial implements MovieStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(MovieModel movie)? success,
+    TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +252,9 @@ class _$MovieStateLoading implements MovieStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(MovieModel movie) success,
+    required TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)
+        success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +265,9 @@ class _$MovieStateLoading implements MovieStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(MovieModel movie)? success,
+    TResult? Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +278,9 @@ class _$MovieStateLoading implements MovieStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(MovieModel movie)? success,
+    TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +338,7 @@ abstract class _$$MovieStateSuccessCopyWith<$Res> {
           _$MovieStateSuccess value, $Res Function(_$MovieStateSuccess) then) =
       __$$MovieStateSuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({MovieModel movie});
+  $Res call({MovieModel movie, CreditsModel credits, TrailersModel trailers});
 }
 
 /// @nodoc
@@ -335,12 +353,22 @@ class __$$MovieStateSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? movie = null,
+    Object? credits = null,
+    Object? trailers = null,
   }) {
     return _then(_$MovieStateSuccess(
-      null == movie
+      movie: null == movie
           ? _value.movie
           : movie // ignore: cast_nullable_to_non_nullable
               as MovieModel,
+      credits: null == credits
+          ? _value.credits
+          : credits // ignore: cast_nullable_to_non_nullable
+              as CreditsModel,
+      trailers: null == trailers
+          ? _value.trailers
+          : trailers // ignore: cast_nullable_to_non_nullable
+              as TrailersModel,
     ));
   }
 }
@@ -348,14 +376,19 @@ class __$$MovieStateSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MovieStateSuccess implements MovieStateSuccess {
-  const _$MovieStateSuccess(this.movie);
+  const _$MovieStateSuccess(
+      {required this.movie, required this.credits, required this.trailers});
 
   @override
   final MovieModel movie;
+  @override
+  final CreditsModel credits;
+  @override
+  final TrailersModel trailers;
 
   @override
   String toString() {
-    return 'MovieState.success(movie: $movie)';
+    return 'MovieState.success(movie: $movie, credits: $credits, trailers: $trailers)';
   }
 
   @override
@@ -363,11 +396,14 @@ class _$MovieStateSuccess implements MovieStateSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MovieStateSuccess &&
-            (identical(other.movie, movie) || other.movie == movie));
+            (identical(other.movie, movie) || other.movie == movie) &&
+            (identical(other.credits, credits) || other.credits == credits) &&
+            (identical(other.trailers, trailers) ||
+                other.trailers == trailers));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, movie);
+  int get hashCode => Object.hash(runtimeType, movie, credits, trailers);
 
   @JsonKey(ignore: true)
   @override
@@ -380,10 +416,12 @@ class _$MovieStateSuccess implements MovieStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(MovieModel movie) success,
+    required TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)
+        success,
     required TResult Function(String message) error,
   }) {
-    return success(movie);
+    return success(movie, credits, trailers);
   }
 
   @override
@@ -391,10 +429,12 @@ class _$MovieStateSuccess implements MovieStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(MovieModel movie)? success,
+    TResult? Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(movie);
+    return success?.call(movie, credits, trailers);
   }
 
   @override
@@ -402,12 +442,14 @@ class _$MovieStateSuccess implements MovieStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(MovieModel movie)? success,
+    TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(movie);
+      return success(movie, credits, trailers);
     }
     return orElse();
   }
@@ -451,9 +493,14 @@ class _$MovieStateSuccess implements MovieStateSuccess {
 }
 
 abstract class MovieStateSuccess implements MovieState {
-  const factory MovieStateSuccess(final MovieModel movie) = _$MovieStateSuccess;
+  const factory MovieStateSuccess(
+      {required final MovieModel movie,
+      required final CreditsModel credits,
+      required final TrailersModel trailers}) = _$MovieStateSuccess;
 
   MovieModel get movie;
+  CreditsModel get credits;
+  TrailersModel get trailers;
   @JsonKey(ignore: true)
   _$$MovieStateSuccessCopyWith<_$MovieStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -525,7 +572,9 @@ class _$MovieStateError implements MovieStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(MovieModel movie) success,
+    required TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)
+        success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -536,7 +585,9 @@ class _$MovieStateError implements MovieStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(MovieModel movie)? success,
+    TResult? Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -547,7 +598,9 @@ class _$MovieStateError implements MovieStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(MovieModel movie)? success,
+    TResult Function(
+            MovieModel movie, CreditsModel credits, TrailersModel trailers)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
