@@ -3,7 +3,7 @@ import 'package:movie_list_bloc/bloc/detail/movie_state.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 
 class MovieBloc extends Cubit<MovieState> {
-  MovieBloc(this._repository) : super(const MovieStateInitial());
+  MovieBloc(this._repository, [super.initialState = const MovieStateInitial()]);
 
   late final MovieRepository _repository;
 
