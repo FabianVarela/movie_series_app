@@ -18,7 +18,11 @@ class CreditItem extends StatelessWidget {
         children: <Widget>[
           Hero(
             tag: '${cast.id}',
-            child: CircleImage(imageUrl: '$imdbImageUri${cast.profilePath}'),
+            child: CircleImage(
+              imageUrl: cast.profilePath != null
+                  ? '$imdbImageUri${cast.profilePath}'
+                  : null,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
