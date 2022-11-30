@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TransitionAppBar extends StatelessWidget {
-  const TransitionAppBar({super.key, required this.child, required this.title});
+  const TransitionAppBar({
+    super.key,
+    required this.backgroundColor,
+    required this.child,
+    required this.title,
+  });
 
+  final Color backgroundColor;
   final Widget child;
   final String title;
 
@@ -11,6 +17,7 @@ class TransitionAppBar extends StatelessWidget {
     return SliverPersistentHeader(
       pinned: true,
       delegate: _TransitionAppBarDelegate(
+        backgroundColor: backgroundColor,
         child: child,
         title: title,
       ),
@@ -19,8 +26,13 @@ class TransitionAppBar extends StatelessWidget {
 }
 
 class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _TransitionAppBarDelegate({required this.child, required this.title});
+  _TransitionAppBarDelegate({
+    required this.backgroundColor,
+    required this.child,
+    required this.title,
+  });
 
+  final Color backgroundColor;
   final Widget child;
   final String title;
 
@@ -31,7 +43,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   final _avatarMarginTween = EdgeInsetsTween(
     begin: EdgeInsets.zero,
-    end: const EdgeInsets.only(top: 30, left: 60),
+    end: const EdgeInsets.only(top: 35, left: 60),
   );
 
   final _avatarAlignTween = AlignmentTween(
@@ -39,11 +51,11 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
     end: Alignment.centerLeft,
   );
 
-  final _avatarPositionedTopTween = Tween<double>(begin: 50, end: 0);
+  final _avatarPositionedTopTween = Tween<double>(begin: 60, end: 0);
 
   final _titleMarginTween = EdgeInsetsTween(
     begin: const EdgeInsets.only(top: 190),
-    end: const EdgeInsets.only(top: 30, left: 125),
+    end: const EdgeInsets.only(top: 35, left: 125),
   );
 
   final _titleAlignTween = AlignmentTween(
@@ -54,7 +66,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
   final _titleSizeTween = Tween<double>(begin: 25, end: 18);
 
   @override
-  Widget build(BuildContext ctx, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlaps) {
     final progress = shrinkOffset / 280;
 
     final avatarSize = _avatarTween.lerp(progress);
@@ -67,7 +79,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
     final titleSize = _titleSizeTween.transform(progress);
 
     return ColoredBox(
-      color: Colors.blueGrey,
+      color: backgroundColor,
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -91,6 +103,15 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
               ),
             ),
           ),
+          if (Navigator.canPop(context))
+            Positioned(
+              top: 45,
+              left: 10,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+              ),
+            ),
         ],
       ),
     );
@@ -100,7 +121,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 280;
 
   @override
-  double get minExtent => 100;
+  double get minExtent => 110;
 
   @override
   bool shouldRebuild(covariant _TransitionAppBarDelegate oldDelegate) =>
