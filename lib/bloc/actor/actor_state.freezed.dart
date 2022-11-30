@@ -20,7 +20,8 @@ mixin _$ActorState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ActorModel actor) success,
+    required TResult Function(ActorModel actor, ActorCreditsModel credits)
+        success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +29,7 @@ mixin _$ActorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ActorModel actor)? success,
+    TResult? Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ mixin _$ActorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ActorModel actor)? success,
+    TResult Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +127,8 @@ class _$ActorStateInitial implements ActorStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ActorModel actor) success,
+    required TResult Function(ActorModel actor, ActorCreditsModel credits)
+        success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +139,7 @@ class _$ActorStateInitial implements ActorStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ActorModel actor)? success,
+    TResult? Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +150,7 @@ class _$ActorStateInitial implements ActorStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ActorModel actor)? success,
+    TResult Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +242,8 @@ class _$ActorStateLoading implements ActorStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ActorModel actor) success,
+    required TResult Function(ActorModel actor, ActorCreditsModel credits)
+        success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +254,7 @@ class _$ActorStateLoading implements ActorStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ActorModel actor)? success,
+    TResult? Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +265,7 @@ class _$ActorStateLoading implements ActorStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ActorModel actor)? success,
+    TResult Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +323,7 @@ abstract class _$$ActorStateSuccessCopyWith<$Res> {
           _$ActorStateSuccess value, $Res Function(_$ActorStateSuccess) then) =
       __$$ActorStateSuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({ActorModel actor});
+  $Res call({ActorModel actor, ActorCreditsModel credits});
 }
 
 /// @nodoc
@@ -335,12 +338,17 @@ class __$$ActorStateSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? actor = null,
+    Object? credits = null,
   }) {
     return _then(_$ActorStateSuccess(
-      null == actor
+      actor: null == actor
           ? _value.actor
           : actor // ignore: cast_nullable_to_non_nullable
               as ActorModel,
+      credits: null == credits
+          ? _value.credits
+          : credits // ignore: cast_nullable_to_non_nullable
+              as ActorCreditsModel,
     ));
   }
 }
@@ -348,14 +356,16 @@ class __$$ActorStateSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ActorStateSuccess implements ActorStateSuccess {
-  const _$ActorStateSuccess(this.actor);
+  const _$ActorStateSuccess({required this.actor, required this.credits});
 
   @override
   final ActorModel actor;
+  @override
+  final ActorCreditsModel credits;
 
   @override
   String toString() {
-    return 'ActorState.success(actor: $actor)';
+    return 'ActorState.success(actor: $actor, credits: $credits)';
   }
 
   @override
@@ -363,11 +373,12 @@ class _$ActorStateSuccess implements ActorStateSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ActorStateSuccess &&
-            (identical(other.actor, actor) || other.actor == actor));
+            (identical(other.actor, actor) || other.actor == actor) &&
+            (identical(other.credits, credits) || other.credits == credits));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, actor);
+  int get hashCode => Object.hash(runtimeType, actor, credits);
 
   @JsonKey(ignore: true)
   @override
@@ -380,10 +391,11 @@ class _$ActorStateSuccess implements ActorStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ActorModel actor) success,
+    required TResult Function(ActorModel actor, ActorCreditsModel credits)
+        success,
     required TResult Function(String message) error,
   }) {
-    return success(actor);
+    return success(actor, credits);
   }
 
   @override
@@ -391,10 +403,10 @@ class _$ActorStateSuccess implements ActorStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ActorModel actor)? success,
+    TResult? Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(actor);
+    return success?.call(actor, credits);
   }
 
   @override
@@ -402,12 +414,12 @@ class _$ActorStateSuccess implements ActorStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ActorModel actor)? success,
+    TResult Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(actor);
+      return success(actor, credits);
     }
     return orElse();
   }
@@ -451,9 +463,12 @@ class _$ActorStateSuccess implements ActorStateSuccess {
 }
 
 abstract class ActorStateSuccess implements ActorState {
-  const factory ActorStateSuccess(final ActorModel actor) = _$ActorStateSuccess;
+  const factory ActorStateSuccess(
+      {required final ActorModel actor,
+      required final ActorCreditsModel credits}) = _$ActorStateSuccess;
 
   ActorModel get actor;
+  ActorCreditsModel get credits;
   @JsonKey(ignore: true)
   _$$ActorStateSuccessCopyWith<_$ActorStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -525,7 +540,8 @@ class _$ActorStateError implements ActorStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ActorModel actor) success,
+    required TResult Function(ActorModel actor, ActorCreditsModel credits)
+        success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -536,7 +552,7 @@ class _$ActorStateError implements ActorStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ActorModel actor)? success,
+    TResult? Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -547,7 +563,7 @@ class _$ActorStateError implements ActorStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ActorModel actor)? success,
+    TResult Function(ActorModel actor, ActorCreditsModel credits)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
