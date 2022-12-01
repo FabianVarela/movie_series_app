@@ -3,12 +3,14 @@ import 'package:json_annotation/json_annotation.dart';
 part 'actor_model.g.dart';
 
 enum Gender {
+  @JsonValue(0)
+  none,
   @JsonValue(1)
   female,
   @JsonValue(2)
   male,
   @JsonValue(3)
-  other,
+  noBinary,
 }
 
 @JsonSerializable(createToJson: false)
