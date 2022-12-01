@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.developer.fabian.movie_list_bloc">
    <application
-        android:label="movie_list_bloc"
+        android:label="Movies App"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
