@@ -45,8 +45,7 @@ class ActorDetailView extends HookWidget {
 
     return BlocBuilder<ActorBloc, ActorState>(
       builder: (_, state) {
-        const imdbImageUri = String.fromEnvironment('IMDB_IMAGE_URI');
-
+        const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
         return Scaffold(
           body: CustomScrollView(
             slivers: <Widget>[

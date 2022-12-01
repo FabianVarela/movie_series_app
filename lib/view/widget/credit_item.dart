@@ -9,7 +9,7 @@ class CreditItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imdbImageUri = String.fromEnvironment('IMDB_IMAGE_URI');
+    const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
     return Container(
       width: 100,
       padding: const EdgeInsets.only(right: 10),

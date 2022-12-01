@@ -15,7 +15,7 @@ class MovieDetailImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imdbImageUri = String.fromEnvironment('IMDB_IMAGE_URI');
+    const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
     return GestureDetector(
       onVerticalDragUpdate: (details) {
         if (details.delta.dy > 0) onDrag();

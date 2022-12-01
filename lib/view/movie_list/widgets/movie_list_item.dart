@@ -19,7 +19,7 @@ class MovieListItem extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imdbImageUri = String.fromEnvironment('IMDB_IMAGE_URI');
+    const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
     const duration = Duration(milliseconds: 300);
 
     final controller = useAnimationController(duration: duration);

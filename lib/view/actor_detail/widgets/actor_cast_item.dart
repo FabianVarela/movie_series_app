@@ -9,7 +9,7 @@ class ActorCastItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imdbImageUri = String.fromEnvironment('IMDB_IMAGE_URI');
+    const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 5),
       leading: CircleImage(
