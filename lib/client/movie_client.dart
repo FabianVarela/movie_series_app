@@ -9,8 +9,8 @@ import 'package:movie_list_bloc/models/trailers/trailer_model.dart';
 
 class MovieClient {
   MovieClient(this._client) {
-    _baseUrl = 'api.themoviedb.org';
-    _apiKey = const String.fromEnvironment('API_KEY');
+    _baseUrl = const String.fromEnvironment('TMDB_API_URI');
+    _apiKey = const String.fromEnvironment('TMDB_API_KEY');
   }
 
   late final Client _client;
@@ -20,7 +20,7 @@ class MovieClient {
 
   Future<GendersModel> fetchGenderList() async {
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/genre/movie/list', {'api_key': _apiKey}),
+      Uri.https(_baseUrl, '/3/genre/movie/list', _getDefaultParams('es-CO')),
     );
 
     if (response.statusCode == 200) {
@@ -33,9 +33,10 @@ class MovieClient {
 
   Future<MoviesModel> fetchMovies({int? genreId}) async {
     final url = genreId != null ? '/3/discover/movie' : '/3/movie/popular';
-    final params = genreId != null
-        ? <String, dynamic>{'with_genres': '$genreId', 'api_key': _apiKey}
-        : {'api_key': _apiKey};
+    final params = <String, dynamic>{
+      if (genreId != null) 'with_genres': '$genreId',
+      ..._getDefaultParams('es-CO')
+    };
 
     final response = await _client.get(Uri.https(_baseUrl, url, params));
     if (response.statusCode == 200) {
@@ -48,7 +49,7 @@ class MovieClient {
 
   Future<MovieModel> fetchMovie(int movieId) async {
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/movie/$movieId', {'api_key': _apiKey}),
+      Uri.https(_baseUrl, '/3/movie/$movieId', _getDefaultParams('es-CO')),
     );
 
     if (response.statusCode == 200) {
@@ -60,8 +61,9 @@ class MovieClient {
   }
 
   Future<CreditsModel> fetchCredits(int movieId) async {
+    final queryParams = _getDefaultParams('es-CO');
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/movie/$movieId/credits', {'api_key': _apiKey}),
+      Uri.https(_baseUrl, '/3/movie/$movieId/credits', queryParams),
     );
 
     if (response.statusCode == 200) {
@@ -73,8 +75,9 @@ class MovieClient {
   }
 
   Future<TrailersModel> fetchTrailers(int movieId) async {
+    final queryParams = _getDefaultParams('es-CO');
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/movie/$movieId/videos', {'api_key': _apiKey}),
+      Uri.https(_baseUrl, '/3/movie/$movieId/videos', queryParams),
     );
 
     if (response.statusCode == 200) {
@@ -87,7 +90,7 @@ class MovieClient {
 
   Future<ActorModel> fetchActor(int personId) async {
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/person/$personId', {'api_key': _apiKey}),
+      Uri.https(_baseUrl, '/3/person/$personId', _getDefaultParams('es-CO')),
     );
 
     if (response.statusCode == 200) {
@@ -99,9 +102,9 @@ class MovieClient {
   }
 
   Future<ActorCreditsModel> fetchActorCredits(int actorId) async {
-    final params = {'api_key': _apiKey};
+    final queryParams = _getDefaultParams('es-CO');
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/person/$actorId/movie_credits', params),
+      Uri.https(_baseUrl, '/3/person/$actorId/movie_credits', queryParams),
     );
 
     if (response.statusCode == 200) {
@@ -111,4 +114,7 @@ class MovieClient {
       throw Exception('Failed to load actor credit list');
     }
   }
+
+  Map<String, dynamic> _getDefaultParams(String language) =>
+      {'api_key': _apiKey, 'language': language};
 }
