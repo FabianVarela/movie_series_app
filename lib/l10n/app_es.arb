@@ -13,5 +13,11 @@
         "type": "int"
       }
     }
-  }
+  },
+  "errorMovieDetailText": "Error obteniendo el detalle de la película",
+  "noDateAvailableText": "Sin fecha disponlible",
+  "castTitle": "Reparto",
+  "noCastAvailableText": "Sin reparto disponible",
+  "trailerTitle": "Trailers",
+  "noTrailerAvailableText": "Sin trailers disponibles"
 }

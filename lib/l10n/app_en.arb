@@ -23,5 +23,23 @@
         "type": "int"
       }
     }
+  },
+  "errorMovieDetailText": "Error getting movie detail",
+  "@errorMovieDetailText": {
+    "description": "App title"
+  },
+  "noDateAvailableText": "No date available",
+  "@noDateAvailableText": {
+    "description": "App title"
+  },
+  "castTitle": "Cast",
+  "noCastAvailableText": "No cast available",
+  "@noCastAvailableText": {
+    "description": "App title"
+  },
+  "trailerTitle": "Trailers",
+  "noTrailerAvailableText": "No trailers available",
+  "@noTrailerAvailableText": {
+    "description": "App title"
   }
 }
