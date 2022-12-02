@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class NoFoundView extends StatelessWidget {
   const NoFoundView({super.key, required this.error});
@@ -10,7 +11,7 @@ class NoFoundView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Oops!!!'),
+        title: Text(context.l10n.noFoundTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -21,7 +22,7 @@ class NoFoundView extends StatelessWidget {
               Text(error, textAlign: TextAlign.center),
               TextButton(
                 onPressed: () => context.go('/'),
-                child: const Text('Go to Home'),
+                child: Text(context.l10n.noFoundReturnButton),
               ),
             ],
           ),
