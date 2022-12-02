@@ -41,5 +41,13 @@
   "noTrailerAvailableText": "No trailers available",
   "@noTrailerAvailableText": {
     "description": "App title"
+  },
+  "noFoundTitle": "Oops!!!",
+  "@noFoundTitle": {
+    "description": "App title"
+  },
+  "noFoundReturnButton": "Go to Home",
+  "@noFoundReturnButton": {
+    "description": "App title"
   }
 }

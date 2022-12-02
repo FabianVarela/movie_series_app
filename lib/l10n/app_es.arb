@@ -19,5 +19,7 @@
   "castTitle": "Reparto",
   "noCastAvailableText": "Sin reparto disponible",
   "trailerTitle": "Trailers",
-  "noTrailerAvailableText": "Sin trailers disponibles"
+  "noTrailerAvailableText": "Sin trailers disponibles",
+  "noFoundTitle": "Oops!!!",
+  "noFoundReturnButton": "Ir al inicio"
 }
