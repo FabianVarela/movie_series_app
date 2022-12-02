@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/models/movies/movies_model.dart';
 import 'package:movie_list_bloc/view/widget/gender_item.dart';
 
@@ -34,7 +35,7 @@ class MovieDetailBody extends StatelessWidget {
                     child: Icon(Icons.favorite, color: Colors.red),
                   ),
                   Text(
-                    '${movie.voteAverage}',
+                    movie.voteAverage.toStringAsFixed(2),
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -43,9 +44,9 @@ class MovieDetailBody extends StatelessWidget {
                 ],
               ),
               Text(
-                movie.releaseDate != null && movie.releaseDate!.isNotEmpty
+                (movie.releaseDate ?? '').isNotEmpty
                     ? movie.releaseDate!
-                    : 'No date available',
+                    : context.l10n.noDateAvailableText,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,

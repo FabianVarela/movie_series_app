@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/bloc/detail/movie_bloc.dart';
 import 'package:movie_list_bloc/bloc/detail/movie_state.dart';
+import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 import 'package:movie_list_bloc/view/movie_detail/widgets/movie_detail_body.dart';
 import 'package:movie_list_bloc/view/movie_detail/widgets/movie_detail_credits.dart';
@@ -83,8 +84,8 @@ class MovieDetailView extends HookWidget {
                     MovieDetailTrailers(trailers: trailer.trailers),
                   ],
                 ),
-                error: (error) => const ErrorMessage(
-                  message: 'Error getting movie detail',
+                error: (error) => ErrorMessage(
+                  message: context.l10n.errorMovieDetailText,
                   fontSize: 15,
                 ),
               ),
