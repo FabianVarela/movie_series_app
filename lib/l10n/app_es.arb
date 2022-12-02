@@ -1,4 +1,17 @@
 {
   "@@locale": "es",
-  "appName": "App películas"
+  "appName": "App películas",
+  "movieListDefaultTitle": "Popular",
+  "errorMovieListText": "Error obteniendo la lista de películas",
+  "quantityList": "{start} / {end}",
+  "@quantityList": {
+    "placeholders": {
+      "start": {
+        "type": "int"
+      },
+      "end": {
+        "type": "int"
+      }
+    }
+  }
 }

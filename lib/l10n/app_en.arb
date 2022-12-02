@@ -3,5 +3,25 @@
   "appName": "Movies App",
   "@appName": {
     "description": "App title"
+  },
+  "movieListDefaultTitle": "Popular",
+  "@movieListDefaultTitle": {
+    "description": "App title"
+  },
+  "errorMovieListText": "Error getting movie list",
+  "@errorMovieListText": {
+    "description": "App title"
+  },
+  "quantityList": "{start} / {end}",
+  "@quantityList": {
+    "description": "App title",
+    "placeholders": {
+      "start": {
+        "type": "int"
+      },
+      "end": {
+        "type": "int"
+      }
+    }
   }
 }
