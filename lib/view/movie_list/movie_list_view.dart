@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie_list_bloc/bloc/movie_list/movie_list_state.dart';
+import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/repository/movie_repository.dart';
 import 'package:movie_list_bloc/view/movie_list/widgets/movie_list_body.dart';
 import 'package:movie_list_bloc/view/movie_list/widgets/movie_list_genres.dart';
@@ -27,6 +28,8 @@ class MovieListView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     final currentGender = useState<int?>(null);
     final genderTitle = useState<String?>(null);
 
@@ -97,13 +100,11 @@ class MovieListView extends HookWidget {
                     ),
                   ],
                 ),
-                error: (_) => const ErrorMessage(
-                  message: 'Error getting movie list',
-                ),
+                error: (_) => ErrorMessage(message: l10n.errorMovieListText),
               ),
             ),
             MovieListHeader(
-              title: '${genderTitle.value ?? 'Popular'} Movies',
+              title: genderTitle.value ?? l10n.movieListDefaultTitle,
               onRestore: () {
                 currentGender.value = null;
                 genderTitle.value = null;
@@ -114,7 +115,7 @@ class MovieListView extends HookWidget {
                 alignment: Alignment.bottomCenter,
                 padding: const EdgeInsets.only(bottom: 40),
                 child: Text(
-                  '${currentIndex.value} / ${length.value}',
+                  l10n.quantityList(currentIndex.value, length.value),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
