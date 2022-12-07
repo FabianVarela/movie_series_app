@@ -265,7 +265,7 @@ packages:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.2"
   freezed_annotation:
     dependency: "direct main"
     description:
@@ -293,7 +293,7 @@ packages:
       name: go_router
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.0"
+    version: "5.2.1"
   google_fonts:
     dependency: "direct main"
     description:
