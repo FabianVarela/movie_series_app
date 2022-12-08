@@ -35,7 +35,7 @@ class MovieDetailTrailers extends StatelessWidget {
           )
         else
           SizedBox(
-            height: 100,
+            height: 120,
             child: ListView.builder(
               itemCount: trailers.length,
               scrollDirection: Axis.horizontal,
