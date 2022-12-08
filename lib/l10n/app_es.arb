@@ -20,6 +20,31 @@
   "noCastAvailableText": "Sin reparto disponible",
   "trailerTitle": "Trailers",
   "noTrailerAvailableText": "Sin trailers disponibles",
+  "actorDetailBirthDate": "Fecha de nacimiento: ",
+  "noBirthDateText": "Sin fecha de nacimiento",
+  "actorDetailDeathDate": "Fecha de muerte: ",
+  "actorDetailBirthPlace": "Lugar de nacimiento: ",
+  "noBirthPlace": "Sin lugar de nacimiento",
+  "actorDetailRol": "Rol: ",
+  "actorDetailPopularity": "Popularidad: ",
+  "actorDetailCharacters": "{count,plural, =0{sin personajes} =1{{count} personaje} other{{count} personajes}}",
+  "@actorDetailCharacters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "actorDetailLoadMore": "Cargar {count} más",
+  "@actorDetailLoadMore": {
+    "description": "App title",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noCharacterText": "Sin personaje",
   "noFoundTitle": "Oops!!!",
   "noFoundReturnButton": "Ir al inicio"
 }
