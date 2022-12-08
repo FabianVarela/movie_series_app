@@ -18,9 +18,9 @@ class MovieClient {
   late String _baseUrl;
   late String _apiKey;
 
-  Future<GendersModel> fetchGenderList() async {
+  Future<GendersModel> fetchGenderList(String language) async {
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/genre/movie/list', _getDefaultParams('es-CO')),
+      Uri.https(_baseUrl, '/3/genre/movie/list', _getDefaultParams(language)),
     );
 
     if (response.statusCode == 200) {
@@ -31,11 +31,11 @@ class MovieClient {
     }
   }
 
-  Future<MoviesModel> fetchMovies({int? genreId}) async {
+  Future<MoviesModel> fetchMovies(String language, {int? genreId}) async {
     final url = genreId != null ? '/3/discover/movie' : '/3/movie/popular';
     final params = <String, dynamic>{
       if (genreId != null) 'with_genres': '$genreId',
-      ..._getDefaultParams('es-CO')
+      ..._getDefaultParams(language)
     };
 
     final response = await _client.get(Uri.https(_baseUrl, url, params));
@@ -47,9 +47,9 @@ class MovieClient {
     }
   }
 
-  Future<MovieModel> fetchMovie(int movieId) async {
+  Future<MovieModel> fetchMovie(int movieId, String language) async {
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/movie/$movieId', _getDefaultParams('es-CO')),
+      Uri.https(_baseUrl, '/3/movie/$movieId', _getDefaultParams(language)),
     );
 
     if (response.statusCode == 200) {
@@ -60,8 +60,8 @@ class MovieClient {
     }
   }
 
-  Future<CreditsModel> fetchCredits(int movieId) async {
-    final queryParams = _getDefaultParams('es-CO');
+  Future<CreditsModel> fetchCredits(int movieId, String language) async {
+    final queryParams = _getDefaultParams(language);
     final response = await _client.get(
       Uri.https(_baseUrl, '/3/movie/$movieId/credits', queryParams),
     );
@@ -74,8 +74,8 @@ class MovieClient {
     }
   }
 
-  Future<TrailersModel> fetchTrailers(int movieId) async {
-    final queryParams = _getDefaultParams('es-CO');
+  Future<TrailersModel> fetchTrailers(int movieId, String language) async {
+    final queryParams = _getDefaultParams(language);
     final response = await _client.get(
       Uri.https(_baseUrl, '/3/movie/$movieId/videos', queryParams),
     );
@@ -88,9 +88,9 @@ class MovieClient {
     }
   }
 
-  Future<ActorModel> fetchActor(int personId) async {
+  Future<ActorModel> fetchActor(int personId, String language) async {
     final response = await _client.get(
-      Uri.https(_baseUrl, '/3/person/$personId', _getDefaultParams('es-CO')),
+      Uri.https(_baseUrl, '/3/person/$personId', _getDefaultParams(language)),
     );
 
     if (response.statusCode == 200) {
@@ -101,8 +101,11 @@ class MovieClient {
     }
   }
 
-  Future<ActorCreditsModel> fetchActorCredits(int actorId) async {
-    final queryParams = _getDefaultParams('es-CO');
+  Future<ActorCreditsModel> fetchActorCredits(
+    int actorId,
+    String language,
+  ) async {
+    final queryParams = _getDefaultParams(language);
     final response = await _client.get(
       Uri.https(_baseUrl, '/3/person/$actorId/movie_credits', queryParams),
     );

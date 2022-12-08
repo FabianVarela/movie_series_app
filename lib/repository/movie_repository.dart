@@ -10,23 +10,24 @@ class MovieRepository {
 
   late final MovieClient _movieClient;
 
-  Future<GendersModel> fetchGenderList() => _movieClient.fetchGenderList();
+  Future<GendersModel> fetchGenderList(String language) =>
+      _movieClient.fetchGenderList(language);
 
-  Future<MoviesModel> fetchMovies({int? genreId}) =>
-      _movieClient.fetchMovies(genreId: genreId);
+  Future<MoviesModel> fetchMovies(String language, {int? genreId}) =>
+      _movieClient.fetchMovies(language, genreId: genreId);
 
-  Future<MovieModel> fetchMovie(int movieId) =>
-      _movieClient.fetchMovie(movieId);
+  Future<MovieModel> fetchMovie(int movieId, String language) =>
+      _movieClient.fetchMovie(movieId, language);
 
-  Future<CreditsModel> fetchCredits(int movieId) =>
-      _movieClient.fetchCredits(movieId);
+  Future<CreditsModel> fetchCredits(int movieId, String language) =>
+      _movieClient.fetchCredits(movieId, language);
 
-  Future<TrailersModel> fetchTrailers(int movieId) =>
-      _movieClient.fetchTrailers(movieId);
+  Future<TrailersModel> fetchTrailers(int movieId, String language) =>
+      _movieClient.fetchTrailers(movieId, language);
 
-  Future<ActorModel> fetchActor(int personId) =>
-      _movieClient.fetchActor(personId);
+  Future<ActorModel> fetchActor(int personId, String language) =>
+      _movieClient.fetchActor(personId, language);
 
-  Future<ActorCreditsModel> fetchActorCredits(int personId) =>
-      _movieClient.fetchActorCredits(personId);
+  Future<ActorCreditsModel> fetchActorCredits(int personId, String language) =>
+      _movieClient.fetchActorCredits(personId, language);
 }
