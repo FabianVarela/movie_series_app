@@ -6,13 +6,14 @@ class ActorBloc extends Cubit<ActorState> {
   ActorBloc(this._repository, [super.initialState = const ActorStateInitial()]);
 
   late final MovieRepository _repository;
+  final _lang = 'es-CO';
 
   Future<void> getActorData(int personId) async {
     try {
       emit(const ActorStateLoading());
 
-      final actor = await _repository.fetchActor(personId);
-      final actorCredits = await _repository.fetchActorCredits(personId);
+      final actor = await _repository.fetchActor(personId, _lang);
+      final actorCredits = await _repository.fetchActorCredits(personId, _lang);
 
       emit(ActorStateSuccess(actor: actor, credits: actorCredits));
     } on Exception catch (e) {

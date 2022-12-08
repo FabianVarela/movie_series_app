@@ -6,14 +6,15 @@ class MovieBloc extends Cubit<MovieState> {
   MovieBloc(this._repository, [super.initialState = const MovieStateInitial()]);
 
   late final MovieRepository _repository;
+  final _lang = 'es-CO';
 
   Future<void> getMovieDetails(int movieId) async {
     try {
       emit(const MovieStateLoading());
 
-      final movie = await _repository.fetchMovie(movieId);
-      final credits = await _repository.fetchCredits(movieId);
-      final trailers = await _repository.fetchTrailers(movieId);
+      final movie = await _repository.fetchMovie(movieId, _lang);
+      final credits = await _repository.fetchCredits(movieId, _lang);
+      final trailers = await _repository.fetchTrailers(movieId, _lang);
 
       emit(
         MovieStateSuccess(movie: movie, credits: credits, trailers: trailers),

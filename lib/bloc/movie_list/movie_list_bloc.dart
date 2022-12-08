@@ -9,13 +9,14 @@ class MoviesBloc extends Cubit<MovieListState> {
   ]);
 
   late final MovieRepository _repository;
+  final _lang = 'es-CO';
 
   Future<void> getMovies({int? genreId}) async {
     try {
       emit(const MovieListStateLoading());
 
-      final movies = await _repository.fetchMovies(genreId: genreId);
-      final genres = await _repository.fetchGenderList();
+      final movies = await _repository.fetchMovies(_lang, genreId: genreId);
+      final genres = await _repository.fetchGenderList(_lang);
 
       emit(
         MovieListStateSuccess(movies: movies, genres: genres),
