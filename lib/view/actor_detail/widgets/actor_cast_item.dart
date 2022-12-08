@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/models/actor/actor_model.dart';
 import 'package:movie_list_bloc/view/widget/circle_image.dart';
 
@@ -22,7 +23,7 @@ class ActorCastItem extends StatelessWidget {
       title: Text(
         (actorCredit.character ?? '').isNotEmpty
             ? actorCredit.character!
-            : 'No character',
+            : context.l10n.noCharacterText,
         style: const TextStyle(fontSize: 17),
       ),
       subtitle: Text(actorCredit.title, style: const TextStyle(fontSize: 15)),
