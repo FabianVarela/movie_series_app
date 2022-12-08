@@ -44,7 +44,7 @@
       }
     }
   },
-  "noCharacterText": "Sin personaje",
+  "noCharacterText": "Personaje desconocido",
   "noFoundTitle": "Oops!!!",
   "noFoundReturnButton": "Ir al inicio"
 }
