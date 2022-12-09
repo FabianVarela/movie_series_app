@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await SystemChrome.setPreferredOrientations(
@@ -14,7 +15,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   await runZonedGuarded(
-    () async => runApp(await builder()),
+    () async => runApp(ProviderScope(child: await builder())),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
