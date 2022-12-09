@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/common/page_routes.dart';
+import 'package:movie_list_bloc/features/movie_list/view/movie_list_view.dart';
 import 'package:movie_list_bloc/view/actor_detail/actor_detail_view.dart';
 import 'package:movie_list_bloc/view/movie_detail/movie_detail_view.dart';
-import 'package:movie_list_bloc/view/movie_list/movie_list_view.dart';
 import 'package:movie_list_bloc/view/no_found_view.dart';
 
 final movieRouter = GoRouter(
@@ -14,7 +14,7 @@ final movieRouter = GoRouter(
       path: '/',
       pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
         pageKey: state.pageKey,
-        child: const MovieListPage(),
+        child: const MovieListView(),
       ),
       routes: <GoRoute>[
         GoRoute(
