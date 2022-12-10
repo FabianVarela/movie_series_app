@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:movie_list_bloc/core/model/movies_model.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_item.dart';
-import 'package:movie_list_bloc/models/movies/movies_model.dart';
 
 class MovieListBody extends HookWidget {
   const MovieListBody({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_bloc/core/model/gender_model.dart';
 import 'package:movie_list_bloc/core/widgets/gender_item.dart';
-import 'package:movie_list_bloc/models/gender/gender_model.dart';
 
 class MovieListGenres extends StatelessWidget {
   const MovieListGenres({

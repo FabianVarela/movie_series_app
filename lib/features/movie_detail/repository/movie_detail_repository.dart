@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:movie_list_bloc/core/client/dio_provider.dart';
-import 'package:movie_list_bloc/models/credits/credits_model.dart';
-import 'package:movie_list_bloc/models/movies/movies_model.dart';
-import 'package:movie_list_bloc/models/trailers/trailer_model.dart';
+import 'package:movie_list_bloc/core/model/movies_model.dart';
+import 'package:movie_list_bloc/features/movie_detail/model/credits_model.dart';
+import 'package:movie_list_bloc/features/movie_detail/model/trailer_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'movie_detail_repository.g.dart';
