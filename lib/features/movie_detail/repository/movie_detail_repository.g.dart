@@ -122,7 +122,7 @@ class FetchMovieFamily extends Family<AsyncValue<MovieModel>> {
   String? get name => r'fetchMovieProvider';
 }
 
-String $fetchCreditsHash() => r'19a90e7c2b9feebbf95df0557c01ea7ab2de884a';
+String $fetchCreditsHash() => r'bbfe54967b536e92773ee4b5127eb10186c7f58a';
 
 /// See also [fetchCredits].
 class FetchCreditsProvider extends AutoDisposeFutureProvider<CreditsModel> {

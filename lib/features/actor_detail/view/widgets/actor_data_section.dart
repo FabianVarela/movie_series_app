@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:movie_list_bloc/features/actor_detail/view/widgets/actor_credits_section.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/models/actor/actor_model.dart';
-import 'package:movie_list_bloc/view/actor_detail/widgets/actor_credits_section.dart';
 import 'package:movie_list_bloc/view/widget/section_staggered_animation.dart';
 import 'package:movie_list_bloc/view/widget/title_subtitle.dart';
 
@@ -10,11 +10,11 @@ class ActorDataSection extends HookWidget {
   const ActorDataSection({
     super.key,
     required this.actor,
-    required this.credits,
+    this.credits,
   });
 
   final ActorModel actor;
-  final ActorCreditsModel credits;
+  final ActorCreditsModel? credits;
 
   @override
   Widget build(BuildContext context) {
@@ -91,29 +91,31 @@ class ActorDataSection extends HookWidget {
             ),
           ),
         ),
-        SectionStaggeredAnimation(
-          controller: controller,
-          startInterval: .500,
-          endInterval: .700,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-            child: Text(
-              actor.biography,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
+        if (actor.biography.isNotEmpty)
+          SectionStaggeredAnimation(
+            controller: controller,
+            startInterval: .500,
+            endInterval: .700,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+              child: Text(
+                actor.biography,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
             ),
           ),
-        ),
-        SectionStaggeredAnimation(
-          controller: controller,
-          startInterval: .700,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            child: ActorCreditsSection(credits: credits),
+        if (credits != null)
+          SectionStaggeredAnimation(
+            controller: controller,
+            startInterval: actor.biography.isEmpty ? .500 : .700,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: ActorCreditsSection(credits: credits!),
+            ),
           ),
-        ),
       ],
     );
   }
