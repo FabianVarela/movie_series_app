@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/features/movie_detail/repository/movie_detail_repository.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_body.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_credits.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_image.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_trailers.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
-import 'package:movie_list_bloc/view/widget/error_message.dart';
 
 class MovieDetailView extends HookConsumerWidget {
   const MovieDetailView({

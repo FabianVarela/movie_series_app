@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/models/trailers/trailer_model.dart';
-import 'package:movie_list_bloc/view/widget/trailer_item.dart';
 
 class MovieDetailTrailers extends StatelessWidget {
   const MovieDetailTrailers({super.key, required this.trailers});
@@ -40,7 +39,32 @@ class MovieDetailTrailers extends StatelessWidget {
               itemCount: trailers.length,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemBuilder: (_, i) => TrailerItem(trailer: trailers[i]),
+              itemBuilder: (_, index) => Container(
+                width: 150,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.all(5),
+                      height: 72,
+                      color: Colors.grey,
+                      child: const Center(
+                        child: Icon(Icons.play_circle_filled),
+                      ),
+                    ),
+                    Text(
+                      trailers[index].name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
       ],

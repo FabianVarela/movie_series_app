@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_bloc/core/widgets/gender_item.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/models/movies/movies_model.dart';
-import 'package:movie_list_bloc/view/widget/gender_item.dart';
 
 class MovieDetailBody extends StatelessWidget {
   const MovieDetailBody({super.key, required this.movie});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_bloc/core/widgets/circle_image.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/models/actor/actor_model.dart';
-import 'package:movie_list_bloc/view/widget/circle_image.dart';
 
 class ActorCastItem extends StatelessWidget {
   const ActorCastItem({super.key, required this.actorCredit});

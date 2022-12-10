@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/features/movie_list/repository/movie_list_repository.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_body.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_genres.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_header.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
-import 'package:movie_list_bloc/view/widget/error_message.dart';
 
 class MovieListView extends HookConsumerWidget {
   const MovieListView({super.key});

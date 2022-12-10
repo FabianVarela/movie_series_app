@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/widgets/circle_image.dart';
+import 'package:movie_list_bloc/core/widgets/error_message.dart';
+import 'package:movie_list_bloc/core/widgets/transition_app_bar.dart';
 import 'package:movie_list_bloc/features/actor_detail/repository/actor_detail_repository.dart';
 import 'package:movie_list_bloc/features/actor_detail/view/widgets/actor_data_section.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
-import 'package:movie_list_bloc/view/widget/circle_image.dart';
-import 'package:movie_list_bloc/view/widget/error_message.dart';
-import 'package:movie_list_bloc/view/widget/transition_app_bar.dart';
 
 class ActorDetailView extends HookConsumerWidget {
   const ActorDetailView({super.key, required this.personId, this.imageUrl});

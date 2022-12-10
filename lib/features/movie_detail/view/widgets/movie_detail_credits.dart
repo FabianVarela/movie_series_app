@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_bloc/core/widgets/circle_image.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:movie_list_bloc/models/credits/credits_model.dart';
-import 'package:movie_list_bloc/view/widget/credit_item.dart';
 
 class MovieDetailCredits extends StatelessWidget {
   const MovieDetailCredits({
@@ -15,6 +15,8 @@ class MovieDetailCredits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
+
     return Column(
       children: <Widget>[
         Padding(
@@ -52,7 +54,35 @@ class MovieDetailCredits extends StatelessWidget {
                   casts[index].id,
                   casts[index].profilePath,
                 ),
-                child: CreditItem(cast: casts[index]),
+                child: Container(
+                  width: 100,
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Hero(
+                        tag: '${casts[index].id}',
+                        child: CircleImage(
+                          imageUrl: casts[index].profilePath != null
+                              ? '$imdbImageUri${casts[index].profilePath}'
+                              : null,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text(
+                          casts[index].name,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
