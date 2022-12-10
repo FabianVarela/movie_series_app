@@ -92,6 +92,10 @@
   "@noCharacterText": {
     "description": "App title"
   },
+  "errorActorDetailText": "Error getting actor details",
+  "@errorActorDetailText": {
+    "description": "App title"
+  },
   "noFoundTitle": "Oops!!!",
   "@noFoundTitle": {
     "description": "App title"

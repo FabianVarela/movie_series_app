@@ -45,6 +45,7 @@
     }
   },
   "noCharacterText": "Personaje desconocido",
+  "errorActorDetailText": "Error al obtener los datos del actor",
   "noFoundTitle": "Oops!!!",
   "noFoundReturnButton": "Ir al inicio"
 }
