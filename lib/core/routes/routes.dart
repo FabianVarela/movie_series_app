@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_list_bloc/common/page_routes.dart';
+import 'package:movie_list_bloc/core/routes/page_routes.dart';
 import 'package:movie_list_bloc/features/actor_detail/view/actor_detail_view.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/movie_detail_view.dart';
 import 'package:movie_list_bloc/features/movie_list/view/movie_list_view.dart';

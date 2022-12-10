@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_list_bloc/common/routes.dart';
+import 'package:movie_list_bloc/core/routes/routes.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class App extends StatelessWidget {
