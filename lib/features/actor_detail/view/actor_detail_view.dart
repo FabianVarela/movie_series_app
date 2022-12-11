@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/widgets/circle_image.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/core/widgets/transition_app_bar.dart';
@@ -17,11 +18,14 @@ class ActorDetailView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
 
+    final locale = ref.watch(languageProvider);
+    final language = locale.requireValue?.languageCode;
+
     final actor = ref.watch(
-      fetchActorProvider(personId: personId, language: 'es-CO'),
+      fetchActorProvider(personId: personId, language: language),
     );
     final actorCredits = ref.watch(
-      fetchActorCreditsProvider(actorId: personId, language: 'es-CO'),
+      fetchActorCreditsProvider(actorId: personId, language: language),
     );
 
     return Scaffold(

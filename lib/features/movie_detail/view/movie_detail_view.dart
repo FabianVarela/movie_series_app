@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/features/movie_detail/repository/movie_detail_repository.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_body.dart';
@@ -21,14 +22,17 @@ class MovieDetailView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(languageProvider);
+    final language = locale.requireValue?.languageCode;
+
     final movie = ref.watch(
-      fetchMovieProvider(movieId: movieId, language: 'es-CO'),
+      fetchMovieProvider(movieId: movieId, language: language),
     );
     final credits = ref.watch(
-      fetchCreditsProvider(movieId: movieId, language: 'es-CO'),
+      fetchCreditsProvider(movieId: movieId, language: language),
     );
     final trailers = ref.watch(
-      fetchTrailersProvider(movieId: movieId, language: 'es-CO'),
+      fetchTrailersProvider(movieId: movieId, language: language),
     );
 
     return Scaffold(

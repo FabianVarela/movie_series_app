@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/features/movie_list/repository/movie_list_repository.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_body.dart';
@@ -14,7 +15,10 @@ class MovieListView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final genders = ref.watch(fetchGendersProvider(language: 'es-CO'));
+    final locale = ref.watch(languageProvider);
+    final genders = ref.watch(
+      fetchGendersProvider(language: locale.requireValue?.languageCode),
+    );
 
     final currentGender = useState<int?>(null);
     final titleGender = useState<String?>(null);
@@ -76,8 +80,11 @@ class _MovieList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(languageProvider);
+    final language = locale.requireValue?.languageCode;
+
     final movies = ref.watch(
-      fetchMoviesProvider(language: 'es-CO', genreId: genreId),
+      fetchMoviesProvider(genreId: genreId, language: language),
     );
 
     return movies.when(
