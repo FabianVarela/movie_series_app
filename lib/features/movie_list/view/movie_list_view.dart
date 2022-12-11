@@ -16,6 +16,7 @@ class MovieListView extends HookConsumerWidget {
     final titleGender = useState<String?>(null);
 
     final currentIndex = useState(1);
+    final isEnabledScroll = useState(true);
 
     return Scaffold(
       body: SafeArea(
@@ -37,7 +38,9 @@ class MovieListView extends HookConsumerWidget {
                   child: MovieListBody(
                     currentIndex: currentIndex.value,
                     genderId: currentGender.value,
+                    enabledScroll: isEnabledScroll.value,
                     onChangePage: (index) => currentIndex.value = index,
+                    onEnabledScroll: (value) => isEnabledScroll.value = !value,
                     onSelectMovie: (movie) => context.go(
                       '/detail/${movie.id}',
                       extra: {'posterPath': movie.posterPath},
