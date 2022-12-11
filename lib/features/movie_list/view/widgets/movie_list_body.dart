@@ -1,42 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/model/movies_model.dart';
+import 'package:movie_list_bloc/core/provider/language_provider.dart';
+import 'package:movie_list_bloc/core/widgets/error_message.dart';
+import 'package:movie_list_bloc/features/movie_list/repository/movie_list_repository.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_item.dart';
+import 'package:movie_list_bloc/l10n/l10n.dart';
 
-class MovieListBody extends HookWidget {
+class MovieListBody extends ConsumerWidget {
   const MovieListBody({
     super.key,
-    required this.movies,
-    this.index = 0,
-    this.onSelectMovie,
-    this.onChangePage,
+    this.currentIndex = 0,
+    required this.onSelectMovie,
+    required this.onChangePage,
+    this.genderId,
   });
 
-  final List<MovieModel> movies;
-  final int index;
-  final ValueSetter<MovieModel>? onSelectMovie;
-  final ValueSetter<int>? onChangePage;
+  final int currentIndex;
+  final ValueSetter<MovieModel> onSelectMovie;
+  final ValueSetter<int> onChangePage;
+  final int? genderId;
 
   @override
-  Widget build(BuildContext context) {
-    final isEnabledScroll = useState(true);
-    final pageController = usePageController(viewportFraction: .8);
-
-    return Center(
-      child: PageView.builder(
-        controller: pageController,
-        itemCount: movies.length,
-        physics: isEnabledScroll.value
-            ? const BouncingScrollPhysics()
-            : const NeverScrollableScrollPhysics(),
-        onPageChanged: (i) => onChangePage?.call(i + 1),
-        itemBuilder: (_, i) => MovieListItem(
-          itemModel: movies[i],
-          onPressItem: (movie) => onSelectMovie?.call(movie),
-          isCurrent: (index - 1) == i,
-          onExpanded: (enabled) => isEnabledScroll.value = !enabled,
-        ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(languageProvider);
+    final movies = ref.watch(
+      fetchMoviesProvider(
+        genreId: genderId,
+        language: locale.requireValue?.languageCode,
       ),
+    );
+
+    return movies.when(
+      data: (movie) => HookConsumer(
+        builder: (_, __, ___) {
+          final isEnabledScroll = useState(true);
+          final pageController = usePageController(viewportFraction: .8);
+
+          return Stack(
+            children: <Widget>[
+              Center(
+                child: PageView.builder(
+                  controller: pageController,
+                  itemCount: movie.movies.length,
+                  physics: isEnabledScroll.value
+                      ? const BouncingScrollPhysics()
+                      : const NeverScrollableScrollPhysics(),
+                  onPageChanged: (i) => onChangePage(i + 1),
+                  itemBuilder: (_, i) => MovieListItem(
+                    itemModel: movie.movies[i],
+                    onPressItem: onSelectMovie,
+                    isCurrent: (currentIndex - 1) == i,
+                    onExpanded: (enabled) => isEnabledScroll.value = !enabled,
+                  ),
+                ),
+              ),
+              if (movies.hasValue)
+                Positioned.fill(
+                  child: Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: Text(
+                      context.l10n.quantityList(
+                        currentIndex,
+                        movies.value?.movies.length ?? 0,
+                      ),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          );
+        },
+      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (_, __) => ErrorMessage(message: context.l10n.errorMovieListText),
     );
   }
 }

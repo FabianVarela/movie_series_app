@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:movie_list_bloc/core/provider/language_provider.dart';
-import 'package:movie_list_bloc/core/widgets/error_message.dart';
-import 'package:movie_list_bloc/features/movie_list/repository/movie_list_repository.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_body.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_genres.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_header.dart';
@@ -15,13 +12,9 @@ class MovieListView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(languageProvider);
-    final genders = ref.watch(
-      fetchGendersProvider(language: locale.requireValue?.languageCode),
-    );
-
     final currentGender = useState<int?>(null);
     final titleGender = useState<String?>(null);
+
     final currentIndex = useState(1);
 
     return Scaffold(
@@ -31,23 +24,24 @@ class MovieListView extends HookConsumerWidget {
           children: <Widget>[
             Column(
               children: <Widget>[
-                genders.maybeWhen(
-                  data: (gender) => MovieListGenres(
-                    id: currentGender.value,
-                    genders: gender.genders,
-                    onSelectGenre: (genre) {
-                      currentGender.value = genre.id;
-                      titleGender.value = genre.name;
-                      currentIndex.value = 1;
-                    },
-                  ),
-                  orElse: Offstage.new,
+                MovieListGenres(
+                  id: currentGender.value,
+                  onSelect: (gender) {
+                    currentGender.value = gender.id;
+                    titleGender.value = gender.name;
+
+                    currentIndex.value = 1;
+                  },
                 ),
                 Expanded(
-                  child: _MovieList(
+                  child: MovieListBody(
                     currentIndex: currentIndex.value,
-                    genreId: currentGender.value,
+                    genderId: currentGender.value,
                     onChangePage: (index) => currentIndex.value = index,
+                    onSelectMovie: (movie) => context.go(
+                      '/detail/${movie.id}',
+                      extra: {'posterPath': movie.posterPath},
+                    ),
                   ),
                 ),
               ],
@@ -57,69 +51,13 @@ class MovieListView extends HookConsumerWidget {
               onRestore: () {
                 currentGender.value = null;
                 titleGender.value = null;
+
                 currentIndex.value = 1;
               },
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _MovieList extends HookConsumerWidget {
-  const _MovieList({
-    required this.currentIndex,
-    this.genreId,
-    required this.onChangePage,
-  });
-
-  final int currentIndex;
-  final int? genreId;
-  final ValueSetter<int> onChangePage;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(languageProvider);
-    final language = locale.requireValue?.languageCode;
-
-    final movies = ref.watch(
-      fetchMoviesProvider(genreId: genreId, language: language),
-    );
-
-    return movies.when(
-      data: (movie) => Stack(
-        children: <Widget>[
-          MovieListBody(
-            movies: movie.movies,
-            index: currentIndex,
-            onChangePage: onChangePage,
-            onSelectMovie: (movie) => context.go(
-              '/detail/${movie.id}',
-              extra: {'posterPath': movie.posterPath},
-            ),
-          ),
-          if (movies.hasValue)
-            Positioned.fill(
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.only(bottom: 40),
-                child: Text(
-                  context.l10n.quantityList(
-                    currentIndex,
-                    movies.value?.movies.length ?? 0,
-                  ),
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-              ),
-            ),
-        ],
-      ),
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (_, __) => ErrorMessage(message: context.l10n.errorMovieListText),
     );
   }
 }
