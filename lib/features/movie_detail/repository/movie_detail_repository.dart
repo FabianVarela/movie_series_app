@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movie_list_bloc/core/client/dio_provider.dart';
+import 'package:movie_list_bloc/core/client/remote/dio_provider.dart';
 import 'package:movie_list_bloc/core/model/movies_model.dart';
 import 'package:movie_list_bloc/features/movie_detail/model/credits_model.dart';
 import 'package:movie_list_bloc/features/movie_detail/model/trailer_model.dart';
