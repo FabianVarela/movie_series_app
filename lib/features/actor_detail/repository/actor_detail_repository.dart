@@ -13,22 +13,28 @@ class ActorDetailRepository {
 
   Future<ActorModel> fetchActor({
     required int personId,
-    required String language,
+    String? language,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/3/person/$personId',
-      queryParameters: {'api_key': apiKey, 'language': language},
+      queryParameters: {
+        'api_key': apiKey,
+        if (language != null) 'language': language,
+      },
     );
     return ActorModel.fromJson(response.data!);
   }
 
   Future<ActorCreditsModel> fetchActorCredits({
     required int actorId,
-    required String language,
+    String? language,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/3/person/$actorId/movie_credits',
-      queryParameters: {'api_key': apiKey, 'language': language},
+      queryParameters: {
+        'api_key': apiKey,
+        if (language != null) 'language': language,
+      },
     );
     return ActorCreditsModel.fromJson(response.data!);
   }
@@ -46,7 +52,7 @@ ActorDetailRepository actorDetailRepository(ActorDetailRepositoryRef ref) {
 Future<ActorModel> fetchActor(
   FetchActorRef ref, {
   required int personId,
-  required String language,
+  String? language,
 }) async {
   final actorDetailRepository = ref.watch(actorDetailRepositoryProvider);
   return actorDetailRepository.fetchActor(
@@ -59,7 +65,7 @@ Future<ActorModel> fetchActor(
 Future<ActorCreditsModel> fetchActorCredits(
   FetchActorCreditsRef ref, {
   required int actorId,
-  required String language,
+  String? language,
 }) async {
   final actorDetailRepository = ref.watch(actorDetailRepositoryProvider);
   return actorDetailRepository.fetchActorCredits(

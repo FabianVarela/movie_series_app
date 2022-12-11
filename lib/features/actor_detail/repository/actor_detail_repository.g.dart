@@ -43,13 +43,13 @@ final actorDetailRepositoryProvider =
 );
 typedef ActorDetailRepositoryRef
     = AutoDisposeProviderRef<ActorDetailRepository>;
-String $fetchActorHash() => r'd2fadc165e6755229d4b5370d85408bde4dadae0';
+String $fetchActorHash() => r'6daa4bdfd4fed3ce3ce4d3bca752f291ccdad3ec';
 
 /// See also [fetchActor].
 class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
   FetchActorProvider({
     required this.personId,
-    required this.language,
+    this.language,
   }) : super(
           (ref) => fetchActor(
             ref,
@@ -65,7 +65,7 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
         );
 
   final int personId;
-  final String language;
+  final String? language;
 
   @override
   bool operator ==(Object other) {
@@ -94,7 +94,7 @@ class FetchActorFamily extends Family<AsyncValue<ActorModel>> {
 
   FetchActorProvider call({
     required int personId,
-    required String language,
+    String? language,
   }) {
     return FetchActorProvider(
       personId: personId,
@@ -122,14 +122,14 @@ class FetchActorFamily extends Family<AsyncValue<ActorModel>> {
   String? get name => r'fetchActorProvider';
 }
 
-String $fetchActorCreditsHash() => r'b12776d5bebbca333f1b19d3ed480b83a674be9f';
+String $fetchActorCreditsHash() => r'1cb61bf1f0514993ca348113bdddc24150161b17';
 
 /// See also [fetchActorCredits].
 class FetchActorCreditsProvider
     extends AutoDisposeFutureProvider<ActorCreditsModel> {
   FetchActorCreditsProvider({
     required this.actorId,
-    required this.language,
+    this.language,
   }) : super(
           (ref) => fetchActorCredits(
             ref,
@@ -145,7 +145,7 @@ class FetchActorCreditsProvider
         );
 
   final int actorId;
-  final String language;
+  final String? language;
 
   @override
   bool operator ==(Object other) {
@@ -174,7 +174,7 @@ class FetchActorCreditsFamily extends Family<AsyncValue<ActorCreditsModel>> {
 
   FetchActorCreditsProvider call({
     required int actorId,
-    required String language,
+    String? language,
   }) {
     return FetchActorCreditsProvider(
       actorId: actorId,

@@ -15,33 +15,42 @@ class MovieDetailRepository {
 
   Future<MovieModel> fetchMovie({
     required int movieId,
-    required String language,
+    String? language,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/3/movie/$movieId',
-      queryParameters: {'api_key': apiKey, 'language': language},
+      queryParameters: {
+        'api_key': apiKey,
+        if (language != null) 'language': language,
+      },
     );
     return MovieModel.fromJson(response.data!);
   }
 
   Future<CreditsModel> fetchCredits({
     required int movieId,
-    required String language,
+    String? language,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/3/movie/$movieId/credits',
-      queryParameters: {'api_key': apiKey, 'language': language},
+      queryParameters: {
+        'api_key': apiKey,
+        if (language != null) 'language': language,
+      },
     );
     return CreditsModel.fromJson(response.data!);
   }
 
   Future<TrailersModel> fetchTrailers({
     required int movieId,
-    required String language,
+    String? language,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/3/movie/$movieId/videos',
-      queryParameters: {'api_key': apiKey, 'language': language},
+      queryParameters: {
+        'api_key': apiKey,
+        if (language != null) 'language': language,
+      },
     );
     return TrailersModel.fromJson(response.data!);
   }
@@ -59,7 +68,7 @@ MovieDetailRepository movieDetailRepository(MovieDetailRepositoryRef ref) {
 Future<MovieModel> fetchMovie(
   FetchMovieRef ref, {
   required int movieId,
-  required String language,
+  String? language,
 }) async {
   final movieDetailRepository = ref.watch(movieDetailRepositoryProvider);
   return movieDetailRepository.fetchMovie(movieId: movieId, language: language);
@@ -69,7 +78,7 @@ Future<MovieModel> fetchMovie(
 Future<CreditsModel> fetchCredits(
   FetchCreditsRef ref, {
   required int movieId,
-  required String language,
+  String? language,
 }) async {
   final movieDetailRepository = ref.watch(movieDetailRepositoryProvider);
   return movieDetailRepository.fetchCredits(
@@ -82,7 +91,7 @@ Future<CreditsModel> fetchCredits(
 Future<TrailersModel> fetchTrailers(
   FetchTrailersRef ref, {
   required int movieId,
-  required String language,
+  String? language,
 }) async {
   final movieDetailRepository = ref.watch(movieDetailRepositoryProvider);
   return movieDetailRepository.fetchTrailers(

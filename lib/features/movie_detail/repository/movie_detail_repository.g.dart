@@ -43,13 +43,13 @@ final movieDetailRepositoryProvider =
 );
 typedef MovieDetailRepositoryRef
     = AutoDisposeProviderRef<MovieDetailRepository>;
-String $fetchMovieHash() => r'7f982fbcc645e2c8f454573fc473dc61960737e1';
+String $fetchMovieHash() => r'aaf708bbbd7e5e04299af65885916b5311a16887';
 
 /// See also [fetchMovie].
 class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
   FetchMovieProvider({
     required this.movieId,
-    required this.language,
+    this.language,
   }) : super(
           (ref) => fetchMovie(
             ref,
@@ -65,7 +65,7 @@ class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
         );
 
   final int movieId;
-  final String language;
+  final String? language;
 
   @override
   bool operator ==(Object other) {
@@ -94,7 +94,7 @@ class FetchMovieFamily extends Family<AsyncValue<MovieModel>> {
 
   FetchMovieProvider call({
     required int movieId,
-    required String language,
+    String? language,
   }) {
     return FetchMovieProvider(
       movieId: movieId,
@@ -122,13 +122,13 @@ class FetchMovieFamily extends Family<AsyncValue<MovieModel>> {
   String? get name => r'fetchMovieProvider';
 }
 
-String $fetchCreditsHash() => r'bbfe54967b536e92773ee4b5127eb10186c7f58a';
+String $fetchCreditsHash() => r'27000e952d0a268572901df392d5db5508e8c2f5';
 
 /// See also [fetchCredits].
 class FetchCreditsProvider extends AutoDisposeFutureProvider<CreditsModel> {
   FetchCreditsProvider({
     required this.movieId,
-    required this.language,
+    this.language,
   }) : super(
           (ref) => fetchCredits(
             ref,
@@ -144,7 +144,7 @@ class FetchCreditsProvider extends AutoDisposeFutureProvider<CreditsModel> {
         );
 
   final int movieId;
-  final String language;
+  final String? language;
 
   @override
   bool operator ==(Object other) {
@@ -173,7 +173,7 @@ class FetchCreditsFamily extends Family<AsyncValue<CreditsModel>> {
 
   FetchCreditsProvider call({
     required int movieId,
-    required String language,
+    String? language,
   }) {
     return FetchCreditsProvider(
       movieId: movieId,
@@ -201,13 +201,13 @@ class FetchCreditsFamily extends Family<AsyncValue<CreditsModel>> {
   String? get name => r'fetchCreditsProvider';
 }
 
-String $fetchTrailersHash() => r'0e47dedf66af1dceb10abd84c72ba1c1dd0de25d';
+String $fetchTrailersHash() => r'af2c4ce18c6a6da761625f478dc962484f20b35b';
 
 /// See also [fetchTrailers].
 class FetchTrailersProvider extends AutoDisposeFutureProvider<TrailersModel> {
   FetchTrailersProvider({
     required this.movieId,
-    required this.language,
+    this.language,
   }) : super(
           (ref) => fetchTrailers(
             ref,
@@ -223,7 +223,7 @@ class FetchTrailersProvider extends AutoDisposeFutureProvider<TrailersModel> {
         );
 
   final int movieId;
-  final String language;
+  final String? language;
 
   @override
   bool operator ==(Object other) {
@@ -252,7 +252,7 @@ class FetchTrailersFamily extends Family<AsyncValue<TrailersModel>> {
 
   FetchTrailersProvider call({
     required int movieId,
-    required String language,
+    String? language,
   }) {
     return FetchTrailersProvider(
       movieId: movieId,

@@ -41,12 +41,12 @@ final movieListRepositoryProvider = AutoDisposeProvider<MovieListRepository>(
       : $movieListRepositoryHash,
 );
 typedef MovieListRepositoryRef = AutoDisposeProviderRef<MovieListRepository>;
-String $fetchGendersHash() => r'9bdbe18360d5b3e60452db3bd43562d1acd97d7f';
+String $fetchGendersHash() => r'0afeff2ae1dbcd73be7a7e79c58bb454f6b0cd72';
 
 /// See also [fetchGenders].
 class FetchGendersProvider extends AutoDisposeFutureProvider<GendersModel> {
   FetchGendersProvider({
-    required this.language,
+    this.language,
   }) : super(
           (ref) => fetchGenders(
             ref,
@@ -60,7 +60,7 @@ class FetchGendersProvider extends AutoDisposeFutureProvider<GendersModel> {
                   : $fetchGendersHash,
         );
 
-  final String language;
+  final String? language;
 
   @override
   bool operator ==(Object other) {
@@ -85,7 +85,7 @@ class FetchGendersFamily extends Family<AsyncValue<GendersModel>> {
   FetchGendersFamily();
 
   FetchGendersProvider call({
-    required String language,
+    String? language,
   }) {
     return FetchGendersProvider(
       language: language,
@@ -111,18 +111,18 @@ class FetchGendersFamily extends Family<AsyncValue<GendersModel>> {
   String? get name => r'fetchGendersProvider';
 }
 
-String $fetchMoviesHash() => r'1a5df738e9f081927993847fe898af27fdfa5992';
+String $fetchMoviesHash() => r'dcc57e8d71d88472173df7df0290b7122d49aa94';
 
 /// See also [fetchMovies].
 class FetchMoviesProvider extends AutoDisposeFutureProvider<MoviesModel> {
   FetchMoviesProvider({
-    required this.language,
     this.genreId,
+    this.language,
   }) : super(
           (ref) => fetchMovies(
             ref,
-            language: language,
             genreId: genreId,
+            language: language,
           ),
           from: fetchMoviesProvider,
           name: r'fetchMoviesProvider',
@@ -132,21 +132,21 @@ class FetchMoviesProvider extends AutoDisposeFutureProvider<MoviesModel> {
                   : $fetchMoviesHash,
         );
 
-  final String language;
   final int? genreId;
+  final String? language;
 
   @override
   bool operator ==(Object other) {
     return other is FetchMoviesProvider &&
-        other.language == language &&
-        other.genreId == genreId;
+        other.genreId == genreId &&
+        other.language == language;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, language.hashCode);
     hash = _SystemHash.combine(hash, genreId.hashCode);
+    hash = _SystemHash.combine(hash, language.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -161,12 +161,12 @@ class FetchMoviesFamily extends Family<AsyncValue<MoviesModel>> {
   FetchMoviesFamily();
 
   FetchMoviesProvider call({
-    required String language,
     int? genreId,
+    String? language,
   }) {
     return FetchMoviesProvider(
-      language: language,
       genreId: genreId,
+      language: language,
     );
   }
 
@@ -175,8 +175,8 @@ class FetchMoviesFamily extends Family<AsyncValue<MoviesModel>> {
     covariant FetchMoviesProvider provider,
   ) {
     return call(
-      language: provider.language,
       genreId: provider.genreId,
+      language: provider.language,
     );
   }
 

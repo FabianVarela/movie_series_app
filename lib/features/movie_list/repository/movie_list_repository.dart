@@ -12,24 +12,27 @@ class MovieListRepository {
   final Dio dio;
   final String apiKey;
 
-  Future<GendersModel> fetchGenders({required String language}) async {
+  Future<GendersModel> fetchGenders({String? language}) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/3/genre/movie/list',
-      queryParameters: {'api_key': apiKey, 'language': language},
+      queryParameters: {
+        'api_key': apiKey,
+        if (language != null) 'language': language,
+      },
     );
     return GendersModel.fromJson(response.data!);
   }
 
   Future<MoviesModel> fetchMovies({
-    required String language,
     int? genreId,
+    String? language,
   }) async {
     final response = await dio.get<Map<String, dynamic>>(
       genreId != null ? '/3/discover/movie' : '/3/movie/popular',
       queryParameters: {
         if (genreId != null) 'with_genres': '$genreId',
         'api_key': apiKey,
-        'language': language,
+        if (language != null) 'language': language,
       },
     );
     return MoviesModel.fromJson(response.data!);
@@ -47,7 +50,7 @@ MovieListRepository movieListRepository(MovieListRepositoryRef ref) {
 @riverpod
 Future<GendersModel> fetchGenders(
   FetchGendersRef ref, {
-  required String language,
+  String? language,
 }) async {
   final movieListRepository = ref.watch(movieListRepositoryProvider);
   return movieListRepository.fetchGenders(language: language);
@@ -56,8 +59,8 @@ Future<GendersModel> fetchGenders(
 @riverpod
 Future<MoviesModel> fetchMovies(
   FetchMoviesRef ref, {
-  required String language,
   int? genreId,
+  String? language,
 }) async {
   final movieListRepository = ref.watch(movieListRepositoryProvider);
 
