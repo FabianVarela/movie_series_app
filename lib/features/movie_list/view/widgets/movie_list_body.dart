@@ -13,21 +13,18 @@ class MovieListBody extends HookConsumerWidget {
     super.key,
     this.currentIndex = 0,
     this.genderId,
-    this.enabledScroll = false,
     required this.onChangePage,
-    required this.onEnabledScroll,
     required this.onSelectMovie,
   });
 
   final int currentIndex;
   final int? genderId;
-  final bool enabledScroll;
   final ValueSetter<int> onChangePage;
-  final ValueSetter<bool> onEnabledScroll;
   final ValueSetter<MovieModel> onSelectMovie;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEnabledScroll = useState(true);
     final pageController = usePageController(viewportFraction: .8);
 
     final locale = ref.watch(languageProvider);
@@ -45,7 +42,7 @@ class MovieListBody extends HookConsumerWidget {
             child: PageView.builder(
               controller: pageController,
               itemCount: movie.movies.length,
-              physics: enabledScroll
+              physics: isEnabledScroll.value
                   ? const BouncingScrollPhysics()
                   : const NeverScrollableScrollPhysics(),
               onPageChanged: (i) => onChangePage(i + 1),
@@ -53,7 +50,7 @@ class MovieListBody extends HookConsumerWidget {
                 itemModel: movie.movies[i],
                 onPressItem: onSelectMovie,
                 isCurrent: (currentIndex - 1) == i,
-                onExpanded: onEnabledScroll,
+                onExpanded: (value) => isEnabledScroll.value = !value,
               ),
             ),
           ),
