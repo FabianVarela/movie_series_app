@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:movie_list_bloc/core/repository/language_repository.dart';
+import 'package:movie_list_bloc/core/repository/language/language_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class Language extends AsyncNotifier<Locale?> {
