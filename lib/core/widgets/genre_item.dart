@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/core/model/gender_model.dart';
 
-class GenderItem extends StatelessWidget {
-  const GenderItem({
+class GenreItem extends StatelessWidget {
+  const GenreItem({
     super.key,
-    required this.gender,
-    this.onSelectGender,
+    required this.name,
+    this.onSelect,
     this.backgroundColor,
     this.textColor,
   });
 
-  final GenderModel gender;
-  final ValueSetter<GenderModel>? onSelectGender;
+  final String name;
+  final VoidCallback? onSelect;
   final Color? backgroundColor;
   final Color? textColor;
 
@@ -20,17 +19,17 @@ class GenderItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: GestureDetector(
-        onTap: () => onSelectGender?.call(gender),
+        onTap: () => onSelect?.call(),
         child: Chip(
           avatar: CircleAvatar(
             backgroundColor: (backgroundColor ?? Colors.white).withOpacity(.6),
             child: Text(
-              gender.name[0].toUpperCase(),
+              name[0].toUpperCase(),
               style: TextStyle(color: textColor ?? Colors.black),
             ),
           ),
           label: Text(
-            gender.name,
+            name,
             style: TextStyle(fontSize: 15, color: textColor ?? Colors.black),
           ),
           elevation: 5,
