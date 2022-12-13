@@ -9,6 +9,7 @@ import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_image.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_trailers.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MovieDetailView extends HookConsumerWidget {
   const MovieDetailView({
@@ -64,6 +65,7 @@ class MovieDetailView extends HookConsumerWidget {
                   trailers.maybeWhen(
                     data: (trailer) => MovieDetailTrailers(
                       trailers: trailer.trailers,
+                      onSelect: (value) async => _redirectToYoutube(value),
                     ),
                     orElse: Offstage.new,
                   ),
@@ -82,5 +84,12 @@ class MovieDetailView extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _redirectToYoutube(String id) async {
+    final uri = Uri.parse('https://www.youtube.com/watch?v=$id');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
   }
 }
