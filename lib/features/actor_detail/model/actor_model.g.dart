@@ -18,6 +18,8 @@ ActorModel _$ActorModelFromJson(Map<String, dynamic> json) => ActorModel(
       placeBirth: json['place_of_birth'] as String?,
       imagePath: json['profile_path'] as String?,
       isAdult: json['adult'] as bool,
+      credits:
+          ActorModel._getCredits(json['movie_credits'] as Map<String, dynamic>),
     );
 
 const _$GenderEnumMap = {
@@ -26,14 +28,6 @@ const _$GenderEnumMap = {
   Gender.male: 2,
   Gender.noBinary: 3,
 };
-
-ActorCreditsModel _$ActorCreditsModelFromJson(Map<String, dynamic> json) =>
-    ActorCreditsModel(
-      id: json['id'] as int,
-      casts: (json['cast'] as List<dynamic>)
-          .map((e) => ActorCreditModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
 
 ActorCreditModel _$ActorCreditModelFromJson(Map<String, dynamic> json) =>
     ActorCreditModel(

@@ -20,23 +20,10 @@ class ActorDetailRepository {
       queryParameters: {
         'api_key': apiKey,
         if (language != null) 'language': language,
+        'append_to_response': 'movie_credits',
       },
     );
     return ActorModel.fromJson(response.data!);
-  }
-
-  Future<ActorCreditsModel> fetchActorCredits({
-    required int actorId,
-    String? language,
-  }) async {
-    final response = await dio.get<Map<String, dynamic>>(
-      '/3/person/$actorId/movie_credits',
-      queryParameters: {
-        'api_key': apiKey,
-        if (language != null) 'language': language,
-      },
-    );
-    return ActorCreditsModel.fromJson(response.data!);
   }
 }
 
@@ -57,19 +44,6 @@ Future<ActorModel> fetchActor(
   final actorDetailRepository = ref.watch(actorDetailRepositoryProvider);
   return actorDetailRepository.fetchActor(
     personId: personId,
-    language: language,
-  );
-}
-
-@riverpod
-Future<ActorCreditsModel> fetchActorCredits(
-  FetchActorCreditsRef ref, {
-  required int actorId,
-  String? language,
-}) async {
-  final actorDetailRepository = ref.watch(actorDetailRepositoryProvider);
-  return actorDetailRepository.fetchActorCredits(
-    actorId: actorId,
     language: language,
   );
 }

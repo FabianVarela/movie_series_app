@@ -27,6 +27,7 @@ class ActorModel {
     this.placeBirth,
     this.imagePath,
     required this.isAdult,
+    required this.credits,
   });
 
   factory ActorModel.fromJson(Map<String, dynamic> json) =>
@@ -54,19 +55,17 @@ class ActorModel {
 
   @JsonKey(name: 'adult')
   final bool isAdult;
-}
 
-@JsonSerializable(createToJson: false)
-class ActorCreditsModel {
-  const ActorCreditsModel({required this.id, required this.casts});
+  @JsonKey(name: 'movie_credits', fromJson: _getCredits)
+  final List<ActorCreditModel> credits;
 
-  factory ActorCreditsModel.fromJson(Map<String, dynamic> json) =>
-      _$ActorCreditsModelFromJson(json);
-
-  final int id;
-
-  @JsonKey(name: 'cast')
-  final List<ActorCreditModel> casts;
+  static List<ActorCreditModel> _getCredits(Map<String, dynamic> value) {
+    final creditMap = value['cast'] as List<dynamic>;
+    return [
+      for (final item in creditMap)
+        ActorCreditModel.fromJson(item as Map<String, dynamic>)
+    ];
+  }
 }
 
 @JsonSerializable(createToJson: false)
