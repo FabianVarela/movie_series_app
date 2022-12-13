@@ -24,9 +24,6 @@ class ActorDetailView extends HookConsumerWidget {
     final actor = ref.watch(
       fetchActorProvider(personId: personId, language: language),
     );
-    final actorCredits = ref.watch(
-      fetchActorCreditsProvider(actorId: personId, language: language),
-    );
 
     return Scaffold(
       body: CustomScrollView(
@@ -54,7 +51,7 @@ class ActorDetailView extends HookConsumerWidget {
             ),
             data: (actor) => SliverList(
               delegate: SliverChildListDelegate([
-                ActorDataSection(actor: actor, credits: actorCredits.value),
+                ActorDataSection(actor: actor),
               ]),
             ),
             error: (_, __) => SliverToBoxAdapter(

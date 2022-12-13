@@ -7,14 +7,9 @@ import 'package:movie_list_bloc/features/actor_detail/view/widgets/actor_credits
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class ActorDataSection extends HookWidget {
-  const ActorDataSection({
-    super.key,
-    required this.actor,
-    this.credits,
-  });
+  const ActorDataSection({super.key, required this.actor});
 
   final ActorModel actor;
-  final ActorCreditsModel? credits;
 
   @override
   Widget build(BuildContext context) {
@@ -107,15 +102,14 @@ class ActorDataSection extends HookWidget {
               ),
             ),
           ),
-        if (credits != null)
-          SectionStaggeredAnimation(
-            controller: controller,
-            startInterval: actor.biography.isEmpty ? .500 : .700,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: ActorCreditsSection(credits: credits!),
-            ),
+        SectionStaggeredAnimation(
+          controller: controller,
+          startInterval: actor.biography.isEmpty ? .500 : .700,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: ActorCreditsSection(credits: actor.credits),
           ),
+        ),
       ],
     );
   }
