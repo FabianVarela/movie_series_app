@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:movie_list_bloc/core/model/movies_model.dart';
+import 'package:movie_list_bloc/features/movie_list/model/movies_model.dart';
 
 class MovieListItem extends HookWidget {
   const MovieListItem({
@@ -73,7 +73,7 @@ class MovieListItem extends HookWidget {
                           Expanded(
                             flex: 4,
                             child: Text(
-                              itemModel.title,
+                              itemModel.originalTitle,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 20,

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_list_bloc/core/client/remote/dio_provider.dart';
-import 'package:movie_list_bloc/core/model/movies_model.dart';
+import 'package:movie_list_bloc/features/movie_list/model/movies_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'movie_list_repository.g.dart';
