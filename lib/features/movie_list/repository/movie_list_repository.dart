@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:movie_list_bloc/core/client/remote/dio_provider.dart';
-import 'package:movie_list_bloc/core/model/gender_model.dart';
 import 'package:movie_list_bloc/core/model/movies_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,17 +10,6 @@ class MovieListRepository {
 
   final Dio dio;
   final String apiKey;
-
-  Future<GendersModel> fetchGenders({String? language}) async {
-    final response = await dio.get<Map<String, dynamic>>(
-      '/3/genre/movie/list',
-      queryParameters: {
-        'api_key': apiKey,
-        if (language != null) 'language': language,
-      },
-    );
-    return GendersModel.fromJson(response.data!);
-  }
 
   Future<MoviesModel> fetchMovies({
     int? genreId,
@@ -45,15 +33,6 @@ MovieListRepository movieListRepository(MovieListRepositoryRef ref) {
     dio: ref.watch(dioProvider),
     apiKey: const String.fromEnvironment('TMDB_API_KEY'),
   );
-}
-
-@riverpod
-Future<GendersModel> fetchGenders(
-  FetchGendersRef ref, {
-  String? language,
-}) async {
-  final movieListRepository = ref.watch(movieListRepositoryProvider);
-  return movieListRepository.fetchGenders(language: language);
 }
 
 @riverpod
