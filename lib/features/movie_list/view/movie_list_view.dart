@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/features/genre_list/repository/genre_list_repository.dart';
+import 'package:movie_list_bloc/features/genre_list/widgets/genre_list_section.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_body.dart';
-import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_genres.dart';
 import 'package:movie_list_bloc/features/movie_list/view/widgets/movie_list_header.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
@@ -24,8 +25,9 @@ class MovieListView extends HookConsumerWidget {
           children: <Widget>[
             Column(
               children: <Widget>[
-                MovieListGenres(
+                GenreListSection(
                   id: currentGender.value,
+                  genreType: GenreType.movie,
                   onSelect: (gender) {
                     currentGender.value = gender.id;
                     titleGender.value = gender.name;

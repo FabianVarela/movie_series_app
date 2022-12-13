@@ -3,19 +3,27 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/model/gender_model.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/widgets/gender_item.dart';
-import 'package:movie_list_bloc/features/movie_list/repository/movie_list_repository.dart';
+import 'package:movie_list_bloc/features/genre_list/repository/genre_list_repository.dart';
 
-class MovieListGenres extends ConsumerWidget {
-  const MovieListGenres({super.key, this.id, required this.onSelect});
+class GenreListSection extends ConsumerWidget {
+  const GenreListSection({
+    super.key,
+    this.id,
+    required this.genreType,
+    required this.onSelect,
+  });
 
   final int? id;
+  final GenreType genreType;
   final ValueSetter<GenderModel> onSelect;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(languageProvider);
+    final language = locale.requireValue?.languageCode;
+
     final genders = ref.watch(
-      fetchGendersProvider(language: locale.requireValue?.languageCode),
+      fetchGenresProvider(type: genreType, language: language),
     );
 
     return genders.maybeWhen(
