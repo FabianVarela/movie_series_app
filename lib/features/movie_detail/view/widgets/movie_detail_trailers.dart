@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/features/movie_detail/model/trailer_model.dart';
+import 'package:movie_list_bloc/features/movie_detail/model/movie_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class MovieDetailTrailers extends StatelessWidget {

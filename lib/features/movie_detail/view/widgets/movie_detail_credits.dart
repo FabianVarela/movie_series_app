@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_list_bloc/core/widgets/circle_image.dart';
-import 'package:movie_list_bloc/features/movie_detail/model/credits_model.dart';
+import 'package:movie_list_bloc/features/movie_detail/model/movie_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class MovieDetailCredits extends StatelessWidget {
@@ -10,7 +10,7 @@ class MovieDetailCredits extends StatelessWidget {
     required this.onSelectActor,
   });
 
-  final List<CastModel> casts;
+  final List<CreditsModel> casts;
   final void Function(int, String?) onSelectActor;
 
   @override

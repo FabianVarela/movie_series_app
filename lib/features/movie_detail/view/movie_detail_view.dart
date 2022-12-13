@@ -29,12 +29,6 @@ class MovieDetailView extends HookConsumerWidget {
     final movie = ref.watch(
       fetchMovieProvider(movieId: movieId, language: language),
     );
-    final credits = ref.watch(
-      fetchCreditsProvider(movieId: movieId, language: language),
-    );
-    final trailers = ref.watch(
-      fetchTrailersProvider(movieId: movieId, language: language),
-    );
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -49,25 +43,19 @@ class MovieDetailView extends HookConsumerWidget {
               data: (movie) => Column(
                 children: <Widget>[
                   MovieDetailBody(movie: movie),
-                  credits.maybeWhen(
-                    data: (credit) => MovieDetailCredits(
-                      casts: credit.casts,
-                      onSelectActor: (id, path) => context.go(
-                        '/detail/$movieId/actor/$id',
-                        extra: {
-                          'posterPath': movieImageUrl,
-                          'actorImage': path,
-                        },
-                      ),
+                  MovieDetailCredits(
+                    casts: movie.credits,
+                    onSelectActor: (id, path) => context.go(
+                      '/detail/$movieId/actor/$id',
+                      extra: {
+                        'posterPath': movieImageUrl,
+                        'actorImage': path,
+                      },
                     ),
-                    orElse: Offstage.new,
                   ),
-                  trailers.maybeWhen(
-                    data: (trailer) => MovieDetailTrailers(
-                      trailers: trailer.trailers,
-                      onSelect: (value) async => _redirectToYoutube(value),
-                    ),
-                    orElse: Offstage.new,
+                  MovieDetailTrailers(
+                    trailers: movie.trailers,
+                    onSelect: (value) async => _redirectToYoutube(value),
                   ),
                 ],
               ),
@@ -75,9 +63,12 @@ class MovieDetailView extends HookConsumerWidget {
                 height: MediaQuery.of(context).size.height * .7,
                 child: const Center(child: CircularProgressIndicator()),
               ),
-              error: (_, __) => ErrorMessage(
-                message: context.l10n.errorMovieDetailText,
-                fontSize: 15,
+              error: (_, __) => SizedBox(
+                height: MediaQuery.of(context).size.height * .68,
+                child: ErrorMessage(
+                  message: context.l10n.errorMovieDetailText,
+                  fontSize: 15,
+                ),
               ),
             ),
           ],

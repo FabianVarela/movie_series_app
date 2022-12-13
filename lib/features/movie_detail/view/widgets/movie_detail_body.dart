@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/core/model/movies_model.dart';
-import 'package:movie_list_bloc/core/widgets/gender_item.dart';
+import 'package:movie_list_bloc/core/widgets/genre_item.dart';
+import 'package:movie_list_bloc/features/movie_detail/model/movie_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class MovieDetailBody extends StatelessWidget {
@@ -17,7 +17,7 @@ class MovieDetailBody extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              movie.title,
+              movie.originalTitle,
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
             ),
           ),
@@ -66,9 +66,9 @@ class MovieDetailBody extends StatelessWidget {
           height: 70,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: (movie.genres ?? []).length,
+            itemCount: movie.genres.length,
             padding: const EdgeInsets.all(10),
-            itemBuilder: (_, i) => GenderItem(gender: movie.genres![i]),
+            itemBuilder: (_, i) => GenreItem(name: movie.genres[i].name),
           ),
         ),
       ],
