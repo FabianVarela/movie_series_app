@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_list_bloc/core/client/remote/dio_provider.dart';
-import 'package:movie_list_bloc/core/model/gender_model.dart';
+import 'package:movie_list_bloc/features/genre_list/model/genre_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'genre_list_repository.g.dart';
@@ -13,7 +13,7 @@ class GenreListRepository {
   final Dio dio;
   final String apiKey;
 
-  Future<GendersModel> fetchGenres({
+  Future<GenresModel> fetchGenres({
     required GenreType type,
     String? language,
   }) async {
@@ -24,7 +24,7 @@ class GenreListRepository {
         if (language != null) 'language': language,
       },
     );
-    return GendersModel.fromJson(response.data!);
+    return GenresModel.fromJson(response.data!);
   }
 }
 
@@ -37,7 +37,7 @@ GenreListRepository genreListRepository(GenreListRepositoryRef ref) {
 }
 
 @riverpod
-Future<GendersModel> fetchGenres(
+Future<GenresModel> fetchGenres(
   FetchGenresRef ref, {
   required GenreType type,
   String? language,

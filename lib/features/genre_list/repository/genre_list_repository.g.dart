@@ -41,10 +41,10 @@ final genreListRepositoryProvider = AutoDisposeProvider<GenreListRepository>(
       : $genreListRepositoryHash,
 );
 typedef GenreListRepositoryRef = AutoDisposeProviderRef<GenreListRepository>;
-String $fetchGenresHash() => r'06d6a29e135aa066f224ed7076f074a2d4f6206a';
+String $fetchGenresHash() => r'11b32509937f028e2f593970bea1b3c1910fc951';
 
 /// See also [fetchGenres].
-class FetchGenresProvider extends AutoDisposeFutureProvider<GendersModel> {
+class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
   FetchGenresProvider({
     required this.type,
     this.language,
@@ -82,12 +82,12 @@ class FetchGenresProvider extends AutoDisposeFutureProvider<GendersModel> {
   }
 }
 
-typedef FetchGenresRef = AutoDisposeFutureProviderRef<GendersModel>;
+typedef FetchGenresRef = AutoDisposeFutureProviderRef<GenresModel>;
 
 /// See also [fetchGenres].
 final fetchGenresProvider = FetchGenresFamily();
 
-class FetchGenresFamily extends Family<AsyncValue<GendersModel>> {
+class FetchGenresFamily extends Family<AsyncValue<GenresModel>> {
   FetchGenresFamily();
 
   FetchGenresProvider call({
@@ -101,7 +101,7 @@ class FetchGenresFamily extends Family<AsyncValue<GendersModel>> {
   }
 
   @override
-  AutoDisposeFutureProvider<GendersModel> getProviderOverride(
+  AutoDisposeFutureProvider<GenresModel> getProviderOverride(
     covariant FetchGenresProvider provider,
   ) {
     return call(
