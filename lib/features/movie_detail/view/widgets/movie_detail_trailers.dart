@@ -3,9 +3,14 @@ import 'package:movie_list_bloc/features/movie_detail/model/trailer_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class MovieDetailTrailers extends StatelessWidget {
-  const MovieDetailTrailers({super.key, required this.trailers});
+  const MovieDetailTrailers({
+    super.key,
+    required this.trailers,
+    required this.onSelect,
+  });
 
   final List<TrailerModel> trailers;
+  final ValueSetter<String> onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +49,19 @@ class MovieDetailTrailers extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.all(5),
-                      height: 72,
-                      color: Colors.grey,
-                      child: const Center(
-                        child: Icon(Icons.play_circle_filled),
+                    InkWell(
+                      onTap: () {
+                        if (trailers[index].site == 'YouTube') {
+                          onSelect(trailers[index].key);
+                        }
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(5),
+                        height: 72,
+                        color: Colors.grey,
+                        child: const Center(
+                          child: Icon(Icons.play_circle_filled),
+                        ),
                       ),
                     ),
                     Text(
