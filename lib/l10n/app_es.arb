@@ -3,6 +3,8 @@
   "appName": "App películas",
   "movieListDefaultTitle": "Popular",
   "errorMovieListText": "Error obteniendo la lista de películas",
+  "errorMovieDetailText": "Error obteniendo el detalle de la película",
+  "errorSeriesListText": "Error obteniendo la lista de series",
   "quantityList": "{start} / {end}",
   "@quantityList": {
     "placeholders": {
@@ -14,7 +16,6 @@
       }
     }
   },
-  "errorMovieDetailText": "Error obteniendo el detalle de la película",
   "noDateAvailableText": "Sin fecha disponlible",
   "castTitle": "Reparto",
   "noCastAvailableText": "Sin reparto disponible",

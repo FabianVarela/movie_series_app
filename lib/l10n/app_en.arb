@@ -12,6 +12,14 @@
   "@errorMovieListText": {
     "description": "App title"
   },
+  "errorMovieDetailText": "Error getting movie detail",
+  "@errorMovieDetailText": {
+    "description": "App title"
+  },
+  "errorSeriesListText": "Error getting series list",
+  "@errorSeriesListText": {
+    "description": "App title"
+  },
   "quantityList": "{start} / {end}",
   "@quantityList": {
     "description": "App title",
@@ -23,10 +31,6 @@
         "type": "int"
       }
     }
-  },
-  "errorMovieDetailText": "Error getting movie detail",
-  "@errorMovieDetailText": {
-    "description": "App title"
   },
   "noDateAvailableText": "No date available",
   "@noDateAvailableText": {
