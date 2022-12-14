@@ -30,7 +30,7 @@ class GenreListSection extends ConsumerWidget {
       data: (genre) {
         final list = genre.genres;
         return Padding(
-          padding: const EdgeInsets.only(top: 50),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: SizedBox(
             height: 40,
             child: ListView.builder(
