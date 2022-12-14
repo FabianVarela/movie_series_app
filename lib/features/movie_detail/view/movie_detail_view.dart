@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
+import 'package:movie_list_bloc/core/widgets/header_detail_image.dart';
 import 'package:movie_list_bloc/features/movie_detail/repository/movie_detail_repository.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_body.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_credits.dart';
-import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_image.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_trailers.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,7 +34,7 @@ class MovieDetailView extends HookConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            MovieDetailImage(
+            HeaderDetailImage(
               id: movieId,
               imageUrl: movieImageUrl,
               onDrag: () => Navigator.pop(context),
