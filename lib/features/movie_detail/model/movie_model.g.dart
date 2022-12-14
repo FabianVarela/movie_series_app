@@ -14,13 +14,13 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       voteAverage: (json['vote_average'] as num).toDouble(),
       homepage: json['homepage'] as String?,
       genres: (json['genres'] as List<dynamic>)
-          .map((e) => GenderModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       credits: MovieModel._getCasts(json['credits'] as Map<String, dynamic>),
       trailers: MovieModel._getTrailers(json['videos'] as Map<String, dynamic>),
     );
 
-GenderModel _$GenderModelFromJson(Map<String, dynamic> json) => GenderModel(
+GenreModel _$GenreModelFromJson(Map<String, dynamic> json) => GenreModel(
       id: json['id'] as int,
       name: json['name'] as String,
     );

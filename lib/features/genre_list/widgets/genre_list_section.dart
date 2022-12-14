@@ -22,13 +22,13 @@ class GenreListSection extends ConsumerWidget {
     final locale = ref.watch(languageProvider);
     final language = locale.requireValue?.languageCode;
 
-    final genders = ref.watch(
+    final genres = ref.watch(
       fetchGenresProvider(type: genreType, language: language),
     );
 
-    return genders.maybeWhen(
-      data: (gender) {
-        final list = gender.genders;
+    return genres.maybeWhen(
+      data: (genre) {
+        final list = genre.genres;
         return Padding(
           padding: const EdgeInsets.only(top: 50),
           child: SizedBox(

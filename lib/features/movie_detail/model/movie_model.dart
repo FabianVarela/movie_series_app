@@ -25,7 +25,7 @@ class MovieModel {
   final String? releaseDate;
   final double voteAverage;
   final String? homepage;
-  final List<GenderModel> genres;
+  final List<GenreModel> genres;
 
   @JsonKey(name: 'credits', fromJson: _getCasts)
   final List<CreditsModel> credits;
@@ -51,11 +51,11 @@ class MovieModel {
 }
 
 @JsonSerializable(createToJson: false)
-class GenderModel {
-  const GenderModel({required this.id, required this.name});
+class GenreModel {
+  const GenreModel({required this.id, required this.name});
 
-  factory GenderModel.fromJson(Map<String, dynamic> json) =>
-      _$GenderModelFromJson(json);
+  factory GenreModel.fromJson(Map<String, dynamic> json) =>
+      _$GenreModelFromJson(json);
 
   final int id;
   final String name;

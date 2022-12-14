@@ -12,13 +12,13 @@ class MovieListBody extends HookConsumerWidget {
   const MovieListBody({
     super.key,
     this.currentIndex = 0,
-    this.genderId,
+    this.genreId,
     required this.onChangePage,
     required this.onSelectMovie,
   });
 
   final int currentIndex;
-  final int? genderId;
+  final int? genreId;
   final ValueSetter<int> onChangePage;
   final ValueSetter<MovieModel> onSelectMovie;
 
@@ -30,7 +30,7 @@ class MovieListBody extends HookConsumerWidget {
     final locale = ref.watch(languageProvider);
     final movies = ref.watch(
       fetchMoviesProvider(
-        genreId: genderId,
+        genreId: genreId,
         language: locale.requireValue?.languageCode,
       ),
     );

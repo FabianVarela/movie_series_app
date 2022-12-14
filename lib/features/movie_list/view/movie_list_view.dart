@@ -13,8 +13,8 @@ class MovieListView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentGender = useState<int?>(null);
-    final titleGender = useState<String?>(null);
+    final currentGenre = useState<int?>(null);
+    final titleGenre = useState<String?>(null);
 
     final currentIndex = useState(1);
 
@@ -26,11 +26,11 @@ class MovieListView extends HookConsumerWidget {
             Column(
               children: <Widget>[
                 GenreListSection(
-                  id: currentGender.value,
+                  id: currentGenre.value,
                   genreType: GenreType.movie,
-                  onSelect: (gender) {
-                    currentGender.value = gender.id;
-                    titleGender.value = gender.name;
+                  onSelect: (genre) {
+                    currentGenre.value = genre.id;
+                    titleGenre.value = genre.name;
 
                     currentIndex.value = 1;
                   },
@@ -38,7 +38,7 @@ class MovieListView extends HookConsumerWidget {
                 Expanded(
                   child: MovieListBody(
                     currentIndex: currentIndex.value,
-                    genderId: currentGender.value,
+                    genreId: currentGenre.value,
                     onChangePage: (index) => currentIndex.value = index,
                     onSelectMovie: (movie) => context.go(
                       '/detail/${movie.id}',
@@ -49,10 +49,10 @@ class MovieListView extends HookConsumerWidget {
               ],
             ),
             MovieListHeader(
-              title: titleGender.value ?? context.l10n.movieListDefaultTitle,
+              title: titleGenre.value ?? context.l10n.movieListDefaultTitle,
               onRestore: () {
-                currentGender.value = null;
-                titleGender.value = null;
+                currentGenre.value = null;
+                titleGenre.value = null;
 
                 currentIndex.value = 1;
               },
