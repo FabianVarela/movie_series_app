@@ -2,19 +2,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:movie_list_bloc/features/movie_list/model/movies_model.dart';
 
-class MovieListItem extends HookWidget {
-  const MovieListItem({
+class AnimatedCardItem extends HookWidget {
+  const AnimatedCardItem({
     super.key,
-    required this.itemModel,
-    required this.onPressItem,
+    required this.id,
+    required this.name,
+    this.voteAverage = 0.0,
+    required this.imageUrl,
+    required this.onPress,
     this.onExpanded,
     this.isCurrent = false,
   });
 
-  final MovieModel itemModel;
-  final ValueSetter<MovieModel> onPressItem;
+  final int id;
+  final String name;
+  final double voteAverage;
+  final String imageUrl;
+  final VoidCallback onPress;
   final ValueSetter<bool>? onExpanded;
   final bool isCurrent;
 
@@ -73,7 +78,7 @@ class MovieListItem extends HookWidget {
                           Expanded(
                             flex: 4,
                             child: Text(
-                              itemModel.originalTitle,
+                              name,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 20,
@@ -83,7 +88,7 @@ class MovieListItem extends HookWidget {
                           ),
                           Expanded(
                             child: Text(
-                              itemModel.voteAverage.toStringAsFixed(2),
+                              voteAverage.toStringAsFixed(2),
                               textAlign: TextAlign.end,
                               style: const TextStyle(
                                 fontSize: 18,
@@ -112,7 +117,7 @@ class MovieListItem extends HookWidget {
                         controller.forward(from: 0);
                         onExpanded?.call(true);
                       } else if (status == AnimationStatus.completed) {
-                        onPressItem(itemModel);
+                        onPress();
                       }
                     },
                     onVerticalDragUpdate: (details) {
@@ -122,7 +127,7 @@ class MovieListItem extends HookWidget {
                       }
                     },
                     child: Hero(
-                      tag: 'Image_${itemModel.id}',
+                      tag: 'Image_$id',
                       child: Card(
                         elevation: 10,
                         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -130,7 +135,7 @@ class MovieListItem extends HookWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: CachedNetworkImage(
-                          imageUrl: '$imdbImageUri${itemModel.posterPath}',
+                          imageUrl: '$imdbImageUri$imageUrl',
                           fit: BoxFit.cover,
                         ),
                       ),
