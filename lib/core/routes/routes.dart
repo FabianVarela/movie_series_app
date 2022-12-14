@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/core/routes/page_routes.dart';
@@ -8,6 +9,7 @@ import 'package:movie_list_bloc/features/no_found/view/no_found_view.dart';
 
 final movieRouter = GoRouter(
   observers: [HeroController()],
+  debugLogDiagnostics: kDebugMode,
   initialLocation: '/',
   routes: <GoRoute>[
     GoRoute(
