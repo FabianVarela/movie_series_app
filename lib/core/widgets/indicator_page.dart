@@ -11,7 +11,7 @@ class IndicatorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      padding: const EdgeInsets.only(bottom: 40),
+      padding: const EdgeInsets.only(bottom: 20),
       child: Text(
         context.l10n.quantityList(start, total),
         style: const TextStyle(
