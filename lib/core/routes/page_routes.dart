@@ -21,8 +21,9 @@ CustomTransitionPage<dynamic> setTransformPageRoute<T>({
   return CustomTransitionPage<T>(
     key: pageKey,
     child: child,
-    transitionsBuilder: (_, animation, __, child) =>
-        Transform.scale(scale: animation.value, child: child),
+    transitionsBuilder: (_, animation, __, child) {
+      return Transform.scale(scale: animation.value, child: child);
+    },
   );
 }
 
@@ -33,7 +34,8 @@ CustomTransitionPage<dynamic> setFadePageRoute<T>({
   return CustomTransitionPage<T>(
     key: pageKey,
     child: child,
-    transitionsBuilder: (_, animation, __, child) =>
-        FadeTransition(opacity: animation, child: child),
+    transitionsBuilder: (_, animation, __, child) {
+      return FadeTransition(opacity: animation, child: child);
+    },
   );
 }
