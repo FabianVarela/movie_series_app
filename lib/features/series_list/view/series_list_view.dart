@@ -41,7 +41,7 @@ class SeriesListView extends HookConsumerWidget {
         genreId: currentGenre.value,
         onChangePage: (index) => currentIndex.value = index,
         onSelectSeries: (series) => context.go(
-          '/detail/${series.id}',
+          '/series/detail/${series.id}',
           extra: {'posterPath': series.posterPath},
         ),
       ),

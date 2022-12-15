@@ -46,7 +46,7 @@ class MovieDetailView extends HookConsumerWidget {
                   DetailCreditList(
                     casts: movie.credits,
                     onSelect: (id, path) => context.go(
-                      '/detail/$movieId/actor/$id',
+                      '/movies/detail/$movieId/actor/$id',
                       extra: {'posterPath': movieImageUrl, 'actorImage': path},
                     ),
                   ),

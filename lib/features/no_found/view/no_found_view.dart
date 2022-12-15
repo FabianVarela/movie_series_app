@@ -21,7 +21,7 @@ class NoFoundView extends StatelessWidget {
             children: <Widget>[
               Text(error, textAlign: TextAlign.center),
               TextButton(
-                onPressed: () => context.go('/'),
+                onPressed: () => context.go('/movies'),
                 child: Text(context.l10n.noFoundReturnButton),
               ),
             ],
