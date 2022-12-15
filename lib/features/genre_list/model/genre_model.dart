@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:movie_list_bloc/core/model/common_model.dart';
 
 part 'genre_model.g.dart';
 
@@ -10,15 +11,4 @@ class GenresModel {
       _$GenresModelFromJson(json);
 
   final List<GenreModel> genres;
-}
-
-@JsonSerializable(createToJson: false)
-class GenreModel {
-  const GenreModel({required this.id, required this.name});
-
-  factory GenreModel.fromJson(Map<String, dynamic> json) =>
-      _$GenreModelFromJson(json);
-
-  final int id;
-  final String name;
 }
