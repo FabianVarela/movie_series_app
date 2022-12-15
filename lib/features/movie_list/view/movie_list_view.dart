@@ -20,7 +20,7 @@ class MovieListView extends HookConsumerWidget {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: titleGenre.value ?? context.l10n.movieListDefaultTitle,
+        title: titleGenre.value ?? context.l10n.genreDefaultTitle,
         bottomChild: GenreListSection(
           id: currentGenre.value,
           genreType: GenreType.movie,
