@@ -1,7 +1,9 @@
 {
   "@@locale": "es",
   "appName": "App películas",
-  "movieListDefaultTitle": "Popular",
+  "movieNavBarText": "Películas",
+  "seriesNavBarText": "Series de TV",
+  "genreDefaultTitle": "Popular",
   "errorMovieListText": "Error obteniendo la lista de películas",
   "errorMovieDetailText": "Error obteniendo el detalle de la película",
   "errorSeriesListText": "Error obteniendo la lista de series",

@@ -4,8 +4,16 @@
   "@appName": {
     "description": "App title"
   },
-  "movieListDefaultTitle": "Popular",
-  "@movieListDefaultTitle": {
+  "movieNavBarText": "Movies",
+  "@movieNavBarText": {
+    "description": "App title"
+  },
+  "seriesNavBarText": "TV Series",
+  "@seriesNavBarText": {
+    "description": "App title"
+  },
+  "genreDefaultTitle": "Popular",
+  "@genreDefaultTitle": {
     "description": "App title"
   },
   "errorMovieListText": "Error getting movie list",
