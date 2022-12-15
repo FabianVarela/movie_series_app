@@ -13,10 +13,8 @@ GenreModel _$GenreModelFromJson(Map<String, dynamic> json) => GenreModel(
 
 CreditsModel _$CreditsModelFromJson(Map<String, dynamic> json) => CreditsModel(
       id: json['id'] as int,
-      castId: json['cast_id'] as int,
       character: json['character'] as String,
       name: json['name'] as String,
-      order: json['order'] as int,
       profilePath: json['profile_path'] as String?,
     );
 

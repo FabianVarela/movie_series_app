@@ -17,10 +17,8 @@ class GenreModel {
 class CreditsModel {
   const CreditsModel({
     required this.id,
-    required this.castId,
     required this.character,
     required this.name,
-    required this.order,
     required this.profilePath,
   });
 
@@ -28,10 +26,8 @@ class CreditsModel {
       _$CreditsModelFromJson(json);
 
   final int id;
-  final int castId;
   final String character;
   final String name;
-  final int order;
   final String? profilePath;
 }
 
