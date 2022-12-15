@@ -20,6 +20,10 @@
   "@errorSeriesListText": {
     "description": "App title"
   },
+  "errorSeriesDetailText": "Error getting series detail",
+  "@errorSeriesDetailText": {
+    "description": "App title"
+  },
   "quantityList": "{start} / {end}",
   "@quantityList": {
     "description": "App title",

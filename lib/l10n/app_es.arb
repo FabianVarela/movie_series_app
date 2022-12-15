@@ -5,6 +5,7 @@
   "errorMovieListText": "Error obteniendo la lista de películas",
   "errorMovieDetailText": "Error obteniendo el detalle de la película",
   "errorSeriesListText": "Error obteniendo la lista de series",
+  "errorSeriesDetailText": "Error obteniendo el detalle de la serie",
   "quantityList": "{start} / {end}",
   "@quantityList": {
     "placeholders": {
