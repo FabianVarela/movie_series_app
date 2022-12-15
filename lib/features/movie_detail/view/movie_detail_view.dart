@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
+import 'package:movie_list_bloc/core/widgets/detail_credit_list.dart';
+import 'package:movie_list_bloc/core/widgets/detail_trailer_list.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/core/widgets/header_detail_image.dart';
 import 'package:movie_list_bloc/features/movie_detail/repository/movie_detail_repository.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_body.dart';
-import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_credits.dart';
-import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_trailers.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,17 +43,14 @@ class MovieDetailView extends HookConsumerWidget {
               data: (movie) => Column(
                 children: <Widget>[
                   MovieDetailBody(movie: movie),
-                  MovieDetailCredits(
+                  DetailCreditList(
                     casts: movie.credits,
-                    onSelectActor: (id, path) => context.go(
+                    onSelect: (id, path) => context.go(
                       '/detail/$movieId/actor/$id',
-                      extra: {
-                        'posterPath': movieImageUrl,
-                        'actorImage': path,
-                      },
+                      extra: {'posterPath': movieImageUrl, 'actorImage': path},
                     ),
                   ),
-                  MovieDetailTrailers(
+                  DetailTrailerList(
                     trailers: movie.trailers,
                     onSelect: (value) async => _redirectToYoutube(value),
                   ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_list_bloc/core/model/common_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
-class MovieDetailTrailers extends StatelessWidget {
-  const MovieDetailTrailers({
+class DetailTrailerList extends StatelessWidget {
+  const DetailTrailerList({
     super.key,
     required this.trailers,
     required this.onSelect,

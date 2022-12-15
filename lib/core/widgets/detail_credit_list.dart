@@ -3,15 +3,15 @@ import 'package:movie_list_bloc/core/model/common_model.dart';
 import 'package:movie_list_bloc/core/widgets/circle_image.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
-class MovieDetailCredits extends StatelessWidget {
-  const MovieDetailCredits({
+class DetailCreditList extends StatelessWidget {
+  const DetailCreditList({
     super.key,
     required this.casts,
-    required this.onSelectActor,
+    required this.onSelect,
   });
 
   final List<CreditsModel> casts;
-  final void Function(int, String?) onSelectActor;
+  final void Function(int, String?) onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class MovieDetailCredits extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               itemBuilder: (_, index) => InkWell(
-                onTap: () => onSelectActor(
+                onTap: () => onSelect(
                   casts[index].id,
                   casts[index].profilePath,
                 ),
