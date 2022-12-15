@@ -29,11 +29,18 @@ class App extends HookConsumerWidget {
       localeResolutionCallback: (locale, supportedLocales) {
         for (final currentLocale in supportedLocales) {
           if (currentLocale.languageCode == locale?.languageCode) {
+            if (language.hasValue) {
+              _setNewLanguage(ref, language.value, currentLocale);
+            }
             return currentLocale;
           }
         }
 
-        return supportedLocales.first;
+        final firstLanguage = supportedLocales.first;
+        if (language.hasValue) {
+          _setNewLanguage(ref, language.value, supportedLocales.first);
+        }
+        return firstLanguage;
       },
       onGenerateTitle: (context) => context.l10n.appName,
       routerConfig: movieRouter,
@@ -43,5 +50,11 @@ class App extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _setNewLanguage(WidgetRef ref, Locale? current, Locale next) {
+    if (current?.languageCode != next.languageCode) {
+      ref.read(languageProvider.notifier).setLanguage(next.languageCode);
+    }
   }
 }
