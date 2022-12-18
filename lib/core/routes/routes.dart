@@ -33,7 +33,7 @@ final movieRouter = GoRouter(
               path: 'detail/:movieId',
               pageBuilder: (_, state) {
                 final extra = state.extra! as Map<String, dynamic>;
-                final poster = extra['posterPath'] as String;
+                final poster = extra['posterPath'] as String?;
 
                 final id = int.parse(state.params['movieId']!);
                 return setTransformPageRoute<dynamic>(
@@ -71,7 +71,7 @@ final movieRouter = GoRouter(
               path: 'detail/:seriesId',
               pageBuilder: (_, state) {
                 final extra = state.extra! as Map<String, dynamic>;
-                final poster = extra['posterPath'] as String;
+                final poster = extra['posterPath'] as String?;
 
                 final id = int.parse(state.params['seriesId']!);
                 return setTransformPageRoute<dynamic>(
