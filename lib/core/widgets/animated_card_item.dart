@@ -9,7 +9,7 @@ class AnimatedCardItem extends HookWidget {
     required this.id,
     required this.name,
     this.voteAverage = 0.0,
-    required this.imageUrl,
+    this.imageUrl,
     required this.onPress,
     this.onExpanded,
     this.isCurrent = false,
@@ -18,7 +18,7 @@ class AnimatedCardItem extends HookWidget {
   final int id;
   final String name;
   final double voteAverage;
-  final String imageUrl;
+  final String? imageUrl;
   final VoidCallback onPress;
   final ValueSetter<bool>? onExpanded;
   final bool isCurrent;
@@ -137,6 +137,10 @@ class AnimatedCardItem extends HookWidget {
                         child: CachedNetworkImage(
                           imageUrl: '$imdbImageUri$imageUrl',
                           fit: BoxFit.cover,
+                          errorWidget: (_, __, ___) => Image.asset(
+                            'assets/images/poster_not_available.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

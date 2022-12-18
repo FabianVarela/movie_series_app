@@ -5,12 +5,12 @@ class HeaderDetailImage extends StatelessWidget {
   const HeaderDetailImage({
     super.key,
     required this.id,
-    required this.imageUrl,
+    this.imageUrl,
     required this.onDrag,
   });
 
   final int id;
-  final String imageUrl;
+  final String? imageUrl;
   final VoidCallback onDrag;
 
   @override
@@ -27,6 +27,10 @@ class HeaderDetailImage extends StatelessWidget {
           fit: BoxFit.cover,
           height: 250,
           width: MediaQuery.of(context).size.width,
+          errorWidget: (_, __, ___) => Image.asset(
+            'assets/images/poster_not_available.jpg',
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
