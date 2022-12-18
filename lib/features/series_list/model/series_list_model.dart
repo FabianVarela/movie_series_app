@@ -26,7 +26,7 @@ class SeriesListModel {
 class SeriesModel {
   const SeriesModel({
     required this.id,
-    required this.posterPath,
+    this.posterPath,
     this.backdropPath,
     required this.originalName,
     required this.voteAverage,
@@ -36,7 +36,7 @@ class SeriesModel {
       _$SeriesModelFromJson(json);
 
   final int id;
-  final String posterPath;
+  final String? posterPath;
   final String? backdropPath;
   final String originalName;
   final double voteAverage;

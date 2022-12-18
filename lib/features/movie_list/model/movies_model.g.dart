@@ -17,7 +17,7 @@ MoviesModel _$MoviesModelFromJson(Map<String, dynamic> json) => MoviesModel(
 
 MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       id: json['id'] as int,
-      posterPath: json['poster_path'] as String,
+      posterPath: json['poster_path'] as String?,
       backdropPath: json['backdrop_path'] as String?,
       originalTitle: json['original_title'] as String,
       voteAverage: (json['vote_average'] as num).toDouble(),

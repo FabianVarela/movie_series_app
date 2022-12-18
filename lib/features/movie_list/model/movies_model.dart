@@ -26,7 +26,7 @@ class MoviesModel {
 class MovieModel {
   const MovieModel({
     required this.id,
-    required this.posterPath,
+    this.posterPath,
     this.backdropPath,
     required this.originalTitle,
     required this.voteAverage,
@@ -36,7 +36,7 @@ class MovieModel {
       _$MovieModelFromJson(json);
 
   final int id;
-  final String posterPath;
+  final String? posterPath;
   final String? backdropPath;
   final String originalTitle;
   final double voteAverage;
