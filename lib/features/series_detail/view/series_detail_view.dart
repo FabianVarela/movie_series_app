@@ -15,11 +15,11 @@ class SeriesDetailView extends HookConsumerWidget {
   const SeriesDetailView({
     super.key,
     required this.seriesId,
-    required this.seriesImageUrl,
+    this.seriesImageUrl,
   });
 
   final int seriesId;
-  final String seriesImageUrl;
+  final String? seriesImageUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -15,11 +15,11 @@ class MovieDetailView extends HookConsumerWidget {
   const MovieDetailView({
     super.key,
     required this.movieId,
-    required this.movieImageUrl,
+    this.movieImageUrl,
   });
 
   final int movieId;
-  final String movieImageUrl;
+  final String? movieImageUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
