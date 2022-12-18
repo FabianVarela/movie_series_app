@@ -1,10 +1,11 @@
 name: movie_list_bloc
 description: Movie list with BLoC pattern
-
 version: 1.0.0+1
+publish_to: none
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
+  flutter: 3.3.10
 
 dependencies:
   cached_network_image: ^3.2.3
@@ -37,3 +38,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/images/
