@@ -20,12 +20,12 @@ in English and Spanish.
 
 #### Setting arguments
 
-* You must the uri (without http or https), your api key and the image uri (already set) in the *Dart Define command*,
+* You must the api uri and the image uri (already set here) and your api key in the *Dart Define command*,
   setting the additional run arguments below
   ```
-  --dart-define TMDB_API_URI=<YOUR_TMDB_API_URI>
-  --dart-define TMDB_API_KEY=<YOUR_TMDB_API_KEY>
+  --dart-define TMDB_API_URI=api.themoviedb.org
   --dart-define TMDB_IMAGE_URI=https://image.tmdb.org/t/p/original
+  --dart-define TMDB_API_KEY=<YOUR_TMDB_API_KEY>
   ```
 
 <font size="3">*For more info to get your api key, go to
