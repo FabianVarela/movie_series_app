@@ -23,7 +23,7 @@ dependencies:
   intl: ^0.17.0
   json_annotation: ^4.7.0
   riverpod_annotation: ^1.1.1
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.16
   url_launcher: ^6.1.7
 
 dev_dependencies:
