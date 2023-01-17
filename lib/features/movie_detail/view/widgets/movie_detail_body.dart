@@ -1,12 +1,14 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_list_bloc/core/widgets/genre_item.dart';
 import 'package:movie_list_bloc/features/movie_detail/model/movie_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class MovieDetailBody extends StatelessWidget {
-  const MovieDetailBody({super.key, required this.movie});
+  const MovieDetailBody({super.key, required this.movie, this.onGoWebSite});
 
   final MovieModel movie;
+  final ValueSetter<String>? onGoWebSite;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,25 @@ class MovieDetailBody extends StatelessWidget {
             ],
           ),
         ),
+        if (movie.homepage != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+            child: Text.rich(
+              TextSpan(
+                children: <TextSpan>[
+                  TextSpan(text: context.l10n.webPageTitle),
+                  TextSpan(
+                    text: movie.homepage,
+                    style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => onGoWebSite?.call(movie.homepage!),
+                  ),
+                ],
+              ),
+            ),
+          ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
           child: Text(
