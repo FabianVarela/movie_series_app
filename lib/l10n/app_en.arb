@@ -44,6 +44,10 @@
       }
     }
   },
+  "webPageTitle": "Web page\n",
+  "@webPageTitle": {
+    "description": "App title"
+  },
   "noDateAvailableText": "No date available",
   "@noDateAvailableText": {
     "description": "App title"
