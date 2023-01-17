@@ -42,7 +42,10 @@ class MovieDetailView extends HookConsumerWidget {
             movie.when(
               data: (movie) => Column(
                 children: <Widget>[
-                  MovieDetailBody(movie: movie),
+                  MovieDetailBody(
+                    movie: movie,
+                    onGoWebSite: (url) async => _redirectTo(url),
+                  ),
                   DetailCreditList(
                     casts: movie.credits,
                     onSelect: (id, path) => context.go(
@@ -52,7 +55,9 @@ class MovieDetailView extends HookConsumerWidget {
                   ),
                   DetailTrailerList(
                     trailers: movie.trailers,
-                    onSelect: (value) async => _redirectToYoutube(value),
+                    onSelect: (id) async => _redirectTo(
+                      'https://www.youtube.com/watch?v=$id',
+                    ),
                   ),
                 ],
               ),
@@ -74,8 +79,8 @@ class MovieDetailView extends HookConsumerWidget {
     );
   }
 
-  Future<void> _redirectToYoutube(String id) async {
-    final uri = Uri.parse('https://www.youtube.com/watch?v=$id');
+  Future<void> _redirectTo(String url) async {
+    final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
