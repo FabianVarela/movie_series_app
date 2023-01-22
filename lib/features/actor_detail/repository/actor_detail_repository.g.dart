@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $actorDetailRepositoryHash() =>
+String _$actorDetailRepositoryHash() =>
     r'f03929f69e9d85673b5b96b4349f52be9b6c5dac';
 
 /// See also [actorDetailRepository].
@@ -39,11 +39,11 @@ final actorDetailRepositoryProvider =
   name: r'actorDetailRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $actorDetailRepositoryHash,
+      : _$actorDetailRepositoryHash,
 );
 typedef ActorDetailRepositoryRef
     = AutoDisposeProviderRef<ActorDetailRepository>;
-String $fetchActorHash() => r'6daa4bdfd4fed3ce3ce4d3bca752f291ccdad3ec';
+String _$fetchActorHash() => r'6daa4bdfd4fed3ce3ce4d3bca752f291ccdad3ec';
 
 /// See also [fetchActor].
 class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
@@ -61,7 +61,7 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $fetchActorHash,
+                  : _$fetchActorHash,
         );
 
   final int personId;

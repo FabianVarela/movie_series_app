@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $genreListRepositoryHash() =>
+String _$genreListRepositoryHash() =>
     r'9a62cd2e9c1144df1bcf0d0b35bbaccbbcb24345';
 
 /// See also [genreListRepository].
@@ -38,10 +38,10 @@ final genreListRepositoryProvider = AutoDisposeProvider<GenreListRepository>(
   name: r'genreListRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $genreListRepositoryHash,
+      : _$genreListRepositoryHash,
 );
 typedef GenreListRepositoryRef = AutoDisposeProviderRef<GenreListRepository>;
-String $fetchGenresHash() => r'11b32509937f028e2f593970bea1b3c1910fc951';
+String _$fetchGenresHash() => r'11b32509937f028e2f593970bea1b3c1910fc951';
 
 /// See also [fetchGenres].
 class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
@@ -59,7 +59,7 @@ class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $fetchGenresHash,
+                  : _$fetchGenresHash,
         );
 
   final GenreType type;

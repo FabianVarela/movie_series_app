@@ -29,13 +29,13 @@ class _SystemHash {
   }
 }
 
-String $dioHash() => r'f022d1b0aef7aa98bc2f446777da80db0f9e9278';
+String _$dioHash() => r'f022d1b0aef7aa98bc2f446777da80db0f9e9278';
 
 /// See also [dio].
 final dioProvider = AutoDisposeProvider<Dio>(
   dio,
   name: r'dioProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $dioHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$dioHash,
 );
 typedef DioRef = AutoDisposeProviderRef<Dio>;

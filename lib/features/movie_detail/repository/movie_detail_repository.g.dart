@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $movieDetailRepositoryHash() =>
+String _$movieDetailRepositoryHash() =>
     r'9c80c54153c2b35800d8776fa31300607e471012';
 
 /// See also [movieDetailRepository].
@@ -39,11 +39,11 @@ final movieDetailRepositoryProvider =
   name: r'movieDetailRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $movieDetailRepositoryHash,
+      : _$movieDetailRepositoryHash,
 );
 typedef MovieDetailRepositoryRef
     = AutoDisposeProviderRef<MovieDetailRepository>;
-String $fetchMovieHash() => r'aaf708bbbd7e5e04299af65885916b5311a16887';
+String _$fetchMovieHash() => r'aaf708bbbd7e5e04299af65885916b5311a16887';
 
 /// See also [fetchMovie].
 class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
@@ -61,7 +61,7 @@ class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $fetchMovieHash,
+                  : _$fetchMovieHash,
         );
 
   final int movieId;

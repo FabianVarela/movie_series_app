@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-String $languageRepositoryHash() => r'1144b637c60835038674e289d9d1e94c91603a8b';
+String _$languageRepositoryHash() =>
+    r'1144b637c60835038674e289d9d1e94c91603a8b';
 
 /// See also [languageRepository].
 final languageRepositoryProvider = AutoDisposeProvider<LanguageRepository>(
@@ -37,20 +38,20 @@ final languageRepositoryProvider = AutoDisposeProvider<LanguageRepository>(
   name: r'languageRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $languageRepositoryHash,
+      : _$languageRepositoryHash,
 );
 typedef LanguageRepositoryRef = AutoDisposeProviderRef<LanguageRepository>;
-String $getLanguageHash() => r'1371cfe6d470accd691789998f0e5d9ca17c86da';
+String _$getLanguageHash() => r'1371cfe6d470accd691789998f0e5d9ca17c86da';
 
 /// See also [getLanguage].
 final getLanguageProvider = AutoDisposeFutureProvider<String?>(
   getLanguage,
   name: r'getLanguageProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $getLanguageHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getLanguageHash,
 );
 typedef GetLanguageRef = AutoDisposeFutureProviderRef<String?>;
-String $setLanguageHash() => r'6104ed7f57c4e72a4ac8d02ca186816916936beb';
+String _$setLanguageHash() => r'6104ed7f57c4e72a4ac8d02ca186816916936beb';
 
 /// See also [setLanguage].
 class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
@@ -66,7 +67,7 @@ class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $setLanguageHash,
+                  : _$setLanguageHash,
         );
 
   final String language;

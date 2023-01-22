@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $seriesDetailRepositoryHash() =>
+String _$seriesDetailRepositoryHash() =>
     r'c697114f83678705de93174aa557990b9e4e1652';
 
 /// See also [seriesDetailRepository].
@@ -39,11 +39,11 @@ final seriesDetailRepositoryProvider =
   name: r'seriesDetailRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $seriesDetailRepositoryHash,
+      : _$seriesDetailRepositoryHash,
 );
 typedef SeriesDetailRepositoryRef
     = AutoDisposeProviderRef<SeriesDetailRepository>;
-String $fetchSeriesHash() => r'79240a8f5a091e7c2c305091f0a8e8f8c2fb645a';
+String _$fetchSeriesHash() => r'79240a8f5a091e7c2c305091f0a8e8f8c2fb645a';
 
 /// See also [fetchSeries].
 class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
@@ -61,7 +61,7 @@ class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $fetchSeriesHash,
+                  : _$fetchSeriesHash,
         );
 
   final int tvId;
