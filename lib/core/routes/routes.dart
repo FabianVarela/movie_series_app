@@ -20,6 +20,7 @@ final movieRouter = GoRouter(
   routes: <RouteBase>[
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
+      observers: [HeroController()],
       builder: (_, __, child) => BottomNavigationScaffold(child: child),
       routes: <RouteBase>[
         GoRoute(
