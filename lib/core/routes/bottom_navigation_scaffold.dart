@@ -9,6 +9,8 @@ class BottomNavigationScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shellState = StatefulShellRouteState.of(context);
+
     return Scaffold(
       body: HeroMode(child: child),
       bottomNavigationBar: BottomNavigationBar(
@@ -22,28 +24,9 @@ class BottomNavigationScaffold extends StatelessWidget {
             label: context.l10n.seriesNavBarText,
           ),
         ],
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (index) => _onItemTapped(index, context),
+        currentIndex: shellState.currentIndex,
+        onTap: (index) => shellState.goBranch(index: index),
       ),
     );
-  }
-
-  int _calculateSelectedIndex(BuildContext context) {
-    final location = GoRouter.of(context).location;
-
-    if (location.contains('/movies')) return 0;
-    if (location.contains('/series')) return 1;
-    return 0;
-  }
-
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        context.go('/movies');
-        break;
-      case 1:
-        context.go('/series');
-        break;
-    }
   }
 }
