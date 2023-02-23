@@ -4,9 +4,9 @@ import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class DetailTrailerList extends StatelessWidget {
   const DetailTrailerList({
-    super.key,
     required this.trailers,
     required this.onSelect,
+    super.key,
   });
 
   final List<TrailerModel> trailers;

@@ -9,14 +9,14 @@ class SeriesModel {
     required this.id,
     required this.originalName,
     required this.overview,
-    this.firstAirDate,
-    this.lastAirDate,
     required this.voteAverage,
-    this.homepage,
     required this.genres,
     required this.credits,
     required this.trailers,
     required this.seasons,
+    this.firstAirDate,
+    this.lastAirDate,
+    this.homepage,
   });
 
   factory SeriesModel.fromJson(Map<String, dynamic> json) =>

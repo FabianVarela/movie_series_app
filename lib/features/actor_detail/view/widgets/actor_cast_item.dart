@@ -4,7 +4,7 @@ import 'package:movie_list_bloc/features/actor_detail/model/actor_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class ActorCastItem extends StatelessWidget {
-  const ActorCastItem({super.key, required this.actorCredit});
+  const ActorCastItem({required this.actorCredit, super.key});
 
   final ActorCreditModel actorCredit;
 

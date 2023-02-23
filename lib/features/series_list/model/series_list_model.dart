@@ -26,10 +26,10 @@ class SeriesListModel {
 class SeriesModel {
   const SeriesModel({
     required this.id,
-    this.posterPath,
-    this.backdropPath,
     required this.originalName,
     required this.voteAverage,
+    this.posterPath,
+    this.backdropPath,
   });
 
   factory SeriesModel.fromJson(Map<String, dynamic> json) =>

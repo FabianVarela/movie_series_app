@@ -3,9 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class SectionStaggeredAnimation extends HookWidget {
   const SectionStaggeredAnimation({
-    super.key,
     required this.controller,
     required this.child,
+    super.key,
     this.startInterval = 0,
     this.endInterval = 1,
   });

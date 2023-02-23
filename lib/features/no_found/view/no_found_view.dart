@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class NoFoundView extends StatelessWidget {
-  const NoFoundView({super.key, required this.error});
+  const NoFoundView({required this.error, super.key});
 
   final String error;
 

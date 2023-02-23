@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class GenreItem extends StatelessWidget {
   const GenreItem({
-    super.key,
     required this.name,
+    super.key,
     this.onSelect,
     this.backgroundColor,
     this.textColor,

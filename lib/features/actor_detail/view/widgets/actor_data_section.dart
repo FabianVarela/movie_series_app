@@ -7,7 +7,7 @@ import 'package:movie_list_bloc/features/actor_detail/view/widgets/actor_credits
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class ActorDataSection extends HookWidget {
-  const ActorDataSection({super.key, required this.actor});
+  const ActorDataSection({required this.actor, super.key});
 
   final ActorModel actor;
 

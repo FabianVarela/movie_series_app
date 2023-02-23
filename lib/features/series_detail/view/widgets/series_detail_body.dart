@@ -4,7 +4,7 @@ import 'package:movie_list_bloc/features/series_detail/model/series_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class SeriesDetailBody extends StatelessWidget {
-  const SeriesDetailBody({super.key, required this.series});
+  const SeriesDetailBody({required this.series, super.key});
 
   final SeriesModel series;
 

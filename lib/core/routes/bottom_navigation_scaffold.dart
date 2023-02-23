@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class BottomNavigationScaffold extends StatelessWidget {
-  const BottomNavigationScaffold({super.key, required this.child});
+  const BottomNavigationScaffold({required this.child, super.key});
 
   final Widget child;
 

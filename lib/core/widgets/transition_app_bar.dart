@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class TransitionAppBar extends StatelessWidget {
   const TransitionAppBar({
-    super.key,
     required this.backgroundColor,
     required this.child,
     required this.title,
+    super.key,
   });
 
   final Color backgroundColor;

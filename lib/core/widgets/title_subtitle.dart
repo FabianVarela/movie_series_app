@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class TitleSubtitle extends StatelessWidget {
   const TitleSubtitle({
-    super.key,
     required this.title,
     required this.subtitle,
+    super.key,
     this.isRow = true,
   });
 

@@ -5,12 +5,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class AnimatedCardItem extends HookWidget {
   const AnimatedCardItem({
-    super.key,
     required this.id,
     required this.name,
+    required this.onPress,
+    super.key,
     this.voteAverage = 0.0,
     this.imageUrl,
-    required this.onPress,
     this.onExpanded,
     this.isCurrent = false,
   });

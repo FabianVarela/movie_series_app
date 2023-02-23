@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 
 class HeaderDetailImage extends StatelessWidget {
   const HeaderDetailImage({
-    super.key,
     required this.id,
-    this.imageUrl,
     required this.onDrag,
+    super.key,
+    this.imageUrl,
   });
 
   final int id;

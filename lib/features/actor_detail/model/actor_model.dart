@@ -18,16 +18,16 @@ class ActorModel {
   const ActorModel({
     required this.id,
     required this.name,
-    this.birthday,
     required this.department,
-    this.deathDay,
     required this.gender,
     required this.biography,
     required this.popularity,
-    this.placeBirth,
-    this.imagePath,
     required this.isAdult,
     required this.credits,
+    this.birthday,
+    this.deathDay,
+    this.placeBirth,
+    this.imagePath,
   });
 
   factory ActorModel.fromJson(Map<String, dynamic> json) =>
@@ -72,8 +72,8 @@ class ActorModel {
 class ActorCreditModel {
   const ActorCreditModel({
     required this.id,
-    this.character,
     required this.title,
+    this.character,
     this.posterPath,
   });
 

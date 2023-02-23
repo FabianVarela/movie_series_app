@@ -26,10 +26,10 @@ class MoviesModel {
 class MovieModel {
   const MovieModel({
     required this.id,
-    this.posterPath,
-    this.backdropPath,
     required this.originalTitle,
     required this.voteAverage,
+    this.posterPath,
+    this.backdropPath,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) =>

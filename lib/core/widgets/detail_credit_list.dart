@@ -5,9 +5,9 @@ import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class DetailCreditList extends StatelessWidget {
   const DetailCreditList({
-    super.key,
     required this.casts,
     required this.onSelect,
+    super.key,
   });
 
   final List<CreditsModel> casts;

@@ -7,10 +7,10 @@ import 'package:movie_list_bloc/features/genre_list/repository/genre_list_reposi
 
 class GenreListSection extends ConsumerWidget {
   const GenreListSection({
-    super.key,
-    this.id,
     required this.genreType,
     required this.onSelect,
+    super.key,
+    this.id,
   });
 
   final int? id;

@@ -9,12 +9,12 @@ class MovieModel {
     required this.id,
     required this.originalTitle,
     required this.overview,
-    this.releaseDate,
     required this.voteAverage,
-    this.homepage,
     required this.genres,
     required this.credits,
     required this.trailers,
+    this.releaseDate,
+    this.homepage,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) =>

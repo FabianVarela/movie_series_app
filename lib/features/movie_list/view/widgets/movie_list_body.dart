@@ -11,11 +11,11 @@ import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class MovieListBody extends HookConsumerWidget {
   const MovieListBody({
+    required this.onChangePage,
+    required this.onSelectMovie,
     super.key,
     this.currentIndex = 0,
     this.genreId,
-    required this.onChangePage,
-    required this.onSelectMovie,
   });
 
   final int currentIndex;
