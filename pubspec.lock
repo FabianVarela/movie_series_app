@@ -352,11 +352,12 @@ packages:
   go_router:
     dependency: "direct main"
     description:
-      name: go_router
-      sha256: f48051e213661d03bd846af43bb27c79e3353694358739d6eaf99c54ac295577
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.10"
+      path: "packages/go_router"
+      ref: nested-persistent-navigation
+      resolved-ref: fd5412f9bad9d511778b06e66a754454a409feea
+      url: "https://github.com/tolo/flutter_packages.git"
+    source: git
+    version: "6.1.0"
   google_fonts:
     dependency: "direct main"
     description:
