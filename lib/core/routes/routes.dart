@@ -113,8 +113,9 @@ final movieRouter = GoRouter(
           ],
         ),
       ],
-      builder: (shellBuilder) => shellBuilder.buildShell(
-        (_, __, child) => BottomNavigationScaffold(child: child),
+      builder: (_, shellState, child) => BottomNavigationScaffold(
+        shellState: shellState,
+        child: child,
       ),
     ),
   ],
