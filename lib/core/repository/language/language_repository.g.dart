@@ -6,7 +6,38 @@ part of 'language_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$languageRepositoryHash() =>
+    r'1144b637c60835038674e289d9d1e94c91603a8b';
+
+/// See also [languageRepository].
+@ProviderFor(languageRepository)
+final languageRepositoryProvider =
+    AutoDisposeProvider<LanguageRepository>.internal(
+  languageRepository,
+  name: r'languageRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$languageRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef LanguageRepositoryRef = AutoDisposeProviderRef<LanguageRepository>;
+String _$getLanguageHash() => r'1371cfe6d470accd691789998f0e5d9ca17c86da';
+
+/// See also [getLanguage].
+@ProviderFor(getLanguage)
+final getLanguageProvider = AutoDisposeFutureProvider<String?>.internal(
+  getLanguage,
+  name: r'getLanguageProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getLanguageHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetLanguageRef = AutoDisposeFutureProviderRef<String?>;
+String _$setLanguageHash() => r'6104ed7f57c4e72a4ac8d02ca186816916936beb';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,35 +60,56 @@ class _SystemHash {
   }
 }
 
-String _$languageRepositoryHash() =>
-    r'1144b637c60835038674e289d9d1e94c91603a8b';
+typedef SetLanguageRef = AutoDisposeFutureProviderRef<bool>;
 
-/// See also [languageRepository].
-final languageRepositoryProvider = AutoDisposeProvider<LanguageRepository>(
-  languageRepository,
-  name: r'languageRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$languageRepositoryHash,
-);
-typedef LanguageRepositoryRef = AutoDisposeProviderRef<LanguageRepository>;
-String _$getLanguageHash() => r'1371cfe6d470accd691789998f0e5d9ca17c86da';
+/// See also [setLanguage].
+@ProviderFor(setLanguage)
+const setLanguageProvider = SetLanguageFamily();
 
-/// See also [getLanguage].
-final getLanguageProvider = AutoDisposeFutureProvider<String?>(
-  getLanguage,
-  name: r'getLanguageProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$getLanguageHash,
-);
-typedef GetLanguageRef = AutoDisposeFutureProviderRef<String?>;
-String _$setLanguageHash() => r'6104ed7f57c4e72a4ac8d02ca186816916936beb';
+/// See also [setLanguage].
+class SetLanguageFamily extends Family<AsyncValue<bool>> {
+  /// See also [setLanguage].
+  const SetLanguageFamily();
+
+  /// See also [setLanguage].
+  SetLanguageProvider call({
+    required String language,
+  }) {
+    return SetLanguageProvider(
+      language: language,
+    );
+  }
+
+  @override
+  SetLanguageProvider getProviderOverride(
+    covariant SetLanguageProvider provider,
+  ) {
+    return call(
+      language: provider.language,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'setLanguageProvider';
+}
 
 /// See also [setLanguage].
 class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
+  /// See also [setLanguage].
   SetLanguageProvider({
     required this.language,
-  }) : super(
+  }) : super.internal(
           (ref) => setLanguage(
             ref,
             language: language,
@@ -68,6 +120,9 @@ class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$setLanguageHash,
+          dependencies: SetLanguageFamily._dependencies,
+          allTransitiveDependencies:
+              SetLanguageFamily._allTransitiveDependencies,
         );
 
   final String language;
@@ -85,38 +140,4 @@ class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef SetLanguageRef = AutoDisposeFutureProviderRef<bool>;
-
-/// See also [setLanguage].
-final setLanguageProvider = SetLanguageFamily();
-
-class SetLanguageFamily extends Family<AsyncValue<bool>> {
-  SetLanguageFamily();
-
-  SetLanguageProvider call({
-    required String language,
-  }) {
-    return SetLanguageProvider(
-      language: language,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<bool> getProviderOverride(
-    covariant SetLanguageProvider provider,
-  ) {
-    return call(
-      language: provider.language,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'setLanguageProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

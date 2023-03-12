@@ -6,7 +6,25 @@ part of 'series_detail_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$seriesDetailRepositoryHash() =>
+    r'c697114f83678705de93174aa557990b9e4e1652';
+
+/// See also [seriesDetailRepository].
+@ProviderFor(seriesDetailRepository)
+final seriesDetailRepositoryProvider =
+    AutoDisposeProvider<SeriesDetailRepository>.internal(
+  seriesDetailRepository,
+  name: r'seriesDetailRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$seriesDetailRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SeriesDetailRepositoryRef
+    = AutoDisposeProviderRef<SeriesDetailRepository>;
+String _$fetchSeriesHash() => r'79240a8f5a091e7c2c305091f0a8e8f8c2fb645a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,28 +47,60 @@ class _SystemHash {
   }
 }
 
-String _$seriesDetailRepositoryHash() =>
-    r'c697114f83678705de93174aa557990b9e4e1652';
+typedef FetchSeriesRef = AutoDisposeFutureProviderRef<SeriesModel>;
 
-/// See also [seriesDetailRepository].
-final seriesDetailRepositoryProvider =
-    AutoDisposeProvider<SeriesDetailRepository>(
-  seriesDetailRepository,
-  name: r'seriesDetailRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$seriesDetailRepositoryHash,
-);
-typedef SeriesDetailRepositoryRef
-    = AutoDisposeProviderRef<SeriesDetailRepository>;
-String _$fetchSeriesHash() => r'79240a8f5a091e7c2c305091f0a8e8f8c2fb645a';
+/// See also [fetchSeries].
+@ProviderFor(fetchSeries)
+const fetchSeriesProvider = FetchSeriesFamily();
+
+/// See also [fetchSeries].
+class FetchSeriesFamily extends Family<AsyncValue<SeriesModel>> {
+  /// See also [fetchSeries].
+  const FetchSeriesFamily();
+
+  /// See also [fetchSeries].
+  FetchSeriesProvider call({
+    required int tvId,
+    String? language,
+  }) {
+    return FetchSeriesProvider(
+      tvId: tvId,
+      language: language,
+    );
+  }
+
+  @override
+  FetchSeriesProvider getProviderOverride(
+    covariant FetchSeriesProvider provider,
+  ) {
+    return call(
+      tvId: provider.tvId,
+      language: provider.language,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchSeriesProvider';
+}
 
 /// See also [fetchSeries].
 class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
+  /// See also [fetchSeries].
   FetchSeriesProvider({
     required this.tvId,
     this.language,
-  }) : super(
+  }) : super.internal(
           (ref) => fetchSeries(
             ref,
             tvId: tvId,
@@ -62,6 +112,9 @@ class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$fetchSeriesHash,
+          dependencies: FetchSeriesFamily._dependencies,
+          allTransitiveDependencies:
+              FetchSeriesFamily._allTransitiveDependencies,
         );
 
   final int tvId;
@@ -83,41 +136,4 @@ class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef FetchSeriesRef = AutoDisposeFutureProviderRef<SeriesModel>;
-
-/// See also [fetchSeries].
-final fetchSeriesProvider = FetchSeriesFamily();
-
-class FetchSeriesFamily extends Family<AsyncValue<SeriesModel>> {
-  FetchSeriesFamily();
-
-  FetchSeriesProvider call({
-    required int tvId,
-    String? language,
-  }) {
-    return FetchSeriesProvider(
-      tvId: tvId,
-      language: language,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<SeriesModel> getProviderOverride(
-    covariant FetchSeriesProvider provider,
-  ) {
-    return call(
-      tvId: provider.tvId,
-      language: provider.language,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'fetchSeriesProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

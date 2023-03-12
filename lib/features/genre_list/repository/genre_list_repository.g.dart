@@ -6,7 +6,24 @@ part of 'genre_list_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$genreListRepositoryHash() =>
+    r'9a62cd2e9c1144df1bcf0d0b35bbaccbbcb24345';
+
+/// See also [genreListRepository].
+@ProviderFor(genreListRepository)
+final genreListRepositoryProvider =
+    AutoDisposeProvider<GenreListRepository>.internal(
+  genreListRepository,
+  name: r'genreListRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$genreListRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GenreListRepositoryRef = AutoDisposeProviderRef<GenreListRepository>;
+String _$fetchGenresHash() => r'11b32509937f028e2f593970bea1b3c1910fc951';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,26 +46,60 @@ class _SystemHash {
   }
 }
 
-String _$genreListRepositoryHash() =>
-    r'9a62cd2e9c1144df1bcf0d0b35bbaccbbcb24345';
+typedef FetchGenresRef = AutoDisposeFutureProviderRef<GenresModel>;
 
-/// See also [genreListRepository].
-final genreListRepositoryProvider = AutoDisposeProvider<GenreListRepository>(
-  genreListRepository,
-  name: r'genreListRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$genreListRepositoryHash,
-);
-typedef GenreListRepositoryRef = AutoDisposeProviderRef<GenreListRepository>;
-String _$fetchGenresHash() => r'11b32509937f028e2f593970bea1b3c1910fc951';
+/// See also [fetchGenres].
+@ProviderFor(fetchGenres)
+const fetchGenresProvider = FetchGenresFamily();
+
+/// See also [fetchGenres].
+class FetchGenresFamily extends Family<AsyncValue<GenresModel>> {
+  /// See also [fetchGenres].
+  const FetchGenresFamily();
+
+  /// See also [fetchGenres].
+  FetchGenresProvider call({
+    required GenreType type,
+    String? language,
+  }) {
+    return FetchGenresProvider(
+      type: type,
+      language: language,
+    );
+  }
+
+  @override
+  FetchGenresProvider getProviderOverride(
+    covariant FetchGenresProvider provider,
+  ) {
+    return call(
+      type: provider.type,
+      language: provider.language,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchGenresProvider';
+}
 
 /// See also [fetchGenres].
 class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
+  /// See also [fetchGenres].
   FetchGenresProvider({
     required this.type,
     this.language,
-  }) : super(
+  }) : super.internal(
           (ref) => fetchGenres(
             ref,
             type: type,
@@ -60,6 +111,9 @@ class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$fetchGenresHash,
+          dependencies: FetchGenresFamily._dependencies,
+          allTransitiveDependencies:
+              FetchGenresFamily._allTransitiveDependencies,
         );
 
   final GenreType type;
@@ -81,41 +135,4 @@ class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef FetchGenresRef = AutoDisposeFutureProviderRef<GenresModel>;
-
-/// See also [fetchGenres].
-final fetchGenresProvider = FetchGenresFamily();
-
-class FetchGenresFamily extends Family<AsyncValue<GenresModel>> {
-  FetchGenresFamily();
-
-  FetchGenresProvider call({
-    required GenreType type,
-    String? language,
-  }) {
-    return FetchGenresProvider(
-      type: type,
-      language: language,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<GenresModel> getProviderOverride(
-    covariant FetchGenresProvider provider,
-  ) {
-    return call(
-      type: provider.type,
-      language: provider.language,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'fetchGenresProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

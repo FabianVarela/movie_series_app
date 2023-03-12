@@ -18,8 +18,8 @@ SeriesListModel _$SeriesListModelFromJson(Map<String, dynamic> json) =>
 
 SeriesModel _$SeriesModelFromJson(Map<String, dynamic> json) => SeriesModel(
       id: json['id'] as int,
-      posterPath: json['poster_path'] as String?,
-      backdropPath: json['backdrop_path'] as String?,
       originalName: json['original_name'] as String,
       voteAverage: (json['vote_average'] as num).toDouble(),
+      posterPath: json['poster_path'] as String?,
+      backdropPath: json['backdrop_path'] as String?,
     );
