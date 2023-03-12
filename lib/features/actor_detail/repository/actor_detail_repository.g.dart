@@ -6,7 +6,25 @@ part of 'actor_detail_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$actorDetailRepositoryHash() =>
+    r'f03929f69e9d85673b5b96b4349f52be9b6c5dac';
+
+/// See also [actorDetailRepository].
+@ProviderFor(actorDetailRepository)
+final actorDetailRepositoryProvider =
+    AutoDisposeProvider<ActorDetailRepository>.internal(
+  actorDetailRepository,
+  name: r'actorDetailRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$actorDetailRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ActorDetailRepositoryRef
+    = AutoDisposeProviderRef<ActorDetailRepository>;
+String _$fetchActorHash() => r'6daa4bdfd4fed3ce3ce4d3bca752f291ccdad3ec';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,28 +47,60 @@ class _SystemHash {
   }
 }
 
-String _$actorDetailRepositoryHash() =>
-    r'f03929f69e9d85673b5b96b4349f52be9b6c5dac';
+typedef FetchActorRef = AutoDisposeFutureProviderRef<ActorModel>;
 
-/// See also [actorDetailRepository].
-final actorDetailRepositoryProvider =
-    AutoDisposeProvider<ActorDetailRepository>(
-  actorDetailRepository,
-  name: r'actorDetailRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$actorDetailRepositoryHash,
-);
-typedef ActorDetailRepositoryRef
-    = AutoDisposeProviderRef<ActorDetailRepository>;
-String _$fetchActorHash() => r'6daa4bdfd4fed3ce3ce4d3bca752f291ccdad3ec';
+/// See also [fetchActor].
+@ProviderFor(fetchActor)
+const fetchActorProvider = FetchActorFamily();
+
+/// See also [fetchActor].
+class FetchActorFamily extends Family<AsyncValue<ActorModel>> {
+  /// See also [fetchActor].
+  const FetchActorFamily();
+
+  /// See also [fetchActor].
+  FetchActorProvider call({
+    required int personId,
+    String? language,
+  }) {
+    return FetchActorProvider(
+      personId: personId,
+      language: language,
+    );
+  }
+
+  @override
+  FetchActorProvider getProviderOverride(
+    covariant FetchActorProvider provider,
+  ) {
+    return call(
+      personId: provider.personId,
+      language: provider.language,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchActorProvider';
+}
 
 /// See also [fetchActor].
 class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
+  /// See also [fetchActor].
   FetchActorProvider({
     required this.personId,
     this.language,
-  }) : super(
+  }) : super.internal(
           (ref) => fetchActor(
             ref,
             personId: personId,
@@ -62,6 +112,9 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$fetchActorHash,
+          dependencies: FetchActorFamily._dependencies,
+          allTransitiveDependencies:
+              FetchActorFamily._allTransitiveDependencies,
         );
 
   final int personId;
@@ -83,41 +136,4 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef FetchActorRef = AutoDisposeFutureProviderRef<ActorModel>;
-
-/// See also [fetchActor].
-final fetchActorProvider = FetchActorFamily();
-
-class FetchActorFamily extends Family<AsyncValue<ActorModel>> {
-  FetchActorFamily();
-
-  FetchActorProvider call({
-    required int personId,
-    String? language,
-  }) {
-    return FetchActorProvider(
-      personId: personId,
-      language: language,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<ActorModel> getProviderOverride(
-    covariant FetchActorProvider provider,
-  ) {
-    return call(
-      personId: provider.personId,
-      language: provider.language,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'fetchActorProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

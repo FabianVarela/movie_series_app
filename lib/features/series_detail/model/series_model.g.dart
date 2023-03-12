@@ -10,10 +10,7 @@ SeriesModel _$SeriesModelFromJson(Map<String, dynamic> json) => SeriesModel(
       id: json['id'] as int,
       originalName: json['original_name'] as String,
       overview: json['overview'] as String,
-      firstAirDate: json['first_air_date'] as String?,
-      lastAirDate: json['last_air_date'] as String?,
       voteAverage: (json['vote_average'] as num).toDouble(),
-      homepage: json['homepage'] as String?,
       genres: (json['genres'] as List<dynamic>)
           .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -23,4 +20,7 @@ SeriesModel _$SeriesModelFromJson(Map<String, dynamic> json) => SeriesModel(
       seasons: json['seasons'] == null
           ? 0
           : SeriesModel._getSeasonSize(json['seasons'] as List),
+      firstAirDate: json['first_air_date'] as String?,
+      lastAirDate: json['last_air_date'] as String?,
+      homepage: json['homepage'] as String?,
     );
