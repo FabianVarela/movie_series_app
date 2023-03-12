@@ -13,6 +13,21 @@ import 'package:movie_list_bloc/features/series_list/view/series_list_view.dart'
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
+final _actorRoute = GoRoute(
+  parentNavigatorKey: _rootNavigatorKey,
+  path: 'actor/:personId',
+  pageBuilder: (_, state) {
+    final extra = state.extra! as Map<String, dynamic>;
+    final imageUrl = extra['actorImage'] as String;
+
+    final id = int.parse(state.params['personId']!);
+    return setFadePageRoute<dynamic>(
+      pageKey: state.pageKey,
+      child: ActorDetailView(personId: id, imageUrl: imageUrl),
+    );
+  },
+);
+
 final movieRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   observers: [HeroController()],
@@ -42,22 +57,7 @@ final movieRouter = GoRouter(
                   child: MovieDetailView(movieId: id, movieImageUrl: poster),
                 );
               },
-              routes: <GoRoute>[
-                GoRoute(
-                  path: 'actor/:personId',
-                  parentNavigatorKey: _rootNavigatorKey,
-                  pageBuilder: (_, state) {
-                    final extra = state.extra! as Map<String, dynamic>;
-                    final imageUrl = extra['actorImage'] as String;
-
-                    final id = int.parse(state.params['personId']!);
-                    return setFadePageRoute<dynamic>(
-                      pageKey: state.pageKey,
-                      child: ActorDetailView(personId: id, imageUrl: imageUrl),
-                    );
-                  },
-                ),
-              ],
+              routes: <GoRoute>[_actorRoute],
             ),
           ],
         ),
@@ -80,22 +80,7 @@ final movieRouter = GoRouter(
                   child: SeriesDetailView(seriesId: id, seriesImageUrl: poster),
                 );
               },
-              routes: <GoRoute>[
-                GoRoute(
-                  path: 'actor/:personId',
-                  parentNavigatorKey: _rootNavigatorKey,
-                  pageBuilder: (_, state) {
-                    final extra = state.extra! as Map<String, dynamic>;
-                    final imageUrl = extra['actorImage'] as String;
-
-                    final id = int.parse(state.params['personId']!);
-                    return setFadePageRoute<dynamic>(
-                      pageKey: state.pageKey,
-                      child: ActorDetailView(personId: id, imageUrl: imageUrl),
-                    );
-                  },
-                ),
-              ],
+              routes: <GoRoute>[_actorRoute],
             ),
           ],
         ),
