@@ -9,14 +9,14 @@ environment:
 
 dependencies:
   cached_network_image: ^3.2.3
-  dio: ^5.0.2
+  dio: ^5.0.3
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.6
   flutter_localizations:
     sdk: flutter
   freezed_annotation: ^2.2.0
-  ## go_router: ^6.2.0
+  # go_router: ^6.4.0
   go_router:
     git:
       url: https://github.com/tolo/flutter_packages.git
@@ -27,7 +27,7 @@ dependencies:
   intl: ^0.17.0
   json_annotation: ^4.8.0
   riverpod_annotation: ^2.0.2
-  shared_preferences: ^2.0.18
+  shared_preferences: ^2.0.20
   url_launcher: ^6.1.10
 
 dev_dependencies:
