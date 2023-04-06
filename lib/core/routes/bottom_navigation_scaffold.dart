@@ -4,12 +4,12 @@ import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class BottomNavigationScaffold extends StatelessWidget {
   const BottomNavigationScaffold({
-    required this.shellState,
+    required this.stackShellState,
     required this.child,
     super.key,
   });
 
-  final StatefulShellRouteState shellState;
+  final StackedShellRouteState stackShellState;
   final Widget child;
 
   @override
@@ -27,8 +27,8 @@ class BottomNavigationScaffold extends StatelessWidget {
             label: context.l10n.seriesNavBarText,
           ),
         ],
-        currentIndex: shellState.currentIndex,
-        onTap: (index) => shellState.goBranch(index: index),
+        currentIndex: stackShellState.currentIndex,
+        onTap: (index) => stackShellState.goBranch(index: index),
       ),
     );
   }
