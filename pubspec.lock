@@ -303,10 +303,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_riverpod
-      sha256: b3c3a8a9714b7f88dd2a41e1efbc47f76d620b06ab427c62ae7bc82298cd7dbb
+      sha256: "7ccf1f98a906a91b1f4e95dea81b4b571d95049a59c54b79d57a2954b0285afe"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -354,10 +354,10 @@ packages:
     description:
       path: "packages/go_router"
       ref: nested-persistent-navigation
-      resolved-ref: "72857881bd56650bc194b65266b2f0e97d272a56"
+      resolved-ref: "3a830075480d5a88e0c3e69230a1c4518b30a209"
       url: "https://github.com/tolo/flutter_packages.git"
     source: git
-    version: "6.6.0"
+    version: "6.5.2"
   google_fonts:
     dependency: "direct main"
     description:
@@ -378,10 +378,10 @@ packages:
     dependency: "direct main"
     description:
       name: hooks_riverpod
-      sha256: "7e673817a7db4d6403a079882485affd3156d79c06209389353d0977d513f905"
+      sha256: f7866f6b7f612fe8ec3681e21a445f6415bd5da077aace6dc7b57c0e3475bb80
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   http:
     dependency: transitive
     description:
@@ -626,10 +626,10 @@ packages:
     dependency: transitive
     description:
       name: riverpod
-      sha256: b0fbf7927333c5c318f7e2c22c8b4fd2542ba294de0373e80ecdb34e0dcd8dc4
+      sha256: fc63714de93a4660142d280e13f058137ba586510c825dce3b7c7d4c4714b585
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   riverpod_analyzer_utils:
     dependency: transitive
     description:
@@ -642,18 +642,18 @@ packages:
     dependency: "direct main"
     description:
       name: riverpod_annotation
-      sha256: c0f51b3fc5a0cefcbcddb35a10ad542d6c38919c081a25279045158ac7955cfb
+      sha256: "9d7b5e61bd8b7eca2e93c75d50eb70e137b67316abf1a331b33cf3a80673980e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   riverpod_generator:
     dependency: "direct dev"
     description:
       name: riverpod_generator
-      sha256: "2c08a6fbbe80d489f1c5208e5358bfdd4d612f1777c47fdb9ff91bb7a2670529"
+      sha256: "452ea37021012562004b36e35711e5ec35cab96631c3708238c4de9a681a8b23"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.4"
+    version: "2.1.5"
   rxdart:
     dependency: transitive
     description:
