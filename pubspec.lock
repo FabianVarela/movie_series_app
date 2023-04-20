@@ -311,10 +311,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_riverpod
-      sha256: "812dfbb87af51e73e68ea038bcfd1c732078d6838d3388d03283db7dec0d1e5f"
+      sha256: "9692634c2c00d2a1a5e96bbde0b79a7c6f0f266aa266d76cd52841f791949a89"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.4"
+    version: "2.3.5"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -385,10 +385,10 @@ packages:
     dependency: "direct main"
     description:
       name: hooks_riverpod
-      sha256: eceb62b7e3a18e6c2831498c3f2ea5b42c0a938c95d0c1eb1b8a7ccdd022accc
+      sha256: "480265a59ab0be2063ab99fee669c84c488548cc38ed37ef5dba80d4e35f1c07"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.4"
+    version: "2.3.5"
   http:
     dependency: transitive
     description:
@@ -633,34 +633,34 @@ packages:
     dependency: transitive
     description:
       name: riverpod
-      sha256: "77ab3bcd084bb19fa8717a526217787c725d7f5be938404c7839cd760fdf6ae5"
+      sha256: ec5641067d111681ef825754d1327565c987985c7cb52e09bc867b78248854b2
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.4"
+    version: "2.3.5"
   riverpod_analyzer_utils:
     dependency: transitive
     description:
       name: riverpod_analyzer_utils
-      sha256: "34270111fa5843517e9ee63b1f906c756d99380f2aecbce52151aadb6d1c05a6"
+      sha256: "5992363c28b20b5fb0583e577e1c203eeae2f35536091d1146fdee97385c5dcf"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   riverpod_annotation:
     dependency: "direct main"
     description:
       name: riverpod_annotation
-      sha256: afc01d5ba57e7993342c8d5120925826949455607ae29c8d98608ee840ee1cd6
+      sha256: ac25725c94db4b99a1da8e3f73b2f8eb04fec8e0987056ff2843f18b3609d379
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.4"
+    version: "2.1.0"
   riverpod_generator:
     dependency: "direct dev"
     description:
       name: riverpod_generator
-      sha256: decd5427a51603fc2add9b01f04874ac0bc6b5b6547343b8a5ccb0ba1a069943
+      sha256: "7951fd096eba03b6d6da2b0b28ce218da773e5e04b00aa6a91b5075053f44a2a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.6"
+    version: "2.2.0"
   rxdart:
     dependency: transitive
     description:
