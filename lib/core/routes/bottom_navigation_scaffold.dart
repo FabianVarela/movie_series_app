@@ -3,19 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class BottomNavigationScaffold extends StatelessWidget {
-  const BottomNavigationScaffold({
-    required this.stackShellState,
-    required this.child,
-    super.key,
-  });
+  const BottomNavigationScaffold({required this.stackedShell, super.key});
 
-  final StackedShellRouteState stackShellState;
-  final Widget child;
+  final StackedNavigationShell stackedShell;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HeroMode(child: child),
+      body: HeroMode(child: stackedShell),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -27,8 +22,8 @@ class BottomNavigationScaffold extends StatelessWidget {
             label: context.l10n.seriesNavBarText,
           ),
         ],
-        currentIndex: stackShellState.currentIndex,
-        onTap: (index) => stackShellState.goBranch(index: index),
+        currentIndex: stackedShell.currentIndex,
+        onTap: stackedShell.goBranch,
       ),
     );
   }

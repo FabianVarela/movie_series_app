@@ -99,9 +99,8 @@ final movieRouter = GoRouter(
           ],
         ),
       ],
-      builder: (_, stackShellState, child) => BottomNavigationScaffold(
-        stackShellState: stackShellState,
-        child: child,
+      builder: (_, __, navShell) => BottomNavigationScaffold(
+        stackedShell: navShell,
       ),
     ),
   ],
