@@ -23,10 +23,10 @@ dependencies:
       path: packages/go_router
       ref: nested-persistent-navigation
   google_fonts: ^4.0.3
-  hooks_riverpod: ^2.3.4
+  hooks_riverpod: ^2.3.5
   intl: ^0.17.0
   json_annotation: ^4.8.0
-  riverpod_annotation: ^2.0.4
+  riverpod_annotation: ^2.1.0
   shared_preferences: ^2.1.0
   url_launcher: ^6.1.10
 
@@ -36,7 +36,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.3.2
   json_serializable: ^6.6.1
-  riverpod_generator: ^2.1.6
+  riverpod_generator: ^2.2.0
   very_good_analysis: ^4.0.0+1
 
 flutter:
