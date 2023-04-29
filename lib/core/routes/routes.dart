@@ -34,8 +34,8 @@ final movieRouter = GoRouter(
   initialLocation: '/movies',
   routes: <RouteBase>[
     StackedShellRoute(
-      branches: <StackedShellBranch>[
-        StackedShellBranch(
+      branches: <StatefulShellBranch>[
+        StatefulShellBranch(
           navigatorKey: _shellNavigatorKey,
           observers: [HeroController()],
           routes: <RouteBase>[
@@ -67,7 +67,7 @@ final movieRouter = GoRouter(
             ),
           ],
         ),
-        StackedShellBranch(
+        StatefulShellBranch(
           observers: [HeroController()],
           routes: <RouteBase>[
             GoRoute(

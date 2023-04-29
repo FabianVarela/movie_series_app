@@ -5,7 +5,7 @@ import 'package:movie_list_bloc/l10n/l10n.dart';
 class BottomNavigationScaffold extends StatelessWidget {
   const BottomNavigationScaffold({required this.stackedShell, super.key});
 
-  final StackedNavigationShell stackedShell;
+  final StatefulNavigationShell stackedShell;
 
   @override
   Widget build(BuildContext context) {
