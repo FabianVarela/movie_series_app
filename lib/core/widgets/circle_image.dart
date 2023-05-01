@@ -14,8 +14,11 @@ class CircleImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageWidget = imageUrl != null ? NetworkImage(imageUrl!) : null;
+    if (imageWidget != null) precacheImage(imageWidget, context);
+
     return CircleAvatar(
-      backgroundImage: imageUrl != null ? NetworkImage(imageUrl!) : null,
+      backgroundImage: imageWidget,
       radius: imageSize,
       child: imageUrl == null
           ? Icon(Icons.account_circle, size: iconSize, color: Colors.white)

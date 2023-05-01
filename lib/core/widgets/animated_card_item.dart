@@ -39,6 +39,17 @@ class AnimatedCardItem extends HookWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    final imageWidget = Image(
+      image: CachedNetworkImageProvider('$imdbImageUri$imageUrl'),
+      fit: BoxFit.cover,
+      errorBuilder: (_, __, ___) => Image.asset(
+        'assets/images/poster_not_available.jpg',
+        fit: BoxFit.cover,
+      ),
+    );
+
+    precacheImage(imageWidget.image, context);
+
     return WillPopScope(
       onWillPop: () async {
         if (defaultTargetPlatform == TargetPlatform.iOS) return true;
@@ -134,14 +145,7 @@ class AnimatedCardItem extends HookWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: CachedNetworkImage(
-                          imageUrl: '$imdbImageUri$imageUrl',
-                          fit: BoxFit.cover,
-                          errorWidget: (_, __, ___) => Image.asset(
-                            'assets/images/poster_not_available.jpg',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                        child: imageWidget,
                       ),
                     ),
                   ),

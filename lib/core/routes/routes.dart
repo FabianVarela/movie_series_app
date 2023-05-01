@@ -20,7 +20,7 @@ final _actorRoute = GoRoute(
     final extra = state.extra! as Map<String, dynamic>;
     final imageUrl = extra['actorImage'] as String;
 
-    final id = int.parse(state.params['personId']!);
+    final id = int.parse(state.pathParameters['personId']!);
     return setFadePageRoute<dynamic>(
       pageKey: state.pageKey,
       child: ActorDetailView(personId: id, imageUrl: imageUrl),
@@ -52,7 +52,7 @@ final movieRouter = GoRouter(
                     final extra = state.extra! as Map<String, dynamic>;
                     final poster = extra['posterPath'] as String?;
 
-                    final id = int.parse(state.params['movieId']!);
+                    final id = int.parse(state.pathParameters['movieId']!);
                     return setTransformPageRoute<dynamic>(
                       pageKey: state.pageKey,
                       child: MovieDetailView(
@@ -83,7 +83,7 @@ final movieRouter = GoRouter(
                     final extra = state.extra! as Map<String, dynamic>;
                     final poster = extra['posterPath'] as String?;
 
-                    final id = int.parse(state.params['seriesId']!);
+                    final id = int.parse(state.pathParameters['seriesId']!);
                     return setTransformPageRoute<dynamic>(
                       pageKey: state.pageKey,
                       child: SeriesDetailView(
