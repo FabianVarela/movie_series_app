@@ -8,23 +8,26 @@ class AnimatedCardItem extends HookWidget {
     required this.id,
     required this.name,
     required this.onPress,
-    super.key,
     this.voteAverage = 0.0,
+    this.isCurrent = false,
     this.imageUrl,
     this.onExpanded,
-    this.isCurrent = false,
+    super.key,
   });
 
   final int id;
   final String name;
-  final double voteAverage;
-  final String? imageUrl;
   final VoidCallback onPress;
-  final ValueSetter<bool>? onExpanded;
+  final double voteAverage;
   final bool isCurrent;
+  final String? imageUrl;
+  final ValueSetter<bool>? onExpanded;
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
     const duration = Duration(milliseconds: 300);
 
@@ -35,9 +38,6 @@ class AnimatedCardItem extends HookWidget {
     final expandAnimation = useAnimation<double>(
       Tween<double>(begin: 0.7, end: 0.8).animate(controller),
     );
-
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     final imageWidget = Image(
       image: CachedNetworkImageProvider('$imdbImageUri$imageUrl'),

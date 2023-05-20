@@ -14,8 +14,8 @@ import 'package:url_launcher/url_launcher.dart';
 class SeriesDetailView extends HookConsumerWidget {
   const SeriesDetailView({
     required this.seriesId,
-    super.key,
     this.seriesImageUrl,
+    super.key,
   });
 
   final int seriesId;

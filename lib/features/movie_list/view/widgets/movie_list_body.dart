@@ -13,15 +13,15 @@ class MovieListBody extends HookConsumerWidget {
   const MovieListBody({
     required this.onChangePage,
     required this.onSelectMovie,
-    super.key,
     this.currentIndex = 0,
     this.genreId,
+    super.key,
   });
 
-  final int currentIndex;
-  final int? genreId;
   final ValueSetter<int> onChangePage;
   final ValueSetter<MovieModel> onSelectMovie;
+  final int currentIndex;
+  final int? genreId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

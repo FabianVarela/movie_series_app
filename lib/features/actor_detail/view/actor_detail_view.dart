@@ -9,7 +9,7 @@ import 'package:movie_list_bloc/features/actor_detail/view/widgets/actor_data_se
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class ActorDetailView extends HookConsumerWidget {
-  const ActorDetailView({required this.personId, super.key, this.imageUrl});
+  const ActorDetailView({required this.personId, this.imageUrl, super.key});
 
   final int personId;
   final String? imageUrl;

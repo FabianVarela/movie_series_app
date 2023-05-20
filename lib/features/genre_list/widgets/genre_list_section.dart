@@ -9,13 +9,13 @@ class GenreListSection extends ConsumerWidget {
   const GenreListSection({
     required this.genreType,
     required this.onSelect,
-    super.key,
     this.id,
+    super.key,
   });
 
-  final int? id;
   final GenreType genreType;
   final ValueSetter<GenreModel> onSelect;
+  final int? id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

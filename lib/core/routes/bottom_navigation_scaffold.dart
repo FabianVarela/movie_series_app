@@ -30,20 +30,19 @@ class BottomNavigationScaffold extends StatelessWidget {
 
   int _calculateSelectedIndex(BuildContext context) {
     final location = GoRouter.of(context).location;
-
-    if (location.contains('/movies')) return 0;
-    if (location.contains('/series')) return 1;
-    return 0;
+    return switch (location) {
+      _ when location.contains('/movies') => 0,
+      _ when location.contains('/series') => 1,
+      _ => 0,
+    };
   }
 
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
         context.go('/movies');
-        break;
       case 1:
         context.go('/series');
-        break;
     }
   }
 }

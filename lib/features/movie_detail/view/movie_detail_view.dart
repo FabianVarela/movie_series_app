@@ -14,8 +14,8 @@ import 'package:url_launcher/url_launcher.dart';
 class MovieDetailView extends HookConsumerWidget {
   const MovieDetailView({
     required this.movieId,
-    super.key,
     this.movieImageUrl,
+    super.key,
   });
 
   final int movieId;
