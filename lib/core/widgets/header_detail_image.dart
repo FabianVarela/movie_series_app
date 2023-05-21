@@ -5,13 +5,13 @@ class HeaderDetailImage extends StatelessWidget {
   const HeaderDetailImage({
     required this.id,
     required this.onDrag,
-    super.key,
     this.imageUrl,
+    super.key,
   });
 
   final int id;
-  final String? imageUrl;
   final VoidCallback onDrag;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {

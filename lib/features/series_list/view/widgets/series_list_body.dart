@@ -13,15 +13,15 @@ class SeriesListBody extends HookConsumerWidget {
   const SeriesListBody({
     required this.onChangePage,
     required this.onSelectSeries,
-    super.key,
     this.currentIndex = 0,
     this.genreId,
+    super.key,
   });
 
-  final int currentIndex;
-  final int? genreId;
   final ValueSetter<int> onChangePage;
   final ValueSetter<SeriesModel> onSelectSeries;
+  final int currentIndex;
+  final int? genreId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

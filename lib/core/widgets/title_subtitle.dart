@@ -4,8 +4,8 @@ class TitleSubtitle extends StatelessWidget {
   const TitleSubtitle({
     required this.title,
     required this.subtitle,
-    super.key,
     this.isRow = true,
+    super.key,
   });
 
   final String title;

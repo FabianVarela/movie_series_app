@@ -5,9 +5,9 @@ class SectionStaggeredAnimation extends HookWidget {
   const SectionStaggeredAnimation({
     required this.controller,
     required this.child,
-    super.key,
     this.startInterval = 0,
     this.endInterval = 1,
+    super.key,
   });
 
   final AnimationController controller;

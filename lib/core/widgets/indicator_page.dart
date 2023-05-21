@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class IndicatorPage extends StatelessWidget {
-  const IndicatorPage({super.key, this.start = 0, this.total = 0});
+  const IndicatorPage({this.start = 0, this.total = 0, super.key});
 
   final int start;
   final int total;

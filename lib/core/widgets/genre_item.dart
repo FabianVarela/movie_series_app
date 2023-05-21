@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class GenreItem extends StatelessWidget {
   const GenreItem({
     required this.name,
-    super.key,
     this.onSelect,
     this.backgroundColor,
     this.textColor,
+    super.key,
   });
 
   final String name;

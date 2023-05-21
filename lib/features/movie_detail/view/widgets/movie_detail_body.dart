@@ -5,7 +5,7 @@ import 'package:movie_list_bloc/features/movie_detail/model/movie_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class MovieDetailBody extends StatelessWidget {
-  const MovieDetailBody({required this.movie, super.key, this.onGoWebSite});
+  const MovieDetailBody({required this.movie, this.onGoWebSite, super.key});
 
   final MovieModel movie;
   final ValueSetter<String>? onGoWebSite;
