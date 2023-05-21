@@ -99,11 +99,12 @@ final movieRouter = GoRouter(
           ],
         ),
       ],
-      navigatorContainerBuilder: (_, navShell, children) {
-        return BottomNavigationScaffold(stackedShell: navShell);
-      },
-      builder: (_, __, navShell) {
-        return navShell;
+      builder: (_, __, navigationShell) => navigationShell,
+      navigatorContainerBuilder: (_, navigationShell, children) {
+        return BottomNavigationScaffold(
+          navigationShell: navigationShell,
+          screens: children,
+        );
       },
     ),
   ],
