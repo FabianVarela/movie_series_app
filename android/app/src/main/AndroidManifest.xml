@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.developer.fabian.movie_list_bloc">
+    package="com.developer.fabian.movie_series_app">
 
     <!-- URL launcher: Required visibility configuration for API level 30 and above -->
     <queries>
