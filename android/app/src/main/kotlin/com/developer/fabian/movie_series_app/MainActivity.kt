@@ -1,4 +1,4 @@
-package com.developer.fabian.movie_list_bloc
+package com.developer.fabian.movie_series_app
 
 import io.flutter.embedding.android.FlutterActivity
 
