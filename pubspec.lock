@@ -360,12 +360,11 @@ packages:
   go_router:
     dependency: "direct main"
     description:
-      path: "packages/go_router"
-      ref: nested-persistent-navigation
-      resolved-ref: "80c396f6f1f3394fdba54c83aa91aa9af6b66477"
-      url: "https://github.com/tolo/flutter_packages.git"
-    source: git
-    version: "7.1.0"
+      name: go_router
+      sha256: "00d1b67d6e9fa443331da229084dd3eb04407f5a2dff22940bd7bba6af5722c3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.1.1"
   google_fonts:
     dependency: "direct main"
     description:
