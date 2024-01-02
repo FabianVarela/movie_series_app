@@ -63,7 +63,7 @@ class ActorModel {
     final creditMap = value['cast'] as List<dynamic>;
     return [
       for (final item in creditMap)
-        ActorCreditModel.fromJson(item as Map<String, dynamic>)
+        ActorCreditModel.fromJson(item as Map<String, dynamic>),
     ];
   }
 }
