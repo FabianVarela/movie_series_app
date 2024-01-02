@@ -17,16 +17,20 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   await runZonedGuarded(
-    () async => runApp(
-      ProviderScope(
-        overrides: [
-          sharedPrefsProvider.overrideWithValue(
-            await SharedPreferences.getInstance(),
-          ),
-        ],
-        child: await builder(),
-      ),
-    ),
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+
+      runApp(
+        ProviderScope(
+          overrides: [
+            sharedPrefsProvider.overrideWithValue(
+              await SharedPreferences.getInstance(),
+            ),
+          ],
+          child: await builder(),
+        ),
+      );
+    },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
