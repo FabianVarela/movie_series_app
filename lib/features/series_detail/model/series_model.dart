@@ -44,7 +44,7 @@ class SeriesModel {
     final creditMap = value['cast'] as List<dynamic>;
     return [
       for (final item in creditMap)
-        CreditsModel.fromJson(item as Map<String, dynamic>)
+        CreditsModel.fromJson(item as Map<String, dynamic>),
     ];
   }
 
@@ -52,7 +52,7 @@ class SeriesModel {
     final creditMap = value['results'] as List<dynamic>;
     return [
       for (final item in creditMap)
-        TrailerModel.fromJson(item as Map<String, dynamic>)
+        TrailerModel.fromJson(item as Map<String, dynamic>),
     ];
   }
 
