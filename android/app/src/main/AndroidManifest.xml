@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.developer.fabian.movie_series_app">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- URL launcher: Required visibility configuration for API level 30 and above -->
     <queries>
@@ -19,18 +19,19 @@
     </queries>
 
     <application
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Movies App">
+        android:label="Movies App"
+        tools:targetApi="tiramisu">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:enableOnBackInvokedCallback="true"
+            android:exported="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
-            android:windowSoftInputMode="adjustResize"
-            android:enableOnBackInvokedCallback="true"
-            android:exported="true"
-            tools:targetApi="tiramisu">
+            android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
