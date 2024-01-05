@@ -50,21 +50,19 @@ class AnimatedCardItem extends HookWidget {
 
     precacheImage(imageWidget.image, context);
 
-    return PopScope(
-      onPopInvoked: (didPop) {
-        if (defaultTargetPlatform == TargetPlatform.iOS) {
-          Navigator.of(context).pop();
-        }
+    return WillPopScope(
+      onWillPop: () async {
+        if (defaultTargetPlatform == TargetPlatform.iOS) return true;
 
         final statuses = [AnimationStatus.reverse, AnimationStatus.dismissed];
         if (!statuses.contains(controller.status)) {
-          controller.reverse();
+          await controller.reverse();
           onExpanded?.call(false);
 
-          return;
+          return false;
         }
 
-        Navigator.of(context).pop();
+        return true;
       },
       child: AnimatedOpacity(
         duration: duration,
