@@ -20,12 +20,18 @@ in English and Spanish.
 
 #### Setting arguments
 
-* You must the api uri and the image uri (already set here) and your api key in the *Dart Define command*,
-  setting the additional run arguments below
+* You must set the api uri, the image uri (already set here), and your api key in the *config-keys.json* file.
+    ```json
+  {
+    "TMDB_API_URI": "api.themoviedb.org",
+    "TMDB_IMAGE_URI": "https://image.tmdb.org/t/p/original",
+    "TMDB_API_KEY": "<YOUR_TMDB_API_KEY>"
+  }
   ```
-  --dart-define TMDB_API_URI=api.themoviedb.org
-  --dart-define TMDB_IMAGE_URI=https://image.tmdb.org/t/p/original
-  --dart-define TMDB_API_KEY=<YOUR_TMDB_API_KEY>
+
+* You must set the json file in the *Dart Define command*, setting in the additional run arguments below
+  ```
+  --dart-define-from-file=config-keys.json
   ```
 
 <font size="3">*For more info to get your api key, go to
