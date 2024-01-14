@@ -3,25 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class BottomNavigationScaffold extends StatelessWidget {
-  const BottomNavigationScaffold({
-    required this.navigationShell,
-    required this.screens,
-    super.key,
-  });
+  const BottomNavigationScaffold({required this.navigationShell, super.key});
 
   final StatefulNavigationShell navigationShell;
-  final List<Widget> screens;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HeroMode(
-        child: IndexedStack(
-          sizing: StackFit.expand,
-          index: navigationShell.currentIndex,
-          children: screens.map((screen) => screen).toList(),
-        ),
-      ),
+      body: HeroMode(child: navigationShell),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

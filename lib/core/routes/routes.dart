@@ -33,7 +33,7 @@ final movieRouter = GoRouter(
   observers: [HeroController()],
   initialLocation: '/movies',
   routes: <RouteBase>[
-    StatefulShellRoute(
+    StatefulShellRoute.indexedStack(
       branches: <StatefulShellBranch>[
         StatefulShellBranch(
           navigatorKey: _shellNavigatorKey,
@@ -99,13 +99,9 @@ final movieRouter = GoRouter(
           ],
         ),
       ],
-      builder: (_, __, navigationShell) => navigationShell,
-      navigatorContainerBuilder: (_, navigationShell, children) {
-        return BottomNavigationScaffold(
-          navigationShell: navigationShell,
-          screens: children,
-        );
-      },
+      builder: (_, __, navigationShell) => BottomNavigationScaffold(
+        navigationShell: navigationShell,
+      ),
     ),
   ],
   debugLogDiagnostics: kDebugMode,
