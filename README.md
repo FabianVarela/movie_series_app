@@ -20,7 +20,8 @@ in English and Spanish.
 
 #### Setting arguments
 
-* You must set the api uri, the image uri (already set here), and your api key in the *config-keys.json* file.
+* You must set the api uri, the image uri (already set here), and your api key. You must create a `json` file with the
+  name *config-keys.json* and set to the root's project.
     ```json
   {
     "TMDB_API_URI": "api.themoviedb.org",
