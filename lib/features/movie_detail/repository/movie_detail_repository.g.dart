@@ -47,8 +47,6 @@ class _SystemHash {
   }
 }
 
-typedef FetchMovieRef = AutoDisposeFutureProviderRef<MovieModel>;
-
 /// See also [fetchMovie].
 @ProviderFor(fetchMovie)
 const fetchMovieProvider = FetchMovieFamily();
@@ -98,11 +96,11 @@ class FetchMovieFamily extends Family<AsyncValue<MovieModel>> {
 class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
   /// See also [fetchMovie].
   FetchMovieProvider({
-    required this.movieId,
-    this.language,
-  }) : super.internal(
+    required int movieId,
+    String? language,
+  }) : this._internal(
           (ref) => fetchMovie(
-            ref,
+            ref as FetchMovieRef,
             movieId: movieId,
             language: language,
           ),
@@ -115,10 +113,47 @@ class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
           dependencies: FetchMovieFamily._dependencies,
           allTransitiveDependencies:
               FetchMovieFamily._allTransitiveDependencies,
+          movieId: movieId,
+          language: language,
         );
+
+  FetchMovieProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.movieId,
+    required this.language,
+  }) : super.internal();
 
   final int movieId;
   final String? language;
+
+  @override
+  Override overrideWith(
+    FutureOr<MovieModel> Function(FetchMovieRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchMovieProvider._internal(
+        (ref) => create(ref as FetchMovieRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        movieId: movieId,
+        language: language,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<MovieModel> createElement() {
+    return _FetchMovieProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -136,4 +171,23 @@ class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin FetchMovieRef on AutoDisposeFutureProviderRef<MovieModel> {
+  /// The parameter `movieId` of this provider.
+  int get movieId;
+
+  /// The parameter `language` of this provider.
+  String? get language;
+}
+
+class _FetchMovieProviderElement
+    extends AutoDisposeFutureProviderElement<MovieModel> with FetchMovieRef {
+  _FetchMovieProviderElement(super.provider);
+
+  @override
+  int get movieId => (origin as FetchMovieProvider).movieId;
+  @override
+  String? get language => (origin as FetchMovieProvider).language;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

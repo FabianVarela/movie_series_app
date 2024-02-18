@@ -46,8 +46,6 @@ class _SystemHash {
   }
 }
 
-typedef FetchGenresRef = AutoDisposeFutureProviderRef<GenresModel>;
-
 /// See also [fetchGenres].
 @ProviderFor(fetchGenres)
 const fetchGenresProvider = FetchGenresFamily();
@@ -97,11 +95,11 @@ class FetchGenresFamily extends Family<AsyncValue<GenresModel>> {
 class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
   /// See also [fetchGenres].
   FetchGenresProvider({
-    required this.type,
-    this.language,
-  }) : super.internal(
+    required GenreType type,
+    String? language,
+  }) : this._internal(
           (ref) => fetchGenres(
-            ref,
+            ref as FetchGenresRef,
             type: type,
             language: language,
           ),
@@ -114,10 +112,47 @@ class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
           dependencies: FetchGenresFamily._dependencies,
           allTransitiveDependencies:
               FetchGenresFamily._allTransitiveDependencies,
+          type: type,
+          language: language,
         );
+
+  FetchGenresProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.type,
+    required this.language,
+  }) : super.internal();
 
   final GenreType type;
   final String? language;
+
+  @override
+  Override overrideWith(
+    FutureOr<GenresModel> Function(FetchGenresRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchGenresProvider._internal(
+        (ref) => create(ref as FetchGenresRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        type: type,
+        language: language,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<GenresModel> createElement() {
+    return _FetchGenresProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -135,4 +170,23 @@ class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin FetchGenresRef on AutoDisposeFutureProviderRef<GenresModel> {
+  /// The parameter `type` of this provider.
+  GenreType get type;
+
+  /// The parameter `language` of this provider.
+  String? get language;
+}
+
+class _FetchGenresProviderElement
+    extends AutoDisposeFutureProviderElement<GenresModel> with FetchGenresRef {
+  _FetchGenresProviderElement(super.provider);
+
+  @override
+  GenreType get type => (origin as FetchGenresProvider).type;
+  @override
+  String? get language => (origin as FetchGenresProvider).language;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

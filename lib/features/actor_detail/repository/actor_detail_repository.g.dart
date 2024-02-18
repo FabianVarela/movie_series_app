@@ -47,8 +47,6 @@ class _SystemHash {
   }
 }
 
-typedef FetchActorRef = AutoDisposeFutureProviderRef<ActorModel>;
-
 /// See also [fetchActor].
 @ProviderFor(fetchActor)
 const fetchActorProvider = FetchActorFamily();
@@ -98,11 +96,11 @@ class FetchActorFamily extends Family<AsyncValue<ActorModel>> {
 class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
   /// See also [fetchActor].
   FetchActorProvider({
-    required this.personId,
-    this.language,
-  }) : super.internal(
+    required int personId,
+    String? language,
+  }) : this._internal(
           (ref) => fetchActor(
-            ref,
+            ref as FetchActorRef,
             personId: personId,
             language: language,
           ),
@@ -115,10 +113,47 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
           dependencies: FetchActorFamily._dependencies,
           allTransitiveDependencies:
               FetchActorFamily._allTransitiveDependencies,
+          personId: personId,
+          language: language,
         );
+
+  FetchActorProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.personId,
+    required this.language,
+  }) : super.internal();
 
   final int personId;
   final String? language;
+
+  @override
+  Override overrideWith(
+    FutureOr<ActorModel> Function(FetchActorRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchActorProvider._internal(
+        (ref) => create(ref as FetchActorRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        personId: personId,
+        language: language,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<ActorModel> createElement() {
+    return _FetchActorProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -136,4 +171,23 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin FetchActorRef on AutoDisposeFutureProviderRef<ActorModel> {
+  /// The parameter `personId` of this provider.
+  int get personId;
+
+  /// The parameter `language` of this provider.
+  String? get language;
+}
+
+class _FetchActorProviderElement
+    extends AutoDisposeFutureProviderElement<ActorModel> with FetchActorRef {
+  _FetchActorProviderElement(super.provider);
+
+  @override
+  int get personId => (origin as FetchActorProvider).personId;
+  @override
+  String? get language => (origin as FetchActorProvider).language;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -60,8 +60,6 @@ class _SystemHash {
   }
 }
 
-typedef SetLanguageRef = AutoDisposeFutureProviderRef<bool>;
-
 /// See also [setLanguage].
 @ProviderFor(setLanguage)
 const setLanguageProvider = SetLanguageFamily();
@@ -108,10 +106,10 @@ class SetLanguageFamily extends Family<AsyncValue<bool>> {
 class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
   /// See also [setLanguage].
   SetLanguageProvider({
-    required this.language,
-  }) : super.internal(
+    required String language,
+  }) : this._internal(
           (ref) => setLanguage(
-            ref,
+            ref as SetLanguageRef,
             language: language,
           ),
           from: setLanguageProvider,
@@ -123,9 +121,43 @@ class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
           dependencies: SetLanguageFamily._dependencies,
           allTransitiveDependencies:
               SetLanguageFamily._allTransitiveDependencies,
+          language: language,
         );
 
+  SetLanguageProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.language,
+  }) : super.internal();
+
   final String language;
+
+  @override
+  Override overrideWith(
+    FutureOr<bool> Function(SetLanguageRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SetLanguageProvider._internal(
+        (ref) => create(ref as SetLanguageRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        language: language,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<bool> createElement() {
+    return _SetLanguageProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -140,4 +172,18 @@ class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin SetLanguageRef on AutoDisposeFutureProviderRef<bool> {
+  /// The parameter `language` of this provider.
+  String get language;
+}
+
+class _SetLanguageProviderElement extends AutoDisposeFutureProviderElement<bool>
+    with SetLanguageRef {
+  _SetLanguageProviderElement(super.provider);
+
+  @override
+  String get language => (origin as SetLanguageProvider).language;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

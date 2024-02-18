@@ -47,8 +47,6 @@ class _SystemHash {
   }
 }
 
-typedef FetchSeriesRef = AutoDisposeFutureProviderRef<SeriesModel>;
-
 /// See also [fetchSeries].
 @ProviderFor(fetchSeries)
 const fetchSeriesProvider = FetchSeriesFamily();
@@ -98,11 +96,11 @@ class FetchSeriesFamily extends Family<AsyncValue<SeriesModel>> {
 class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
   /// See also [fetchSeries].
   FetchSeriesProvider({
-    required this.tvId,
-    this.language,
-  }) : super.internal(
+    required int tvId,
+    String? language,
+  }) : this._internal(
           (ref) => fetchSeries(
-            ref,
+            ref as FetchSeriesRef,
             tvId: tvId,
             language: language,
           ),
@@ -115,10 +113,47 @@ class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
           dependencies: FetchSeriesFamily._dependencies,
           allTransitiveDependencies:
               FetchSeriesFamily._allTransitiveDependencies,
+          tvId: tvId,
+          language: language,
         );
+
+  FetchSeriesProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.tvId,
+    required this.language,
+  }) : super.internal();
 
   final int tvId;
   final String? language;
+
+  @override
+  Override overrideWith(
+    FutureOr<SeriesModel> Function(FetchSeriesRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchSeriesProvider._internal(
+        (ref) => create(ref as FetchSeriesRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        tvId: tvId,
+        language: language,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<SeriesModel> createElement() {
+    return _FetchSeriesProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -136,4 +171,23 @@ class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin FetchSeriesRef on AutoDisposeFutureProviderRef<SeriesModel> {
+  /// The parameter `tvId` of this provider.
+  int get tvId;
+
+  /// The parameter `language` of this provider.
+  String? get language;
+}
+
+class _FetchSeriesProviderElement
+    extends AutoDisposeFutureProviderElement<SeriesModel> with FetchSeriesRef {
+  _FetchSeriesProviderElement(super.provider);
+
+  @override
+  int get tvId => (origin as FetchSeriesProvider).tvId;
+  @override
+  String? get language => (origin as FetchSeriesProvider).language;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
