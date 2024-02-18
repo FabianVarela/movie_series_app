@@ -33,58 +33,75 @@ final movieRouter = GoRouter(
   observers: [HeroController()],
   initialLocation: '/movies',
   routes: <RouteBase>[
-    ShellRoute(
-      navigatorKey: _shellNavigatorKey,
-      observers: [HeroController()],
-      builder: (_, __, child) => BottomNavigationScaffold(child: child),
-      routes: <RouteBase>[
-        GoRoute(
-          path: '/movies',
-          pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
-            pageKey: state.pageKey,
-            child: const MovieListView(),
-          ),
-          routes: <GoRoute>[
+    StatefulShellRoute.indexedStack(
+      branches: <StatefulShellBranch>[
+        StatefulShellBranch(
+          navigatorKey: _shellNavigatorKey,
+          observers: [HeroController()],
+          routes: <RouteBase>[
             GoRoute(
-              path: 'detail/:movieId',
-              pageBuilder: (_, state) {
-                final extra = state.extra! as Map<String, dynamic>;
-                final poster = extra['posterPath'] as String?;
+              path: '/movies',
+              pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
+                pageKey: state.pageKey,
+                child: const MovieListView(),
+              ),
+              routes: <GoRoute>[
+                GoRoute(
+                  path: 'detail/:movieId',
+                  pageBuilder: (_, state) {
+                    final extra = state.extra! as Map<String, dynamic>;
+                    final poster = extra['posterPath'] as String?;
 
-                final id = int.parse(state.pathParameters['movieId']!);
-                return setTransformPageRoute<dynamic>(
-                  pageKey: state.pageKey,
-                  child: MovieDetailView(movieId: id, movieImageUrl: poster),
-                );
-              },
-              routes: <GoRoute>[_actorRoute],
+                    final id = int.parse(state.pathParameters['movieId']!);
+                    return setTransformPageRoute<dynamic>(
+                      pageKey: state.pageKey,
+                      child: MovieDetailView(
+                        movieId: id,
+                        movieImageUrl: poster,
+                      ),
+                    );
+                  },
+                  routes: <GoRoute>[_actorRoute],
+                ),
+              ],
             ),
           ],
         ),
-        GoRoute(
-          path: '/series',
-          pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
-            pageKey: state.pageKey,
-            child: const SeriesListView(),
-          ),
-          routes: [
+        StatefulShellBranch(
+          observers: [HeroController()],
+          routes: <RouteBase>[
             GoRoute(
-              path: 'detail/:seriesId',
-              pageBuilder: (_, state) {
-                final extra = state.extra! as Map<String, dynamic>;
-                final poster = extra['posterPath'] as String?;
+              path: '/series',
+              pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
+                pageKey: state.pageKey,
+                child: const SeriesListView(),
+              ),
+              routes: [
+                GoRoute(
+                  path: 'detail/:seriesId',
+                  pageBuilder: (_, state) {
+                    final extra = state.extra! as Map<String, dynamic>;
+                    final poster = extra['posterPath'] as String?;
 
-                final id = int.parse(state.pathParameters['seriesId']!);
-                return setTransformPageRoute<dynamic>(
-                  pageKey: state.pageKey,
-                  child: SeriesDetailView(seriesId: id, seriesImageUrl: poster),
-                );
-              },
-              routes: <GoRoute>[_actorRoute],
+                    final id = int.parse(state.pathParameters['seriesId']!);
+                    return setTransformPageRoute<dynamic>(
+                      pageKey: state.pageKey,
+                      child: SeriesDetailView(
+                        seriesId: id,
+                        seriesImageUrl: poster,
+                      ),
+                    );
+                  },
+                  routes: <GoRoute>[_actorRoute],
+                ),
+              ],
             ),
           ],
         ),
       ],
+      builder: (_, __, navigationShell) => BottomNavigationScaffold(
+        navigationShell: navigationShell,
+      ),
     ),
   ],
   debugLogDiagnostics: kDebugMode,

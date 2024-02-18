@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class BottomNavigationScaffold extends StatelessWidget {
-  const BottomNavigationScaffold({required this.child, super.key});
+  const BottomNavigationScaffold({required this.navigationShell, super.key});
 
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HeroMode(child: child),
+      body: HeroMode(child: navigationShell),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -22,27 +22,9 @@ class BottomNavigationScaffold extends StatelessWidget {
             label: context.l10n.seriesNavBarText,
           ),
         ],
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (index) => _onItemTapped(index, context),
+        currentIndex: navigationShell.currentIndex,
+        onTap: navigationShell.goBranch,
       ),
     );
-  }
-
-  int _calculateSelectedIndex(BuildContext context) {
-    final location = GoRouterState.of(context).uri;
-    return switch (location) {
-      _ when location.path.contains('/movies') => 0,
-      _ when location.path.contains('/series') => 1,
-      _ => 0,
-    };
-  }
-
-  void _onItemTapped(int index, BuildContext context) {
-    final path = switch (index) {
-      0 => '/movies',
-      1 => '/series',
-      _ => null,
-    };
-    if (path != null) context.go(path);
   }
 }
