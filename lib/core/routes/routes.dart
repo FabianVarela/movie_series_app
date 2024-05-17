@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router_paths/go_router_paths.dart';
+import 'package:movie_list_bloc/core/routes/app_route_path.dart';
 import 'package:movie_list_bloc/core/routes/bottom_navigation_scaffold.dart';
 import 'package:movie_list_bloc/core/routes/page_routes.dart';
 import 'package:movie_list_bloc/features/actor_detail/view/actor_detail_view.dart';
@@ -13,25 +15,38 @@ import 'package:movie_list_bloc/features/series_list/view/series_list_view.dart'
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
-final _actorRoute = GoRoute(
-  parentNavigatorKey: _rootNavigatorKey,
-  path: 'actor/:personId',
-  pageBuilder: (_, state) {
-    final extra = state.extra! as Map<String, dynamic>;
-    final imageUrl = extra['actorImage'] as String;
+List<RouteBase> _actorRouteFlow({required Param origin}) {
+  final actorRoutePath = switch (origin) {
+    MoviesDetailRoutePath() => origin.actor,
+    SeriesDetailRoutePath() => origin.actor,
+    _ => null,
+  };
+  if (actorRoutePath == null) return <RouteBase>[];
 
-    final id = int.parse(state.pathParameters['personId']!);
-    return FadeScreenPage<dynamic>(
-      key: state.pageKey,
-      child: ActorDetailView(personId: id, imageUrl: imageUrl),
-    );
-  },
-);
+  return <RouteBase>[
+    GoRoute(
+      parentNavigatorKey: _rootNavigatorKey,
+      path: actorRoutePath.goRoute,
+      pageBuilder: (_, state) {
+        final extra = state.extra! as Map<String, dynamic>;
+        final imageUrl = extra['actorImage'] as String;
+
+        return FadeScreenPage<dynamic>(
+          key: state.pageKey,
+          child: ActorDetailView(
+            personId: int.parse(state.pathParameters[actorRoutePath.id]!),
+            imageUrl: imageUrl,
+          ),
+        );
+      },
+    ),
+  ];
+}
 
 final movieRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   observers: [HeroController()],
-  initialLocation: '/movies',
+  initialLocation: AppRoutePath.movies.goRoute,
   routes: <RouteBase>[
     StatefulShellRoute.indexedStack(
       branches: <StatefulShellBranch>[
@@ -40,28 +55,29 @@ final movieRouter = GoRouter(
           observers: [HeroController()],
           routes: <RouteBase>[
             GoRoute(
-              path: '/movies',
+              path: AppRoutePath.movies.goRoute,
               pageBuilder: (_, state) => ScreenPage<dynamic>(
                 key: state.pageKey,
                 child: const MovieListView(),
               ),
               routes: <GoRoute>[
                 GoRoute(
-                  path: 'detail/:movieId',
+                  path: AppRoutePath.movies.detail.goRoute,
                   pageBuilder: (_, state) {
                     final extra = state.extra! as Map<String, dynamic>;
                     final poster = extra['posterPath'] as String?;
 
-                    final id = int.parse(state.pathParameters['movieId']!);
                     return TransformScreenPage<dynamic>(
                       key: state.pageKey,
                       child: MovieDetailView(
-                        movieId: id,
+                        movieId: int.parse(
+                          state.pathParameters[AppRoutePath.movies.detail.id]!,
+                        ),
                         movieImageUrl: poster,
                       ),
                     );
                   },
-                  routes: <GoRoute>[_actorRoute],
+                  routes: _actorRouteFlow(origin: AppRoutePath.movies.detail),
                 ),
               ],
             ),
@@ -71,28 +87,29 @@ final movieRouter = GoRouter(
           observers: [HeroController()],
           routes: <RouteBase>[
             GoRoute(
-              path: '/series',
+              path: AppRoutePath.series.goRoute,
               pageBuilder: (_, state) => ScreenPage<dynamic>(
                 key: state.pageKey,
                 child: const SeriesListView(),
               ),
               routes: [
                 GoRoute(
-                  path: 'detail/:seriesId',
+                  path: AppRoutePath.series.detail.goRoute,
                   pageBuilder: (_, state) {
                     final extra = state.extra! as Map<String, dynamic>;
                     final poster = extra['posterPath'] as String?;
 
-                    final id = int.parse(state.pathParameters['seriesId']!);
                     return TransformScreenPage<dynamic>(
                       key: state.pageKey,
                       child: SeriesDetailView(
-                        seriesId: id,
+                        seriesId: int.parse(
+                          state.pathParameters[AppRoutePath.series.detail.id]!,
+                        ),
                         seriesImageUrl: poster,
                       ),
                     );
                   },
-                  routes: <GoRoute>[_actorRoute],
+                  routes: _actorRouteFlow(origin: AppRoutePath.series.detail),
                 ),
               ],
             ),
