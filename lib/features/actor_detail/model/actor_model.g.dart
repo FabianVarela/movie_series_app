@@ -7,7 +7,7 @@ part of 'actor_model.dart';
 // **************************************************************************
 
 ActorModel _$ActorModelFromJson(Map<String, dynamic> json) => ActorModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       department: json['known_for_department'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
@@ -31,7 +31,7 @@ const _$GenderEnumMap = {
 
 ActorCreditModel _$ActorCreditModelFromJson(Map<String, dynamic> json) =>
     ActorCreditModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       character: json['character'] as String?,
       posterPath: json['poster_path'] as String?,

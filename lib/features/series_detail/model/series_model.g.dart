@@ -7,7 +7,7 @@ part of 'series_model.dart';
 // **************************************************************************
 
 SeriesModel _$SeriesModelFromJson(Map<String, dynamic> json) => SeriesModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       originalName: json['original_name'] as String,
       overview: json['overview'] as String,
       voteAverage: (json['vote_average'] as num).toDouble(),

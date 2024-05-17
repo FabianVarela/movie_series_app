@@ -7,12 +7,12 @@ part of 'common_model.dart';
 // **************************************************************************
 
 GenreModel _$GenreModelFromJson(Map<String, dynamic> json) => GenreModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 
 CreditsModel _$CreditsModelFromJson(Map<String, dynamic> json) => CreditsModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       character: json['character'] as String,
       name: json['name'] as String,
       profilePath: json['profile_path'] as String?,
@@ -25,6 +25,6 @@ TrailerModel _$TrailerModelFromJson(Map<String, dynamic> json) => TrailerModel(
       key: json['key'] as String,
       name: json['name'] as String,
       site: json['site'] as String,
-      size: json['size'] as int,
+      size: (json['size'] as num).toInt(),
       type: json['type'] as String,
     );
