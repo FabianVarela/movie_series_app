@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/routes/app_route_path.dart';
 import 'package:movie_list_bloc/core/widgets/custom_app_bar.dart';
 import 'package:movie_list_bloc/features/genre_list/repository/genre_list_repository.dart';
 import 'package:movie_list_bloc/features/genre_list/widgets/genre_list_section.dart';
@@ -41,7 +42,7 @@ class SeriesListView extends HookConsumerWidget {
         genreId: currentGenre.value,
         onChangePage: (index) => currentIndex.value = index,
         onSelectSeries: (series) => context.go(
-          '/series/detail/${series.id}',
+          AppRoutePath.series.detail.define('${series.id}').path,
           extra: {'posterPath': series.posterPath},
         ),
       ),

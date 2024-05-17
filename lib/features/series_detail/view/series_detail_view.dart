@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
+import 'package:movie_list_bloc/core/routes/app_route_path.dart';
 import 'package:movie_list_bloc/core/widgets/detail_credit_list.dart';
 import 'package:movie_list_bloc/core/widgets/detail_trailer_list.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
@@ -26,7 +27,7 @@ class SeriesDetailView extends HookConsumerWidget {
     final locale = ref.watch(languageProvider);
     final language = locale.requireValue?.languageCode;
 
-    final seriesDetail = ref.watch(
+    final series = ref.watch(
       fetchSeriesProvider(tvId: seriesId, language: language),
     );
 
@@ -39,16 +40,13 @@ class SeriesDetailView extends HookConsumerWidget {
               imageUrl: seriesImageUrl,
               onDrag: () => Navigator.pop(context),
             ),
-            seriesDetail.when(
+            series.when(
               data: (series) => Column(
                 children: <Widget>[
                   SeriesDetailBody(series: series),
                   DetailCreditList(
                     casts: series.credits,
-                    onSelect: (id, path) => context.go(
-                      '/series/detail/$seriesId/actor/$id',
-                      extra: {'posterPath': seriesImageUrl, 'actorImage': path},
-                    ),
+                    onSelect: (id, path) => _goToActorDetail(context, id, path),
                   ),
                   DetailTrailerList(
                     trailers: series.trailers,
@@ -71,6 +69,13 @@ class SeriesDetailView extends HookConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _goToActorDetail(BuildContext context, int id, String? path) {
+    context.go(
+      AppRoutePath.series.detail.define('$seriesId').actor.define('$id').path,
+      extra: {'posterPath': seriesImageUrl, 'actorImage': path},
     );
   }
 

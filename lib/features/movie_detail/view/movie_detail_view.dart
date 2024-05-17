@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
+import 'package:movie_list_bloc/core/routes/app_route_path.dart';
 import 'package:movie_list_bloc/core/widgets/detail_credit_list.dart';
 import 'package:movie_list_bloc/core/widgets/detail_trailer_list.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
@@ -48,10 +49,7 @@ class MovieDetailView extends HookConsumerWidget {
                   ),
                   DetailCreditList(
                     casts: movie.credits,
-                    onSelect: (id, path) => context.go(
-                      '/movies/detail/$movieId/actor/$id',
-                      extra: {'posterPath': movieImageUrl, 'actorImage': path},
-                    ),
+                    onSelect: (id, path) => _goToActorDetail(context, id, path),
                   ),
                   DetailTrailerList(
                     trailers: movie.trailers,
@@ -76,6 +74,13 @@ class MovieDetailView extends HookConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _goToActorDetail(BuildContext context, int id, String? path) {
+    context.go(
+      AppRoutePath.movies.detail.define('$movieId').actor.define('$id').path,
+      extra: {'posterPath': movieImageUrl, 'actorImage': path},
     );
   }
 
