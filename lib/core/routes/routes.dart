@@ -21,8 +21,8 @@ final _actorRoute = GoRoute(
     final imageUrl = extra['actorImage'] as String;
 
     final id = int.parse(state.pathParameters['personId']!);
-    return setFadePageRoute<dynamic>(
-      pageKey: state.pageKey,
+    return FadeScreenPage<dynamic>(
+      key: state.pageKey,
       child: ActorDetailView(personId: id, imageUrl: imageUrl),
     );
   },
@@ -41,8 +41,8 @@ final movieRouter = GoRouter(
           routes: <RouteBase>[
             GoRoute(
               path: '/movies',
-              pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
-                pageKey: state.pageKey,
+              pageBuilder: (_, state) => ScreenPage<dynamic>(
+                key: state.pageKey,
                 child: const MovieListView(),
               ),
               routes: <GoRoute>[
@@ -53,8 +53,8 @@ final movieRouter = GoRouter(
                     final poster = extra['posterPath'] as String?;
 
                     final id = int.parse(state.pathParameters['movieId']!);
-                    return setTransformPageRoute<dynamic>(
-                      pageKey: state.pageKey,
+                    return TransformScreenPage<dynamic>(
+                      key: state.pageKey,
                       child: MovieDetailView(
                         movieId: id,
                         movieImageUrl: poster,
@@ -72,8 +72,8 @@ final movieRouter = GoRouter(
           routes: <RouteBase>[
             GoRoute(
               path: '/series',
-              pageBuilder: (_, state) => setDefaultPageRoute<dynamic>(
-                pageKey: state.pageKey,
+              pageBuilder: (_, state) => ScreenPage<dynamic>(
+                key: state.pageKey,
                 child: const SeriesListView(),
               ),
               routes: [
@@ -84,8 +84,8 @@ final movieRouter = GoRouter(
                     final poster = extra['posterPath'] as String?;
 
                     final id = int.parse(state.pathParameters['seriesId']!);
-                    return setTransformPageRoute<dynamic>(
-                      pageKey: state.pageKey,
+                    return TransformScreenPage<dynamic>(
+                      key: state.pageKey,
                       child: SeriesDetailView(
                         seriesId: id,
                         seriesImageUrl: poster,

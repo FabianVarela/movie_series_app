@@ -1,41 +1,54 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-Page<dynamic> setDefaultPageRoute<T>({
-  required LocalKey pageKey,
-  required Widget child,
-}) {
-  final iosPlatforms = [TargetPlatform.iOS, TargetPlatform.macOS];
-  if (iosPlatforms.contains(defaultTargetPlatform)) {
-    return CupertinoPage<T>(key: pageKey, child: child);
+class ScreenPage<T> extends Page<T> {
+  const ScreenPage({required super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Route<T> createRoute(BuildContext context) {
+    return switch (defaultTargetPlatform) {
+      TargetPlatform.iOS || TargetPlatform.macOS => CupertinoPageRoute<T>(
+          settings: this,
+          builder: (_) => child,
+        ),
+      _ => MaterialPageRoute<T>(settings: this, builder: (_) => child),
+    };
   }
-  return MaterialPage<T>(key: pageKey, child: child);
 }
 
-CustomTransitionPage<dynamic> setTransformPageRoute<T>({
-  required LocalKey pageKey,
-  required Widget child,
-}) {
-  return CustomTransitionPage<T>(
-    key: pageKey,
-    child: child,
-    transitionsBuilder: (_, animation, __, child) {
-      return Transform.scale(scale: animation.value, child: child);
-    },
-  );
+class TransformScreenPage<T> extends Page<T> {
+  const TransformScreenPage({required super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Route<T> createRoute(BuildContext context) {
+    return PageRouteBuilder<T>(
+      settings: this,
+      pageBuilder: (_, __, ___) => child,
+      transitionsBuilder: (_, animation, __, child) {
+        return Transform.scale(scale: animation.value, child: child);
+      },
+    );
+  }
 }
 
-CustomTransitionPage<dynamic> setFadePageRoute<T>({
-  required LocalKey pageKey,
-  required Widget child,
-}) {
-  return CustomTransitionPage<T>(
-    key: pageKey,
-    child: child,
-    transitionsBuilder: (_, animation, __, child) {
-      return FadeTransition(opacity: animation, child: child);
-    },
-  );
+class FadeScreenPage<T> extends Page<T> {
+  const FadeScreenPage({required super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Route<T> createRoute(BuildContext context) {
+    return PageRouteBuilder<T>(
+      settings: this,
+      pageBuilder: (_, __, ___) => child,
+      transitionsBuilder: (_, animation, __, child) {
+        return FadeTransition(opacity: animation, child: child);
+      },
+    );
+  }
 }
