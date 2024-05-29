@@ -55,11 +55,11 @@ class SeriesDetailView extends HookConsumerWidget {
                 ],
               ),
               loading: () => SizedBox(
-                height: MediaQuery.of(context).size.height * .7,
+                height: MediaQuery.sizeOf(context).height * .7,
                 child: const Center(child: CircularProgressIndicator()),
               ),
               error: (_, __) => SizedBox(
-                height: MediaQuery.of(context).size.height * .68,
+                height: MediaQuery.sizeOf(context).height * .68,
                 child: ErrorMessage(
                   message: context.l10n.errorSeriesDetailText,
                   fontSize: 15,

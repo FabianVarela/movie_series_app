@@ -45,7 +45,7 @@ class ActorDetailView extends HookConsumerWidget {
           actor.maybeWhen(
             loading: () => SliverToBoxAdapter(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * .6,
+                height: MediaQuery.sizeOf(context).height * .6,
                 child: const Center(child: CircularProgressIndicator()),
               ),
             ),
@@ -56,7 +56,7 @@ class ActorDetailView extends HookConsumerWidget {
             ),
             error: (_, __) => SliverToBoxAdapter(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * .6,
+                height: MediaQuery.sizeOf(context).height * .6,
                 child: ErrorMessage(message: context.l10n.errorActorDetailText),
               ),
             ),
