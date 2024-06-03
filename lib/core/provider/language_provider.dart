@@ -3,7 +3,10 @@ import 'dart:ui';
 import 'package:movie_list_bloc/core/repository/language/language_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class Language extends AsyncNotifier<Locale?> {
+part 'language_provider.g.dart';
+
+@riverpod
+class Language extends _$Language {
   @override
   FutureOr<Locale?> build() => null;
 
@@ -17,5 +20,3 @@ class Language extends AsyncNotifier<Locale?> {
     state = AsyncValue.data(Locale(language));
   }
 }
-
-final languageProvider = AsyncNotifierProvider<Language, Locale?>(Language.new);
