@@ -55,7 +55,7 @@ class AnimatedCardItem extends HookWidget {
 
     return PopScope(
       canPop: defaultTargetPlatform == TargetPlatform.iOS || containStatus,
-      onPopInvoked: (_) async {
+      onPopInvokedWithResult: (_, __) async {
         if (!containStatus) {
           await controller.reverse();
           onExpanded?.call(false);
