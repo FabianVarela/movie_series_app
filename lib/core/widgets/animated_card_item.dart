@@ -57,7 +57,7 @@ class AnimatedCardItem extends HookWidget {
       canPop: defaultTargetPlatform == TargetPlatform.iOS || containStatus,
       onPopInvokedWithResult: (_, __) async {
         if (!containStatus) {
-          await controller.reverse();
+          await controller.reverse().orCancel;
           onExpanded?.call(false);
         }
       },
@@ -130,7 +130,7 @@ class AnimatedCardItem extends HookWidget {
                     },
                     onVerticalDragUpdate: (details) {
                       if (details.delta.dy > 0) {
-                        controller.reverse();
+                        controller.reverse().orCancel;
                         onExpanded?.call(false);
                       }
                     },
