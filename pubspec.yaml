@@ -27,7 +27,7 @@ dependencies:
   url_launcher: ^6.3.0
 
 dev_dependencies:
-  build_runner: ^2.4.12
+  build_runner: ^2.4.13
   flutter_test:
     sdk: flutter
   freezed: ^2.5.7
