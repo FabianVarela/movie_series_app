@@ -24,9 +24,9 @@ in English and Spanish.
   name *config-keys.json* and set to the root's project.
     ```json
   {
-    "TMDB_API_URI": "api.themoviedb.org",
-    "TMDB_IMAGE_URI": "https://image.tmdb.org/t/p/original",
-    "TMDB_API_KEY": "<YOUR_TMDB_API_KEY>"
+      "TMDB_API_URI": "api.themoviedb.org",
+      "TMDB_IMAGE_URI": "https://image.tmdb.org/t/p/original",
+      "TMDB_API_KEY": "<YOUR_TMDB_API_KEY>"
   }
   ```
 
@@ -37,6 +37,16 @@ in English and Spanish.
 
 <font size="3">*For more info to get your api key, go to
 this [link](https://developers.themoviedb.org/4/getting-started/authorization)*.</font>
+
+------
+
+### Screenshots
+
+| Platform      | Preview                                               |
+|---------------|-------------------------------------------------------|
+| Android       | ![android.gif](./assets/github_resources/android.gif) |
+| iOS           | ![ios.gif](./assets/github_resources/ios.gif)         |
+| Web & Desktop | Not available                                         |
 
 ------
 
