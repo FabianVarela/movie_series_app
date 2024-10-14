@@ -45,7 +45,7 @@ this [link](https://developers.themoviedb.org/4/getting-started/authorization)*.
 | Platform      | Preview                                            |
 |---------------|----------------------------------------------------|
 | Android       | [android.mp4](assets/github_resources/android.mp4) |
-| iOS           | [ios.mp4](assets/github_resources/ios.mp4)         |
+| iOS           | ![ios.gif](assets/github_resources/ios.gif)        |
 | Web & Desktop | Not available                                      |
 
 ------
