@@ -42,11 +42,11 @@ this [link](https://developers.themoviedb.org/4/getting-started/authorization)*.
 
 ### Screenshots
 
-| Platform      | Preview                                               |
-|---------------|-------------------------------------------------------|
-| Android       | ![android.mp4](./assets/github_resources/android.mp4) |
-| iOS           | ![ios.mp4](./assets/github_resources/ios.mp4)         |
-| Web & Desktop | Not available                                         |
+| Platform      | Preview                                            |
+|---------------|----------------------------------------------------|
+| Android       | [android.mp4](assets/github_resources/android.mp4) |
+| iOS           | [ios.mp4](assets/github_resources/ios.mp4)         |
+| Web & Desktop | Not available                                      |
 
 ------
 
