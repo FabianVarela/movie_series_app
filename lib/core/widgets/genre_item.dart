@@ -16,13 +16,14 @@ class GenreItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final background = backgroundColor ?? Colors.white;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: GestureDetector(
         onTap: () => onSelect?.call(),
         child: Chip(
           avatar: CircleAvatar(
-            backgroundColor: (backgroundColor ?? Colors.white).withOpacity(.6),
+            backgroundColor: background.withValues(alpha: .6),
             child: Text(
               name[0].toUpperCase(),
               style: TextStyle(color: textColor ?? Colors.black),
