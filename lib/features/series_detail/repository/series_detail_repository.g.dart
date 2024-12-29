@@ -22,6 +22,8 @@ final seriesDetailRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SeriesDetailRepositoryRef
     = AutoDisposeProviderRef<SeriesDetailRepository>;
 String _$fetchSeriesHash() => r'79240a8f5a091e7c2c305091f0a8e8f8c2fb645a';
@@ -172,6 +174,8 @@ class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin FetchSeriesRef on AutoDisposeFutureProviderRef<SeriesModel> {
   /// The parameter `tvId` of this provider.
   int get tvId;
@@ -190,4 +194,4 @@ class _FetchSeriesProviderElement
   String? get language => (origin as FetchSeriesProvider).language;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

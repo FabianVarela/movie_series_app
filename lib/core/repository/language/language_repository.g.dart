@@ -22,6 +22,8 @@ final languageRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef LanguageRepositoryRef = AutoDisposeProviderRef<LanguageRepository>;
 String _$getLanguageHash() => r'1371cfe6d470accd691789998f0e5d9ca17c86da';
 
@@ -36,6 +38,8 @@ final getLanguageProvider = AutoDisposeFutureProvider<String?>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetLanguageRef = AutoDisposeFutureProviderRef<String?>;
 String _$setLanguageHash() => r'6104ed7f57c4e72a4ac8d02ca186816916936beb';
 
@@ -173,6 +177,8 @@ class SetLanguageProvider extends AutoDisposeFutureProvider<bool> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SetLanguageRef on AutoDisposeFutureProviderRef<bool> {
   /// The parameter `language` of this provider.
   String get language;
@@ -186,4 +192,4 @@ class _SetLanguageProviderElement extends AutoDisposeFutureProviderElement<bool>
   String get language => (origin as SetLanguageProvider).language;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

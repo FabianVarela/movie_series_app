@@ -22,6 +22,8 @@ final movieDetailRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef MovieDetailRepositoryRef
     = AutoDisposeProviderRef<MovieDetailRepository>;
 String _$fetchMovieHash() => r'aaf708bbbd7e5e04299af65885916b5311a16887';
@@ -172,6 +174,8 @@ class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin FetchMovieRef on AutoDisposeFutureProviderRef<MovieModel> {
   /// The parameter `movieId` of this provider.
   int get movieId;
@@ -190,4 +194,4 @@ class _FetchMovieProviderElement
   String? get language => (origin as FetchMovieProvider).language;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

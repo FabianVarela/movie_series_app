@@ -22,6 +22,8 @@ final actorDetailRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ActorDetailRepositoryRef
     = AutoDisposeProviderRef<ActorDetailRepository>;
 String _$fetchActorHash() => r'6daa4bdfd4fed3ce3ce4d3bca752f291ccdad3ec';
@@ -172,6 +174,8 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin FetchActorRef on AutoDisposeFutureProviderRef<ActorModel> {
   /// The parameter `personId` of this provider.
   int get personId;
@@ -190,4 +194,4 @@ class _FetchActorProviderElement
   String? get language => (origin as FetchActorProvider).language;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

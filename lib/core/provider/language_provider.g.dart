@@ -6,7 +6,7 @@ part of 'language_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$languageHash() => r'1a4217a5213c0e0f0e3e51125ca97f752b760b74';
+String _$languageHash() => r'bdf9ff1b5deaa28f904abcd5ffc7e7f4e89d0f7a';
 
 /// See also [Language].
 @ProviderFor(Language)
@@ -22,4 +22,4 @@ final languageProvider =
 
 typedef _$Language = AutoDisposeAsyncNotifier<Locale?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
