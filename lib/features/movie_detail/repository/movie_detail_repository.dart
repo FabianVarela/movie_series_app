@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/client/remote/dio_provider.dart';
 import 'package:movie_list_bloc/features/movie_detail/model/movie_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -28,7 +29,7 @@ class MovieDetailRepository {
 }
 
 @riverpod
-MovieDetailRepository movieDetailRepository(MovieDetailRepositoryRef ref) {
+MovieDetailRepository movieDetailRepository(Ref ref) {
   return MovieDetailRepository(
     dio: ref.watch(dioProvider),
     apiKey: const String.fromEnvironment('TMDB_API_KEY'),
@@ -37,7 +38,7 @@ MovieDetailRepository movieDetailRepository(MovieDetailRepositoryRef ref) {
 
 @riverpod
 Future<MovieModel> fetchMovie(
-  FetchMovieRef ref, {
+  Ref ref, {
   required int movieId,
   String? language,
 }) async {

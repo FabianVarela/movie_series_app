@@ -1,3 +1,4 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/client/local/preferences_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,16 +22,16 @@ class LanguageRepository {
 }
 
 @riverpod
-LanguageRepository languageRepository(LanguageRepositoryRef ref) {
+LanguageRepository languageRepository(Ref ref) {
   return LanguageRepository(preferences: ref.watch(sharedPrefsProvider));
 }
 
 @riverpod
-Future<String?> getLanguage(GetLanguageRef ref) async {
+Future<String?> getLanguage(Ref ref) async {
   return ref.watch(languageRepositoryProvider).getLanguage();
 }
 
 @riverpod
-Future<bool> setLanguage(SetLanguageRef ref, {required String language}) async {
+Future<bool> setLanguage(Ref ref, {required String language}) async {
   return ref.watch(languageRepositoryProvider).setLanguage(language);
 }

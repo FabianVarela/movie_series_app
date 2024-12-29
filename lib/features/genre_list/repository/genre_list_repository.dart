@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/client/remote/dio_provider.dart';
 import 'package:movie_list_bloc/features/genre_list/model/genre_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -29,7 +30,7 @@ class GenreListRepository {
 }
 
 @riverpod
-GenreListRepository genreListRepository(GenreListRepositoryRef ref) {
+GenreListRepository genreListRepository(Ref ref) {
   return GenreListRepository(
     dio: ref.watch(dioProvider),
     apiKey: const String.fromEnvironment('TMDB_API_KEY'),
@@ -38,7 +39,7 @@ GenreListRepository genreListRepository(GenreListRepositoryRef ref) {
 
 @riverpod
 Future<GenresModel> fetchGenres(
-  FetchGenresRef ref, {
+  Ref ref, {
   required GenreType type,
   String? language,
 }) async {
