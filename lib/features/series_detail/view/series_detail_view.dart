@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/routes/app_route_path.dart';
+import 'package:movie_list_bloc/core/widgets/detail_body.dart';
 import 'package:movie_list_bloc/core/widgets/detail_credit_list.dart';
 import 'package:movie_list_bloc/core/widgets/detail_trailer_list.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/core/widgets/header_detail_image.dart';
 import 'package:movie_list_bloc/features/series_detail/repository/series_detail_repository.dart';
-import 'package:movie_list_bloc/features/series_detail/view/widgets/series_detail_body.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,7 +43,7 @@ class SeriesDetailView extends HookConsumerWidget {
             series.when(
               data: (series) => Column(
                 children: <Widget>[
-                  SeriesDetailBody(series: series),
+                  DetailBody.series(series: series),
                   DetailCreditList(
                     casts: series.credits,
                     onSelect: (id, path) => _goToActorDetail(context, id, path),

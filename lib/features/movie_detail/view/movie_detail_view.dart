@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/routes/app_route_path.dart';
+import 'package:movie_list_bloc/core/widgets/detail_body.dart';
 import 'package:movie_list_bloc/core/widgets/detail_credit_list.dart';
 import 'package:movie_list_bloc/core/widgets/detail_trailer_list.dart';
 import 'package:movie_list_bloc/core/widgets/error_message.dart';
 import 'package:movie_list_bloc/core/widgets/header_detail_image.dart';
 import 'package:movie_list_bloc/features/movie_detail/repository/movie_detail_repository.dart';
-import 'package:movie_list_bloc/features/movie_detail/view/widgets/movie_detail_body.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,7 +43,7 @@ class MovieDetailView extends HookConsumerWidget {
             movie.when(
               data: (movie) => Column(
                 children: <Widget>[
-                  MovieDetailBody(
+                  DetailBody.movie(
                     movie: movie,
                     onGoWebSite: (url) async => _redirectTo(url),
                   ),
