@@ -24,8 +24,9 @@ class MovieDetailView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(languageProvider);
-    final language = locale.requireValue?.languageCode;
+    final language = ref.watch(
+      languageProvider.select((value) => value.requireValue?.languageCode),
+    );
 
     final movie = ref.watch(
       fetchMovieProvider(movieId: movieId, language: language),
