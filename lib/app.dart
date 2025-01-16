@@ -45,6 +45,9 @@ class App extends HookConsumerWidget {
       onGenerateTitle: (context) => context.l10n.appName,
       routerConfig: movieRouter,
       theme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+        colorSchemeSeed: const Color(0xFF769CDF),
         textTheme: GoogleFonts.ubuntuTextTheme(
           Theme.of(context).textTheme,
         ),
