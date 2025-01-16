@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_paths/go_router_paths.dart';
 import 'package:movie_list_bloc/core/routes/app_route_path.dart';
-import 'package:movie_list_bloc/core/routes/bottom_navigation_scaffold.dart';
+import 'package:movie_list_bloc/core/routes/navigation_scaffold.dart';
 import 'package:movie_list_bloc/core/routes/page_routes.dart';
 import 'package:movie_list_bloc/features/actor_detail/view/actor_detail_view.dart';
 import 'package:movie_list_bloc/features/movie_detail/view/movie_detail_view.dart';
@@ -116,7 +116,7 @@ final movieRouter = GoRouter(
           ],
         ),
       ],
-      builder: (_, __, navigationShell) => BottomNavigationScaffold(
+      builder: (_, __, navigationShell) => NavigationScaffold(
         navigationShell: navigationShell,
       ),
     ),
