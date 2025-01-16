@@ -15,7 +15,7 @@ class ErrorMessage extends StatelessWidget {
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.w500,
-          color: Colors.redAccent,
+          color: Theme.of(context).colorScheme.error,
         ),
       ),
     );

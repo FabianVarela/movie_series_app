@@ -99,7 +99,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
               alignment: titleAlign,
               child: Text(
                 title,
-                style: TextStyle(fontSize: titleSize, color: Colors.white),
+                style: TextStyle(fontSize: titleSize),
               ),
             ),
           ),
@@ -109,7 +109,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
               left: 10,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+                icon: const Icon(Icons.arrow_back_ios),
               ),
             ),
         ],

@@ -21,7 +21,7 @@ class CircleImage extends StatelessWidget {
       backgroundImage: imageWidget,
       radius: imageSize,
       child: imageUrl == null
-          ? Icon(Icons.account_circle, size: iconSize, color: Colors.white)
+          ? Icon(Icons.account_circle, size: iconSize)
           : null,
     );
   }

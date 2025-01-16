@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:movie_list_bloc/core/model/common_model.dart';
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
@@ -40,13 +41,13 @@ class DetailTrailerList extends StatelessWidget {
         else
           SizedBox(
             height: 120,
-            child: ListView.builder(
+            child: ListView.separated(
               itemCount: trailers.length,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemBuilder: (_, index) => Container(
+              separatorBuilder: (_, __) => const Gap(10),
+              itemBuilder: (_, index) => SizedBox(
                 width: 150,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: <Widget>[
                     InkWell(
@@ -56,9 +57,9 @@ class DetailTrailerList extends StatelessWidget {
                         }
                       },
                       child: Container(
-                        margin: const EdgeInsets.all(5),
                         height: 72,
-                        color: Colors.grey,
+                        margin: const EdgeInsets.all(5),
+                        color: Theme.of(context).colorScheme.primaryContainer,
                         child: const Center(
                           child: Icon(Icons.play_circle_filled),
                         ),

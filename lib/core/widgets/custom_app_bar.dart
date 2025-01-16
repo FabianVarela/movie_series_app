@@ -18,25 +18,23 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: Colors.transparent,
       title: Text(
         title,
         style: const TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.w700,
-          color: Colors.black,
         ),
       ),
       leading: InkWell(
         onTap: onSearch,
-        child: const Icon(Icons.search_outlined, color: Colors.black),
+        child: const Icon(Icons.search_outlined),
       ),
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 10),
           child: InkWell(
             onTap: onRestore,
-            child: const Icon(Icons.restart_alt_outlined, color: Colors.black),
+            child: const Icon(Icons.restart_alt_outlined),
           ),
         ),
       ],

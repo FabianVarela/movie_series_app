@@ -29,7 +29,7 @@ class ActorDetailView extends HookConsumerWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           TransitionAppBar(
-            backgroundColor: Colors.blueGrey,
+            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             title: actor.maybeWhen(
               data: (actor) => actor.name,
               orElse: () => '',

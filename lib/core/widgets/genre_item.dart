@@ -1,42 +1,40 @@
 import 'package:flutter/material.dart';
 
+typedef CircleColor = ({Color background, Color foreground});
+
 class GenreItem extends StatelessWidget {
   const GenreItem({
     required this.name,
     this.onSelect,
-    this.backgroundColor,
+    this.circleColor,
     this.textColor,
     super.key,
   });
 
   final String name;
   final VoidCallback? onSelect;
-  final Color? backgroundColor;
+  final CircleColor? circleColor;
   final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
-    final background = backgroundColor ?? Colors.white;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: GestureDetector(
-        onTap: () => onSelect?.call(),
-        child: Chip(
-          avatar: CircleAvatar(
-            backgroundColor: background.withValues(alpha: .6),
-            child: Text(
-              name[0].toUpperCase(),
-              style: TextStyle(color: textColor ?? Colors.black),
-            ),
+    return GestureDetector(
+      onTap: () => onSelect?.call(),
+      child: Chip(
+        elevation: 5,
+        padding: const EdgeInsets.all(4),
+        avatar: CircleAvatar(
+          backgroundColor: circleColor?.background,
+          child: Text(
+            name[0].toUpperCase(),
+            style: TextStyle(color: circleColor?.foreground),
           ),
-          label: Text(
-            name,
-            style: TextStyle(fontSize: 15, color: textColor ?? Colors.black),
-          ),
-          elevation: 5,
-          shadowColor: Colors.black,
-          padding: const EdgeInsets.all(4),
         ),
+        label: Text(
+          name,
+          style: TextStyle(fontSize: 15, color: textColor),
+        ),
+        shadowColor: Theme.of(context).colorScheme.primaryContainer,
       ),
     );
   }
