@@ -21,10 +21,10 @@ class PreferenceRepository {
     return preferences.setString(_languageKey, language);
   }
 
-  Future<bool?> getTheme() async => preferences.getBool(_themeKey);
+  Future<String?> getTheme() async => preferences.getString(_themeKey);
 
-  Future<bool> setTheme({required bool isDark}) async {
-    return preferences.setBool(_themeKey, isDark);
+  Future<bool> setTheme(String theme) async {
+    return preferences.setString(_themeKey, theme);
   }
 }
 
