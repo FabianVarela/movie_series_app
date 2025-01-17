@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_list_bloc/core/provider/brightness_mode_provider.dart';
 import 'package:movie_list_bloc/core/routes/app_route_path.dart';
 import 'package:movie_list_bloc/core/widgets/custom_app_bar.dart';
 import 'package:movie_list_bloc/features/genre_list/repository/genre_list_repository.dart';
@@ -22,6 +23,13 @@ class MovieListView extends HookConsumerWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: titleGenre.value ?? context.l10n.genreDefaultTitle,
+        onChangeTheme: () {
+          ref.read(brightnessModeProvider.notifier).setTheme();
+        },
+        onRestore: () {
+          currentGenre.value = titleGenre.value = null;
+          currentIndex.value = 1;
+        },
         bottomChild: GenreListSection(
           id: currentGenre.value,
           genreType: GenreType.movie,
@@ -32,10 +40,6 @@ class MovieListView extends HookConsumerWidget {
             currentIndex.value = 1;
           },
         ),
-        onRestore: () {
-          currentGenre.value = titleGenre.value = null;
-          currentIndex.value = 1;
-        },
       ),
       body: MovieListBody(
         currentIndex: currentIndex.value,
