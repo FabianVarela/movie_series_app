@@ -6,7 +6,7 @@ part of 'brightness_mode_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$brightnessModeHash() => r'105b6920f6f57404a106053ae47185adfe4e2297';
+String _$brightnessModeHash() => r'594642e1136183d92b06eb99aea74644b6879702';
 
 /// See also [BrightnessMode].
 @ProviderFor(BrightnessMode)
