@@ -4,14 +4,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     required this.title,
     this.bottomChild,
-    this.onSearch,
+    this.onChangeTheme,
     this.onRestore,
     super.key,
   });
 
   final String title;
   final Widget? bottomChild;
-  final VoidCallback? onSearch;
+  final VoidCallback? onChangeTheme;
   final VoidCallback? onRestore;
 
   @override
@@ -26,8 +26,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       leading: InkWell(
-        onTap: onSearch,
-        child: const Icon(Icons.search_outlined),
+        onTap: onChangeTheme,
+        child: const Icon(Icons.color_lens_outlined),
       ),
       actions: <Widget>[
         Padding(
