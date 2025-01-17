@@ -7,7 +7,7 @@ part of 'actor_detail_repository.dart';
 // **************************************************************************
 
 String _$actorDetailRepositoryHash() =>
-    r'f03929f69e9d85673b5b96b4349f52be9b6c5dac';
+    r'22d846dc515232d5e2e65e9c4b8b4e20ab4236a7';
 
 /// See also [actorDetailRepository].
 @ProviderFor(actorDetailRepository)
@@ -26,7 +26,7 @@ final actorDetailRepositoryProvider =
 // ignore: unused_element
 typedef ActorDetailRepositoryRef
     = AutoDisposeProviderRef<ActorDetailRepository>;
-String _$fetchActorHash() => r'6daa4bdfd4fed3ce3ce4d3bca752f291ccdad3ec';
+String _$fetchActorHash() => r'43dbe499f89c4cdcc7c61866238b3e303f090c46';
 
 /// Copied from Dart SDK
 class _SystemHash {

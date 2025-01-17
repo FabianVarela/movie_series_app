@@ -7,7 +7,7 @@ part of 'series_list_repository.dart';
 // **************************************************************************
 
 String _$seriesListRepositoryHash() =>
-    r'd4743ff9490fa7cb10593631f3abfebd1c2d599b';
+    r'08dee1f90a9243901a57405d5dfe69060b324878';
 
 /// See also [seriesListRepository].
 @ProviderFor(seriesListRepository)
@@ -25,7 +25,7 @@ final seriesListRepositoryProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SeriesListRepositoryRef = AutoDisposeProviderRef<SeriesListRepository>;
-String _$fetchSeriesHash() => r'790ca920f405ec7701507d5a1963fbad6d5535d9';
+String _$fetchSeriesHash() => r'a56c9733fefc20a4f0c8a573c5024c9558605f4e';
 
 /// Copied from Dart SDK
 class _SystemHash {

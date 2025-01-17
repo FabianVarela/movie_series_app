@@ -7,7 +7,7 @@ part of 'movie_list_repository.dart';
 // **************************************************************************
 
 String _$movieListRepositoryHash() =>
-    r'2ac1e3caaa772dd06be6e598971e800bc0284a25';
+    r'7ec9688cfb8756f5b5493f766d71e654b96df703';
 
 /// See also [movieListRepository].
 @ProviderFor(movieListRepository)
@@ -25,7 +25,7 @@ final movieListRepositoryProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef MovieListRepositoryRef = AutoDisposeProviderRef<MovieListRepository>;
-String _$fetchMoviesHash() => r'dcc57e8d71d88472173df7df0290b7122d49aa94';
+String _$fetchMoviesHash() => r'65903c8e193ec6f2798c38a35e3c4ffeb1618846';
 
 /// Copied from Dart SDK
 class _SystemHash {

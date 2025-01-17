@@ -7,7 +7,7 @@ part of 'genre_list_repository.dart';
 // **************************************************************************
 
 String _$genreListRepositoryHash() =>
-    r'9a62cd2e9c1144df1bcf0d0b35bbaccbbcb24345';
+    r'9d681b3770620a376f19e5a1fec5640600adcafe';
 
 /// See also [genreListRepository].
 @ProviderFor(genreListRepository)
@@ -25,7 +25,7 @@ final genreListRepositoryProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GenreListRepositoryRef = AutoDisposeProviderRef<GenreListRepository>;
-String _$fetchGenresHash() => r'11b32509937f028e2f593970bea1b3c1910fc951';
+String _$fetchGenresHash() => r'19b8e176388b176a80e97c94763328d02f184984';
 
 /// Copied from Dart SDK
 class _SystemHash {

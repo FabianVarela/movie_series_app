@@ -7,7 +7,7 @@ part of 'series_detail_repository.dart';
 // **************************************************************************
 
 String _$seriesDetailRepositoryHash() =>
-    r'c697114f83678705de93174aa557990b9e4e1652';
+    r'228c93f8b296a8c0a4ee535171f2e33a975b4d88';
 
 /// See also [seriesDetailRepository].
 @ProviderFor(seriesDetailRepository)
@@ -26,7 +26,7 @@ final seriesDetailRepositoryProvider =
 // ignore: unused_element
 typedef SeriesDetailRepositoryRef
     = AutoDisposeProviderRef<SeriesDetailRepository>;
-String _$fetchSeriesHash() => r'79240a8f5a091e7c2c305091f0a8e8f8c2fb645a';
+String _$fetchSeriesHash() => r'0fab67927505496c58f9444e7962747927f5f2a4';
 
 /// Copied from Dart SDK
 class _SystemHash {
