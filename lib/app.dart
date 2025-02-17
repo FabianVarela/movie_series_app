@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_list_bloc/core/provider/brightness_mode_provider.dart';
 import 'package:movie_list_bloc/core/provider/language_provider.dart';
 import 'package:movie_list_bloc/core/routes/routes.dart';
 import 'package:movie_list_bloc/core/theme/movie_series_theme.dart';
+import 'package:movie_list_bloc/l10n/generated/app_localizations.dart'
+    show AppLocalizations;
 import 'package:movie_list_bloc/l10n/l10n.dart';
 
 class App extends HookConsumerWidget {
