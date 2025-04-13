@@ -12,10 +12,7 @@ class SeriesListRepository {
   final Dio dio;
   final String apiKey;
 
-  Future<SeriesListModel> fetchSeries({
-    int? genreId,
-    String? language,
-  }) async {
+  Future<SeriesListModel> fetchSeries({int? genreId, String? language}) async {
     final response = await dio.get<Map<String, dynamic>>(
       genreId != null ? '/3/discover/tv' : '/3/tv/popular',
       queryParameters: {

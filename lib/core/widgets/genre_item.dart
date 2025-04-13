@@ -30,10 +30,7 @@ class GenreItem extends StatelessWidget {
             style: TextStyle(color: circleColor?.foreground),
           ),
         ),
-        label: Text(
-          name,
-          style: TextStyle(fontSize: 15, color: textColor),
-        ),
+        label: Text(name, style: TextStyle(fontSize: 15, color: textColor)),
         shadowColor: Theme.of(context).colorScheme.primaryContainer,
       ),
     );

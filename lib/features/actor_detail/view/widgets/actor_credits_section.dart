@@ -42,19 +42,19 @@ class ActorCreditsSection extends HookWidget {
           itemBuilder: (_, index) {
             return (index == lenExpanded.value && !isExpanded.value)
                 ? ListTile(
-                    onTap: () {
-                      countExpanded.value++;
-                      lenExpanded.value = sizeDefault * countExpanded.value;
+                  onTap: () {
+                    countExpanded.value++;
+                    lenExpanded.value = sizeDefault * countExpanded.value;
 
-                      if (countExpanded.value >= totalCount) {
-                        isExpanded.value = true;
-                      }
-                    },
-                    leading: const Icon(Icons.keyboard_arrow_down),
-                    title: Text(
-                      l10n.actorDetailLoadMore(totalSize - lenExpanded.value),
-                    ),
-                  )
+                    if (countExpanded.value >= totalCount) {
+                      isExpanded.value = true;
+                    }
+                  },
+                  leading: const Icon(Icons.keyboard_arrow_down),
+                  title: Text(
+                    l10n.actorDetailLoadMore(totalSize - lenExpanded.value),
+                  ),
+                )
                 : ActorCastItem(actorCredit: credits[index]);
           },
         ),

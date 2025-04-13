@@ -14,10 +14,7 @@ class IndicatorPage extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       child: Text(
         context.l10n.quantityList(start, total),
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w300,
-        ),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
       ),
     );
   }

@@ -46,38 +46,39 @@ class DetailTrailerList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               separatorBuilder: (_, __) => const Gap(10),
-              itemBuilder: (_, index) => SizedBox(
-                width: 150,
-                child: Column(
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        if (trailers[index].site == 'YouTube') {
-                          onSelect(trailers[index].key);
-                        }
-                      },
-                      child: Container(
-                        height: 72,
-                        margin: const EdgeInsets.all(5),
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        child: const Center(
-                          child: Icon(Icons.play_circle_filled),
+              itemBuilder: (_, index) {
+                final trailer = trailers[index];
+                return SizedBox(
+                  width: 150,
+                  child: Column(
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          if (trailer.site == 'YouTube') onSelect(trailer.key);
+                        },
+                        child: Container(
+                          height: 72,
+                          margin: const EdgeInsets.all(5),
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          child: const Center(
+                            child: Icon(Icons.play_circle_filled),
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      trailers[index].name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
+                      Text(
+                        trailer.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w300,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
       ],

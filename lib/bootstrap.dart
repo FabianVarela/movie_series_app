@@ -12,25 +12,22 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  await runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
+  await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-      await SystemChrome.setPreferredOrientations(
-        <DeviceOrientation>[DeviceOrientation.portraitUp],
-      );
+    await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+      DeviceOrientation.portraitUp,
+    ]);
 
-      runApp(
-        ProviderScope(
-          overrides: [
-            sharedPrefsProvider.overrideWithValue(
-              await SharedPreferences.getInstance(),
-            ),
-          ],
-          child: await builder(),
-        ),
-      );
-    },
-    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
-  );
+    runApp(
+      ProviderScope(
+        overrides: [
+          sharedPrefsProvider.overrideWithValue(
+            await SharedPreferences.getInstance(),
+          ),
+        ],
+        child: await builder(),
+      ),
+    );
+  }, (error, stackTrace) => log(error.toString(), stackTrace: stackTrace));
 }

@@ -11,9 +11,7 @@ class NoFoundView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.noFoundTitle),
-      ),
+      appBar: AppBar(title: Text(context.l10n.noFoundTitle)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Center(

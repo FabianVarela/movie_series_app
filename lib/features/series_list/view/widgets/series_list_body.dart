@@ -37,39 +37,42 @@ class SeriesListBody extends HookConsumerWidget {
     );
 
     return seriesList.when(
-      data: (series) => Stack(
-        children: <Widget>[
-          Center(
-            child: PageView.builder(
-              controller: pageController,
-              itemCount: series.series.length,
-              physics: isEnabledScroll.value
-                  ? const BouncingScrollPhysics()
-                  : const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) => onChangePage(index + 1),
-              itemBuilder: (_, index) {
-                final item = series.series[index];
-                return AnimatedCardItem(
-                  id: item.id,
-                  name: item.originalName,
-                  voteAverage: item.voteAverage,
-                  imageUrl: item.posterPath,
-                  onPress: () => onSelectSeries(item),
-                  isCurrent: (currentIndex - 1) == index,
-                  onExpanded: (value) => isEnabledScroll.value = !value,
-                );
-              },
-            ),
-          ),
-          if (seriesList.hasValue)
-            Positioned.fill(
-              child: IndicatorPage(
-                start: currentIndex,
-                total: seriesList.value?.series.length ?? 0,
+      data: (series) {
+        return Stack(
+          children: <Widget>[
+            Center(
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: series.series.length,
+                physics: switch (isEnabledScroll.value) {
+                  true => const BouncingScrollPhysics(),
+                  false => const NeverScrollableScrollPhysics(),
+                },
+                onPageChanged: (index) => onChangePage(index + 1),
+                itemBuilder: (_, index) {
+                  final item = series.series[index];
+                  return AnimatedCardItem(
+                    id: item.id,
+                    name: item.originalName,
+                    voteAverage: item.voteAverage,
+                    imageUrl: item.posterPath,
+                    onPress: () => onSelectSeries(item),
+                    isCurrent: (currentIndex - 1) == index,
+                    onExpanded: (value) => isEnabledScroll.value = !value,
+                  );
+                },
               ),
             ),
-        ],
-      ),
+            if (seriesList.hasValue)
+              Positioned.fill(
+                child: IndicatorPage(
+                  start: currentIndex,
+                  total: seriesList.value?.series.length ?? 0,
+                ),
+              ),
+          ],
+        );
+      },
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, __) => ErrorMessage(message: context.l10n.errorSeriesListText),
     );

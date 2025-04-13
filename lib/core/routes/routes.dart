@@ -56,10 +56,12 @@ final movieRouter = GoRouter(
           routes: <RouteBase>[
             GoRoute(
               path: AppRoutePath.movies.goRoute,
-              pageBuilder: (_, state) => ScreenPage<dynamic>(
-                key: state.pageKey,
-                child: const MovieListView(),
-              ),
+              pageBuilder: (_, state) {
+                return ScreenPage<dynamic>(
+                  key: state.pageKey,
+                  child: const MovieListView(),
+                );
+              },
               routes: <GoRoute>[
                 GoRoute(
                   path: AppRoutePath.movies.detail.goRoute,
@@ -88,10 +90,12 @@ final movieRouter = GoRouter(
           routes: <RouteBase>[
             GoRoute(
               path: AppRoutePath.series.goRoute,
-              pageBuilder: (_, state) => ScreenPage<dynamic>(
-                key: state.pageKey,
-                child: const SeriesListView(),
-              ),
+              pageBuilder: (_, state) {
+                return ScreenPage<dynamic>(
+                  key: state.pageKey,
+                  child: const SeriesListView(),
+                );
+              },
               routes: [
                 GoRoute(
                   path: AppRoutePath.series.detail.goRoute,
@@ -116,13 +120,11 @@ final movieRouter = GoRouter(
           ],
         ),
       ],
-      builder: (_, __, navigationShell) => NavigationScaffold(
-        navigationShell: navigationShell,
-      ),
+      builder: (_, __, navigationShell) {
+        return NavigationScaffold(navigationShell: navigationShell);
+      },
     ),
   ],
   debugLogDiagnostics: kDebugMode,
-  errorBuilder: (_, state) => NoFoundView(
-    error: state.error.toString(),
-  ),
+  errorBuilder: (_, state) => NoFoundView(error: state.error.toString()),
 );

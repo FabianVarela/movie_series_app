@@ -13,14 +13,15 @@ String _$preferenceRepositoryHash() =>
 @ProviderFor(preferenceRepository)
 final preferenceRepositoryProvider =
     AutoDisposeProvider<PreferenceRepository>.internal(
-  preferenceRepository,
-  name: r'preferenceRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$preferenceRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      preferenceRepository,
+      name: r'preferenceRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$preferenceRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element

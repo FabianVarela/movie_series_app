@@ -37,39 +37,42 @@ class MovieListBody extends HookConsumerWidget {
     );
 
     return movies.when(
-      data: (movie) => Stack(
-        children: <Widget>[
-          Center(
-            child: PageView.builder(
-              controller: pageController,
-              itemCount: movie.movies.length,
-              physics: isEnabledScroll.value
-                  ? const BouncingScrollPhysics()
-                  : const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) => onChangePage(index + 1),
-              itemBuilder: (_, index) {
-                final item = movie.movies[index];
-                return AnimatedCardItem(
-                  id: item.id,
-                  name: item.originalTitle,
-                  voteAverage: item.voteAverage,
-                  imageUrl: item.posterPath,
-                  onPress: () => onSelectMovie(item),
-                  isCurrent: (currentIndex - 1) == index,
-                  onExpanded: (value) => isEnabledScroll.value = !value,
-                );
-              },
-            ),
-          ),
-          if (movies.hasValue)
-            Positioned.fill(
-              child: IndicatorPage(
-                start: currentIndex,
-                total: movies.value?.movies.length ?? 0,
+      data: (movie) {
+        return Stack(
+          children: <Widget>[
+            Center(
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: movie.movies.length,
+                physics: switch (isEnabledScroll.value) {
+                  true => const BouncingScrollPhysics(),
+                  false => const NeverScrollableScrollPhysics(),
+                },
+                onPageChanged: (index) => onChangePage(index + 1),
+                itemBuilder: (_, index) {
+                  final item = movie.movies[index];
+                  return AnimatedCardItem(
+                    id: item.id,
+                    name: item.originalTitle,
+                    voteAverage: item.voteAverage,
+                    imageUrl: item.posterPath,
+                    onPress: () => onSelectMovie(item),
+                    isCurrent: (currentIndex - 1) == index,
+                    onExpanded: (value) => isEnabledScroll.value = !value,
+                  );
+                },
               ),
             ),
-        ],
-      ),
+            if (movies.hasValue)
+              Positioned.fill(
+                child: IndicatorPage(
+                  start: currentIndex,
+                  total: movies.value?.movies.length ?? 0,
+                ),
+              ),
+          ],
+        );
+      },
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, __) => ErrorMessage(message: context.l10n.errorMovieListText),
     );

@@ -13,19 +13,20 @@ String _$seriesDetailRepositoryHash() =>
 @ProviderFor(seriesDetailRepository)
 final seriesDetailRepositoryProvider =
     AutoDisposeProvider<SeriesDetailRepository>.internal(
-  seriesDetailRepository,
-  name: r'seriesDetailRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$seriesDetailRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      seriesDetailRepository,
+      name: r'seriesDetailRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$seriesDetailRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef SeriesDetailRepositoryRef
-    = AutoDisposeProviderRef<SeriesDetailRepository>;
+typedef SeriesDetailRepositoryRef =
+    AutoDisposeProviderRef<SeriesDetailRepository>;
 String _$fetchSeriesHash() => r'0fab67927505496c58f9444e7962747927f5f2a4';
 
 /// Copied from Dart SDK
@@ -59,24 +60,15 @@ class FetchSeriesFamily extends Family<AsyncValue<SeriesModel>> {
   const FetchSeriesFamily();
 
   /// See also [fetchSeries].
-  FetchSeriesProvider call({
-    required int tvId,
-    String? language,
-  }) {
-    return FetchSeriesProvider(
-      tvId: tvId,
-      language: language,
-    );
+  FetchSeriesProvider call({required int tvId, String? language}) {
+    return FetchSeriesProvider(tvId: tvId, language: language);
   }
 
   @override
   FetchSeriesProvider getProviderOverride(
     covariant FetchSeriesProvider provider,
   ) {
-    return call(
-      tvId: provider.tvId,
-      language: provider.language,
-    );
+    return call(tvId: provider.tvId, language: provider.language);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -97,27 +89,21 @@ class FetchSeriesFamily extends Family<AsyncValue<SeriesModel>> {
 /// See also [fetchSeries].
 class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
   /// See also [fetchSeries].
-  FetchSeriesProvider({
-    required int tvId,
-    String? language,
-  }) : this._internal(
-          (ref) => fetchSeries(
-            ref as FetchSeriesRef,
-            tvId: tvId,
-            language: language,
-          ),
-          from: fetchSeriesProvider,
-          name: r'fetchSeriesProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$fetchSeriesHash,
-          dependencies: FetchSeriesFamily._dependencies,
-          allTransitiveDependencies:
-              FetchSeriesFamily._allTransitiveDependencies,
-          tvId: tvId,
-          language: language,
-        );
+  FetchSeriesProvider({required int tvId, String? language})
+    : this._internal(
+        (ref) =>
+            fetchSeries(ref as FetchSeriesRef, tvId: tvId, language: language),
+        from: fetchSeriesProvider,
+        name: r'fetchSeriesProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$fetchSeriesHash,
+        dependencies: FetchSeriesFamily._dependencies,
+        allTransitiveDependencies: FetchSeriesFamily._allTransitiveDependencies,
+        tvId: tvId,
+        language: language,
+      );
 
   FetchSeriesProvider._internal(
     super._createNotifier, {
@@ -185,7 +171,8 @@ mixin FetchSeriesRef on AutoDisposeFutureProviderRef<SeriesModel> {
 }
 
 class _FetchSeriesProviderElement
-    extends AutoDisposeFutureProviderElement<SeriesModel> with FetchSeriesRef {
+    extends AutoDisposeFutureProviderElement<SeriesModel>
+    with FetchSeriesRef {
   _FetchSeriesProviderElement(super.provider);
 
   @override
@@ -193,5 +180,6 @@ class _FetchSeriesProviderElement
   @override
   String? get language => (origin as FetchSeriesProvider).language;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

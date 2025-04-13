@@ -42,10 +42,12 @@ class AnimatedCardItem extends HookWidget {
     final imageWidget = Image(
       image: CachedNetworkImageProvider('$imdbImageUri$imageUrl'),
       fit: BoxFit.cover,
-      errorBuilder: (_, __, ___) => Image.asset(
-        'assets/images/poster_not_available.jpg',
-        fit: BoxFit.cover,
-      ),
+      errorBuilder: (_, __, ___) {
+        return Image.asset(
+          'assets/images/poster_not_available.jpg',
+          fit: BoxFit.cover,
+        );
+      },
     );
 
     precacheImage(imageWidget.image, context);

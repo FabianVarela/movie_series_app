@@ -45,10 +45,12 @@ class MovieListView extends HookConsumerWidget {
         currentIndex: currentIndex.value,
         genreId: currentGenre.value,
         onChangePage: (index) => currentIndex.value = index,
-        onSelectMovie: (movie) => context.go(
-          AppRoutePath.movies.detail.define('${movie.id}').path,
-          extra: {'posterPath': movie.posterPath},
-        ),
+        onSelectMovie: (movie) {
+          context.go(
+            AppRoutePath.movies.detail.define('${movie.id}').path,
+            extra: {'posterPath': movie.posterPath},
+          );
+        },
       ),
     );
   }

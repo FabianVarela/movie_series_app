@@ -13,19 +13,20 @@ String _$movieDetailRepositoryHash() =>
 @ProviderFor(movieDetailRepository)
 final movieDetailRepositoryProvider =
     AutoDisposeProvider<MovieDetailRepository>.internal(
-  movieDetailRepository,
-  name: r'movieDetailRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$movieDetailRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      movieDetailRepository,
+      name: r'movieDetailRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$movieDetailRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef MovieDetailRepositoryRef
-    = AutoDisposeProviderRef<MovieDetailRepository>;
+typedef MovieDetailRepositoryRef =
+    AutoDisposeProviderRef<MovieDetailRepository>;
 String _$fetchMovieHash() => r'7d02a3222e2ecd5fff65e787df615473703de261';
 
 /// Copied from Dart SDK
@@ -59,24 +60,15 @@ class FetchMovieFamily extends Family<AsyncValue<MovieModel>> {
   const FetchMovieFamily();
 
   /// See also [fetchMovie].
-  FetchMovieProvider call({
-    required int movieId,
-    String? language,
-  }) {
-    return FetchMovieProvider(
-      movieId: movieId,
-      language: language,
-    );
+  FetchMovieProvider call({required int movieId, String? language}) {
+    return FetchMovieProvider(movieId: movieId, language: language);
   }
 
   @override
   FetchMovieProvider getProviderOverride(
     covariant FetchMovieProvider provider,
   ) {
-    return call(
-      movieId: provider.movieId,
-      language: provider.language,
-    );
+    return call(movieId: provider.movieId, language: provider.language);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -97,27 +89,24 @@ class FetchMovieFamily extends Family<AsyncValue<MovieModel>> {
 /// See also [fetchMovie].
 class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
   /// See also [fetchMovie].
-  FetchMovieProvider({
-    required int movieId,
-    String? language,
-  }) : this._internal(
-          (ref) => fetchMovie(
-            ref as FetchMovieRef,
-            movieId: movieId,
-            language: language,
-          ),
-          from: fetchMovieProvider,
-          name: r'fetchMovieProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$fetchMovieHash,
-          dependencies: FetchMovieFamily._dependencies,
-          allTransitiveDependencies:
-              FetchMovieFamily._allTransitiveDependencies,
+  FetchMovieProvider({required int movieId, String? language})
+    : this._internal(
+        (ref) => fetchMovie(
+          ref as FetchMovieRef,
           movieId: movieId,
           language: language,
-        );
+        ),
+        from: fetchMovieProvider,
+        name: r'fetchMovieProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$fetchMovieHash,
+        dependencies: FetchMovieFamily._dependencies,
+        allTransitiveDependencies: FetchMovieFamily._allTransitiveDependencies,
+        movieId: movieId,
+        language: language,
+      );
 
   FetchMovieProvider._internal(
     super._createNotifier, {
@@ -185,7 +174,8 @@ mixin FetchMovieRef on AutoDisposeFutureProviderRef<MovieModel> {
 }
 
 class _FetchMovieProviderElement
-    extends AutoDisposeFutureProviderElement<MovieModel> with FetchMovieRef {
+    extends AutoDisposeFutureProviderElement<MovieModel>
+    with FetchMovieRef {
   _FetchMovieProviderElement(super.provider);
 
   @override
@@ -193,5 +183,6 @@ class _FetchMovieProviderElement
   @override
   String? get language => (origin as FetchMovieProvider).language;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -18,13 +18,10 @@ class ActorDataSection extends HookWidget {
       duration: const Duration(milliseconds: 2000),
     );
 
-    useEffect(
-      () {
-        Future.delayed(const Duration(milliseconds: 500), controller.forward);
-        return null;
-      },
-      const [],
-    );
+    useEffect(() {
+      Future.delayed(const Duration(milliseconds: 500), controller.forward);
+      return null;
+    }, const []);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

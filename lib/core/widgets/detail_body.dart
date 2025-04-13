@@ -13,11 +13,9 @@ class DetailBody extends StatelessWidget {
     super.key,
   }) : series = null;
 
-  const DetailBody.series({
-    required SeriesModel this.series,
-    super.key,
-  })  : movie = null,
-        onGoWebSite = null;
+  const DetailBody.series({required SeriesModel this.series, super.key})
+    : movie = null,
+      onGoWebSite = null;
 
   final MovieModel? movie;
   final SeriesModel? series;
@@ -94,8 +92,9 @@ class DetailBody extends StatelessWidget {
                     style: const TextStyle(
                       decoration: TextDecoration.underline,
                     ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => onGoWebSite?.call(movie!.homepage!),
+                    recognizer:
+                        TapGestureRecognizer()
+                          ..onTap = () => onGoWebSite?.call(movie!.homepage!),
                   ),
                 ],
               ),

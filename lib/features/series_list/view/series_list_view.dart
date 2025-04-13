@@ -45,10 +45,12 @@ class SeriesListView extends HookConsumerWidget {
         currentIndex: currentIndex.value,
         genreId: currentGenre.value,
         onChangePage: (index) => currentIndex.value = index,
-        onSelectSeries: (series) => context.go(
-          AppRoutePath.series.detail.define('${series.id}').path,
-          extra: {'posterPath': series.posterPath},
-        ),
+        onSelectSeries: (series) {
+          context.go(
+            AppRoutePath.series.detail.define('${series.id}').path,
+            extra: {'posterPath': series.posterPath},
+          );
+        },
       ),
     );
   }

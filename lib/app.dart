@@ -15,15 +15,12 @@ class App extends HookConsumerWidget {
     final language = ref.watch(languageProvider);
     final brightness = ref.watch(brightnessModeProvider);
 
-    useEffect(
-      () {
-        ref.read(languageProvider.notifier).getLanguage();
-        ref.read(brightnessModeProvider.notifier).getTheme();
+    useEffect(() {
+      ref.read(languageProvider.notifier).getLanguage();
+      ref.read(brightnessModeProvider.notifier).getTheme();
 
-        return null;
-      },
-      const [],
-    );
+      return null;
+    }, const []);
 
     return MaterialApp.router(
       locale: language.value,

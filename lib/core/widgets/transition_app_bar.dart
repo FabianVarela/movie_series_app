@@ -97,10 +97,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
             padding: titleMargin,
             child: Align(
               alignment: titleAlign,
-              child: Text(
-                title,
-                style: TextStyle(fontSize: titleSize),
-              ),
+              child: Text(title, style: TextStyle(fontSize: titleSize)),
             ),
           ),
           if (Navigator.canPop(context))

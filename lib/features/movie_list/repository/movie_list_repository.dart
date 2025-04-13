@@ -12,10 +12,7 @@ class MovieListRepository {
   final Dio dio;
   final String apiKey;
 
-  Future<MoviesModel> fetchMovies({
-    int? genreId,
-    String? language,
-  }) async {
+  Future<MoviesModel> fetchMovies({int? genreId, String? language}) async {
     final response = await dio.get<Map<String, dynamic>>(
       genreId != null ? '/3/discover/movie' : '/3/movie/popular',
       queryParameters: {

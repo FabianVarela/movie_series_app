@@ -13,14 +13,15 @@ String _$movieListRepositoryHash() =>
 @ProviderFor(movieListRepository)
 final movieListRepositoryProvider =
     AutoDisposeProvider<MovieListRepository>.internal(
-  movieListRepository,
-  name: r'movieListRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$movieListRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      movieListRepository,
+      name: r'movieListRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$movieListRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
@@ -58,24 +59,15 @@ class FetchMoviesFamily extends Family<AsyncValue<MoviesModel>> {
   const FetchMoviesFamily();
 
   /// See also [fetchMovies].
-  FetchMoviesProvider call({
-    int? genreId,
-    String? language,
-  }) {
-    return FetchMoviesProvider(
-      genreId: genreId,
-      language: language,
-    );
+  FetchMoviesProvider call({int? genreId, String? language}) {
+    return FetchMoviesProvider(genreId: genreId, language: language);
   }
 
   @override
   FetchMoviesProvider getProviderOverride(
     covariant FetchMoviesProvider provider,
   ) {
-    return call(
-      genreId: provider.genreId,
-      language: provider.language,
-    );
+    return call(genreId: provider.genreId, language: provider.language);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -96,27 +88,24 @@ class FetchMoviesFamily extends Family<AsyncValue<MoviesModel>> {
 /// See also [fetchMovies].
 class FetchMoviesProvider extends AutoDisposeFutureProvider<MoviesModel> {
   /// See also [fetchMovies].
-  FetchMoviesProvider({
-    int? genreId,
-    String? language,
-  }) : this._internal(
-          (ref) => fetchMovies(
-            ref as FetchMoviesRef,
-            genreId: genreId,
-            language: language,
-          ),
-          from: fetchMoviesProvider,
-          name: r'fetchMoviesProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$fetchMoviesHash,
-          dependencies: FetchMoviesFamily._dependencies,
-          allTransitiveDependencies:
-              FetchMoviesFamily._allTransitiveDependencies,
+  FetchMoviesProvider({int? genreId, String? language})
+    : this._internal(
+        (ref) => fetchMovies(
+          ref as FetchMoviesRef,
           genreId: genreId,
           language: language,
-        );
+        ),
+        from: fetchMoviesProvider,
+        name: r'fetchMoviesProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$fetchMoviesHash,
+        dependencies: FetchMoviesFamily._dependencies,
+        allTransitiveDependencies: FetchMoviesFamily._allTransitiveDependencies,
+        genreId: genreId,
+        language: language,
+      );
 
   FetchMoviesProvider._internal(
     super._createNotifier, {
@@ -184,7 +173,8 @@ mixin FetchMoviesRef on AutoDisposeFutureProviderRef<MoviesModel> {
 }
 
 class _FetchMoviesProviderElement
-    extends AutoDisposeFutureProviderElement<MoviesModel> with FetchMoviesRef {
+    extends AutoDisposeFutureProviderElement<MoviesModel>
+    with FetchMoviesRef {
   _FetchMoviesProviderElement(super.provider);
 
   @override
@@ -192,5 +182,6 @@ class _FetchMoviesProviderElement
   @override
   String? get language => (origin as FetchMoviesProvider).language;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

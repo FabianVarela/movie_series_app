@@ -24,7 +24,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get errorMovieListText => 'Error obteniendo la lista de películas';
 
   @override
-  String get errorMovieDetailText => 'Error obteniendo el detalle de la película';
+  String get errorMovieDetailText =>
+      'Error obteniendo el detalle de la película';
 
   @override
   String get errorSeriesListText => 'Error obteniendo la lista de series';

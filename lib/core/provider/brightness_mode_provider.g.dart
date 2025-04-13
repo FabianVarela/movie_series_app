@@ -12,14 +12,15 @@ String _$brightnessModeHash() => r'594642e1136183d92b06eb99aea74644b6879702';
 @ProviderFor(BrightnessMode)
 final brightnessModeProvider =
     AutoDisposeAsyncNotifierProvider<BrightnessMode, Brightness?>.internal(
-  BrightnessMode.new,
-  name: r'brightnessModeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$brightnessModeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      BrightnessMode.new,
+      name: r'brightnessModeProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$brightnessModeHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$BrightnessMode = AutoDisposeAsyncNotifier<Brightness?>;
 // ignore_for_file: type=lint

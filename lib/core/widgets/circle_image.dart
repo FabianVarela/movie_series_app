@@ -20,9 +20,10 @@ class CircleImage extends StatelessWidget {
     return CircleAvatar(
       backgroundImage: imageWidget,
       radius: imageSize,
-      child: imageUrl == null
-          ? Icon(Icons.account_circle, size: iconSize)
-          : null,
+      child: switch (imageUrl == null) {
+        true => Icon(Icons.account_circle, size: iconSize),
+        false => null,
+      },
     );
   }
 }

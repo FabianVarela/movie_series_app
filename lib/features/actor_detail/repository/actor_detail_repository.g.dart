@@ -13,19 +13,20 @@ String _$actorDetailRepositoryHash() =>
 @ProviderFor(actorDetailRepository)
 final actorDetailRepositoryProvider =
     AutoDisposeProvider<ActorDetailRepository>.internal(
-  actorDetailRepository,
-  name: r'actorDetailRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$actorDetailRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      actorDetailRepository,
+      name: r'actorDetailRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$actorDetailRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ActorDetailRepositoryRef
-    = AutoDisposeProviderRef<ActorDetailRepository>;
+typedef ActorDetailRepositoryRef =
+    AutoDisposeProviderRef<ActorDetailRepository>;
 String _$fetchActorHash() => r'43dbe499f89c4cdcc7c61866238b3e303f090c46';
 
 /// Copied from Dart SDK
@@ -59,24 +60,15 @@ class FetchActorFamily extends Family<AsyncValue<ActorModel>> {
   const FetchActorFamily();
 
   /// See also [fetchActor].
-  FetchActorProvider call({
-    required int personId,
-    String? language,
-  }) {
-    return FetchActorProvider(
-      personId: personId,
-      language: language,
-    );
+  FetchActorProvider call({required int personId, String? language}) {
+    return FetchActorProvider(personId: personId, language: language);
   }
 
   @override
   FetchActorProvider getProviderOverride(
     covariant FetchActorProvider provider,
   ) {
-    return call(
-      personId: provider.personId,
-      language: provider.language,
-    );
+    return call(personId: provider.personId, language: provider.language);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -97,27 +89,24 @@ class FetchActorFamily extends Family<AsyncValue<ActorModel>> {
 /// See also [fetchActor].
 class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
   /// See also [fetchActor].
-  FetchActorProvider({
-    required int personId,
-    String? language,
-  }) : this._internal(
-          (ref) => fetchActor(
-            ref as FetchActorRef,
-            personId: personId,
-            language: language,
-          ),
-          from: fetchActorProvider,
-          name: r'fetchActorProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$fetchActorHash,
-          dependencies: FetchActorFamily._dependencies,
-          allTransitiveDependencies:
-              FetchActorFamily._allTransitiveDependencies,
+  FetchActorProvider({required int personId, String? language})
+    : this._internal(
+        (ref) => fetchActor(
+          ref as FetchActorRef,
           personId: personId,
           language: language,
-        );
+        ),
+        from: fetchActorProvider,
+        name: r'fetchActorProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$fetchActorHash,
+        dependencies: FetchActorFamily._dependencies,
+        allTransitiveDependencies: FetchActorFamily._allTransitiveDependencies,
+        personId: personId,
+        language: language,
+      );
 
   FetchActorProvider._internal(
     super._createNotifier, {
@@ -185,7 +174,8 @@ mixin FetchActorRef on AutoDisposeFutureProviderRef<ActorModel> {
 }
 
 class _FetchActorProviderElement
-    extends AutoDisposeFutureProviderElement<ActorModel> with FetchActorRef {
+    extends AutoDisposeFutureProviderElement<ActorModel>
+    with FetchActorRef {
   _FetchActorProviderElement(super.provider);
 
   @override
@@ -193,5 +183,6 @@ class _FetchActorProviderElement
   @override
   String? get language => (origin as FetchActorProvider).language;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -49,41 +49,42 @@ class DetailCreditList extends StatelessWidget {
               itemCount: casts.length,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemBuilder: (_, index) => InkWell(
-                onTap: () => onSelect(
-                  casts[index].id,
-                  casts[index].profilePath,
-                ),
-                child: Container(
-                  width: 100,
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Hero(
-                        tag: '${casts[index].id}',
-                        child: CircleImage(
-                          imageUrl: casts[index].profilePath != null
-                              ? '$imdbImageUri${casts[index].profilePath}'
-                              : null,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(
-                          casts[index].name,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
+              itemBuilder: (_, index) {
+                final item = casts[index];
+                return InkWell(
+                  onTap: () => onSelect(item.id, item.profilePath),
+                  child: Container(
+                    width: 100,
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Hero(
+                          tag: '${item.id}',
+                          child: CircleImage(
+                            imageUrl:
+                                item.profilePath != null
+                                    ? '$imdbImageUri${item.profilePath}'
+                                    : null,
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            item.name,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
       ],

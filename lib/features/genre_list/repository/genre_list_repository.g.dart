@@ -13,14 +13,15 @@ String _$genreListRepositoryHash() =>
 @ProviderFor(genreListRepository)
 final genreListRepositoryProvider =
     AutoDisposeProvider<GenreListRepository>.internal(
-  genreListRepository,
-  name: r'genreListRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$genreListRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      genreListRepository,
+      name: r'genreListRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$genreListRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
@@ -58,24 +59,15 @@ class FetchGenresFamily extends Family<AsyncValue<GenresModel>> {
   const FetchGenresFamily();
 
   /// See also [fetchGenres].
-  FetchGenresProvider call({
-    required GenreType type,
-    String? language,
-  }) {
-    return FetchGenresProvider(
-      type: type,
-      language: language,
-    );
+  FetchGenresProvider call({required GenreType type, String? language}) {
+    return FetchGenresProvider(type: type, language: language);
   }
 
   @override
   FetchGenresProvider getProviderOverride(
     covariant FetchGenresProvider provider,
   ) {
-    return call(
-      type: provider.type,
-      language: provider.language,
-    );
+    return call(type: provider.type, language: provider.language);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -96,27 +88,21 @@ class FetchGenresFamily extends Family<AsyncValue<GenresModel>> {
 /// See also [fetchGenres].
 class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
   /// See also [fetchGenres].
-  FetchGenresProvider({
-    required GenreType type,
-    String? language,
-  }) : this._internal(
-          (ref) => fetchGenres(
-            ref as FetchGenresRef,
-            type: type,
-            language: language,
-          ),
-          from: fetchGenresProvider,
-          name: r'fetchGenresProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$fetchGenresHash,
-          dependencies: FetchGenresFamily._dependencies,
-          allTransitiveDependencies:
-              FetchGenresFamily._allTransitiveDependencies,
-          type: type,
-          language: language,
-        );
+  FetchGenresProvider({required GenreType type, String? language})
+    : this._internal(
+        (ref) =>
+            fetchGenres(ref as FetchGenresRef, type: type, language: language),
+        from: fetchGenresProvider,
+        name: r'fetchGenresProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$fetchGenresHash,
+        dependencies: FetchGenresFamily._dependencies,
+        allTransitiveDependencies: FetchGenresFamily._allTransitiveDependencies,
+        type: type,
+        language: language,
+      );
 
   FetchGenresProvider._internal(
     super._createNotifier, {
@@ -184,7 +170,8 @@ mixin FetchGenresRef on AutoDisposeFutureProviderRef<GenresModel> {
 }
 
 class _FetchGenresProviderElement
-    extends AutoDisposeFutureProviderElement<GenresModel> with FetchGenresRef {
+    extends AutoDisposeFutureProviderElement<GenresModel>
+    with FetchGenresRef {
   _FetchGenresProviderElement(super.provider);
 
   @override
@@ -192,5 +179,6 @@ class _FetchGenresProviderElement
   @override
   String? get language => (origin as FetchGenresProvider).language;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

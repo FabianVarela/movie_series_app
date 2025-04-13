@@ -43,23 +43,31 @@ class ActorDetailView extends HookConsumerWidget {
             ),
           ),
           actor.maybeWhen(
-            loading: () => SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * .6,
-                child: const Center(child: CircularProgressIndicator()),
-              ),
-            ),
-            data: (actor) => SliverList(
-              delegate: SliverChildListDelegate([
-                ActorDataSection(actor: actor),
-              ]),
-            ),
-            error: (_, __) => SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * .6,
-                child: ErrorMessage(message: context.l10n.errorActorDetailText),
-              ),
-            ),
+            data: (actor) {
+              return SliverList(
+                delegate: SliverChildListDelegate([
+                  ActorDataSection(actor: actor),
+                ]),
+              );
+            },
+            loading: () {
+              return SliverToBoxAdapter(
+                child: SizedBox(
+                  height: MediaQuery.sizeOf(context).height * .6,
+                  child: const Center(child: CircularProgressIndicator()),
+                ),
+              );
+            },
+            error: (_, __) {
+              return SliverToBoxAdapter(
+                child: SizedBox(
+                  height: MediaQuery.sizeOf(context).height * .6,
+                  child: ErrorMessage(
+                    message: context.l10n.errorActorDetailText,
+                  ),
+                ),
+              );
+            },
             orElse: () => const SliverToBoxAdapter(child: Offstage()),
           ),
         ],

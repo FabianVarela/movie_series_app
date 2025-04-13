@@ -13,14 +13,15 @@ String _$seriesListRepositoryHash() =>
 @ProviderFor(seriesListRepository)
 final seriesListRepositoryProvider =
     AutoDisposeProvider<SeriesListRepository>.internal(
-  seriesListRepository,
-  name: r'seriesListRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$seriesListRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      seriesListRepository,
+      name: r'seriesListRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$seriesListRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
@@ -58,24 +59,15 @@ class FetchSeriesFamily extends Family<AsyncValue<SeriesListModel>> {
   const FetchSeriesFamily();
 
   /// See also [fetchSeries].
-  FetchSeriesProvider call({
-    int? genreId,
-    String? language,
-  }) {
-    return FetchSeriesProvider(
-      genreId: genreId,
-      language: language,
-    );
+  FetchSeriesProvider call({int? genreId, String? language}) {
+    return FetchSeriesProvider(genreId: genreId, language: language);
   }
 
   @override
   FetchSeriesProvider getProviderOverride(
     covariant FetchSeriesProvider provider,
   ) {
-    return call(
-      genreId: provider.genreId,
-      language: provider.language,
-    );
+    return call(genreId: provider.genreId, language: provider.language);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -96,27 +88,24 @@ class FetchSeriesFamily extends Family<AsyncValue<SeriesListModel>> {
 /// See also [fetchSeries].
 class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesListModel> {
   /// See also [fetchSeries].
-  FetchSeriesProvider({
-    int? genreId,
-    String? language,
-  }) : this._internal(
-          (ref) => fetchSeries(
-            ref as FetchSeriesRef,
-            genreId: genreId,
-            language: language,
-          ),
-          from: fetchSeriesProvider,
-          name: r'fetchSeriesProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$fetchSeriesHash,
-          dependencies: FetchSeriesFamily._dependencies,
-          allTransitiveDependencies:
-              FetchSeriesFamily._allTransitiveDependencies,
+  FetchSeriesProvider({int? genreId, String? language})
+    : this._internal(
+        (ref) => fetchSeries(
+          ref as FetchSeriesRef,
           genreId: genreId,
           language: language,
-        );
+        ),
+        from: fetchSeriesProvider,
+        name: r'fetchSeriesProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$fetchSeriesHash,
+        dependencies: FetchSeriesFamily._dependencies,
+        allTransitiveDependencies: FetchSeriesFamily._allTransitiveDependencies,
+        genreId: genreId,
+        language: language,
+      );
 
   FetchSeriesProvider._internal(
     super._createNotifier, {
@@ -193,5 +182,6 @@ class _FetchSeriesProviderElement
   @override
   String? get language => (origin as FetchSeriesProvider).language;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

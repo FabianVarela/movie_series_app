@@ -19,17 +19,14 @@ class TitleSubtitle extends StatelessWidget {
         title,
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
-      Text(
-        subtitle,
-        style: const TextStyle(fontSize: 16),
-      ),
+      Text(subtitle, style: const TextStyle(fontSize: 16)),
     ];
 
     return isRow
         ? Row(children: listText)
         : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: listText,
-          );
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: listText,
+        );
   }
 }

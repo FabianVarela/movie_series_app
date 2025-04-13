@@ -12,13 +12,13 @@ String _$languageHash() => r'48439a658535105f51c7dc249d304e1c0816cdf9';
 @ProviderFor(Language)
 final languageProvider =
     AutoDisposeAsyncNotifierProvider<Language, Locale?>.internal(
-  Language.new,
-  name: r'languageProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$languageHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      Language.new,
+      name: r'languageProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product') ? null : _$languageHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$Language = AutoDisposeAsyncNotifier<Locale?>;
 // ignore_for_file: type=lint
