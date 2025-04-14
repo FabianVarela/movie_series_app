@@ -47,8 +47,9 @@ class MovieDetailView extends HookConsumerWidget {
                     ),
                     DetailCreditList(
                       casts: movie.credits,
-                      onSelect:
-                          (id, path) => _goToActorDetail(context, id, path),
+                      onSelect: (id, path) {
+                        _goToActorDetail(context, id, path);
+                      },
                     ),
                     DetailTrailerList(
                       trailers: movie.trailers,
