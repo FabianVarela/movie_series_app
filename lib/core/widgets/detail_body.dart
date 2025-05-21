@@ -92,9 +92,8 @@ class DetailBody extends StatelessWidget {
                     style: const TextStyle(
                       decoration: TextDecoration.underline,
                     ),
-                    recognizer:
-                        TapGestureRecognizer()
-                          ..onTap = () => onGoWebSite?.call(movie!.homepage!),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => onGoWebSite?.call(movie!.homepage!),
                   ),
                 ],
               ),

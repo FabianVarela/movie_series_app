@@ -11,10 +11,9 @@ SeriesListModel _$SeriesListModelFromJson(Map<String, dynamic> json) =>
       page: (json['page'] as num).toInt(),
       totalResults: (json['total_results'] as num).toInt(),
       totalPages: (json['total_pages'] as num).toInt(),
-      series:
-          (json['results'] as List<dynamic>)
-              .map((e) => SeriesModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      series: (json['results'] as List<dynamic>)
+          .map((e) => SeriesModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 SeriesModel _$SeriesModelFromJson(Map<String, dynamic> json) => SeriesModel(

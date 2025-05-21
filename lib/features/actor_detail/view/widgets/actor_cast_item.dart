@@ -14,10 +14,9 @@ class ActorCastItem extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 5),
       leading: CircleImage(
-        imageUrl:
-            actorCredit.posterPath != null
-                ? '$imdbImageUri${actorCredit.posterPath}'
-                : null,
+        imageUrl: actorCredit.posterPath != null
+            ? '$imdbImageUri${actorCredit.posterPath}'
+            : null,
         imageSize: 25,
         iconSize: 25,
       ),

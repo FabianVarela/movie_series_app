@@ -15,10 +15,9 @@ final movieListRepositoryProvider =
     AutoDisposeProvider<MovieListRepository>.internal(
       movieListRepository,
       name: r'movieListRepositoryProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$movieListRepositoryHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$movieListRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
@@ -97,10 +96,9 @@ class FetchMoviesProvider extends AutoDisposeFutureProvider<MoviesModel> {
         ),
         from: fetchMoviesProvider,
         name: r'fetchMoviesProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$fetchMoviesHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$fetchMoviesHash,
         dependencies: FetchMoviesFamily._dependencies,
         allTransitiveDependencies: FetchMoviesFamily._allTransitiveDependencies,
         genreId: genreId,

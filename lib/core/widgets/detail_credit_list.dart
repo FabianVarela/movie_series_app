@@ -62,10 +62,9 @@ class DetailCreditList extends StatelessWidget {
                         Hero(
                           tag: '${item.id}',
                           child: CircleImage(
-                            imageUrl:
-                                item.profilePath != null
-                                    ? '$imdbImageUri${item.profilePath}'
-                                    : null,
+                            imageUrl: item.profilePath != null
+                                ? '$imdbImageUri${item.profilePath}'
+                                : null,
                           ),
                         ),
                         Padding(

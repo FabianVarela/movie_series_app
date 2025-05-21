@@ -15,10 +15,9 @@ final seriesListRepositoryProvider =
     AutoDisposeProvider<SeriesListRepository>.internal(
       seriesListRepository,
       name: r'seriesListRepositoryProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$seriesListRepositoryHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$seriesListRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
@@ -97,10 +96,9 @@ class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesListModel> {
         ),
         from: fetchSeriesProvider,
         name: r'fetchSeriesProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$fetchSeriesHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$fetchSeriesHash,
         dependencies: FetchSeriesFamily._dependencies,
         allTransitiveDependencies: FetchSeriesFamily._allTransitiveDependencies,
         genreId: genreId,

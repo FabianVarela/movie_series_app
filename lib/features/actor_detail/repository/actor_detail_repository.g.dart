@@ -15,10 +15,9 @@ final actorDetailRepositoryProvider =
     AutoDisposeProvider<ActorDetailRepository>.internal(
       actorDetailRepository,
       name: r'actorDetailRepositoryProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$actorDetailRepositoryHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$actorDetailRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
@@ -98,10 +97,9 @@ class FetchActorProvider extends AutoDisposeFutureProvider<ActorModel> {
         ),
         from: fetchActorProvider,
         name: r'fetchActorProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$fetchActorHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$fetchActorHash,
         dependencies: FetchActorFamily._dependencies,
         allTransitiveDependencies: FetchActorFamily._allTransitiveDependencies,
         personId: personId,

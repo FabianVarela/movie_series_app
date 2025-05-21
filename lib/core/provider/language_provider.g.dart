@@ -14,8 +14,9 @@ final languageProvider =
     AutoDisposeAsyncNotifierProvider<Language, Locale?>.internal(
       Language.new,
       name: r'languageProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product') ? null : _$languageHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$languageHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );

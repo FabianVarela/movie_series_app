@@ -25,8 +25,8 @@ class TitleSubtitle extends StatelessWidget {
     return isRow
         ? Row(children: listText)
         : Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: listText,
-        );
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: listText,
+          );
   }
 }

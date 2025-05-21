@@ -13,8 +13,9 @@ String _$sharedPrefsHash() => r'659f565ddece35a71d780b7b1a0e67b80175708a';
 final sharedPrefsProvider = AutoDisposeProvider<SharedPreferences>.internal(
   sharedPrefs,
   name: r'sharedPrefsProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$sharedPrefsHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sharedPrefsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

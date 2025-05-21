@@ -15,10 +15,9 @@ final genreListRepositoryProvider =
     AutoDisposeProvider<GenreListRepository>.internal(
       genreListRepository,
       name: r'genreListRepositoryProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$genreListRepositoryHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$genreListRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
@@ -94,10 +93,9 @@ class FetchGenresProvider extends AutoDisposeFutureProvider<GenresModel> {
             fetchGenres(ref as FetchGenresRef, type: type, language: language),
         from: fetchGenresProvider,
         name: r'fetchGenresProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$fetchGenresHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$fetchGenresHash,
         dependencies: FetchGenresFamily._dependencies,
         allTransitiveDependencies: FetchGenresFamily._allTransitiveDependencies,
         type: type,

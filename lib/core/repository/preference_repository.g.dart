@@ -15,10 +15,9 @@ final preferenceRepositoryProvider =
     AutoDisposeProvider<PreferenceRepository>.internal(
       preferenceRepository,
       name: r'preferenceRepositoryProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$preferenceRepositoryHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$preferenceRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );

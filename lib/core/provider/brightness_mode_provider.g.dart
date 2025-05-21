@@ -14,10 +14,9 @@ final brightnessModeProvider =
     AutoDisposeAsyncNotifierProvider<BrightnessMode, Brightness?>.internal(
       BrightnessMode.new,
       name: r'brightnessModeProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$brightnessModeHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$brightnessModeHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
