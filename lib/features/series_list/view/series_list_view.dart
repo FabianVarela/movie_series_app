@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:movie_list_bloc/core/provider/brightness_mode_provider.dart';
-import 'package:movie_list_bloc/core/routes/app_route_path.dart';
-import 'package:movie_list_bloc/core/widgets/custom_app_bar.dart';
-import 'package:movie_list_bloc/features/genre_list/repository/genre_list_repository.dart';
-import 'package:movie_list_bloc/features/genre_list/widgets/genre_list_section.dart';
-import 'package:movie_list_bloc/features/series_list/view/widgets/series_list_body.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/core/provider/brightness_mode_provider.dart';
+import 'package:movie_series_app/core/routes/app_route_path.dart';
+import 'package:movie_series_app/core/widgets/custom_app_bar.dart';
+import 'package:movie_series_app/features/genre_list/repository/genre_list_repository.dart';
+import 'package:movie_series_app/features/genre_list/widgets/genre_list_section.dart';
+import 'package:movie_series_app/features/series_list/view/widgets/series_list_body.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class SeriesListView extends HookConsumerWidget {
   const SeriesListView({super.key});

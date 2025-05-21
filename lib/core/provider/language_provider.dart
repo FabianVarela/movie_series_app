@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:movie_list_bloc/core/repository/preference_repository.dart';
+import 'package:movie_series_app/core/repository/preference_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'language_provider.g.dart';

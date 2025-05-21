@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:movie_list_bloc/core/widgets/genre_item.dart';
-import 'package:movie_list_bloc/features/movie_detail/model/movie_model.dart';
-import 'package:movie_list_bloc/features/series_detail/model/series_model.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/core/widgets/genre_item.dart';
+import 'package:movie_series_app/features/movie_detail/model/movie_model.dart';
+import 'package:movie_series_app/features/series_detail/model/series_model.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class DetailBody extends StatelessWidget {
   const DetailBody.movie({

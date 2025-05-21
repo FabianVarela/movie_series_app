@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:movie_list_bloc/core/provider/language_provider.dart';
-import 'package:movie_list_bloc/core/widgets/circle_image.dart';
-import 'package:movie_list_bloc/core/widgets/error_message.dart';
-import 'package:movie_list_bloc/core/widgets/transition_app_bar.dart';
-import 'package:movie_list_bloc/features/actor_detail/repository/actor_detail_repository.dart';
-import 'package:movie_list_bloc/features/actor_detail/view/widgets/actor_data_section.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/core/provider/language_provider.dart';
+import 'package:movie_series_app/core/widgets/circle_image.dart';
+import 'package:movie_series_app/core/widgets/error_message.dart';
+import 'package:movie_series_app/core/widgets/transition_app_bar.dart';
+import 'package:movie_series_app/features/actor_detail/repository/actor_detail_repository.dart';
+import 'package:movie_series_app/features/actor_detail/view/widgets/actor_data_section.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class ActorDetailView extends HookConsumerWidget {
   const ActorDetailView({required this.personId, this.imageUrl, super.key});

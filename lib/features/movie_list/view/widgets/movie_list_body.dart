@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:movie_list_bloc/core/provider/language_provider.dart';
-import 'package:movie_list_bloc/core/widgets/error_message.dart';
-import 'package:movie_list_bloc/core/widgets/movie_series_page_list.dart';
-import 'package:movie_list_bloc/features/movie_list/model/movies_model.dart';
-import 'package:movie_list_bloc/features/movie_list/repository/movie_list_repository.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/core/provider/language_provider.dart';
+import 'package:movie_series_app/core/widgets/error_message.dart';
+import 'package:movie_series_app/core/widgets/movie_series_page_list.dart';
+import 'package:movie_series_app/features/movie_list/model/movies_model.dart';
+import 'package:movie_series_app/features/movie_list/repository/movie_list_repository.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class MovieListBody extends ConsumerWidget {
   const MovieListBody({

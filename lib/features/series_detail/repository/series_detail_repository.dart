@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:movie_list_bloc/core/client/remote/dio_provider.dart';
-import 'package:movie_list_bloc/features/series_detail/model/series_model.dart';
+import 'package:movie_series_app/core/client/remote/dio_provider.dart';
+import 'package:movie_series_app/features/series_detail/model/series_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'series_detail_repository.g.dart';

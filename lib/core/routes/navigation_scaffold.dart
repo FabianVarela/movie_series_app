@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class NavigationScaffold extends StatelessWidget {
   const NavigationScaffold({required this.navigationShell, super.key});

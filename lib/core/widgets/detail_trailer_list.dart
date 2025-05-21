@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:movie_list_bloc/core/model/common_model.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/core/model/common_model.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class DetailTrailerList extends StatelessWidget {
   const DetailTrailerList({

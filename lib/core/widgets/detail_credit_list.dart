@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_list_bloc/core/model/common_model.dart';
-import 'package:movie_list_bloc/core/widgets/circle_image.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/core/model/common_model.dart';
+import 'package:movie_series_app/core/widgets/circle_image.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class DetailCreditList extends StatelessWidget {
   const DetailCreditList({

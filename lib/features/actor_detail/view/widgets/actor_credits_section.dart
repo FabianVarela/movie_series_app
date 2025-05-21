@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:movie_list_bloc/features/actor_detail/model/actor_model.dart';
-import 'package:movie_list_bloc/features/actor_detail/view/widgets/actor_cast_item.dart';
-import 'package:movie_list_bloc/l10n/l10n.dart';
+import 'package:movie_series_app/features/actor_detail/model/actor_model.dart';
+import 'package:movie_series_app/features/actor_detail/view/widgets/actor_cast_item.dart';
+import 'package:movie_series_app/l10n/l10n.dart';
 
 class ActorCreditsSection extends HookWidget {
   const ActorCreditsSection({required this.credits, super.key});
