@@ -28,8 +28,8 @@ class TransformScreenPage<T> extends Page<T> {
   Route<T> createRoute(BuildContext context) {
     return PageRouteBuilder<T>(
       settings: this,
-      pageBuilder: (_, __, ___) => child,
-      transitionsBuilder: (_, animation, __, child) {
+      pageBuilder: (_, _, _) => child,
+      transitionsBuilder: (_, animation, _, child) {
         return Transform.scale(scale: animation.value, child: child);
       },
     );
@@ -45,8 +45,8 @@ class FadeScreenPage<T> extends Page<T> {
   Route<T> createRoute(BuildContext context) {
     return PageRouteBuilder<T>(
       settings: this,
-      pageBuilder: (_, __, ___) => child,
-      transitionsBuilder: (_, animation, __, child) {
+      pageBuilder: (_, _, _) => child,
+      transitionsBuilder: (_, animation, _, child) {
         return FadeTransition(opacity: animation, child: child);
       },
     );

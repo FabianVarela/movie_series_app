@@ -58,7 +58,7 @@ class ActorDetailView extends HookConsumerWidget {
                 ),
               );
             },
-            error: (_, __) {
+            error: (_, _) {
               return SliverToBoxAdapter(
                 child: SizedBox(
                   height: MediaQuery.sizeOf(context).height * .6,

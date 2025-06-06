@@ -120,7 +120,7 @@ final movieRouter = GoRouter(
           ],
         ),
       ],
-      builder: (_, __, navigationShell) {
+      builder: (_, _, navigationShell) {
         return NavigationScaffold(navigationShell: navigationShell);
       },
     ),

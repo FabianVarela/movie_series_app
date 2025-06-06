@@ -38,7 +38,7 @@ class GenreListSection extends ConsumerWidget {
             child: ListView.separated(
               itemCount: genre.genres.length,
               scrollDirection: Axis.horizontal,
-              separatorBuilder: (_, __) => const Gap(10),
+              separatorBuilder: (_, _) => const Gap(10),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               itemBuilder: (_, index) {
                 final item = genre.genres[index];

@@ -38,7 +38,7 @@ class ActorCreditsSection extends HookWidget {
           shrinkWrap: true,
           padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),
-          separatorBuilder: (_, __) => const Divider(height: 5),
+          separatorBuilder: (_, _) => const Divider(height: 5),
           itemBuilder: (_, index) {
             return (index == lenExpanded.value && !isExpanded.value)
                 ? ListTile(

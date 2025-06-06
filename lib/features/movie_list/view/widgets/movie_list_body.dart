@@ -41,7 +41,7 @@ class MovieListBody extends ConsumerWidget {
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (_, __) => ErrorMessage(message: context.l10n.errorMovieListText),
+      error: (_, _) => ErrorMessage(message: context.l10n.errorMovieListText),
     );
   }
 }

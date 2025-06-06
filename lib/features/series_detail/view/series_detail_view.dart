@@ -65,7 +65,7 @@ class SeriesDetailView extends HookConsumerWidget {
                   child: const Center(child: CircularProgressIndicator()),
                 );
               },
-              error: (_, __) {
+              error: (_, _) {
                 return SizedBox(
                   height: MediaQuery.sizeOf(context).height * .68,
                   child: ErrorMessage(

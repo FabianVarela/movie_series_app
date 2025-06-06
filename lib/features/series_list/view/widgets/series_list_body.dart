@@ -41,7 +41,7 @@ class SeriesListBody extends ConsumerWidget {
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (_, __) => ErrorMessage(message: context.l10n.errorSeriesListText),
+      error: (_, _) => ErrorMessage(message: context.l10n.errorSeriesListText),
     );
   }
 }

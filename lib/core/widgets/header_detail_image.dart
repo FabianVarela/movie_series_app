@@ -22,7 +22,7 @@ class HeaderDetailImage extends StatelessWidget {
       fit: BoxFit.cover,
       height: 250,
       width: MediaQuery.sizeOf(context).width,
-      errorBuilder: (_, __, ___) {
+      errorBuilder: (_, _, _) {
         return Image.asset(
           'assets/images/poster_not_available.jpg',
           fit: BoxFit.cover,

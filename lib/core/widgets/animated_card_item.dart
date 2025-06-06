@@ -42,7 +42,7 @@ class AnimatedCardItem extends HookWidget {
     final imageWidget = Image(
       image: CachedNetworkImageProvider('$imdbImageUri$imageUrl'),
       fit: BoxFit.cover,
-      errorBuilder: (_, __, ___) {
+      errorBuilder: (_, _, _) {
         return Image.asset(
           'assets/images/poster_not_available.jpg',
           fit: BoxFit.cover,
@@ -57,7 +57,7 @@ class AnimatedCardItem extends HookWidget {
 
     return PopScope(
       canPop: defaultTargetPlatform == TargetPlatform.iOS || containStatus,
-      onPopInvokedWithResult: (_, __) async {
+      onPopInvokedWithResult: (_, _) async {
         if (!containStatus) {
           await controller.reverse();
           onExpanded?.call(false);

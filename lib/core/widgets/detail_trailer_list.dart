@@ -45,7 +45,7 @@ class DetailTrailerList extends StatelessWidget {
               itemCount: trailers.length,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              separatorBuilder: (_, __) => const Gap(10),
+              separatorBuilder: (_, _) => const Gap(10),
               itemBuilder: (_, index) {
                 final trailer = trailers[index];
                 return SizedBox(
