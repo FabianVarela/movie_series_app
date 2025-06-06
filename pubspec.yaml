@@ -34,7 +34,7 @@ dev_dependencies:
   freezed: ^3.0.6
   json_serializable: ^6.9.5
   riverpod_generator: ^2.6.5
-  very_good_analysis: ^8.0.0
+  very_good_analysis: ^9.0.0
 
 flutter:
   uses-material-design: true
