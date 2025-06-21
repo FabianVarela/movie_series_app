@@ -8,6 +8,7 @@ analyzer:
 linter:
   rules:
     public_member_api_docs: false
+    specify_nonobvious_property_types: false
 
 formatter:
   trailing_commas: preserve
