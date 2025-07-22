@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_series_app/core/widgets/shader_container.dart';
 
 class TransitionAppBar extends StatelessWidget {
-  const TransitionAppBar({
-    required this.backgroundColor,
-    required this.child,
-    required this.title,
-    super.key,
-  });
+  const TransitionAppBar({required this.child, required this.title, super.key});
 
-  final Color backgroundColor;
   final Widget child;
   final String title;
 
@@ -17,7 +12,7 @@ class TransitionAppBar extends StatelessWidget {
     return SliverPersistentHeader(
       pinned: true,
       delegate: _TransitionAppBarDelegate(
-        backgroundColor: backgroundColor,
+        useGradient: true,
         child: child,
         title: title,
       ),
@@ -27,14 +22,14 @@ class TransitionAppBar extends StatelessWidget {
 
 class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
   _TransitionAppBarDelegate({
-    required this.backgroundColor,
-    required this.child,
     required this.title,
+    required this.child,
+    required this.useGradient,
   });
 
-  final Color backgroundColor;
-  final Widget child;
   final String title;
+  final Widget child;
+  final bool useGradient;
 
   final _avatarTween = SizeTween(
     begin: const Size(150, 150),
@@ -67,6 +62,8 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlaps) {
+    final colorTheme = Theme.of(context).colorScheme;
+
     final progress = shrinkOffset / 280;
 
     final avatarSize = _avatarTween.lerp(progress);
@@ -78,39 +75,51 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
     final titleAlign = _titleAlignTween.lerp(progress);
     final titleSize = _titleSizeTween.transform(progress);
 
-    return ColoredBox(
-      color: backgroundColor,
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Positioned.fill(
-            top: positionedTween,
-            child: Padding(
-              padding: avatarMargin,
-              child: Align(
-                alignment: avatarAlign,
-                child: SizedBox.fromSize(size: avatarSize, child: child),
-              ),
-            ),
-          ),
-          Padding(
-            padding: titleMargin,
+    final stackChild = Stack(
+      fit: StackFit.expand,
+      children: <Widget>[
+        Positioned.fill(
+          top: positionedTween,
+          child: Padding(
+            padding: avatarMargin,
             child: Align(
-              alignment: titleAlign,
-              child: Text(title, style: TextStyle(fontSize: titleSize)),
+              alignment: avatarAlign,
+              child: SizedBox.fromSize(size: avatarSize, child: child),
             ),
           ),
-          if (Navigator.canPop(context))
-            Positioned(
-              top: 45,
-              left: 10,
-              child: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.arrow_back_ios),
-              ),
+        ),
+        Padding(
+          padding: titleMargin,
+          child: Align(
+            alignment: titleAlign,
+            child: Text(
+              title,
+              style: TextStyle(fontSize: titleSize, color: colorTheme.surface),
             ),
-        ],
-      ),
+          ),
+        ),
+        if (Navigator.canPop(context))
+          Positioned(
+            top: 45,
+            left: 10,
+            child: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.arrow_back_ios),
+            ),
+          ),
+      ],
+    );
+
+    if (useGradient) {
+      return ShaderContainer.gradient(
+        colors: [colorTheme.secondary, colorTheme.secondaryContainer],
+        child: stackChild,
+      );
+    }
+
+    return ShaderContainer.file(
+      filePath: 'shaders/simple_shader.frag',
+      child: stackChild,
     );
   }
 
