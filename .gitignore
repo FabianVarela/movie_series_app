@@ -77,5 +77,8 @@
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
+# Generated l10n files
+lib/l10n/gen/
+
 # Dart define file
 config-keys.json
