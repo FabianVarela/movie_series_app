@@ -39,5 +39,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  shaders:
+    - shaders/simple_shader.frag
   assets:
     - assets/images/
