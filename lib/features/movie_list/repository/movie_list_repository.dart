@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_series_app/core/client/remote/dio_provider.dart';
 import 'package:movie_series_app/features/movie_list/model/movies_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
