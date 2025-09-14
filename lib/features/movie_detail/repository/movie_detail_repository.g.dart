@@ -6,181 +6,138 @@ part of 'movie_detail_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(movieDetailRepository)
+const movieDetailRepositoryProvider = MovieDetailRepositoryProvider._();
+
+final class MovieDetailRepositoryProvider
+    extends
+        $FunctionalProvider<
+          MovieDetailRepository,
+          MovieDetailRepository,
+          MovieDetailRepository
+        >
+    with $Provider<MovieDetailRepository> {
+  const MovieDetailRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'movieDetailRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$movieDetailRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<MovieDetailRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  MovieDetailRepository create(Ref ref) {
+    return movieDetailRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MovieDetailRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MovieDetailRepository>(value),
+    );
+  }
+}
+
 String _$movieDetailRepositoryHash() =>
     r'9f1f178498f70e37ab6952b3a2f1e01701d20e3b';
 
-/// See also [movieDetailRepository].
-@ProviderFor(movieDetailRepository)
-final movieDetailRepositoryProvider =
-    AutoDisposeProvider<MovieDetailRepository>.internal(
-      movieDetailRepository,
-      name: r'movieDetailRepositoryProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$movieDetailRepositoryHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef MovieDetailRepositoryRef =
-    AutoDisposeProviderRef<MovieDetailRepository>;
-String _$fetchMovieHash() => r'7d02a3222e2ecd5fff65e787df615473703de261';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [fetchMovie].
 @ProviderFor(fetchMovie)
-const fetchMovieProvider = FetchMovieFamily();
+const fetchMovieProvider = FetchMovieFamily._();
 
-/// See also [fetchMovie].
-class FetchMovieFamily extends Family<AsyncValue<MovieModel>> {
-  /// See also [fetchMovie].
-  const FetchMovieFamily();
+final class FetchMovieProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<MovieModel>,
+          MovieModel,
+          FutureOr<MovieModel>
+        >
+    with $FutureModifier<MovieModel>, $FutureProvider<MovieModel> {
+  const FetchMovieProvider._({
+    required FetchMovieFamily super.from,
+    required ({int movieId, String? language}) super.argument,
+  }) : super(
+         retry: null,
+         name: r'fetchMovieProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [fetchMovie].
-  FetchMovieProvider call({required int movieId, String? language}) {
-    return FetchMovieProvider(movieId: movieId, language: language);
+  @override
+  String debugGetCreateSourceHash() => _$fetchMovieHash();
+
+  @override
+  String toString() {
+    return r'fetchMovieProvider'
+        ''
+        '$argument';
   }
 
+  @$internal
   @override
-  FetchMovieProvider getProviderOverride(
-    covariant FetchMovieProvider provider,
-  ) {
-    return call(movieId: provider.movieId, language: provider.language);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  $FutureProviderElement<MovieModel> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'fetchMovieProvider';
-}
-
-/// See also [fetchMovie].
-class FetchMovieProvider extends AutoDisposeFutureProvider<MovieModel> {
-  /// See also [fetchMovie].
-  FetchMovieProvider({required int movieId, String? language})
-    : this._internal(
-        (ref) => fetchMovie(
-          ref as FetchMovieRef,
-          movieId: movieId,
-          language: language,
-        ),
-        from: fetchMovieProvider,
-        name: r'fetchMovieProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$fetchMovieHash,
-        dependencies: FetchMovieFamily._dependencies,
-        allTransitiveDependencies: FetchMovieFamily._allTransitiveDependencies,
-        movieId: movieId,
-        language: language,
-      );
-
-  FetchMovieProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.movieId,
-    required this.language,
-  }) : super.internal();
-
-  final int movieId;
-  final String? language;
-
-  @override
-  Override overrideWith(
-    FutureOr<MovieModel> Function(FetchMovieRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: FetchMovieProvider._internal(
-        (ref) => create(ref as FetchMovieRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        movieId: movieId,
-        language: language,
-      ),
+  FutureOr<MovieModel> create(Ref ref) {
+    final argument = this.argument as ({int movieId, String? language});
+    return fetchMovie(
+      ref,
+      movieId: argument.movieId,
+      language: argument.language,
     );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<MovieModel> createElement() {
-    return _FetchMovieProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchMovieProvider &&
-        other.movieId == movieId &&
-        other.language == language;
+    return other is FetchMovieProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, movieId.hashCode);
-    hash = _SystemHash.combine(hash, language.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin FetchMovieRef on AutoDisposeFutureProviderRef<MovieModel> {
-  /// The parameter `movieId` of this provider.
-  int get movieId;
+String _$fetchMovieHash() => r'7d02a3222e2ecd5fff65e787df615473703de261';
 
-  /// The parameter `language` of this provider.
-  String? get language;
-}
+final class FetchMovieFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<MovieModel>,
+          ({int movieId, String? language})
+        > {
+  const FetchMovieFamily._()
+    : super(
+        retry: null,
+        name: r'fetchMovieProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-class _FetchMovieProviderElement
-    extends AutoDisposeFutureProviderElement<MovieModel>
-    with FetchMovieRef {
-  _FetchMovieProviderElement(super.provider);
+  FetchMovieProvider call({required int movieId, String? language}) =>
+      FetchMovieProvider._(
+        argument: (movieId: movieId, language: language),
+        from: this,
+      );
 
   @override
-  int get movieId => (origin as FetchMovieProvider).movieId;
-  @override
-  String? get language => (origin as FetchMovieProvider).language;
+  String toString() => r'fetchMovieProvider';
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -6,21 +6,50 @@ part of 'brightness_mode_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(BrightnessMode)
+const brightnessModeProvider = BrightnessModeProvider._();
+
+final class BrightnessModeProvider
+    extends $AsyncNotifierProvider<BrightnessMode, Brightness?> {
+  const BrightnessModeProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'brightnessModeProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$brightnessModeHash();
+
+  @$internal
+  @override
+  BrightnessMode create() => BrightnessMode();
+}
+
 String _$brightnessModeHash() => r'594642e1136183d92b06eb99aea74644b6879702';
 
-/// See also [BrightnessMode].
-@ProviderFor(BrightnessMode)
-final brightnessModeProvider =
-    AutoDisposeAsyncNotifierProvider<BrightnessMode, Brightness?>.internal(
-      BrightnessMode.new,
-      name: r'brightnessModeProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$brightnessModeHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$BrightnessMode = AutoDisposeAsyncNotifier<Brightness?>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$BrightnessMode extends $AsyncNotifier<Brightness?> {
+  FutureOr<Brightness?> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<Brightness?>, Brightness?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<Brightness?>, Brightness?>,
+              AsyncValue<Brightness?>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

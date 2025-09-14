@@ -6,178 +6,135 @@ part of 'series_detail_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(seriesDetailRepository)
+const seriesDetailRepositoryProvider = SeriesDetailRepositoryProvider._();
+
+final class SeriesDetailRepositoryProvider
+    extends
+        $FunctionalProvider<
+          SeriesDetailRepository,
+          SeriesDetailRepository,
+          SeriesDetailRepository
+        >
+    with $Provider<SeriesDetailRepository> {
+  const SeriesDetailRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'seriesDetailRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$seriesDetailRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<SeriesDetailRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SeriesDetailRepository create(Ref ref) {
+    return seriesDetailRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SeriesDetailRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SeriesDetailRepository>(value),
+    );
+  }
+}
+
 String _$seriesDetailRepositoryHash() =>
     r'228c93f8b296a8c0a4ee535171f2e33a975b4d88';
 
-/// See also [seriesDetailRepository].
-@ProviderFor(seriesDetailRepository)
-final seriesDetailRepositoryProvider =
-    AutoDisposeProvider<SeriesDetailRepository>.internal(
-      seriesDetailRepository,
-      name: r'seriesDetailRepositoryProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$seriesDetailRepositoryHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SeriesDetailRepositoryRef =
-    AutoDisposeProviderRef<SeriesDetailRepository>;
-String _$fetchSeriesHash() => r'0fab67927505496c58f9444e7962747927f5f2a4';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [fetchSeries].
 @ProviderFor(fetchSeries)
-const fetchSeriesProvider = FetchSeriesFamily();
+const fetchSeriesProvider = FetchSeriesFamily._();
 
-/// See also [fetchSeries].
-class FetchSeriesFamily extends Family<AsyncValue<SeriesModel>> {
-  /// See also [fetchSeries].
-  const FetchSeriesFamily();
+final class FetchSeriesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<SeriesModel>,
+          SeriesModel,
+          FutureOr<SeriesModel>
+        >
+    with $FutureModifier<SeriesModel>, $FutureProvider<SeriesModel> {
+  const FetchSeriesProvider._({
+    required FetchSeriesFamily super.from,
+    required ({int tvId, String? language}) super.argument,
+  }) : super(
+         retry: null,
+         name: r'fetchSeriesProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [fetchSeries].
-  FetchSeriesProvider call({required int tvId, String? language}) {
-    return FetchSeriesProvider(tvId: tvId, language: language);
+  @override
+  String debugGetCreateSourceHash() => _$fetchSeriesHash();
+
+  @override
+  String toString() {
+    return r'fetchSeriesProvider'
+        ''
+        '$argument';
   }
 
+  @$internal
   @override
-  FetchSeriesProvider getProviderOverride(
-    covariant FetchSeriesProvider provider,
-  ) {
-    return call(tvId: provider.tvId, language: provider.language);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  $FutureProviderElement<SeriesModel> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'fetchSeriesProvider';
-}
-
-/// See also [fetchSeries].
-class FetchSeriesProvider extends AutoDisposeFutureProvider<SeriesModel> {
-  /// See also [fetchSeries].
-  FetchSeriesProvider({required int tvId, String? language})
-    : this._internal(
-        (ref) =>
-            fetchSeries(ref as FetchSeriesRef, tvId: tvId, language: language),
-        from: fetchSeriesProvider,
-        name: r'fetchSeriesProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$fetchSeriesHash,
-        dependencies: FetchSeriesFamily._dependencies,
-        allTransitiveDependencies: FetchSeriesFamily._allTransitiveDependencies,
-        tvId: tvId,
-        language: language,
-      );
-
-  FetchSeriesProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.tvId,
-    required this.language,
-  }) : super.internal();
-
-  final int tvId;
-  final String? language;
-
-  @override
-  Override overrideWith(
-    FutureOr<SeriesModel> Function(FetchSeriesRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: FetchSeriesProvider._internal(
-        (ref) => create(ref as FetchSeriesRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        tvId: tvId,
-        language: language,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<SeriesModel> createElement() {
-    return _FetchSeriesProviderElement(this);
+  FutureOr<SeriesModel> create(Ref ref) {
+    final argument = this.argument as ({int tvId, String? language});
+    return fetchSeries(ref, tvId: argument.tvId, language: argument.language);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchSeriesProvider &&
-        other.tvId == tvId &&
-        other.language == language;
+    return other is FetchSeriesProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, tvId.hashCode);
-    hash = _SystemHash.combine(hash, language.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin FetchSeriesRef on AutoDisposeFutureProviderRef<SeriesModel> {
-  /// The parameter `tvId` of this provider.
-  int get tvId;
+String _$fetchSeriesHash() => r'0fab67927505496c58f9444e7962747927f5f2a4';
 
-  /// The parameter `language` of this provider.
-  String? get language;
-}
+final class FetchSeriesFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<SeriesModel>,
+          ({int tvId, String? language})
+        > {
+  const FetchSeriesFamily._()
+    : super(
+        retry: null,
+        name: r'fetchSeriesProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-class _FetchSeriesProviderElement
-    extends AutoDisposeFutureProviderElement<SeriesModel>
-    with FetchSeriesRef {
-  _FetchSeriesProviderElement(super.provider);
+  FetchSeriesProvider call({required int tvId, String? language}) =>
+      FetchSeriesProvider._(
+        argument: (tvId: tvId, language: language),
+        from: this,
+      );
 
   @override
-  int get tvId => (origin as FetchSeriesProvider).tvId;
-  @override
-  String? get language => (origin as FetchSeriesProvider).language;
+  String toString() => r'fetchSeriesProvider';
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

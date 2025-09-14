@@ -6,24 +6,53 @@ part of 'preference_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(preferenceRepository)
+const preferenceRepositoryProvider = PreferenceRepositoryProvider._();
+
+final class PreferenceRepositoryProvider
+    extends
+        $FunctionalProvider<
+          PreferenceRepository,
+          PreferenceRepository,
+          PreferenceRepository
+        >
+    with $Provider<PreferenceRepository> {
+  const PreferenceRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'preferenceRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$preferenceRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<PreferenceRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  PreferenceRepository create(Ref ref) {
+    return preferenceRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PreferenceRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PreferenceRepository>(value),
+    );
+  }
+}
+
 String _$preferenceRepositoryHash() =>
     r'3057938dd28aafbd811ddd99edf314f2f14992a7';
-
-/// See also [preferenceRepository].
-@ProviderFor(preferenceRepository)
-final preferenceRepositoryProvider =
-    AutoDisposeProvider<PreferenceRepository>.internal(
-      preferenceRepository,
-      name: r'preferenceRepositoryProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$preferenceRepositoryHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef PreferenceRepositoryRef = AutoDisposeProviderRef<PreferenceRepository>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
