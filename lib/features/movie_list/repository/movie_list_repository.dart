@@ -17,7 +17,7 @@ class MovieListRepository {
       queryParameters: {
         if (genreId != null) 'with_genres': '$genreId',
         'api_key': apiKey,
-        if (language != null) 'language': language,
+        'language': ?language,
       },
     );
     return MoviesModel.fromJson(response.data!);

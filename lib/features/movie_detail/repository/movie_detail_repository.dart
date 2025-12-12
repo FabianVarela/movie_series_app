@@ -19,7 +19,7 @@ class MovieDetailRepository {
       '/3/movie/$movieId',
       queryParameters: {
         'api_key': apiKey,
-        if (language != null) 'language': language,
+        'language': ?language,
         'append_to_response': 'credits,videos',
       },
     );

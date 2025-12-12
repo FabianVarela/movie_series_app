@@ -19,7 +19,7 @@ class ActorDetailRepository {
       '/3/person/$personId',
       queryParameters: {
         'api_key': apiKey,
-        if (language != null) 'language': language,
+        'language': ?language,
         'append_to_response': 'movie_credits',
       },
     );

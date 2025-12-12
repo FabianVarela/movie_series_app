@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
@@ -30,7 +31,7 @@ class _ShaderContainerState extends State<ShaderContainer> {
   @override
   void initState() {
     super.initState();
-    if (widget.filePath != null) _loadShader();
+    if (widget.filePath != null) unawaited(_loadShader());
   }
 
   @override

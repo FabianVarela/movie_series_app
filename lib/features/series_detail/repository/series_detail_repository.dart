@@ -16,7 +16,7 @@ class SeriesDetailRepository {
       '/3/tv/$tvId',
       queryParameters: {
         'api_key': apiKey,
-        if (language != null) 'language': language,
+        'language': ?language,
         'append_to_response': 'credits,videos',
       },
     );

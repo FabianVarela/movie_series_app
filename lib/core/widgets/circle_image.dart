@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class CircleImage extends StatelessWidget {
@@ -15,7 +17,7 @@ class CircleImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageWidget = imageUrl != null ? NetworkImage(imageUrl!) : null;
-    if (imageWidget != null) precacheImage(imageWidget, context);
+    if (imageWidget != null) unawaited(precacheImage(imageWidget, context));
 
     return CircleAvatar(
       backgroundImage: imageWidget,

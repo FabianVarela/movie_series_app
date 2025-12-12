@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +52,7 @@ class AnimatedCardItem extends HookWidget {
       },
     );
 
-    precacheImage(imageWidget.image, context);
+    unawaited(precacheImage(imageWidget.image, context));
 
     final statuses = [AnimationStatus.reverse, AnimationStatus.dismissed];
     final containStatus = statuses.contains(controller.status);
@@ -124,7 +126,7 @@ class AnimatedCardItem extends HookWidget {
                     onTap: () {
                       final status = controller.status;
                       if (status == AnimationStatus.dismissed) {
-                        controller.forward(from: 0);
+                        unawaited(controller.forward(from: 0));
                         onExpanded?.call(true);
                       } else if (status == AnimationStatus.completed) {
                         onPress();
@@ -132,7 +134,7 @@ class AnimatedCardItem extends HookWidget {
                     },
                     onVerticalDragUpdate: (details) {
                       if (details.delta.dy > 0) {
-                        controller.reverse();
+                        unawaited(controller.reverse());
                         onExpanded?.call(false);
                       }
                     },

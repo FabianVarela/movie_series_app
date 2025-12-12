@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,8 +18,8 @@ class App extends HookConsumerWidget {
     final brightness = ref.watch(brightnessModeProvider);
 
     useEffect(() {
-      ref.read(languageProvider.notifier).getLanguage();
-      ref.read(brightnessModeProvider.notifier).getTheme();
+      unawaited(ref.read(languageProvider.notifier).getLanguage());
+      unawaited(ref.read(brightnessModeProvider.notifier).getTheme());
 
       return null;
     }, const []);
@@ -56,7 +58,9 @@ class App extends HookConsumerWidget {
 
   void _setNewLanguage(WidgetRef ref, Locale? current, Locale next) {
     if (current?.languageCode != next.languageCode) {
-      ref.read(languageProvider.notifier).setLanguage(next.languageCode);
+      unawaited(
+        ref.read(languageProvider.notifier).setLanguage(next.languageCode),
+      );
     }
   }
 }

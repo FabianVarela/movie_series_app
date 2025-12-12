@@ -21,7 +21,7 @@ class GenreListRepository {
       '/3/genre/${type.name}/list',
       queryParameters: {
         'api_key': apiKey,
-        if (language != null) 'language': language,
+        'language': ?language,
       },
     );
     return GenresModel.fromJson(response.data!);
