@@ -16,25 +16,22 @@ class DetailTrailerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: .stretch,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          padding: const .symmetric(vertical: 8, horizontal: 16),
           child: Text(
             context.l10n.trailerTitle,
-            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+            style: const TextStyle(fontSize: 25, fontWeight: .w700),
           ),
         ),
         if (trailers.isEmpty)
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+            padding: const .symmetric(vertical: 5, horizontal: 16),
             child: Center(
               child: Text(
                 context.l10n.noTrailerAvailableText,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: const TextStyle(fontSize: 22, fontWeight: .w500),
               ),
             ),
           )
@@ -43,8 +40,8 @@ class DetailTrailerList extends StatelessWidget {
             height: 120,
             child: ListView.separated(
               itemCount: trailers.length,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: .horizontal,
+              padding: const .symmetric(horizontal: 16),
               separatorBuilder: (_, _) => const Gap(10),
               itemBuilder: (_, index) {
                 final trailer = trailers[index];
@@ -58,7 +55,7 @@ class DetailTrailerList extends StatelessWidget {
                         },
                         child: Container(
                           height: 72,
-                          margin: const EdgeInsets.all(5),
+                          margin: const .all(5),
                           color: Theme.of(context).colorScheme.primaryContainer,
                           child: const Center(
                             child: Icon(Icons.play_circle_filled),
@@ -68,12 +65,9 @@ class DetailTrailerList extends StatelessWidget {
                       Text(
                         trailer.name,
                         maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300,
-                        ),
+                        overflow: .ellipsis,
+                        textAlign: .center,
+                        style: const TextStyle(fontSize: 16, fontWeight: .w300),
                       ),
                     ],
                   ),

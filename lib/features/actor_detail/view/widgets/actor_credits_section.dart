@@ -26,17 +26,17 @@ class ActorCreditsSection extends HookWidget {
     final hasMore = !isExpanded.value && totalSize >= (lenExpanded.value + 1);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: <Widget>[
         Text(
           l10n.actorDetailCharacters(totalSize),
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: const TextStyle(fontSize: 16, fontWeight: .w600),
         ),
         const Gap(10),
         ListView.separated(
           itemCount: hasMore ? (lenExpanded.value + 1) : totalSize,
           shrinkWrap: true,
-          padding: EdgeInsets.zero,
+          padding: .zero,
           physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (_, _) => const Divider(height: 5),
           itemBuilder: (_, index) {

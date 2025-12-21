@@ -24,15 +24,15 @@ class ActorDataSection extends HookWidget {
     }, const []);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: <Widget>[
         SectionStaggeredAnimation(
           controller: controller,
           endInterval: .100,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            padding: const .symmetric(horizontal: 16, vertical: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: .spaceEvenly,
               children: <Widget>[
                 TitleSubtitle(
                   title: l10n.actorDetailBirthDate,
@@ -54,7 +54,7 @@ class ActorDataSection extends HookWidget {
           startInterval: .100,
           endInterval: .300,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const .symmetric(horizontal: 16, vertical: 10),
             child: TitleSubtitle(
               title: l10n.actorDetailBirthPlace,
               subtitle: actor.placeBirth ?? l10n.noBirthPlace,
@@ -67,9 +67,9 @@ class ActorDataSection extends HookWidget {
           startInterval: .300,
           endInterval: .500,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const .symmetric(horizontal: 16, vertical: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: .spaceBetween,
               children: <Widget>[
                 TitleSubtitle(
                   title: l10n.actorDetailRol,
@@ -89,13 +89,10 @@ class ActorDataSection extends HookWidget {
             startInterval: .500,
             endInterval: .700,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+              padding: const .symmetric(horizontal: 16, vertical: 15),
               child: Text(
                 actor.biography,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                ),
+                style: const TextStyle(fontSize: 16, fontWeight: .normal),
               ),
             ),
           ),
@@ -103,7 +100,7 @@ class ActorDataSection extends HookWidget {
           controller: controller,
           startInterval: actor.biography.isEmpty ? .500 : .700,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            padding: const .symmetric(horizontal: 16, vertical: 20),
             child: ActorCreditsSection(credits: actor.credits),
           ),
         ),

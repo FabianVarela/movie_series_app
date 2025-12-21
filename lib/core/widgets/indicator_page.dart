@@ -10,11 +10,11 @@ class IndicatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.bottomCenter,
-      padding: const EdgeInsets.only(bottom: 20),
+      alignment: .bottomCenter,
+      padding: const .only(bottom: 20),
       child: Text(
         context.l10n.quantityList(start, total),
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+        style: const TextStyle(fontSize: 18, fontWeight: .w300),
       ),
     );
   }

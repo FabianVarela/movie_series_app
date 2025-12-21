@@ -56,26 +56,26 @@ class MovieSeriesPageList extends HookWidget {
             onPageChanged: (index) => onChangePage(index + 1),
             itemBuilder: (_, index) {
               final item = switch (section) {
-                ListSection.movies => movies![index],
-                ListSection.series => series![index],
+                .movies => movies![index],
+                .series => series![index],
               };
 
               return AnimatedCardItem(
                 id: switch (section) {
-                  ListSection.movies => _castToMovie(item).id,
-                  ListSection.series => _castToSeries(item).id,
+                  .movies => _castToMovie(item).id,
+                  .series => _castToSeries(item).id,
                 },
                 name: switch (section) {
-                  ListSection.movies => _castToMovie(item).originalTitle,
-                  ListSection.series => _castToSeries(item).originalName,
+                  .movies => _castToMovie(item).originalTitle,
+                  .series => _castToSeries(item).originalName,
                 },
                 voteAverage: switch (section) {
-                  ListSection.movies => _castToMovie(item).voteAverage,
-                  ListSection.series => _castToSeries(item).voteAverage,
+                  .movies => _castToMovie(item).voteAverage,
+                  .series => _castToSeries(item).voteAverage,
                 },
                 imageUrl: switch (section) {
-                  ListSection.movies => _castToMovie(item).posterPath,
-                  ListSection.series => _castToSeries(item).posterPath,
+                  .movies => _castToMovie(item).posterPath,
+                  .series => _castToSeries(item).posterPath,
                 },
                 onPress: () => onSelect?.call(index),
                 isCurrent: (currentIndex - 1) == index,

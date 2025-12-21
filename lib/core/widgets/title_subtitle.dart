@@ -17,16 +17,13 @@ class TitleSubtitle extends StatelessWidget {
     final listText = <Widget>[
       Text(
         title,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        style: const TextStyle(fontSize: 18, fontWeight: .w600),
       ),
       Text(subtitle, style: const TextStyle(fontSize: 16)),
     ];
 
     return isRow
         ? Row(children: listText)
-        : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: listText,
-          );
+        : Column(crossAxisAlignment: .start, children: listText);
   }
 }

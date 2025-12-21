@@ -32,14 +32,12 @@ class SeriesListBody extends ConsumerWidget {
     );
 
     return seriesList.when(
-      data: (series) {
-        return MovieSeriesPageList.series(
-          series: series.series,
-          currentIndex: currentIndex,
-          onChangePage: onChangePage,
-          onSelect: (value) => onSelectSeries(series.series[value]),
-        );
-      },
+      data: (series) => MovieSeriesPageList.series(
+        series: series.series,
+        currentIndex: currentIndex,
+        onChangePage: onChangePage,
+        onSelect: (value) => onSelectSeries(series.series[value]),
+      ),
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, _) => ErrorMessage(message: context.l10n.errorSeriesListText),
     );

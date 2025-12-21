@@ -38,45 +38,35 @@ class MovieDetailView extends HookConsumerWidget {
               onDrag: () => Navigator.pop(context),
             ),
             movie.when(
-              data: (movie) {
-                return Column(
-                  children: <Widget>[
-                    DetailBody.movie(
-                      movie: movie,
-                      onGoWebSite: (url) async => _redirectTo(url),
-                    ),
-                    DetailCreditList(
-                      casts: movie.credits,
-                      onSelect: (id, path) {
-                        _goToActorDetail(context, id, path);
-                      },
-                    ),
-                    DetailTrailerList(
-                      trailers: movie.trailers,
-                      onSelect: (id) async {
-                        await _redirectTo(
-                          'https://www.youtube.com/watch?v=$id',
-                        );
-                      },
-                    ),
-                  ],
-                );
-              },
-              loading: () {
-                return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * .7,
-                  child: const Center(child: CircularProgressIndicator()),
-                );
-              },
-              error: (_, _) {
-                return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * .68,
-                  child: ErrorMessage(
-                    message: context.l10n.errorMovieDetailText,
-                    fontSize: 15,
+              data: (movie) => Column(
+                children: <Widget>[
+                  DetailBody.movie(
+                    movie: movie,
+                    onGoWebSite: (url) async => _redirectTo(url),
                   ),
-                );
-              },
+                  DetailCreditList(
+                    casts: movie.credits,
+                    onSelect: (id, path) => _goToActorDetail(context, id, path),
+                  ),
+                  DetailTrailerList(
+                    trailers: movie.trailers,
+                    onSelect: (id) => _redirectTo(
+                      'https://www.youtube.com/watch?v=$id',
+                    ),
+                  ),
+                ],
+              ),
+              loading: () => SizedBox(
+                height: MediaQuery.sizeOf(context).height * .7,
+                child: const Center(child: CircularProgressIndicator()),
+              ),
+              error: (_, _) => SizedBox(
+                height: MediaQuery.sizeOf(context).height * .68,
+                child: ErrorMessage(
+                  message: context.l10n.errorMovieDetailText,
+                  fontSize: 15,
+                ),
+              ),
             ),
           ],
         ),

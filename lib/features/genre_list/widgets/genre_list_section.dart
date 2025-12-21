@@ -30,35 +30,33 @@ class GenreListSection extends ConsumerWidget {
     );
 
     return genres.maybeWhen(
-      data: (genre) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: SizedBox(
-            height: 40,
-            child: ListView.separated(
-              itemCount: genre.genres.length,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (_, _) => const Gap(10),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemBuilder: (_, index) {
-                final item = genre.genres[index];
-                return GenreItem(
-                  name: item.name,
-                  onSelect: () => onSelect(item),
-                  circleColor: switch (item.id == id) {
-                    true => (
-                      background: color.primary,
-                      foreground: color.onPrimary,
-                    ),
-                    false => null,
-                  },
-                  textColor: item.id == id ? color.primary : null,
-                );
-              },
-            ),
+      data: (genre) => Padding(
+        padding: const .symmetric(vertical: 10),
+        child: SizedBox(
+          height: 40,
+          child: ListView.separated(
+            itemCount: genre.genres.length,
+            scrollDirection: .horizontal,
+            separatorBuilder: (_, _) => const Gap(10),
+            padding: const .symmetric(horizontal: 16),
+            itemBuilder: (_, index) {
+              final item = genre.genres[index];
+              return GenreItem(
+                name: item.name,
+                onSelect: () => onSelect(item),
+                circleColor: switch (item.id == id) {
+                  true => (
+                    background: color.primary,
+                    foreground: color.onPrimary,
+                  ),
+                  false => null,
+                },
+                textColor: item.id == id ? color.primary : null,
+              );
+            },
           ),
-        );
-      },
+        ),
+      ),
       orElse: Offstage.new,
     );
   }

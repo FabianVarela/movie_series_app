@@ -8,21 +8,21 @@ part 'brightness_mode_provider.g.dart';
 @riverpod
 class BrightnessMode extends _$BrightnessMode {
   @override
-  FutureOr<Brightness?> build() => Brightness.light;
+  FutureOr<Brightness?> build() => .light;
 
   Future<void> getTheme() async {
     final theme = await ref.read(preferenceRepositoryProvider).getTheme();
     state = AsyncValue.data(
       Brightness.values.singleWhere(
         (item) => item.name == theme,
-        orElse: () => Brightness.light,
+        orElse: () => .light,
       ),
     );
   }
 
   Future<void> setTheme() async {
     final newBrightness = switch (state.requireValue) {
-      Brightness.dark => Brightness.light,
+      .dark => Brightness.light,
       _ => Brightness.dark,
     };
 

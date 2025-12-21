@@ -25,9 +25,9 @@ class SeriesListView extends HookConsumerWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: titleGenre.value ?? context.l10n.genreDefaultTitle,
-        onChangeTheme: () {
-          unawaited(ref.read(brightnessModeProvider.notifier).setTheme());
-        },
+        onChangeTheme: () => unawaited(
+          ref.read(brightnessModeProvider.notifier).setTheme(),
+        ),
         onRestore: () {
           currentGenre.value = titleGenre.value = null;
           currentIndex.value = 1;
@@ -47,12 +47,10 @@ class SeriesListView extends HookConsumerWidget {
         currentIndex: currentIndex.value,
         genreId: currentGenre.value,
         onChangePage: (index) => currentIndex.value = index,
-        onSelectSeries: (series) {
-          context.go(
-            AppRoutePath.series.detail.define('${series.id}').path,
-            extra: {'posterPath': series.posterPath},
-          );
-        },
+        onSelectSeries: (series) => context.go(
+          AppRoutePath.series.detail.define('${series.id}').path,
+          extra: {'posterPath': series.posterPath},
+        ),
       ),
     );
   }

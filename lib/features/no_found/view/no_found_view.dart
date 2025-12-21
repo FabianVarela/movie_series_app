@@ -13,12 +13,12 @@ class NoFoundView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.noFoundTitle)),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const .symmetric(horizontal: 16),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: .center,
             children: <Widget>[
-              Text(error, textAlign: TextAlign.center),
+              Text(error, textAlign: .center),
               TextButton(
                 onPressed: () => context.go(AppRoutePath.movies.path),
                 child: Text(context.l10n.noFoundReturnButton),

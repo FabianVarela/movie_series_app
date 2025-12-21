@@ -48,9 +48,9 @@ class App extends HookConsumerWidget {
       routerConfig: movieRouter,
       theme: MovieSeriesTheme.setThemeData(
         context,
-        ColorScheme.fromSeed(
+        .fromSeed(
           seedColor: const Color(0xFF769CDF),
-          brightness: brightness.value ?? Brightness.light,
+          brightness: brightness.value ?? .light,
         ),
       ),
     );

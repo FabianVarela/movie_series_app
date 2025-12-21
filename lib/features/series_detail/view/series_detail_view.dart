@@ -42,38 +42,30 @@ class SeriesDetailView extends HookConsumerWidget {
               onDrag: () => Navigator.pop(context),
             ),
             series.when(
-              data: (series) {
-                return Column(
-                  children: <Widget>[
-                    DetailBody.series(series: series),
-                    DetailCreditList(
-                      casts: series.credits,
-                      onSelect: (id, path) {
-                        _goToActorDetail(context, id, path);
-                      },
-                    ),
-                    DetailTrailerList(
-                      trailers: series.trailers,
-                      onSelect: (value) async => _redirectToYoutube(value),
-                    ),
-                  ],
-                );
-              },
-              loading: () {
-                return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * .7,
-                  child: const Center(child: CircularProgressIndicator()),
-                );
-              },
-              error: (_, _) {
-                return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * .68,
-                  child: ErrorMessage(
-                    message: context.l10n.errorSeriesDetailText,
-                    fontSize: 15,
+              data: (series) => Column(
+                children: <Widget>[
+                  DetailBody.series(series: series),
+                  DetailCreditList(
+                    casts: series.credits,
+                    onSelect: (id, path) => _goToActorDetail(context, id, path),
                   ),
-                );
-              },
+                  DetailTrailerList(
+                    trailers: series.trailers,
+                    onSelect: (value) async => _redirectToYoutube(value),
+                  ),
+                ],
+              ),
+              loading: () => SizedBox(
+                height: MediaQuery.sizeOf(context).height * .7,
+                child: const Center(child: CircularProgressIndicator()),
+              ),
+              error: (_, _) => SizedBox(
+                height: MediaQuery.sizeOf(context).height * .68,
+                child: ErrorMessage(
+                  message: context.l10n.errorSeriesDetailText,
+                  fontSize: 15,
+                ),
+              ),
             ),
           ],
         ),

@@ -21,15 +21,13 @@ class HeaderDetailImage extends StatelessWidget {
 
     final imageWidget = Image(
       image: CachedNetworkImageProvider('$imdbImageUri$imageUrl'),
-      fit: BoxFit.cover,
+      fit: .cover,
       height: 250,
       width: MediaQuery.sizeOf(context).width,
-      errorBuilder: (_, _, _) {
-        return Image.asset(
-          'assets/images/poster_not_available.jpg',
-          fit: BoxFit.cover,
-        );
-      },
+      errorBuilder: (_, _, _) => Image.asset(
+        'assets/images/poster_not_available.jpg',
+        fit: .cover,
+      ),
     );
 
     unawaited(precacheImage(imageWidget.image, context));

@@ -37,26 +37,18 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
   );
 
   final _avatarMarginTween = EdgeInsetsTween(
-    begin: EdgeInsets.zero,
-    end: const EdgeInsets.only(top: 35, left: 60),
+    begin: .zero,
+    end: const .only(top: 35, left: 60),
   );
 
-  final _avatarAlignTween = AlignmentTween(
-    begin: Alignment.topCenter,
-    end: Alignment.centerLeft,
-  );
-
+  final _avatarAlignTween = AlignmentTween(begin: .topCenter, end: .centerLeft);
   final _avatarPositionedTopTween = Tween<double>(begin: 60, end: 0);
 
   final _titleMarginTween = EdgeInsetsTween(
-    begin: const EdgeInsets.only(top: 190),
-    end: const EdgeInsets.only(top: 35, left: 125),
+    begin: const .only(top: 190),
+    end: const .only(top: 35, left: 125),
   );
-
-  final _titleAlignTween = AlignmentTween(
-    begin: Alignment.center,
-    end: Alignment.centerLeft,
-  );
+  final _titleAlignTween = AlignmentTween(begin: .center, end: .centerLeft);
 
   final _titleSizeTween = Tween<double>(begin: 25, end: 18);
 
@@ -76,7 +68,7 @@ class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
     final titleSize = _titleSizeTween.transform(progress);
 
     final stackChild = Stack(
-      fit: StackFit.expand,
+      fit: .expand,
       children: <Widget>[
         Positioned.fill(
           top: positionedTween,

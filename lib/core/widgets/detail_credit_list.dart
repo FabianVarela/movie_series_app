@@ -20,25 +20,22 @@ class DetailCreditList extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          padding: const .symmetric(vertical: 8, horizontal: 16),
           child: Align(
-            alignment: Alignment.centerLeft,
+            alignment: .centerLeft,
             child: Text(
               context.l10n.castTitle,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+              style: const TextStyle(fontSize: 25, fontWeight: .w700),
             ),
           ),
         ),
         if (casts.isEmpty)
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+            padding: const .symmetric(vertical: 5, horizontal: 16),
             child: Center(
               child: Text(
                 context.l10n.noCastAvailableText,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: const TextStyle(fontSize: 22, fontWeight: .w500),
               ),
             ),
           )
@@ -47,17 +44,17 @@ class DetailCreditList extends StatelessWidget {
             height: 120,
             child: ListView.builder(
               itemCount: casts.length,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: .horizontal,
+              padding: const .symmetric(horizontal: 16),
               itemBuilder: (_, index) {
                 final item = casts[index];
                 return InkWell(
                   onTap: () => onSelect(item.id, item.profilePath),
                   child: Container(
                     width: 100,
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const .only(right: 10),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: .center,
                       children: <Widget>[
                         Hero(
                           tag: '${item.id}',
@@ -68,14 +65,14 @@ class DetailCreditList extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const .only(top: 10),
                           child: Text(
                             item.name,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
+                            textAlign: .center,
+                            overflow: .ellipsis,
                             style: const TextStyle(
                               fontSize: 14,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: .w400,
                             ),
                           ),
                         ),

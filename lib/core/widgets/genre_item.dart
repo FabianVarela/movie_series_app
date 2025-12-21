@@ -22,7 +22,7 @@ class GenreItem extends StatelessWidget {
       onTap: () => onSelect?.call(),
       child: Chip(
         elevation: 5,
-        padding: const EdgeInsets.all(4),
+        padding: const .all(4),
         avatar: CircleAvatar(
           backgroundColor: circleColor?.background,
           child: Text(

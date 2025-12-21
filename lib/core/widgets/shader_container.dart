@@ -89,8 +89,8 @@ class _ShaderPainter extends CustomPainter {
           shader ??
           LinearGradient(
             colors: colors!,
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: .topLeft,
+            end: .bottomRight,
           ).createShader(rect);
 
     canvas.drawRect(rect, paint);

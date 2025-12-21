@@ -32,14 +32,12 @@ class MovieListBody extends ConsumerWidget {
     );
 
     return movies.when(
-      data: (movie) {
-        return MovieSeriesPageList.movies(
-          movies: movie.movies,
-          onChangePage: onChangePage,
-          currentIndex: currentIndex,
-          onSelect: (value) => onSelectMovie(movie.movies[value]),
-        );
-      },
+      data: (movie) => MovieSeriesPageList.movies(
+        movies: movie.movies,
+        onChangePage: onChangePage,
+        currentIndex: currentIndex,
+        onSelect: (value) => onSelectMovie(movie.movies[value]),
+      ),
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, _) => ErrorMessage(message: context.l10n.errorMovieListText),
     );

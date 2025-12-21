@@ -25,9 +25,9 @@ class MovieListView extends HookConsumerWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: titleGenre.value ?? context.l10n.genreDefaultTitle,
-        onChangeTheme: () {
-          unawaited(ref.read(brightnessModeProvider.notifier).setTheme());
-        },
+        onChangeTheme: () => unawaited(
+          ref.read(brightnessModeProvider.notifier).setTheme(),
+        ),
         onRestore: () {
           currentGenre.value = titleGenre.value = null;
           currentIndex.value = 1;
@@ -47,12 +47,10 @@ class MovieListView extends HookConsumerWidget {
         currentIndex: currentIndex.value,
         genreId: currentGenre.value,
         onChangePage: (index) => currentIndex.value = index,
-        onSelectMovie: (movie) {
-          context.go(
-            AppRoutePath.movies.detail.define('${movie.id}').path,
-            extra: {'posterPath': movie.posterPath},
-          );
-        },
+        onSelectMovie: (movie) => context.go(
+          AppRoutePath.movies.detail.define('${movie.id}').path,
+          extra: {'posterPath': movie.posterPath},
+        ),
       ),
     );
   }

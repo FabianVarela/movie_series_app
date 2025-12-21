@@ -32,20 +32,20 @@ class DetailBody extends StatelessWidget {
     final genres = movie?.genres ?? series?.genres ?? [];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const .symmetric(horizontal: 16),
       child: Column(
         spacing: 10,
         children: <Widget>[
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: .centerLeft,
             child: Text(
               title,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+              style: const TextStyle(fontSize: 25, fontWeight: .w700),
             ),
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: .start,
+            mainAxisAlignment: .spaceAround,
             children: <Widget>[
               Row(
                 spacing: 10,
@@ -56,29 +56,20 @@ class DetailBody extends StatelessWidget {
                   ),
                   Text(
                     voteAverage.toStringAsFixed(2),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: const TextStyle(fontSize: 18, fontWeight: .w500),
                   ),
                 ],
               ),
               Text(
                 mainDate ?? context.l10n.noDateAvailableText,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: const TextStyle(fontSize: 18, fontWeight: .w400),
               ),
               if (series != null)
                 Text(
                   (series!.lastAirDate ?? '').isNotEmpty
                       ? series!.lastAirDate!
                       : context.l10n.noDateAvailableText,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: const TextStyle(fontSize: 18, fontWeight: .w400),
                 ),
             ],
           ),
@@ -89,9 +80,7 @@ class DetailBody extends StatelessWidget {
                   TextSpan(text: context.l10n.webPageTitle),
                   TextSpan(
                     text: movie!.homepage,
-                    style: const TextStyle(
-                      decoration: TextDecoration.underline,
-                    ),
+                    style: const TextStyle(decoration: .underline),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () => onGoWebSite?.call(movie!.homepage!),
                   ),
@@ -100,14 +89,14 @@ class DetailBody extends StatelessWidget {
             ),
           Text(
             overview,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 16, fontWeight: .w400),
           ),
           SizedBox(
             height: 70,
             child: ListView.separated(
-              scrollDirection: Axis.horizontal,
+              scrollDirection: .horizontal,
               itemCount: genres.length,
-              padding: const EdgeInsets.all(10),
+              padding: const .all(10),
               separatorBuilder: (_, index) => const Gap(8),
               itemBuilder: (_, index) => GenreItem(name: genres[index].name),
             ),

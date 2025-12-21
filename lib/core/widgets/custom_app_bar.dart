@@ -20,7 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: Text(
         title,
-        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+        style: const TextStyle(fontSize: 22, fontWeight: .w700),
       ),
       leading: InkWell(
         onTap: onChangeTheme,
@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(right: 10),
+          padding: const .only(right: 10),
           child: InkWell(
             onTap: onRestore,
             child: const Icon(Icons.restart_alt_outlined),
@@ -37,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       bottom: switch (bottomChild != null) {
         true => PreferredSize(
-          preferredSize: const Size.fromHeight(0),
+          preferredSize: const .fromHeight(0),
           child: bottomChild!,
         ),
         false => null,
@@ -47,6 +47,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => bottomChild != null
-      ? const Size.fromHeight(kToolbarHeight + 50)
-      : const Size.fromHeight(kToolbarHeight);
+      ? const .fromHeight(kToolbarHeight + 50)
+      : const .fromHeight(kToolbarHeight);
 }

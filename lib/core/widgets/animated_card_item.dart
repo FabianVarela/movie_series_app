@@ -44,12 +44,10 @@ class AnimatedCardItem extends HookWidget {
     final imageWidget = Image(
       image: CachedNetworkImageProvider('$imdbImageUri$imageUrl'),
       fit: BoxFit.cover,
-      errorBuilder: (_, _, _) {
-        return Image.asset(
-          'assets/images/poster_not_available.jpg',
-          fit: BoxFit.cover,
-        );
-      },
+      errorBuilder: (_, _, _) => Image.asset(
+        'assets/images/poster_not_available.jpg',
+        fit: .cover,
+      ),
     );
 
     unawaited(precacheImage(imageWidget.image, context));
@@ -58,7 +56,7 @@ class AnimatedCardItem extends HookWidget {
     final containStatus = statuses.contains(controller.status);
 
     return PopScope(
-      canPop: defaultTargetPlatform == TargetPlatform.iOS || containStatus,
+      canPop: defaultTargetPlatform == .iOS || containStatus,
       onPopInvokedWithResult: (_, _) async {
         if (!containStatus) {
           await controller.reverse();
@@ -74,37 +72,35 @@ class AnimatedCardItem extends HookWidget {
               child: AnimatedContainer(
                 duration: duration,
                 width: width * expandAnimation,
-                height: isCurrent ? height * 0.55 : height * 0.5,
+                height: isCurrent ? height * .55 : height * .5,
                 child: Card(
                   elevation: 2,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  clipBehavior: .antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(borderRadius: .circular(10)),
                   child: Align(
-                    alignment: Alignment.bottomCenter,
+                    alignment: .bottomCenter,
                     child: Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const .all(16),
                       child: Row(
                         children: <Widget>[
                           Expanded(
                             flex: 4,
                             child: Text(
                               name,
-                              overflow: TextOverflow.ellipsis,
+                              overflow: .ellipsis,
                               style: const TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w700,
+                                fontWeight: .w700,
                               ),
                             ),
                           ),
                           Expanded(
                             child: Text(
                               voteAverage.toStringAsFixed(2),
-                              textAlign: TextAlign.end,
+                              textAlign: .end,
                               style: const TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: .w400,
                               ),
                             ),
                           ),
@@ -120,8 +116,8 @@ class AnimatedCardItem extends HookWidget {
               child: Align(
                 child: AnimatedContainer(
                   duration: duration,
-                  width: width * 0.7,
-                  height: isCurrent ? height * 0.55 : height * 0.5,
+                  width: width * .7,
+                  height: isCurrent ? height * .55 : height * .5,
                   child: GestureDetector(
                     onTap: () {
                       final status = controller.status;
@@ -144,7 +140,7 @@ class AnimatedCardItem extends HookWidget {
                         elevation: 10,
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: .circular(10),
                         ),
                         child: imageWidget,
                       ),
