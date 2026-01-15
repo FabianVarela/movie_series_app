@@ -10,7 +10,7 @@ part of 'genre_list_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(genreListRepository)
-const genreListRepositoryProvider = GenreListRepositoryProvider._();
+final genreListRepositoryProvider = GenreListRepositoryProvider._();
 
 final class GenreListRepositoryProvider
     extends
@@ -20,7 +20,7 @@ final class GenreListRepositoryProvider
           GenreListRepository
         >
     with $Provider<GenreListRepository> {
-  const GenreListRepositoryProvider._()
+  GenreListRepositoryProvider._()
     : super(
         from: null,
         argument: null,
@@ -58,7 +58,7 @@ String _$genreListRepositoryHash() =>
     r'9d681b3770620a376f19e5a1fec5640600adcafe';
 
 @ProviderFor(fetchGenres)
-const fetchGenresProvider = FetchGenresFamily._();
+final fetchGenresProvider = FetchGenresFamily._();
 
 final class FetchGenresProvider
     extends
@@ -68,7 +68,7 @@ final class FetchGenresProvider
           FutureOr<GenresModel>
         >
     with $FutureModifier<GenresModel>, $FutureProvider<GenresModel> {
-  const FetchGenresProvider._({
+  FetchGenresProvider._({
     required FetchGenresFamily super.from,
     required ({GenreType type, String? language}) super.argument,
   }) : super(
@@ -120,7 +120,7 @@ final class FetchGenresFamily extends $Family
           FutureOr<GenresModel>,
           ({GenreType type, String? language})
         > {
-  const FetchGenresFamily._()
+  FetchGenresFamily._()
     : super(
         retry: null,
         name: r'fetchGenresProvider',

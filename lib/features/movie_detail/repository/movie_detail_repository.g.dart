@@ -10,7 +10,7 @@ part of 'movie_detail_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(movieDetailRepository)
-const movieDetailRepositoryProvider = MovieDetailRepositoryProvider._();
+final movieDetailRepositoryProvider = MovieDetailRepositoryProvider._();
 
 final class MovieDetailRepositoryProvider
     extends
@@ -20,7 +20,7 @@ final class MovieDetailRepositoryProvider
           MovieDetailRepository
         >
     with $Provider<MovieDetailRepository> {
-  const MovieDetailRepositoryProvider._()
+  MovieDetailRepositoryProvider._()
     : super(
         from: null,
         argument: null,
@@ -58,7 +58,7 @@ String _$movieDetailRepositoryHash() =>
     r'9f1f178498f70e37ab6952b3a2f1e01701d20e3b';
 
 @ProviderFor(fetchMovie)
-const fetchMovieProvider = FetchMovieFamily._();
+final fetchMovieProvider = FetchMovieFamily._();
 
 final class FetchMovieProvider
     extends
@@ -68,7 +68,7 @@ final class FetchMovieProvider
           FutureOr<MovieModel>
         >
     with $FutureModifier<MovieModel>, $FutureProvider<MovieModel> {
-  const FetchMovieProvider._({
+  FetchMovieProvider._({
     required FetchMovieFamily super.from,
     required ({int movieId, String? language}) super.argument,
   }) : super(
@@ -123,7 +123,7 @@ final class FetchMovieFamily extends $Family
           FutureOr<MovieModel>,
           ({int movieId, String? language})
         > {
-  const FetchMovieFamily._()
+  FetchMovieFamily._()
     : super(
         retry: null,
         name: r'fetchMovieProvider',

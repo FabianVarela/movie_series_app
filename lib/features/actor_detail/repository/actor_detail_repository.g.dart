@@ -10,7 +10,7 @@ part of 'actor_detail_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(actorDetailRepository)
-const actorDetailRepositoryProvider = ActorDetailRepositoryProvider._();
+final actorDetailRepositoryProvider = ActorDetailRepositoryProvider._();
 
 final class ActorDetailRepositoryProvider
     extends
@@ -20,7 +20,7 @@ final class ActorDetailRepositoryProvider
           ActorDetailRepository
         >
     with $Provider<ActorDetailRepository> {
-  const ActorDetailRepositoryProvider._()
+  ActorDetailRepositoryProvider._()
     : super(
         from: null,
         argument: null,
@@ -58,7 +58,7 @@ String _$actorDetailRepositoryHash() =>
     r'22d846dc515232d5e2e65e9c4b8b4e20ab4236a7';
 
 @ProviderFor(fetchActor)
-const fetchActorProvider = FetchActorFamily._();
+final fetchActorProvider = FetchActorFamily._();
 
 final class FetchActorProvider
     extends
@@ -68,7 +68,7 @@ final class FetchActorProvider
           FutureOr<ActorModel>
         >
     with $FutureModifier<ActorModel>, $FutureProvider<ActorModel> {
-  const FetchActorProvider._({
+  FetchActorProvider._({
     required FetchActorFamily super.from,
     required ({int personId, String? language}) super.argument,
   }) : super(
@@ -123,7 +123,7 @@ final class FetchActorFamily extends $Family
           FutureOr<ActorModel>,
           ({int personId, String? language})
         > {
-  const FetchActorFamily._()
+  FetchActorFamily._()
     : super(
         retry: null,
         name: r'fetchActorProvider',

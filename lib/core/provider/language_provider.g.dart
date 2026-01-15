@@ -10,10 +10,10 @@ part of 'language_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(Language)
-const languageProvider = LanguageProvider._();
+final languageProvider = LanguageProvider._();
 
 final class LanguageProvider extends $AsyncNotifierProvider<Language, Locale?> {
-  const LanguageProvider._()
+  LanguageProvider._()
     : super(
         from: null,
         argument: null,
@@ -39,7 +39,6 @@ abstract class _$Language extends $AsyncNotifier<Locale?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<Locale?>, Locale?>;
     final element =
         ref.element
@@ -49,6 +48,6 @@ abstract class _$Language extends $AsyncNotifier<Locale?> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

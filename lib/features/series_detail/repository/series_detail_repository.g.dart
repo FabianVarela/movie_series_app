@@ -10,7 +10,7 @@ part of 'series_detail_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(seriesDetailRepository)
-const seriesDetailRepositoryProvider = SeriesDetailRepositoryProvider._();
+final seriesDetailRepositoryProvider = SeriesDetailRepositoryProvider._();
 
 final class SeriesDetailRepositoryProvider
     extends
@@ -20,7 +20,7 @@ final class SeriesDetailRepositoryProvider
           SeriesDetailRepository
         >
     with $Provider<SeriesDetailRepository> {
-  const SeriesDetailRepositoryProvider._()
+  SeriesDetailRepositoryProvider._()
     : super(
         from: null,
         argument: null,
@@ -58,7 +58,7 @@ String _$seriesDetailRepositoryHash() =>
     r'228c93f8b296a8c0a4ee535171f2e33a975b4d88';
 
 @ProviderFor(fetchSeries)
-const fetchSeriesProvider = FetchSeriesFamily._();
+final fetchSeriesProvider = FetchSeriesFamily._();
 
 final class FetchSeriesProvider
     extends
@@ -68,7 +68,7 @@ final class FetchSeriesProvider
           FutureOr<SeriesModel>
         >
     with $FutureModifier<SeriesModel>, $FutureProvider<SeriesModel> {
-  const FetchSeriesProvider._({
+  FetchSeriesProvider._({
     required FetchSeriesFamily super.from,
     required ({int tvId, String? language}) super.argument,
   }) : super(
@@ -120,7 +120,7 @@ final class FetchSeriesFamily extends $Family
           FutureOr<SeriesModel>,
           ({int tvId, String? language})
         > {
-  const FetchSeriesFamily._()
+  FetchSeriesFamily._()
     : super(
         retry: null,
         name: r'fetchSeriesProvider',

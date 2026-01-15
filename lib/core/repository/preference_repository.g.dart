@@ -10,7 +10,7 @@ part of 'preference_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(preferenceRepository)
-const preferenceRepositoryProvider = PreferenceRepositoryProvider._();
+final preferenceRepositoryProvider = PreferenceRepositoryProvider._();
 
 final class PreferenceRepositoryProvider
     extends
@@ -20,7 +20,7 @@ final class PreferenceRepositoryProvider
           PreferenceRepository
         >
     with $Provider<PreferenceRepository> {
-  const PreferenceRepositoryProvider._()
+  PreferenceRepositoryProvider._()
     : super(
         from: null,
         argument: null,

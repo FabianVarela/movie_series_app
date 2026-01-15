@@ -10,11 +10,11 @@ part of 'brightness_mode_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(BrightnessMode)
-const brightnessModeProvider = BrightnessModeProvider._();
+final brightnessModeProvider = BrightnessModeProvider._();
 
 final class BrightnessModeProvider
     extends $AsyncNotifierProvider<BrightnessMode, Brightness?> {
-  const BrightnessModeProvider._()
+  BrightnessModeProvider._()
     : super(
         from: null,
         argument: null,
@@ -33,14 +33,13 @@ final class BrightnessModeProvider
   BrightnessMode create() => BrightnessMode();
 }
 
-String _$brightnessModeHash() => r'594642e1136183d92b06eb99aea74644b6879702';
+String _$brightnessModeHash() => r'a282a0cec166da5bce6162b9f8347c4832ea527c';
 
 abstract class _$BrightnessMode extends $AsyncNotifier<Brightness?> {
   FutureOr<Brightness?> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<Brightness?>, Brightness?>;
     final element =
         ref.element
@@ -50,6 +49,6 @@ abstract class _$BrightnessMode extends $AsyncNotifier<Brightness?> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
