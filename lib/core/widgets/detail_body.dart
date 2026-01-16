@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:movie_series_app/core/widgets/genre_item.dart';
 import 'package:movie_series_app/features/movie_detail/model/movie_model.dart';
 import 'package:movie_series_app/features/series_detail/model/series_model.dart';
@@ -97,7 +96,7 @@ class DetailBody extends StatelessWidget {
               scrollDirection: .horizontal,
               itemCount: genres.length,
               padding: const .all(10),
-              separatorBuilder: (_, index) => const Gap(8),
+              separatorBuilder: (_, _) => const SizedBox(width: 8),
               itemBuilder: (_, index) => GenreItem(name: genres[index].name),
             ),
           ),

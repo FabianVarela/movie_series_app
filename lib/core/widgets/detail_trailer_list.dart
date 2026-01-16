@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
@@ -42,7 +41,7 @@ class DetailTrailerList extends StatelessWidget {
               itemCount: trailers.length,
               scrollDirection: .horizontal,
               padding: const .symmetric(horizontal: 16),
-              separatorBuilder: (_, _) => const Gap(10),
+              separatorBuilder: (_, _) => const SizedBox(width: 10),
               itemBuilder: (_, index) {
                 final trailer = trailers[index];
                 return SizedBox(

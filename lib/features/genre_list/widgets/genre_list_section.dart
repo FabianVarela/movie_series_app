@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
@@ -37,7 +36,7 @@ class GenreListSection extends ConsumerWidget {
           child: ListView.separated(
             itemCount: genre.genres.length,
             scrollDirection: .horizontal,
-            separatorBuilder: (_, _) => const Gap(10),
+            separatorBuilder: (_, _) => const SizedBox(width: 10),
             padding: const .symmetric(horizontal: 16),
             itemBuilder: (_, index) {
               final item = genre.genres[index];
