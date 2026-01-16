@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_series_app/core/client/remote/dio_provider.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
-import 'package:movie_series_app/features/movie_list/model/movies_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'movie_list_repository.g.dart';
@@ -12,7 +11,7 @@ class MovieListRepository {
   final Dio dio;
   final String apiKey;
 
-  Future<MoviesModel> fetchMovies({
+  Future<ResultsModel> fetchMovies({
     required MovieOption option,
     int? genreId,
     String? language,
@@ -31,7 +30,7 @@ class MovieListRepository {
         'language': ?language,
       },
     );
-    return MoviesModel.fromJson(response.data!);
+    return ResultsModel.fromJson(response.data!);
   }
 }
 
@@ -44,7 +43,7 @@ MovieListRepository movieListRepository(Ref ref) {
 }
 
 @riverpod
-Future<MoviesModel> fetchMovies(
+Future<ResultsModel> fetchMovies(
   Ref ref, {
   required MovieOption option,
   int? genreId,

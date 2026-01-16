@@ -63,11 +63,11 @@ final fetchMoviesProvider = FetchMoviesFamily._();
 final class FetchMoviesProvider
     extends
         $FunctionalProvider<
-          AsyncValue<MoviesModel>,
-          MoviesModel,
-          FutureOr<MoviesModel>
+          AsyncValue<ResultsModel>,
+          ResultsModel,
+          FutureOr<ResultsModel>
         >
-    with $FutureModifier<MoviesModel>, $FutureProvider<MoviesModel> {
+    with $FutureModifier<ResultsModel>, $FutureProvider<ResultsModel> {
   FetchMoviesProvider._({
     required FetchMoviesFamily super.from,
     required ({MovieOption option, int? genreId, String? language})
@@ -92,12 +92,12 @@ final class FetchMoviesProvider
 
   @$internal
   @override
-  $FutureProviderElement<MoviesModel> $createElement(
+  $FutureProviderElement<ResultsModel> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<MoviesModel> create(Ref ref) {
+  FutureOr<ResultsModel> create(Ref ref) {
     final argument =
         this.argument as ({MovieOption option, int? genreId, String? language});
     return fetchMovies(
@@ -119,12 +119,12 @@ final class FetchMoviesProvider
   }
 }
 
-String _$fetchMoviesHash() => r'c5b55fdd092c0de04651147154e3d87cc950e93c';
+String _$fetchMoviesHash() => r'249dcebf7454228b7fea2f9dd34543bdda1b158a';
 
 final class FetchMoviesFamily extends $Family
     with
         $FunctionalFamilyOverride<
-          FutureOr<MoviesModel>,
+          FutureOr<ResultsModel>,
           ({MovieOption option, int? genreId, String? language})
         > {
   FetchMoviesFamily._()

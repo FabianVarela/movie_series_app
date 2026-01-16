@@ -63,11 +63,11 @@ final fetchSeriesProvider = FetchSeriesFamily._();
 final class FetchSeriesProvider
     extends
         $FunctionalProvider<
-          AsyncValue<SeriesListModel>,
-          SeriesListModel,
-          FutureOr<SeriesListModel>
+          AsyncValue<ResultsModel>,
+          ResultsModel,
+          FutureOr<ResultsModel>
         >
-    with $FutureModifier<SeriesListModel>, $FutureProvider<SeriesListModel> {
+    with $FutureModifier<ResultsModel>, $FutureProvider<ResultsModel> {
   FetchSeriesProvider._({
     required FetchSeriesFamily super.from,
     required ({SeriesOption option, int? genreId, String? language})
@@ -92,12 +92,12 @@ final class FetchSeriesProvider
 
   @$internal
   @override
-  $FutureProviderElement<SeriesListModel> $createElement(
+  $FutureProviderElement<ResultsModel> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<SeriesListModel> create(Ref ref) {
+  FutureOr<ResultsModel> create(Ref ref) {
     final argument =
         this.argument
             as ({SeriesOption option, int? genreId, String? language});
@@ -120,12 +120,12 @@ final class FetchSeriesProvider
   }
 }
 
-String _$fetchSeriesHash() => r'62873cfa80aef6b17fb80f8bf895abfbe868743f';
+String _$fetchSeriesHash() => r'90fa2617feeb19841a3ba538b60e66a8d5ffb659';
 
 final class FetchSeriesFamily extends $Family
     with
         $FunctionalFamilyOverride<
-          FutureOr<SeriesListModel>,
+          FutureOr<ResultsModel>,
           ({SeriesOption option, int? genreId, String? language})
         > {
   FetchSeriesFamily._()

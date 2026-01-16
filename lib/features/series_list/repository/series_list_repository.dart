@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_series_app/core/client/remote/dio_provider.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
-import 'package:movie_series_app/features/series_list/model/series_list_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'series_list_repository.g.dart';
@@ -12,7 +11,7 @@ class SeriesListRepository {
   final Dio dio;
   final String apiKey;
 
-  Future<SeriesListModel> fetchSeries({
+  Future<ResultsModel> fetchSeries({
     required SeriesOption option,
     int? genreId,
     String? language,
@@ -31,7 +30,7 @@ class SeriesListRepository {
         'language': ?language,
       },
     );
-    return SeriesListModel.fromJson(response.data!);
+    return ResultsModel.fromJson(response.data!);
   }
 }
 
@@ -44,7 +43,7 @@ SeriesListRepository seriesListRepository(Ref ref) {
 }
 
 @riverpod
-Future<SeriesListModel> fetchSeries(
+Future<ResultsModel> fetchSeries(
   Ref ref, {
   required SeriesOption option,
   int? genreId,
