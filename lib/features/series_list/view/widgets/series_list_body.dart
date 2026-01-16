@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/widgets/error_message.dart';
 import 'package:movie_series_app/core/widgets/movie_series_page_list.dart';
-import 'package:movie_series_app/features/series_list/model/series_list_model.dart';
 import 'package:movie_series_app/features/series_list/repository/series_list_repository.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
@@ -17,7 +17,7 @@ class SeriesListBody extends ConsumerWidget {
   });
 
   final ValueSetter<int> onChangePage;
-  final ValueSetter<SeriesModel> onSelectSeries;
+  final ValueSetter<ResultModel> onSelectSeries;
   final int currentIndex;
   final int? genreId;
 
@@ -26,17 +26,18 @@ class SeriesListBody extends ConsumerWidget {
     final locale = ref.watch(languageProvider);
     final seriesList = ref.watch(
       fetchSeriesProvider(
+        option: SeriesOption.popular,
         genreId: genreId,
         language: locale.requireValue?.languageCode,
       ),
     );
 
     return seriesList.when(
-      data: (series) => MovieSeriesPageList.series(
-        series: series.series,
+      data: (series) => MovieSeriesPageList(
+        results: series.results,
         currentIndex: currentIndex,
         onChangePage: onChangePage,
-        onSelect: (value) => onSelectSeries(series.series[value]),
+        onSelect: (value) => onSelectSeries(series.results[value]),
       ),
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, _) => ErrorMessage(message: context.l10n.errorSeriesListText),
