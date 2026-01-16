@@ -11,23 +11,23 @@ class MovieListBody extends ConsumerWidget {
   const MovieListBody({
     required this.onChangePage,
     required this.onSelectMovie,
+    required this.arguments,
     this.currentIndex = 0,
-    this.genreId,
     super.key,
   });
 
   final ValueSetter<int> onChangePage;
   final ValueSetter<ResultModel> onSelectMovie;
+  final ({MovieOption option, int? genreId}) arguments;
   final int currentIndex;
-  final int? genreId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(languageProvider);
     final movies = ref.watch(
       fetchMoviesProvider(
-        option: MovieOption.popular,
-        genreId: genreId,
+        option: arguments.option,
+        genreId: arguments.genreId,
         language: locale.requireValue?.languageCode,
       ),
     );

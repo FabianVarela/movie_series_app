@@ -11,23 +11,23 @@ class SeriesListBody extends ConsumerWidget {
   const SeriesListBody({
     required this.onChangePage,
     required this.onSelectSeries,
+    required this.arguments,
     this.currentIndex = 0,
-    this.genreId,
     super.key,
   });
 
   final ValueSetter<int> onChangePage;
   final ValueSetter<ResultModel> onSelectSeries;
+  final ({SeriesOption option, int? genreId}) arguments;
   final int currentIndex;
-  final int? genreId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(languageProvider);
     final seriesList = ref.watch(
       fetchSeriesProvider(
-        option: SeriesOption.popular,
-        genreId: genreId,
+        option: arguments.option,
+        genreId: arguments.genreId,
         language: locale.requireValue?.languageCode,
       ),
     );
