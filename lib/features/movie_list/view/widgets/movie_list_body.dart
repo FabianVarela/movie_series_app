@@ -18,7 +18,7 @@ class MovieListBody extends ConsumerWidget {
 
   final ValueSetter<int> onChangePage;
   final ValueSetter<ResultModel> onSelectMovie;
-  final ({MovieOption option, int? genreId}) arguments;
+  final ({MovieOption? option, int? genreId}) arguments;
   final int currentIndex;
 
   @override
@@ -26,7 +26,7 @@ class MovieListBody extends ConsumerWidget {
     final locale = ref.watch(languageProvider);
     final movies = ref.watch(
       fetchMoviesProvider(
-        option: arguments.option,
+        option: arguments.option ?? .popular,
         genreId: arguments.genreId,
         language: locale.requireValue?.languageCode,
       ),

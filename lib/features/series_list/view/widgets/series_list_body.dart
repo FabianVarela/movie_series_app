@@ -18,7 +18,7 @@ class SeriesListBody extends ConsumerWidget {
 
   final ValueSetter<int> onChangePage;
   final ValueSetter<ResultModel> onSelectSeries;
-  final ({SeriesOption option, int? genreId}) arguments;
+  final ({SeriesOption? option, int? genreId}) arguments;
   final int currentIndex;
 
   @override
@@ -26,7 +26,7 @@ class SeriesListBody extends ConsumerWidget {
     final locale = ref.watch(languageProvider);
     final seriesList = ref.watch(
       fetchSeriesProvider(
-        option: arguments.option,
+        option: arguments.option ?? .popular,
         genreId: arguments.genreId,
         language: locale.requireValue?.languageCode,
       ),
