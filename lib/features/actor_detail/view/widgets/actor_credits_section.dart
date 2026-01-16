@@ -5,17 +5,22 @@ import 'package:movie_series_app/features/actor_detail/model/actor_model.dart';
 import 'package:movie_series_app/features/actor_detail/view/widgets/actor_cast_item.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
+typedef Credits = ({
+  List<ActorCreditModel> movies,
+  List<ActorCreditModel> series,
+});
+
 class ActorCreditsSection extends HookWidget {
   const ActorCreditsSection({required this.credits, super.key});
 
-  final List<ActorCreditModel> credits;
+  final Credits credits;
 
   @override
   Widget build(BuildContext context) {
     const sizeDefault = 20;
 
     final l10n = context.l10n;
-    final totalSize = credits.length;
+    final totalSize = credits.movies.length;
 
     final isExpanded = useState(false);
 
@@ -55,7 +60,7 @@ class ActorCreditsSection extends HookWidget {
                       l10n.actorDetailLoadMore(totalSize - lenExpanded.value),
                     ),
                   )
-                : ActorCastItem(actorCredit: credits[index]);
+                : ActorCastItem(actorCredit: credits.movies[index]);
           },
         ),
       ],

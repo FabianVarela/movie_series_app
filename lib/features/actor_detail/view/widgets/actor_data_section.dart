@@ -101,7 +101,12 @@ class ActorDataSection extends HookWidget {
           startInterval: actor.biography.isEmpty ? .500 : .700,
           child: Padding(
             padding: const .symmetric(horizontal: 16, vertical: 20),
-            child: ActorCreditsSection(credits: actor.credits),
+            child: ActorCreditsSection(
+              credits: (
+                movies: actor.movieCredits,
+                series: actor.seriesCredits,
+              ),
+            ),
           ),
         ),
       ],
