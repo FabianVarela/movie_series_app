@@ -70,7 +70,8 @@ final class FetchSeriesProvider
     with $FutureModifier<SeriesListModel>, $FutureProvider<SeriesListModel> {
   FetchSeriesProvider._({
     required FetchSeriesFamily super.from,
-    required ({int? genreId, String? language}) super.argument,
+    required ({SeriesOption option, int? genreId, String? language})
+    super.argument,
   }) : super(
          retry: null,
          name: r'fetchSeriesProvider',
@@ -97,9 +98,12 @@ final class FetchSeriesProvider
 
   @override
   FutureOr<SeriesListModel> create(Ref ref) {
-    final argument = this.argument as ({int? genreId, String? language});
+    final argument =
+        this.argument
+            as ({SeriesOption option, int? genreId, String? language});
     return fetchSeries(
       ref,
+      option: argument.option,
       genreId: argument.genreId,
       language: argument.language,
     );
@@ -116,13 +120,13 @@ final class FetchSeriesProvider
   }
 }
 
-String _$fetchSeriesHash() => r'a56c9733fefc20a4f0c8a573c5024c9558605f4e';
+String _$fetchSeriesHash() => r'62873cfa80aef6b17fb80f8bf895abfbe868743f';
 
 final class FetchSeriesFamily extends $Family
     with
         $FunctionalFamilyOverride<
           FutureOr<SeriesListModel>,
-          ({int? genreId, String? language})
+          ({SeriesOption option, int? genreId, String? language})
         > {
   FetchSeriesFamily._()
     : super(
@@ -133,11 +137,14 @@ final class FetchSeriesFamily extends $Family
         isAutoDispose: true,
       );
 
-  FetchSeriesProvider call({int? genreId, String? language}) =>
-      FetchSeriesProvider._(
-        argument: (genreId: genreId, language: language),
-        from: this,
-      );
+  FetchSeriesProvider call({
+    required SeriesOption option,
+    int? genreId,
+    String? language,
+  }) => FetchSeriesProvider._(
+    argument: (option: option, genreId: genreId, language: language),
+    from: this,
+  );
 
   @override
   String toString() => r'fetchSeriesProvider';

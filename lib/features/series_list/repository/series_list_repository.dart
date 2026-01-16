@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_series_app/core/client/remote/dio_provider.dart';
+import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/features/series_list/model/series_list_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,9 +12,19 @@ class SeriesListRepository {
   final Dio dio;
   final String apiKey;
 
-  Future<SeriesListModel> fetchSeries({int? genreId, String? language}) async {
+  Future<SeriesListModel> fetchSeries({
+    required SeriesOption option,
+    int? genreId,
+    String? language,
+  }) async {
     final response = await dio.get<Map<String, dynamic>>(
-      genreId != null ? '/3/discover/tv' : '/3/tv/popular',
+      switch (option) {
+        _ when genreId != null => '/3/discover/tv',
+        .airingToday => '/3/tv/airing_today',
+        .onTheAir => '/3/tv/on_the_air',
+        .popular => '/3/tv/popular',
+        .topRated => '/3/tv/top_rated',
+      },
       queryParameters: {
         if (genreId != null) 'with_genres': '$genreId',
         'api_key': apiKey,
@@ -35,13 +46,11 @@ SeriesListRepository seriesListRepository(Ref ref) {
 @riverpod
 Future<SeriesListModel> fetchSeries(
   Ref ref, {
+  required SeriesOption option,
   int? genreId,
   String? language,
 }) async {
-  final seriesListRepository = ref.watch(seriesListRepositoryProvider);
-
-  if (genreId == null) {
-    return seriesListRepository.fetchSeries(language: language);
-  }
-  return seriesListRepository.fetchSeries(language: language, genreId: genreId);
+  return ref
+      .watch(seriesListRepositoryProvider)
+      .fetchSeries(option: option, language: language, genreId: genreId);
 }
