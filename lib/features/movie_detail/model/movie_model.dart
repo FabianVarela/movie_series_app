@@ -13,7 +13,7 @@ class MovieModel {
     required this.genres,
     required this.credits,
     required this.trailers,
-    required this.images,
+    this.images,
     this.releaseDate,
     this.homepage,
   });
@@ -33,7 +33,7 @@ class MovieModel {
   @JsonKey(name: 'videos', fromJson: _getTrailers)
   final List<TrailerModel> trailers;
 
-  final List<ImageModel> images;
+  final ImagesResultModel? images;
   final String? releaseDate;
   final String? homepage;
 

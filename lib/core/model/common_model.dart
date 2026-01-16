@@ -118,6 +118,22 @@ class TrailerModel {
 }
 
 @JsonSerializable(createToJson: false)
+class ImagesResultModel {
+  const ImagesResultModel({
+    this.backdrop = const [],
+    this.posters = const [],
+    this.logos = const [],
+  });
+
+  factory ImagesResultModel.fromJson(Map<String, dynamic> json) =>
+      _$ImagesResultModelFromJson(json);
+
+  final List<ImageModel> backdrop;
+  final List<ImageModel> posters;
+  final List<ImageModel> logos;
+}
+
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class ImageModel {
   const ImageModel({required this.aspectRatio, required this.filePath});
 

@@ -14,7 +14,7 @@ class SeriesModel {
     required this.credits,
     required this.trailers,
     required this.seasons,
-    required this.images,
+    this.images,
     this.firstAirDate,
     this.lastAirDate,
     this.homepage,
@@ -38,7 +38,7 @@ class SeriesModel {
   @JsonKey(defaultValue: 0, fromJson: _getSeasonSize)
   final int seasons;
 
-  final List<ImageModel> images;
+  final ImagesResultModel? images;
   final String? firstAirDate;
   final String? lastAirDate;
   final String? homepage;

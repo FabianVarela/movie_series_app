@@ -45,7 +45,26 @@ TrailerModel _$TrailerModelFromJson(Map<String, dynamic> json) => TrailerModel(
   type: json['type'] as String,
 );
 
+ImagesResultModel _$ImagesResultModelFromJson(Map<String, dynamic> json) =>
+    ImagesResultModel(
+      backdrop:
+          (json['backdrop'] as List<dynamic>?)
+              ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      posters:
+          (json['posters'] as List<dynamic>?)
+              ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      logos:
+          (json['logos'] as List<dynamic>?)
+              ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
 ImageModel _$ImageModelFromJson(Map<String, dynamic> json) => ImageModel(
-  aspectRatio: (json['aspectRatio'] as num).toDouble(),
-  filePath: json['filePath'] as String,
+  aspectRatio: (json['aspect_ratio'] as num).toDouble(),
+  filePath: json['file_path'] as String,
 );
