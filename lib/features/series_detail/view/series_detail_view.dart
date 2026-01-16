@@ -33,33 +33,48 @@ class SeriesDetailView extends HookConsumerWidget {
     );
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            HeaderDetailImage(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 400,
+            collapsedHeight: 100,
+            leading: const Offstage(),
+            flexibleSpace: HeaderDetailImage(
               id: seriesId,
               imageUrl: seriesImageUrl,
               onDrag: () => Navigator.pop(context),
             ),
-            series.when(
-              data: (series) => Column(
-                children: <Widget>[
-                  DetailBody.series(series: series),
-                  DetailCreditList(
-                    casts: series.credits,
-                    onSelect: (id, path) => _goToActorDetail(context, id, path),
-                  ),
-                  DetailTrailerList(
-                    trailers: series.trailers,
-                    onSelect: (value) async => _redirectToYoutube(value),
-                  ),
-                ],
+          ),
+          series.when(
+            data: (series) => SliverPadding(
+              padding: const .symmetric(horizontal: 16, vertical: 12),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: <Widget>[
+                    DetailBody.series(series: series),
+                    DetailCreditList(
+                      casts: series.credits,
+                      onSelect: (id, path) {
+                        _goToActorDetail(context, id, path);
+                      },
+                    ),
+                    DetailTrailerList(
+                      trailers: series.trailers,
+                      onSelect: (value) async => _redirectToYoutube(value),
+                    ),
+                  ],
+                ),
               ),
-              loading: () => SizedBox(
+            ),
+            loading: () => SliverToBoxAdapter(
+              child: SizedBox(
                 height: MediaQuery.sizeOf(context).height * .7,
                 child: const Center(child: CircularProgressIndicator()),
               ),
-              error: (_, _) => SizedBox(
+            ),
+            error: (_, _) => SliverToBoxAdapter(
+              child: SizedBox(
                 height: MediaQuery.sizeOf(context).height * .68,
                 child: ErrorMessage(
                   message: context.l10n.errorSeriesDetailText,
@@ -67,8 +82,8 @@ class SeriesDetailView extends HookConsumerWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

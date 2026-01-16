@@ -29,38 +29,53 @@ class MovieDetailView extends HookConsumerWidget {
     );
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            HeaderDetailImage(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 400,
+            collapsedHeight: 100,
+            leading: const Offstage(),
+            flexibleSpace: HeaderDetailImage(
               id: movieId,
               imageUrl: movieImageUrl,
               onDrag: () => Navigator.pop(context),
             ),
-            movie.when(
-              data: (movie) => Column(
-                children: <Widget>[
-                  DetailBody.movie(
-                    movie: movie,
-                    onGoWebSite: (url) async => _redirectTo(url),
-                  ),
-                  DetailCreditList(
-                    casts: movie.credits,
-                    onSelect: (id, path) => _goToActorDetail(context, id, path),
-                  ),
-                  DetailTrailerList(
-                    trailers: movie.trailers,
-                    onSelect: (id) => _redirectTo(
-                      'https://www.youtube.com/watch?v=$id',
+          ),
+          movie.when(
+            data: (movie) => SliverPadding(
+              padding: const .symmetric(horizontal: 16, vertical: 12),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: <Widget>[
+                    DetailBody.movie(
+                      movie: movie,
+                      onGoWebSite: (url) async => _redirectTo(url),
                     ),
-                  ),
-                ],
+                    DetailCreditList(
+                      casts: movie.credits,
+                      onSelect: (id, path) {
+                        _goToActorDetail(context, id, path);
+                      },
+                    ),
+                    DetailTrailerList(
+                      trailers: movie.trailers,
+                      onSelect: (id) => _redirectTo(
+                        'https://www.youtube.com/watch?v=$id',
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              loading: () => SizedBox(
+            ),
+            loading: () => SliverToBoxAdapter(
+              child: SizedBox(
                 height: MediaQuery.sizeOf(context).height * .7,
                 child: const Center(child: CircularProgressIndicator()),
               ),
-              error: (_, _) => SizedBox(
+            ),
+            error: (_, _) => SliverToBoxAdapter(
+              child: SizedBox(
                 height: MediaQuery.sizeOf(context).height * .68,
                 child: ErrorMessage(
                   message: context.l10n.errorMovieDetailText,
@@ -68,8 +83,8 @@ class MovieDetailView extends HookConsumerWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
