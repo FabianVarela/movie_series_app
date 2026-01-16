@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/routes/app_route_path.dart';
-import 'package:movie_series_app/core/widgets/detail_body.dart';
-import 'package:movie_series_app/core/widgets/detail_credit_list.dart';
-import 'package:movie_series_app/core/widgets/detail_trailer_list.dart';
-import 'package:movie_series_app/core/widgets/error_message.dart';
-import 'package:movie_series_app/core/widgets/header_detail_image.dart';
+import 'package:movie_series_app/core/widgets/detail_screen/detail_body.dart';
+import 'package:movie_series_app/core/widgets/detail_screen/detail_credit_list.dart';
+import 'package:movie_series_app/core/widgets/detail_screen/detail_header.dart';
+import 'package:movie_series_app/core/widgets/detail_screen/detail_trailer_list.dart';
+import 'package:movie_series_app/core/widgets/text/error_message.dart';
 import 'package:movie_series_app/features/series_detail/repository/series_detail_repository.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -40,7 +40,7 @@ class SeriesDetailView extends HookConsumerWidget {
             expandedHeight: 400,
             collapsedHeight: 100,
             leading: const Offstage(),
-            flexibleSpace: HeaderDetailImage(
+            flexibleSpace: DetailHeader(
               id: seriesId,
               imageUrl: seriesImageUrl,
               onDrag: () => Navigator.pop(context),

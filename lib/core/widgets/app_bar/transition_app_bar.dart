@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_series_app/core/widgets/shader_container.dart';
+import 'package:movie_series_app/core/widgets/container/shader_container.dart';
 
 class TransitionAppBar extends StatelessWidget {
   const TransitionAppBar({required this.child, required this.title, super.key});

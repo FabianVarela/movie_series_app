@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
-import 'package:movie_series_app/core/widgets/circle_image.dart';
-import 'package:movie_series_app/core/widgets/error_message.dart';
-import 'package:movie_series_app/core/widgets/section_staggered_animation.dart';
-import 'package:movie_series_app/core/widgets/title_subtitle.dart';
-import 'package:movie_series_app/core/widgets/transition_app_bar.dart';
+import 'package:movie_series_app/core/widgets/animation/section_staggered_animation.dart';
+import 'package:movie_series_app/core/widgets/app_bar/transition_app_bar.dart';
+import 'package:movie_series_app/core/widgets/image/circle_image.dart';
+import 'package:movie_series_app/core/widgets/text/error_message.dart';
+import 'package:movie_series_app/core/widgets/text/title_subtitle.dart';
 import 'package:movie_series_app/features/actor_detail/model/actor_model.dart';
 import 'package:movie_series_app/features/actor_detail/repository/actor_detail_repository.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
 part 'widgets/actor_cast_item.dart';
-
 part 'widgets/actor_credits_section.dart';
-
 part 'widgets/actor_data_section.dart';
 
 class ActorDetailView extends HookConsumerWidget {

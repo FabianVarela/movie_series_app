@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_series_app/core/widgets/genre_item.dart';
+import 'package:movie_series_app/core/widgets/text/genre_item.dart';
 import 'package:movie_series_app/features/movie_detail/model/movie_model.dart';
 import 'package:movie_series_app/features/series_detail/model/series_model.dart';
 import 'package:movie_series_app/l10n/l10n.dart';

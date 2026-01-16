@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
-import 'package:movie_series_app/core/widgets/animated_card_item.dart';
-import 'package:movie_series_app/core/widgets/indicator_page.dart';
+import 'package:movie_series_app/core/widgets/animation/animated_card_item.dart';
+import 'package:movie_series_app/core/widgets/text/indicator_page.dart';
 
 class MovieSeriesPageList extends HookWidget {
   const MovieSeriesPageList({

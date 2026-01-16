@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
-import 'package:movie_series_app/core/widgets/genre_item.dart';
+import 'package:movie_series_app/core/widgets/text/genre_item.dart';
 import 'package:movie_series_app/features/genre_list/repository/genre_list_repository.dart';
 
 class GenreListSection extends ConsumerWidget {
