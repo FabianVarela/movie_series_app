@@ -5,14 +5,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.bottomChild,
     this.onChangeTheme,
-    this.onRestore,
+    this.onOpenFilter,
     super.key,
   });
 
   final String title;
   final Widget? bottomChild;
   final VoidCallback? onChangeTheme;
-  final VoidCallback? onRestore;
+  final VoidCallback? onOpenFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const .only(right: 10),
           child: InkWell(
-            onTap: onRestore,
-            child: const Icon(Icons.restart_alt_outlined),
+            onTap: onOpenFilter,
+            child: const Icon(Icons.tune_rounded),
           ),
         ),
       ],
