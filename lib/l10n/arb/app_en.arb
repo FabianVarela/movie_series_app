@@ -6,11 +6,11 @@
   },
   "movieNavBarText": "Movies",
   "@movieNavBarText": {
-    "description": "App title"
+    "description": "Movie navbar title"
   },
   "seriesNavBarText": "TV Series",
   "@seriesNavBarText": {
-    "description": "App title"
+    "description": "Series navbar title"
   },
   "popularTitle": "Popular",
   "@popularTitle": {
@@ -38,23 +38,23 @@
   },
   "errorMovieListText": "Error getting movie list",
   "@errorMovieListText": {
-    "description": "App title"
+    "description": "Error movie list text"
   },
   "errorMovieDetailText": "Error getting movie detail",
   "@errorMovieDetailText": {
-    "description": "App title"
+    "description": "Error movie detail text"
   },
   "errorSeriesListText": "Error getting series list",
   "@errorSeriesListText": {
-    "description": "App title"
+    "description": "Error series list text"
   },
   "errorSeriesDetailText": "Error getting series detail",
   "@errorSeriesDetailText": {
-    "description": "App title"
+    "description": "Error series detail text"
   },
   "quantityList": "{start} / {end}",
   "@quantityList": {
-    "description": "App title",
+    "description": "Quantity list number",
     "placeholders": {
       "start": {
         "type": "int"
@@ -78,53 +78,53 @@
   },
   "webPageTitle": "Web page\n",
   "@webPageTitle": {
-    "description": "App title"
+    "description": "Movie detail web page text"
   },
   "noDateAvailableText": "No date available",
   "@noDateAvailableText": {
-    "description": "App title"
+    "description": "Date empty text"
   },
   "castTitle": "Cast",
   "noCastAvailableText": "No cast available",
   "@noCastAvailableText": {
-    "description": "App title"
+    "description": "Cast empty list text"
   },
   "trailerTitle": "Trailers",
   "noTrailerAvailableText": "No trailers available",
   "@noTrailerAvailableText": {
-    "description": "App title"
+    "description": "Trailer empty list text"
   },
   "actorDetailBirthDate": "Birth date: ",
   "@actorDetailBirthDate": {
-    "description": "App title"
+    "description": "Birth date title"
   },
   "noBirthDateText": "No birth date",
   "@noBirthDateText": {
-    "description": "App title"
+    "description": "Birth date empty text"
   },
   "actorDetailDeathDate": "Death date: ",
   "@actorDetailDeathDate": {
-    "description": "App title"
+    "description": "Death date title"
   },
   "actorDetailBirthPlace": "Birth place: ",
   "@actorDetailBirthPlace": {
-    "description": "App title"
+    "description": "Death date empty text"
   },
   "noBirthPlace": "No birth place",
   "@noBirthPlace": {
-    "description": "App title"
+    "description": "Birth place empty text"
   },
   "actorDetailRol": "Rol: ",
   "@actorDetailRol": {
-    "description": "App title"
+    "description": "Rol title"
   },
   "actorDetailPopularity": "Popularity: ",
   "@actorDetailPopularity": {
-    "description": "App title"
+    "description": "Popularity title"
   },
   "actorDetailCharacters": "{count,plural, =0{no characters} =1{{count} character} other{{count} characters}}",
   "@actorDetailCharacters": {
-    "description": "App title",
+    "description": "Characters quantity text",
     "placeholders": {
       "count": {
         "type": "int"
@@ -133,7 +133,7 @@
   },
   "actorDetailLoadMore": "Load {count} more",
   "@actorDetailLoadMore": {
-    "description": "App title",
+    "description": "Load more text",
     "placeholders": {
       "count": {
         "type": "int"
@@ -142,18 +142,18 @@
   },
   "noCharacterText": "Unknown character",
   "@noCharacterText": {
-    "description": "App title"
+    "description": "No character text"
   },
   "errorActorDetailText": "Error getting actor details",
   "@errorActorDetailText": {
-    "description": "App title"
+    "description": "Error character text"
   },
   "noFoundTitle": "Oops!!!",
   "@noFoundTitle": {
-    "description": "App title"
+    "description": "No found title"
   },
   "noFoundReturnButton": "Go to Home",
   "@noFoundReturnButton": {
-    "description": "App title"
+    "description": "No found return home text"
   }
 }
