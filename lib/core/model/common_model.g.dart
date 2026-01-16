@@ -26,3 +26,8 @@ TrailerModel _$TrailerModelFromJson(Map<String, dynamic> json) => TrailerModel(
   size: (json['size'] as num).toInt(),
   type: json['type'] as String,
 );
+
+ImageModel _$ImageModelFromJson(Map<String, dynamic> json) => ImageModel(
+  aspectRatio: (json['aspectRatio'] as num).toDouble(),
+  filePath: json['filePath'] as String,
+);

@@ -16,6 +16,9 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       .toList(),
   credits: MovieModel._getCasts(json['credits'] as Map<String, dynamic>),
   trailers: MovieModel._getTrailers(json['videos'] as Map<String, dynamic>),
+  images: (json['images'] as List<dynamic>)
+      .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
   releaseDate: json['release_date'] as String?,
   homepage: json['homepage'] as String?,
 );

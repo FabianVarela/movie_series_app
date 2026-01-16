@@ -14,8 +14,11 @@ ActorModel _$ActorModelFromJson(Map<String, dynamic> json) => ActorModel(
   biography: json['biography'] as String,
   popularity: (json['popularity'] as num).toDouble(),
   isAdult: json['adult'] as bool,
-  credits: ActorModel._getCredits(
+  movieCredits: ActorModel._getCredits(
     json['movie_credits'] as Map<String, dynamic>,
+  ),
+  seriesCredits: ActorModel._getCredits(
+    json['tv_credits'] as Map<String, dynamic>,
   ),
   birthday: json['birthday'] as String?,
   deathDay: json['deathday'] as String?,
@@ -33,7 +36,9 @@ const _$GenderEnumMap = {
 ActorCreditModel _$ActorCreditModelFromJson(Map<String, dynamic> json) =>
     ActorCreditModel(
       id: (json['id'] as num).toInt(),
-      title: json['title'] as String,
-      character: json['character'] as String?,
+      title: ActorCreditModel._getTitle(json, 'title') as String,
+      releaseDate: ActorCreditModel._getDate(json, 'release_date') as String,
+      voteAverage: (json['vote_average'] as num).toDouble(),
+      character: ActorCreditModel._getCharacter(json, 'character') as String?,
       posterPath: json['poster_path'] as String?,
     );

@@ -2,6 +2,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'common_model.g.dart';
 
+enum GenreType { movie, tv }
+
+enum MovieOption { nowPlaying, popular, topRated, upcoming }
+
+enum SeriesOption { airingToday, onTheAir, popular, topRated }
+
 @JsonSerializable(createToJson: false)
 class GenreModel {
   const GenreModel({required this.id, required this.name});
@@ -60,4 +66,15 @@ class TrailerModel {
   final String site;
   final int size;
   final String type;
+}
+
+@JsonSerializable(createToJson: false)
+class ImageModel {
+  const ImageModel({required this.aspectRatio, required this.filePath});
+
+  factory ImageModel.fromJson(Map<String, dynamic> json) =>
+      _$ImageModelFromJson(json);
+
+  final double aspectRatio;
+  final String filePath;
 }

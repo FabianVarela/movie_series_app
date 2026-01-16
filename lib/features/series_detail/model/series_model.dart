@@ -14,6 +14,7 @@ class SeriesModel {
     required this.credits,
     required this.trailers,
     required this.seasons,
+    required this.images,
     this.firstAirDate,
     this.lastAirDate,
     this.homepage,
@@ -25,20 +26,22 @@ class SeriesModel {
   final int id;
   final String originalName;
   final String overview;
-  final String? firstAirDate;
-  final String? lastAirDate;
   final double voteAverage;
-  final String? homepage;
   final List<GenreModel> genres;
 
-  @JsonKey(name: 'credits', fromJson: _getCasts)
+  @JsonKey(fromJson: _getCasts)
   final List<CreditsModel> credits;
 
   @JsonKey(name: 'videos', fromJson: _getTrailers)
   final List<TrailerModel> trailers;
 
-  @JsonKey(name: 'seasons', defaultValue: 0, fromJson: _getSeasonSize)
+  @JsonKey(defaultValue: 0, fromJson: _getSeasonSize)
   final int seasons;
+
+  final List<ImageModel> images;
+  final String? firstAirDate;
+  final String? lastAirDate;
+  final String? homepage;
 
   static List<CreditsModel> _getCasts(Map<String, dynamic> value) {
     final creditMap = value['cast'] as List<dynamic>;

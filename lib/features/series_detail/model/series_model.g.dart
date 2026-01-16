@@ -19,6 +19,9 @@ SeriesModel _$SeriesModelFromJson(Map<String, dynamic> json) => SeriesModel(
   seasons: json['seasons'] == null
       ? 0
       : SeriesModel._getSeasonSize(json['seasons'] as List),
+  images: (json['images'] as List<dynamic>)
+      .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
   firstAirDate: json['first_air_date'] as String?,
   lastAirDate: json['last_air_date'] as String?,
   homepage: json['homepage'] as String?,

@@ -13,6 +13,7 @@ class MovieModel {
     required this.genres,
     required this.credits,
     required this.trailers,
+    required this.images,
     this.releaseDate,
     this.homepage,
   });
@@ -23,16 +24,18 @@ class MovieModel {
   final int id;
   final String originalTitle;
   final String overview;
-  final String? releaseDate;
   final double voteAverage;
-  final String? homepage;
   final List<GenreModel> genres;
 
-  @JsonKey(name: 'credits', fromJson: _getCasts)
+  @JsonKey(fromJson: _getCasts)
   final List<CreditsModel> credits;
 
   @JsonKey(name: 'videos', fromJson: _getTrailers)
   final List<TrailerModel> trailers;
+
+  final List<ImageModel> images;
+  final String? releaseDate;
+  final String? homepage;
 
   static List<CreditsModel> _getCasts(Map<String, dynamic> value) {
     final creditMap = value['cast'] as List<dynamic>;
