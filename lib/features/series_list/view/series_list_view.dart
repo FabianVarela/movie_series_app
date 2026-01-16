@@ -6,12 +6,17 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/core/provider/brightness_mode_provider.dart';
+import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/routes/app_route_path.dart';
 import 'package:movie_series_app/core/widgets/custom_app_bar.dart';
+import 'package:movie_series_app/core/widgets/error_message.dart';
 import 'package:movie_series_app/core/widgets/filter_bottom_sheet.dart';
+import 'package:movie_series_app/core/widgets/movie_series_page_list.dart';
 import 'package:movie_series_app/features/genre_list/widgets/genre_list_section.dart';
-import 'package:movie_series_app/features/series_list/view/widgets/series_list_body.dart';
+import 'package:movie_series_app/features/series_list/repository/series_list_repository.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
+
+part 'widgets/series_list_body.dart';
 
 class SeriesListView extends HookConsumerWidget {
   const SeriesListView({super.key});

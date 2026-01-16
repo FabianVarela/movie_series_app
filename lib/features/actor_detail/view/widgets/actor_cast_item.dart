@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:movie_series_app/core/widgets/circle_image.dart';
-import 'package:movie_series_app/features/actor_detail/model/actor_model.dart';
-import 'package:movie_series_app/l10n/l10n.dart';
+part of '../actor_detail_view.dart';
 
 class ActorCastItem extends StatelessWidget {
   const ActorCastItem({required this.actorCredit, super.key});

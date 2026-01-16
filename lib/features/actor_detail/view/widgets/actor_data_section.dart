@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:movie_series_app/core/widgets/section_staggered_animation.dart';
-import 'package:movie_series_app/core/widgets/title_subtitle.dart';
-import 'package:movie_series_app/features/actor_detail/model/actor_model.dart';
-import 'package:movie_series_app/features/actor_detail/view/widgets/actor_credits_section.dart';
-import 'package:movie_series_app/l10n/l10n.dart';
+part of '../actor_detail_view.dart';
 
 class ActorDataSection extends HookWidget {
   const ActorDataSection({required this.actor, super.key});
