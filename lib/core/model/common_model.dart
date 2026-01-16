@@ -8,6 +8,55 @@ enum MovieOption { nowPlaying, popular, topRated, upcoming }
 
 enum SeriesOption { airingToday, onTheAir, popular, topRated }
 
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
+class ResultsModel {
+  const ResultsModel({
+    required this.page,
+    required this.totalResults,
+    required this.totalPages,
+    required this.results,
+  });
+
+  factory ResultsModel.fromJson(Map<String, dynamic> json) =>
+      _$ResultsModelFromJson(json);
+
+  final int page;
+  final int totalResults;
+  final int totalPages;
+  final List<ResultModel> results;
+}
+
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
+class ResultModel {
+  const ResultModel({
+    required this.id,
+    required this.originalTitle,
+    required this.voteAverage,
+    this.posterPath,
+    this.backdropPath,
+  });
+
+  factory ResultModel.fromJson(Map<String, dynamic> json) =>
+      _$ResultModelFromJson(json);
+
+  final int id;
+
+  @JsonKey(readValue: _getOriginalTitle)
+  final String originalTitle;
+
+  final double voteAverage;
+  final String? posterPath;
+  final String? backdropPath;
+
+  static Object? _getOriginalTitle(Map<dynamic, dynamic> json, String field) {
+    if (json.containsKey(field)) return json[field] as String;
+    if (json.containsKey('original_name')) {
+      return json['original_name'] as String;
+    }
+    return null;
+  }
+}
+
 @JsonSerializable(createToJson: false)
 class GenreModel {
   const GenreModel({required this.id, required this.name});

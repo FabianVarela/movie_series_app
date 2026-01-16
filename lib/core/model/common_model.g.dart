@@ -6,6 +6,24 @@ part of 'common_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+ResultsModel _$ResultsModelFromJson(Map<String, dynamic> json) => ResultsModel(
+  page: (json['page'] as num).toInt(),
+  totalResults: (json['total_results'] as num).toInt(),
+  totalPages: (json['total_pages'] as num).toInt(),
+  results: (json['results'] as List<dynamic>)
+      .map((e) => ResultModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
+
+ResultModel _$ResultModelFromJson(Map<String, dynamic> json) => ResultModel(
+  id: (json['id'] as num).toInt(),
+  originalTitle:
+      ResultModel._getOriginalTitle(json, 'original_title') as String,
+  voteAverage: (json['vote_average'] as num).toDouble(),
+  posterPath: json['poster_path'] as String?,
+  backdropPath: json['backdrop_path'] as String?,
+);
+
 GenreModel _$GenreModelFromJson(Map<String, dynamic> json) =>
     GenreModel(id: (json['id'] as num).toInt(), name: json['name'] as String);
 
