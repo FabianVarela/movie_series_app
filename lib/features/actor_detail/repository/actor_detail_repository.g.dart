@@ -115,7 +115,7 @@ final class FetchActorProvider
   }
 }
 
-String _$fetchActorHash() => r'43dbe499f89c4cdcc7c61866238b3e303f090c46';
+String _$fetchActorHash() => r'67441bcc7e2c048386ca5be2641467e01b442afe';
 
 final class FetchActorFamily extends $Family
     with

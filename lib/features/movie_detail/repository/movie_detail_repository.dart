@@ -20,7 +20,7 @@ class MovieDetailRepository {
       queryParameters: {
         'api_key': apiKey,
         'language': ?language,
-        'append_to_response': 'credits,videos',
+        'append_to_response': 'credits,videos,images',
       },
     );
     return MovieModel.fromJson(response.data!);

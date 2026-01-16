@@ -17,7 +17,7 @@ class SeriesDetailRepository {
       queryParameters: {
         'api_key': apiKey,
         'language': ?language,
-        'append_to_response': 'credits,videos',
+        'append_to_response': 'credits,videos,images',
       },
     );
     return SeriesModel.fromJson(response.data!);

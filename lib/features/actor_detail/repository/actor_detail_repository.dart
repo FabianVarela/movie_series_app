@@ -20,7 +20,7 @@ class ActorDetailRepository {
       queryParameters: {
         'api_key': apiKey,
         'language': ?language,
-        'append_to_response': 'movie_credits',
+        'append_to_response': 'movie_credits,tv_credits',
       },
     );
     return ActorModel.fromJson(response.data!);
@@ -41,9 +41,7 @@ Future<ActorModel> fetchActor(
   required int personId,
   String? language,
 }) async {
-  final actorDetailRepository = ref.watch(actorDetailRepositoryProvider);
-  return actorDetailRepository.fetchActor(
-    personId: personId,
-    language: language,
-  );
+  return ref
+      .watch(actorDetailRepositoryProvider)
+      .fetchActor(personId: personId, language: language);
 }
