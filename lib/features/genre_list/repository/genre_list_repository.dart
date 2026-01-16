@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:movie_series_app/core/client/remote/dio_provider.dart';
+import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/features/genre_list/model/genre_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'genre_list_repository.g.dart';
-
-enum GenreType { movie, tv }
 
 class GenreListRepository {
   GenreListRepository({required this.dio, required this.apiKey});
