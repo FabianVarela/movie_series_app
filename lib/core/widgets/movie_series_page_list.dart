@@ -1,98 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/core/widgets/animated_card_item.dart';
 import 'package:movie_series_app/core/widgets/indicator_page.dart';
-import 'package:movie_series_app/features/movie_list/model/movies_model.dart';
-import 'package:movie_series_app/features/series_list/model/series_list_model.dart';
-
-enum ListSection { movies, series }
 
 class MovieSeriesPageList extends HookWidget {
-  const MovieSeriesPageList.movies({
-    required List<MovieModel> this.movies,
+  const MovieSeriesPageList({
+    required this.results,
     required this.onChangePage,
     this.currentIndex = 0,
     this.onSelect,
     super.key,
-  }) : section = ListSection.movies,
-       series = null;
+  });
 
-  const MovieSeriesPageList.series({
-    required List<SeriesModel> this.series,
-    required this.onChangePage,
-    this.currentIndex = 0,
-    this.onSelect,
-    super.key,
-  }) : section = ListSection.series,
-       movies = null;
-
+  final List<ResultModel> results;
   final ValueSetter<int> onChangePage;
   final int currentIndex;
-  final ListSection section;
   final ValueSetter<int>? onSelect;
-  final List<MovieModel>? movies;
-  final List<SeriesModel>? series;
 
   @override
   Widget build(BuildContext context) {
     final isEnabledScroll = useState(true);
     final pageController = usePageController(viewportFraction: .8);
 
-    final listSize = switch (section) {
-      ListSection.movies => movies!.length,
-      ListSection.series => series!.length,
-    };
-
     return Stack(
       children: <Widget>[
         Center(
           child: PageView.builder(
             controller: pageController,
-            itemCount: listSize,
+            itemCount: results.length,
             physics: switch (isEnabledScroll.value) {
               true => const BouncingScrollPhysics(),
               false => const NeverScrollableScrollPhysics(),
             },
             onPageChanged: (index) => onChangePage(index + 1),
-            itemBuilder: (_, index) {
-              final item = switch (section) {
-                .movies => movies![index],
-                .series => series![index],
-              };
-
-              return AnimatedCardItem(
-                id: switch (section) {
-                  .movies => _castToMovie(item).id,
-                  .series => _castToSeries(item).id,
-                },
-                name: switch (section) {
-                  .movies => _castToMovie(item).originalTitle,
-                  .series => _castToSeries(item).originalName,
-                },
-                voteAverage: switch (section) {
-                  .movies => _castToMovie(item).voteAverage,
-                  .series => _castToSeries(item).voteAverage,
-                },
-                imageUrl: switch (section) {
-                  .movies => _castToMovie(item).posterPath,
-                  .series => _castToSeries(item).posterPath,
-                },
-                onPress: () => onSelect?.call(index),
-                isCurrent: (currentIndex - 1) == index,
-                onExpanded: (value) => isEnabledScroll.value = !value,
-              );
-            },
+            itemBuilder: (_, index) => AnimatedCardItem(
+              id: results[index].id,
+              name: results[index].originalTitle,
+              voteAverage: results[index].voteAverage,
+              imageUrl: results[index].posterPath,
+              onPress: () => onSelect?.call(index),
+              isCurrent: (currentIndex - 1) == index,
+              onExpanded: (value) => isEnabledScroll.value = !value,
+            ),
           ),
         ),
-        if (listSize > 0)
+        if (results.isNotEmpty)
           Positioned.fill(
-            child: IndicatorPage(start: currentIndex, total: listSize),
+            child: IndicatorPage(start: currentIndex, total: results.length),
           ),
       ],
     );
   }
-
-  MovieModel _castToMovie(Object item) => item as MovieModel;
-
-  SeriesModel _castToSeries(Object item) => item as SeriesModel;
 }
