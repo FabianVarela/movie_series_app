@@ -12,9 +12,29 @@
   "@seriesNavBarText": {
     "description": "App title"
   },
-  "genreDefaultTitle": "Popular",
-  "@genreDefaultTitle": {
-    "description": "App title"
+  "popularTitle": "Popular",
+  "@popularTitle": {
+    "description": "Popular app title"
+  },
+  "topRatedTitle": "Top rated",
+  "@topRatedTitle": {
+    "description": "Top rated app title"
+  },
+  "nowPlayingTitle": "Now playing",
+  "@nowPlayingTitle": {
+    "description": "Now playing app title"
+  },
+  "upcomingTitle": "Upcoming",
+  "@upcomingTitle": {
+    "description": "Upcoming app title"
+  },
+  "airingTodayTitle": "Airing today",
+  "@airingTodayTitle": {
+    "description": "Airing today app title"
+  },
+  "onTheAirTitle": "On the air",
+  "@onTheAirTitle": {
+    "description": "On the air app title"
   },
   "errorMovieListText": "Error getting movie list",
   "@errorMovieListText": {
