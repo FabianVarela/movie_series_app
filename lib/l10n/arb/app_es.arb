@@ -24,6 +24,9 @@
       }
     }
   },
+  "filterTitle": "Filtros",
+  "filterCancelButton": "Cancelar",
+  "filterOkButton": "Aplicar Filtros",
   "webPageTitle": "Página web\n",
   "noDateAvailableText": "Sin fecha disponlible",
   "castTitle": "Reparto",

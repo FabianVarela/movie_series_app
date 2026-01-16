@@ -64,6 +64,18 @@
       }
     }
   },
+  "filterTitle": "Filters",
+  "@filterTitle": {
+    "description": "Filter title text"
+  },
+  "filterCancelButton": "Cancel",
+  "@filterCancelButton": {
+    "description": "Filter cancel button text"
+  },
+  "filterOkButton": "Apply Filters",
+  "@filterOkButton": {
+    "description": "Filter ok button text"
+  },
   "webPageTitle": "Web page\n",
   "@webPageTitle": {
     "description": "App title"
