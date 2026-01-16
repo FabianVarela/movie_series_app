@@ -18,7 +18,7 @@ class DetailTrailerList extends StatelessWidget {
       crossAxisAlignment: .stretch,
       children: <Widget>[
         Padding(
-          padding: const .symmetric(vertical: 8, horizontal: 16),
+          padding: const .symmetric(vertical: 8),
           child: Text(
             context.l10n.trailerTitle,
             style: const TextStyle(fontSize: 25, fontWeight: .w700),
@@ -26,7 +26,7 @@ class DetailTrailerList extends StatelessWidget {
         ),
         if (trailers.isEmpty)
           Padding(
-            padding: const .symmetric(vertical: 5, horizontal: 16),
+            padding: const .symmetric(vertical: 5),
             child: Center(
               child: Text(
                 context.l10n.noTrailerAvailableText,
@@ -40,7 +40,6 @@ class DetailTrailerList extends StatelessWidget {
             child: ListView.separated(
               itemCount: trailers.length,
               scrollDirection: .horizontal,
-              padding: const .symmetric(horizontal: 16),
               separatorBuilder: (_, _) => const SizedBox(width: 10),
               itemBuilder: (_, index) {
                 final trailer = trailers[index];

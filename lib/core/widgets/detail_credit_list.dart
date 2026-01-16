@@ -20,7 +20,7 @@ class DetailCreditList extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const .symmetric(vertical: 8, horizontal: 16),
+          padding: const .symmetric(vertical: 8),
           child: Align(
             alignment: .centerLeft,
             child: Text(
@@ -31,7 +31,7 @@ class DetailCreditList extends StatelessWidget {
         ),
         if (casts.isEmpty)
           Padding(
-            padding: const .symmetric(vertical: 5, horizontal: 16),
+            padding: const .symmetric(vertical: 5),
             child: Center(
               child: Text(
                 context.l10n.noCastAvailableText,
@@ -45,7 +45,6 @@ class DetailCreditList extends StatelessWidget {
             child: ListView.builder(
               itemCount: casts.length,
               scrollDirection: .horizontal,
-              padding: const .symmetric(horizontal: 16),
               itemBuilder: (_, index) {
                 final item = casts[index];
                 return InkWell(

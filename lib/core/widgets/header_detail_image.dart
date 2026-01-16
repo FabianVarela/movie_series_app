@@ -22,7 +22,6 @@ class HeaderDetailImage extends StatelessWidget {
     final imageWidget = Image(
       image: CachedNetworkImageProvider('$imdbImageUri$imageUrl'),
       fit: .cover,
-      height: 250,
       width: MediaQuery.sizeOf(context).width,
       errorBuilder: (_, _, _) => Image.asset(
         'assets/images/poster_not_available.jpg',

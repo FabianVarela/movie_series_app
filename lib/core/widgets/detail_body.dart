@@ -24,84 +24,79 @@ class DetailBody extends StatelessWidget {
   Widget build(BuildContext context) {
     if (movie == null && series == null) return const Offstage();
 
-    final title = movie?.originalTitle ?? series?.originalName ?? '';
     final voteAverage = movie?.voteAverage ?? series?.voteAverage ?? 0;
     final mainDate = movie?.releaseDate ?? series?.firstAirDate;
-    final overview = movie?.overview ?? series?.overview ?? '';
     final genres = movie?.genres ?? series?.genres ?? [];
 
-    return Padding(
-      padding: const .symmetric(horizontal: 16),
-      child: Column(
-        spacing: 10,
-        children: <Widget>[
-          Align(
-            alignment: .centerLeft,
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 25, fontWeight: .w700),
-            ),
+    return Column(
+      spacing: 10,
+      children: <Widget>[
+        Align(
+          alignment: .centerLeft,
+          child: Text(
+            movie?.originalTitle ?? series?.originalName ?? '',
+            style: const TextStyle(fontSize: 25, fontWeight: .w700),
           ),
-          Row(
-            crossAxisAlignment: .start,
-            mainAxisAlignment: .spaceAround,
-            children: <Widget>[
-              Row(
-                spacing: 10,
-                children: <Widget>[
-                  Icon(
-                    Icons.favorite,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
-                  Text(
-                    voteAverage.toStringAsFixed(2),
-                    style: const TextStyle(fontSize: 18, fontWeight: .w500),
-                  ),
-                ],
-              ),
+        ),
+        Row(
+          crossAxisAlignment: .start,
+          mainAxisAlignment: .spaceAround,
+          children: <Widget>[
+            Row(
+              spacing: 10,
+              children: <Widget>[
+                Icon(
+                  Icons.favorite,
+                  color: Theme.of(context).colorScheme.error,
+                ),
+                Text(
+                  voteAverage.toStringAsFixed(2),
+                  style: const TextStyle(fontSize: 18, fontWeight: .w500),
+                ),
+              ],
+            ),
+            Text(
+              mainDate ?? context.l10n.noDateAvailableText,
+              style: const TextStyle(fontSize: 18, fontWeight: .w400),
+            ),
+            if (series != null)
               Text(
-                mainDate ?? context.l10n.noDateAvailableText,
+                (series!.lastAirDate ?? '').isNotEmpty
+                    ? series!.lastAirDate!
+                    : context.l10n.noDateAvailableText,
                 style: const TextStyle(fontSize: 18, fontWeight: .w400),
               ),
-              if (series != null)
-                Text(
-                  (series!.lastAirDate ?? '').isNotEmpty
-                      ? series!.lastAirDate!
-                      : context.l10n.noDateAvailableText,
-                  style: const TextStyle(fontSize: 18, fontWeight: .w400),
+          ],
+        ),
+        if (movie != null && movie?.homepage != null)
+          Text.rich(
+            TextSpan(
+              children: <TextSpan>[
+                TextSpan(text: context.l10n.webPageTitle),
+                TextSpan(
+                  text: movie!.homepage,
+                  style: const TextStyle(decoration: .underline),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => onGoWebSite?.call(movie!.homepage!),
                 ),
-            ],
-          ),
-          if (movie != null && movie?.homepage != null)
-            Text.rich(
-              TextSpan(
-                children: <TextSpan>[
-                  TextSpan(text: context.l10n.webPageTitle),
-                  TextSpan(
-                    text: movie!.homepage,
-                    style: const TextStyle(decoration: .underline),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => onGoWebSite?.call(movie!.homepage!),
-                  ),
-                ],
-              ),
-            ),
-          Text(
-            overview,
-            style: const TextStyle(fontSize: 16, fontWeight: .w400),
-          ),
-          SizedBox(
-            height: 70,
-            child: ListView.separated(
-              scrollDirection: .horizontal,
-              itemCount: genres.length,
-              padding: const .all(10),
-              separatorBuilder: (_, _) => const SizedBox(width: 8),
-              itemBuilder: (_, index) => GenreItem(name: genres[index].name),
+              ],
             ),
           ),
-        ],
-      ),
+        Text(
+          movie?.overview ?? series?.overview ?? '',
+          style: const TextStyle(fontSize: 16, fontWeight: .w400),
+        ),
+        SizedBox(
+          height: 70,
+          child: ListView.separated(
+            scrollDirection: .horizontal,
+            itemCount: genres.length,
+            padding: const .all(10),
+            separatorBuilder: (_, _) => const SizedBox(width: 8),
+            itemBuilder: (_, index) => GenreItem(name: genres[index].name),
+          ),
+        ),
+      ],
     );
   }
 }
