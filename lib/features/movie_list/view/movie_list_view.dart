@@ -18,18 +18,29 @@ class MovieListView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentGenre = useState<int?>(null);
-    final titleGenre = useState<String?>(null);
+    final titleGenre = useState(context.l10n.popularTitle);
 
     final currentIndex = useState(1);
+    final currentOption = useState(MovieOption.popular);
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: titleGenre.value ?? context.l10n.genreDefaultTitle,
+        title: titleGenre.value,
         onChangeTheme: () => unawaited(
           ref.read(brightnessModeProvider.notifier).setTheme(),
         ),
-        onRestore: () {
-          currentGenre.value = titleGenre.value = null;
+        onOpenFilter: () async {
+          final option = await _openMovieFilter();
+          if (!context.mounted) return;
+
+          titleGenre.value = switch (option) {
+            .nowPlaying => context.l10n.nowPlayingTitle,
+            .popular => context.l10n.popularTitle,
+            .topRated => context.l10n.topRatedTitle,
+            .upcoming => context.l10n.upcomingTitle,
+          };
+
+          currentGenre.value = null;
           currentIndex.value = 1;
         },
         bottomChild: GenreListSection(
@@ -45,7 +56,7 @@ class MovieListView extends HookConsumerWidget {
       ),
       body: MovieListBody(
         currentIndex: currentIndex.value,
-        genreId: currentGenre.value,
+        arguments: (option: currentOption.value, genreId: currentGenre.value),
         onChangePage: (index) => currentIndex.value = index,
         onSelectMovie: (movie) => context.go(
           AppRoutePath.movies.detail.define('${movie.id}').path,
@@ -53,5 +64,9 @@ class MovieListView extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  Future<MovieOption> _openMovieFilter() async {
+    return .popular;
   }
 }

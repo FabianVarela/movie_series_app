@@ -18,18 +18,29 @@ class SeriesListView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentGenre = useState<int?>(null);
-    final titleGenre = useState<String?>(null);
+    final titleGenre = useState(context.l10n.popularTitle);
 
     final currentIndex = useState(1);
+    final currentOption = useState(SeriesOption.popular);
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: titleGenre.value ?? context.l10n.genreDefaultTitle,
+        title: titleGenre.value,
         onChangeTheme: () => unawaited(
           ref.read(brightnessModeProvider.notifier).setTheme(),
         ),
-        onRestore: () {
-          currentGenre.value = titleGenre.value = null;
+        onOpenFilter: () async {
+          final option = await _openSeriesFilter();
+          if (!context.mounted) return;
+
+          titleGenre.value = switch (option) {
+            .airingToday => context.l10n.airingTodayTitle,
+            .onTheAir => context.l10n.onTheAirTitle,
+            .popular => context.l10n.popularTitle,
+            .topRated => context.l10n.topRatedTitle,
+          };
+
+          currentGenre.value = null;
           currentIndex.value = 1;
         },
         bottomChild: GenreListSection(
@@ -45,7 +56,7 @@ class SeriesListView extends HookConsumerWidget {
       ),
       body: SeriesListBody(
         currentIndex: currentIndex.value,
-        genreId: currentGenre.value,
+        arguments: (option: currentOption.value, genreId: currentGenre.value),
         onChangePage: (index) => currentIndex.value = index,
         onSelectSeries: (series) => context.go(
           AppRoutePath.series.detail.define('${series.id}').path,
@@ -53,5 +64,9 @@ class SeriesListView extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  Future<SeriesOption> _openSeriesFilter() async {
+    return .popular;
   }
 }
