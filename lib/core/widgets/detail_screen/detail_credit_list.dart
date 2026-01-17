@@ -25,13 +25,13 @@ class DetailCreditList extends StatelessWidget {
             alignment: .centerLeft,
             child: Text(
               context.l10n.castTitle,
-              style: const TextStyle(fontSize: 25, fontWeight: .w700),
+              style: const TextStyle(fontSize: 20, fontWeight: .w700),
             ),
           ),
         ),
         if (casts.isEmpty)
           Padding(
-            padding: const .symmetric(vertical: 5),
+            padding: const .symmetric(vertical: 20),
             child: Center(
               child: Text(
                 context.l10n.noCastAvailableText,
