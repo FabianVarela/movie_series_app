@@ -89,7 +89,7 @@
   "@noCastAvailableText": {
     "description": "Cast empty list text"
   },
-  "trailerTitle": "Trailers",
+  "trailerTitle": "Trailers & Clips",
   "noTrailerAvailableText": "No trailers available",
   "@noTrailerAvailableText": {
     "description": "Trailer empty list text"
