@@ -43,6 +43,17 @@
   "actorDetailReadMore": "Leer más",
   "actorDetailReadLess": "Leer menos",
   "actorDetailFilmography": "Filmografía",
+  "actorDetailMovies": "Películas",
+  "actorDetailSeries": "Series",
+  "actorDetailRecentRoles": "Roles Recientes",
+  "actorDetailAs": "Como {character}",
+  "@actorDetailAs": {
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
   "actorDetailCharacters": "{count,plural, =0{sin personajes} =1{{count} personaje} other{{count} personajes}}",
   "@actorDetailCharacters": {
     "placeholders": {

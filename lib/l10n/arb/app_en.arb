@@ -134,6 +134,27 @@
   "@actorDetailFilmography": {
     "description": "Filmography section title"
   },
+  "actorDetailMovies": "Movies",
+  "@actorDetailMovies": {
+    "description": "Movies tab text"
+  },
+  "actorDetailSeries": "Series",
+  "@actorDetailSeries": {
+    "description": "Series tab text"
+  },
+  "actorDetailRecentRoles": "Recent Roles",
+  "@actorDetailRecentRoles": {
+    "description": "Recent roles section title"
+  },
+  "actorDetailAs": "As {character}",
+  "@actorDetailAs": {
+    "description": "Character role text",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
   "actorDetailCharacters": "{count,plural, =0{no characters} =1{{count} character} other{{count} characters}}",
   "@actorDetailCharacters": {
     "description": "Characters quantity text",
