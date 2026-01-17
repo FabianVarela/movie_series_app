@@ -16,6 +16,7 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       .toList(),
   credits: MovieModel._getCasts(json['credits'] as Map<String, dynamic>),
   trailers: MovieModel._getTrailers(json['videos'] as Map<String, dynamic>),
+  runtime: (json['runtime'] as num?)?.toInt() ?? 0,
   images: json['images'] == null
       ? null
       : ImagesResultModel.fromJson(json['images'] as Map<String, dynamic>),
