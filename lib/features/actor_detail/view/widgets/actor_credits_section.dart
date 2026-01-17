@@ -5,6 +5,8 @@ typedef Credits = ({
   List<ActorCreditModel> series,
 });
 
+enum _CreditType { movies, series }
+
 class ActorCreditsSection extends HookWidget {
   const ActorCreditsSection({required this.credits, super.key});
 
@@ -12,50 +14,89 @@ class ActorCreditsSection extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    const sizeDefault = 20;
+    const pageSize = 10;
 
-    final l10n = context.l10n;
-    final totalSize = credits.movies.length;
+    final selectedType = useState(_CreditType.movies);
+    final visibleCount = useState(pageSize);
 
-    final isExpanded = useState(false);
+    final currentCredits = selectedType.value == .movies
+        ? credits.movies
+        : credits.series;
 
-    final lenExpanded = useState(sizeDefault);
-    final countExpanded = useState(1);
+    final totalCount = credits.movies.length + credits.series.length;
+    final totalCurrentCredits = currentCredits.length;
 
-    final totalCount = totalSize / sizeDefault;
-    final hasMore = !isExpanded.value && totalSize >= (lenExpanded.value + 1);
+    final hasMore = visibleCount.value < totalCurrentCredits;
 
     return Column(
-      spacing: 10,
+      spacing: 12,
       crossAxisAlignment: .start,
       children: <Widget>[
+        Row(
+          mainAxisAlignment: .spaceBetween,
+          children: <Widget>[
+            Text(
+              context.l10n.actorDetailFilmography,
+              style: const TextStyle(fontSize: 18, fontWeight: .w600),
+            ),
+            Text(
+              context.l10n.actorDetailCharacters(totalCount),
+              style: const TextStyle(fontWeight: .w500),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const .only(bottom: 8),
+          child: SizedBox(
+            width: .infinity,
+            child: SegmentedButton<_CreditType>(
+              showSelectedIcon: false,
+              style: SegmentedButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: .circular(12)),
+              ),
+              segments: [
+                ButtonSegment(
+                  value: .movies,
+                  label: Text(context.l10n.actorDetailMovies),
+                  icon: const Icon(Icons.movie_outlined),
+                ),
+                ButtonSegment(
+                  value: .series,
+                  label: Text(context.l10n.actorDetailSeries),
+                  icon: const Icon(Icons.tv_outlined),
+                ),
+              ],
+              selected: {selectedType.value},
+              onSelectionChanged: (selected) {
+                selectedType.value = selected.first;
+                visibleCount.value = pageSize;
+              },
+            ),
+          ),
+        ),
         Text(
-          l10n.actorDetailCharacters(totalSize),
+          context.l10n.actorDetailRecentRoles,
           style: const TextStyle(fontSize: 16, fontWeight: .w600),
         ),
         ListView.separated(
-          itemCount: hasMore ? (lenExpanded.value + 1) : totalSize,
-          shrinkWrap: true,
           padding: .zero,
+          shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          separatorBuilder: (_, _) => const Divider(height: 5),
+          itemCount: hasMore ? (visibleCount.value + 1) : totalCurrentCredits,
+          separatorBuilder: (_, _) => const Divider(height: 1),
           itemBuilder: (_, index) {
-            return (index == lenExpanded.value && !isExpanded.value)
-                ? ListTile(
-                    onTap: () {
-                      countExpanded.value++;
-                      lenExpanded.value = sizeDefault * countExpanded.value;
-
-                      if (countExpanded.value >= totalCount) {
-                        isExpanded.value = true;
-                      }
-                    },
-                    leading: const Icon(Icons.keyboard_arrow_down),
-                    title: Text(
-                      l10n.actorDetailLoadMore(totalSize - lenExpanded.value),
-                    ),
-                  )
-                : ActorCastItem(actorCredit: credits.movies[index]);
+            if (index == visibleCount.value && hasMore) {
+              return ListTile(
+                onTap: () => visibleCount.value += pageSize,
+                leading: const Icon(Icons.keyboard_arrow_down),
+                title: Text(
+                  context.l10n.actorDetailLoadMore(
+                    totalCurrentCredits - visibleCount.value,
+                  ),
+                ),
+              );
+            }
+            return ActorCastItem(actorCredit: currentCredits[index]);
           },
         ),
       ],

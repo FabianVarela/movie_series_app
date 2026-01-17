@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/widgets/animation/section_staggered_animation.dart';
 import 'package:movie_series_app/core/widgets/app_bar/transition_app_bar.dart';
-import 'package:movie_series_app/core/widgets/image/circle_image.dart';
+import 'package:movie_series_app/core/widgets/image/media_image.dart';
 import 'package:movie_series_app/core/widgets/text/error_message.dart';
 import 'package:movie_series_app/core/widgets/text/title_subtitle.dart';
 import 'package:movie_series_app/features/actor_detail/model/actor_model.dart';
@@ -48,9 +48,9 @@ class ActorDetailView extends HookConsumerWidget {
             ),
             child: Hero(
               tag: '$personId',
-              child: CircleImage(
+              child: MediaImage(
                 imageUrl: '$imdbImageUri$imageUrl',
-                iconSize: 50,
+                size: (image: 40, icon: 50),
               ),
             ),
           ),
