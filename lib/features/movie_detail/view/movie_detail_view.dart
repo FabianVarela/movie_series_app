@@ -44,7 +44,7 @@ class MovieDetailView extends HookConsumerWidget {
           ),
           movie.when(
             data: (movie) => SliverPadding(
-              padding: const .symmetric(horizontal: 16, vertical: 12),
+              padding: const .all(16),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   children: <Widget>[

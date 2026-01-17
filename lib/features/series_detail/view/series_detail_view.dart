@@ -48,7 +48,7 @@ class SeriesDetailView extends HookConsumerWidget {
           ),
           series.when(
             data: (series) => SliverPadding(
-              padding: const .symmetric(horizontal: 16, vertical: 12),
+              padding: const .all(16),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   children: <Widget>[
