@@ -10,6 +10,7 @@ class SeriesModel {
     required this.originalName,
     required this.overview,
     required this.voteAverage,
+    required this.inProduction,
     required this.genres,
     required this.credits,
     required this.trailers,
@@ -27,6 +28,7 @@ class SeriesModel {
   final String originalName;
   final String overview;
   final double voteAverage;
+  final bool inProduction;
   final List<GenreModel> genres;
 
   @JsonKey(fromJson: _getCasts)

@@ -11,6 +11,7 @@ SeriesModel _$SeriesModelFromJson(Map<String, dynamic> json) => SeriesModel(
   originalName: json['original_name'] as String,
   overview: json['overview'] as String,
   voteAverage: (json['vote_average'] as num).toDouble(),
+  inProduction: json['in_production'] as bool,
   genres: (json['genres'] as List<dynamic>)
       .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
       .toList(),
