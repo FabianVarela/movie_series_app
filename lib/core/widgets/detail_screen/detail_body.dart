@@ -22,45 +22,14 @@ class DetailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (movie == null && series == null) return const Offstage();
-    final colorScheme = Theme.of(context).colorScheme;
 
-    final voteAverage = movie?.voteAverage ?? series?.voteAverage ?? 0;
-    final mainDate = movie?.releaseDate ?? series?.firstAirDate;
+    final colorScheme = Theme.of(context).colorScheme;
     final genres = movie?.genres ?? series?.genres ?? [];
 
     return Column(
       spacing: 10,
       crossAxisAlignment: .start,
       children: <Widget>[
-        Text(
-          movie?.originalTitle ?? series?.originalName ?? '',
-          style: const TextStyle(fontSize: 25, fontWeight: .w700),
-        ),
-        Row(
-          crossAxisAlignment: .start,
-          mainAxisAlignment: .spaceAround,
-          children: <Widget>[
-            Row(
-              spacing: 10,
-              children: <Widget>[
-                Icon(Icons.favorite, color: colorScheme.error),
-                Text(
-                  voteAverage.toStringAsFixed(2),
-                  style: const TextStyle(fontSize: 18, fontWeight: .w500),
-                ),
-              ],
-            ),
-            Text(
-              mainDate ?? context.l10n.noDateAvailableText,
-              style: const TextStyle(fontSize: 18, fontWeight: .w400),
-            ),
-            if (series != null && !(series?.inProduction ?? false))
-              Text(
-                series?.lastAirDate ?? context.l10n.noDateAvailableText,
-                style: const TextStyle(fontSize: 18, fontWeight: .w400),
-              ),
-          ],
-        ),
         if ((movie?.homepage ?? '').isNotEmpty)
           SizedBox(
             width: .infinity,
