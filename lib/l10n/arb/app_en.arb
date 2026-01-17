@@ -76,7 +76,7 @@
   "@filterOkButton": {
     "description": "Filter ok button text"
   },
-  "webPageTitle": "Web page\n",
+  "webPageTitle": "Visit website",
   "@webPageTitle": {
     "description": "Movie detail web page text"
   },
