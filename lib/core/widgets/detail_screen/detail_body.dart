@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_series_app/core/widgets/text/genre_item.dart';
 import 'package:movie_series_app/features/movie_detail/model/movie_model.dart';
@@ -23,6 +22,7 @@ class DetailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (movie == null && series == null) return const Offstage();
+    final colorScheme = Theme.of(context).colorScheme;
 
     final voteAverage = movie?.voteAverage ?? series?.voteAverage ?? 0;
     final mainDate = movie?.releaseDate ?? series?.firstAirDate;
@@ -43,10 +43,7 @@ class DetailBody extends StatelessWidget {
             Row(
               spacing: 10,
               children: <Widget>[
-                Icon(
-                  Icons.favorite,
-                  color: Theme.of(context).colorScheme.error,
-                ),
+                Icon(Icons.favorite, color: colorScheme.error),
                 Text(
                   voteAverage.toStringAsFixed(2),
                   style: const TextStyle(fontSize: 18, fontWeight: .w500),
@@ -65,21 +62,26 @@ class DetailBody extends StatelessWidget {
           ],
         ),
         if ((movie?.homepage ?? '').isNotEmpty)
-          Text.rich(
-            TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: context.l10n.webPageTitle),
-                TextSpan(
-                  text: movie!.homepage,
-                  style: const TextStyle(decoration: .underline),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => onGoWebSite?.call(movie!.homepage!),
-                ),
-              ],
+          SizedBox(
+            width: .infinity,
+            child: ElevatedButton.icon(
+              onPressed: () => onGoWebSite?.call(movie!.homepage!),
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                foregroundColor: Colors.white,
+                backgroundColor: colorScheme.error,
+                padding: const .symmetric(vertical: 12),
+                shape: RoundedRectangleBorder(borderRadius: .circular(12)),
+              ),
+              icon: const Icon(Icons.language),
+              label: Text(
+                context.l10n.webPageTitle.trim(),
+                style: const TextStyle(fontSize: 16, fontWeight: .w600),
+              ),
             ),
           ),
         SizedBox(
-          height: 50,
+          height: 70,
           child: ListView.separated(
             itemCount: genres.length,
             scrollDirection: .horizontal,
