@@ -7,7 +7,6 @@ class ActorDataSection extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final controller = useAnimationController(
       duration: const Duration(milliseconds: 2000),
     );
@@ -22,77 +21,53 @@ class ActorDataSection extends HookWidget {
       children: <Widget>[
         SectionStaggeredAnimation(
           controller: controller,
-          endInterval: .100,
+          endInterval: .200,
           child: Padding(
             padding: const .symmetric(horizontal: 16, vertical: 15),
-            child: Row(
-              mainAxisAlignment: .spaceEvenly,
-              children: <Widget>[
-                TitleSubtitle(
-                  title: l10n.actorDetailBirthDate,
-                  subtitle: actor.birthday ?? l10n.noBirthDateText,
-                  isRow: actor.deathDay == null,
-                ),
-                if (actor.deathDay != null)
-                  TitleSubtitle(
-                    title: l10n.actorDetailDeathDate,
-                    subtitle: actor.deathDay!,
-                    isRow: false,
+            child: IntrinsicHeight(
+              child: Row(
+                spacing: 4,
+                mainAxisAlignment: .spaceEvenly,
+                children: <Widget>[
+                  Flexible(
+                    child: TitleSubtitle(
+                      title: context.l10n.actorDetailBirthDate,
+                      value: actor.birthday ?? context.l10n.noBirthDateText,
+                    ),
                   ),
-              ],
-            ),
-          ),
-        ),
-        SectionStaggeredAnimation(
-          controller: controller,
-          startInterval: .100,
-          endInterval: .300,
-          child: Padding(
-            padding: const .symmetric(horizontal: 16, vertical: 10),
-            child: TitleSubtitle(
-              title: l10n.actorDetailBirthPlace,
-              subtitle: actor.placeBirth ?? l10n.noBirthPlace,
-              isRow: false,
-            ),
-          ),
-        ),
-        SectionStaggeredAnimation(
-          controller: controller,
-          startInterval: .300,
-          endInterval: .500,
-          child: Padding(
-            padding: const .symmetric(horizontal: 16, vertical: 10),
-            child: Row(
-              mainAxisAlignment: .spaceBetween,
-              children: <Widget>[
-                TitleSubtitle(
-                  title: l10n.actorDetailRol,
-                  subtitle: actor.department,
-                ),
-                TitleSubtitle(
-                  title: l10n.actorDetailPopularity,
-                  subtitle: actor.popularity.toStringAsFixed(2),
-                ),
-              ],
+                  const VerticalDivider(width: 1, thickness: 1),
+                  Flexible(
+                    child: TitleSubtitle(
+                      title: context.l10n.actorDetailBirthPlace,
+                      value: actor.placeBirth ?? context.l10n.noBirthPlace,
+                    ),
+                  ),
+                  const VerticalDivider(width: 1, thickness: 1),
+                  Flexible(
+                    child: TitleSubtitle(
+                      title: context.l10n.actorDetailPopularity,
+                      value: actor.popularity.toStringAsFixed(2),
+                      icon: Icons.trending_up,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
         if (actor.biography.isNotEmpty)
           SectionStaggeredAnimation(
             controller: controller,
-            startInterval: .500,
-            endInterval: .700,
+            startInterval: .200,
+            endInterval: .500,
             child: Padding(
               padding: const .symmetric(horizontal: 16, vertical: 15),
-              child: Text(
-                actor.biography,
-                style: const TextStyle(fontSize: 16, fontWeight: .normal),
-              ),
+              child: _BiographySection(biography: actor.biography),
             ),
           ),
         SectionStaggeredAnimation(
           controller: controller,
-          startInterval: actor.biography.isEmpty ? .500 : .700,
+          startInterval: actor.biography.isEmpty ? .200 : .500,
           child: Padding(
             padding: const .symmetric(horizontal: 16, vertical: 20),
             child: ActorCreditsSection(
@@ -101,6 +76,56 @@ class ActorDataSection extends HookWidget {
                 series: actor.seriesCredits,
               ),
             ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _BiographySection extends HookWidget {
+  const _BiographySection({required this.biography});
+
+  final String biography;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isExpanded = useState(false);
+
+    return Column(
+      spacing: 8,
+      crossAxisAlignment: .start,
+      children: <Widget>[
+        Text(
+          context.l10n.actorDetailBiography,
+          style: const TextStyle(fontSize: 18, fontWeight: .w600),
+        ),
+        Text(
+          biography,
+          maxLines: isExpanded.value ? null : 5,
+          overflow: isExpanded.value ? null : .ellipsis,
+          style: const TextStyle(fontSize: 14, height: 1.5),
+        ),
+        InkWell(
+          onTap: () => isExpanded.value = !isExpanded.value,
+          child: Row(
+            mainAxisSize: .min,
+            children: <Widget>[
+              Text(
+                isExpanded.value
+                    ? context.l10n.actorDetailReadLess
+                    : context.l10n.actorDetailReadMore,
+                style: TextStyle(fontWeight: .w500, color: colorScheme.primary),
+              ),
+              Icon(
+                isExpanded.value
+                    ? Icons.keyboard_arrow_up
+                    : Icons.keyboard_arrow_down,
+                size: 20,
+                color: colorScheme.primary,
+              ),
+            ],
           ),
         ),
       ],

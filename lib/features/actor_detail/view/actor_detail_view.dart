@@ -12,7 +12,9 @@ import 'package:movie_series_app/features/actor_detail/repository/actor_detail_r
 import 'package:movie_series_app/l10n/l10n.dart';
 
 part 'widgets/actor_cast_item.dart';
+
 part 'widgets/actor_credits_section.dart';
+
 part 'widgets/actor_data_section.dart';
 
 class ActorDetailView extends HookConsumerWidget {
@@ -36,9 +38,13 @@ class ActorDetailView extends HookConsumerWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           TransitionAppBar(
-            title: actor.maybeWhen(
-              data: (actor) => actor.name,
-              orElse: () => '',
+            titleBuilder: (progress) => actor.maybeWhen(
+              data: (actor) => _ActorTitle(
+                name: actor.name,
+                department: actor.department,
+                progress: progress,
+              ),
+              orElse: () => const SizedBox.shrink(),
             ),
             child: Hero(
               tag: '$personId',
@@ -71,6 +77,49 @@ class ActorDetailView extends HookConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ActorTitle extends StatelessWidget {
+  const _ActorTitle({
+    required this.name,
+    required this.department,
+    required this.progress,
+  });
+
+  final String name;
+  final String department;
+  final double progress;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isCollapsed = progress > 0.3;
+
+    return Text.rich(
+      TextSpan(
+        text: name,
+        children: <InlineSpan>[
+          TextSpan(text: isCollapsed ? ' · ' : '\n'),
+          TextSpan(
+            text: department,
+            style: TextStyle(
+              fontWeight: .normal,
+              fontSize: isCollapsed ? 24 : 14,
+              color: colorScheme.onSecondaryContainer.withValues(alpha: .7),
+            ),
+          ),
+        ],
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: .bold,
+          color: colorScheme.onSecondaryContainer,
+        ),
+      ),
+      textAlign: .center,
+      overflow: .ellipsis,
+      maxLines: isCollapsed ? 1 : 2,
     );
   }
 }
