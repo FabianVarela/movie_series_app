@@ -40,10 +40,28 @@ class SeriesDetailView extends HookConsumerWidget {
             expandedHeight: 400,
             collapsedHeight: 100,
             leading: const Offstage(),
-            flexibleSpace: DetailHeader(
-              id: seriesId,
-              imageUrl: seriesImageUrl,
-              onDrag: () => Navigator.pop(context),
+            flexibleSpace: Stack(
+              fit: .expand,
+              children: <Widget>[
+                DetailHeader(
+                  id: seriesId,
+                  imageUrl: seriesImageUrl,
+                  onDrag: () => Navigator.pop(context),
+                ),
+                series.maybeWhen(
+                  data: (series) => DetailHeaderInfo(
+                    mainInfo: (
+                      title: series.originalName,
+                      voteAverage: series.voteAverage,
+                    ),
+                    timeInfo: (
+                      releaseYear: series.firstAirDate?.split('-').firstOrNull,
+                      duration: null,
+                    ),
+                  ),
+                  orElse: Offstage.new,
+                ),
+              ],
             ),
           ),
           series.when(

@@ -36,10 +36,28 @@ class MovieDetailView extends HookConsumerWidget {
             expandedHeight: 400,
             collapsedHeight: 100,
             leading: const Offstage(),
-            flexibleSpace: DetailHeader(
-              id: movieId,
-              imageUrl: movieImageUrl,
-              onDrag: () => Navigator.pop(context),
+            flexibleSpace: Stack(
+              fit: .expand,
+              children: <Widget>[
+                DetailHeader(
+                  id: movieId,
+                  imageUrl: movieImageUrl,
+                  onDrag: () => Navigator.pop(context),
+                ),
+                movie.maybeWhen(
+                  data: (movie) => DetailHeaderInfo(
+                    mainInfo: (
+                      title: movie.originalTitle,
+                      voteAverage: movie.voteAverage,
+                    ),
+                    timeInfo: (
+                      releaseYear: movie.releaseDate?.split('-').firstOrNull,
+                      duration: movie.runtime,
+                    ),
+                  ),
+                  orElse: Offstage.new,
+                ),
+              ],
             ),
           ),
           movie.when(
