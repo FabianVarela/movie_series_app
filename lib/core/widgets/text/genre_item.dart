@@ -5,6 +5,7 @@ typedef CircleColor = ({Color background, Color foreground});
 class GenreItem extends StatelessWidget {
   const GenreItem({
     required this.name,
+    this.showAvatar = true,
     this.onSelect,
     this.circleColor,
     this.textColor,
@@ -12,6 +13,7 @@ class GenreItem extends StatelessWidget {
   });
 
   final String name;
+  final bool showAvatar;
   final VoidCallback? onSelect;
   final CircleColor? circleColor;
   final Color? textColor;
@@ -23,13 +25,15 @@ class GenreItem extends StatelessWidget {
       child: Chip(
         elevation: 5,
         padding: const .all(4),
-        avatar: CircleAvatar(
-          backgroundColor: circleColor?.background,
-          child: Text(
-            name[0].toUpperCase(),
-            style: TextStyle(color: circleColor?.foreground),
-          ),
-        ),
+        avatar: showAvatar
+            ? CircleAvatar(
+                backgroundColor: circleColor?.background,
+                child: Text(
+                  name[0].toUpperCase(),
+                  style: TextStyle(color: circleColor?.foreground),
+                ),
+              )
+            : null,
         label: Text(name, style: TextStyle(fontSize: 15, color: textColor)),
         shadowColor: Theme.of(context).colorScheme.primaryContainer,
       ),
