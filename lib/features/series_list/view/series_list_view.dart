@@ -47,6 +47,7 @@ class SeriesListView extends HookConsumerWidget {
             _ => '',
           };
 
+          currentOption.value = option;
           currentGenre.value = null;
           currentIndex.value = 1;
         },
