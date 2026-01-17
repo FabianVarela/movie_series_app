@@ -69,16 +69,16 @@ class SeriesDetailView extends HookConsumerWidget {
             ),
             loading: () => SliverToBoxAdapter(
               child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * .7,
+                height: MediaQuery.sizeOf(context).height * .35,
                 child: const Center(child: CircularProgressIndicator()),
               ),
             ),
             error: (_, _) => SliverToBoxAdapter(
               child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * .68,
+                height: MediaQuery.sizeOf(context).height * .35,
                 child: ErrorMessage(
                   message: context.l10n.errorSeriesDetailText,
-                  fontSize: 15,
+                  fontSize: 20,
                 ),
               ),
             ),
