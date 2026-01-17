@@ -16,17 +16,16 @@ class DetailCreditList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const imdbImageUri = String.fromEnvironment('TMDB_IMAGE_URI');
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Column(
+      crossAxisAlignment: .start,
       children: <Widget>[
         Padding(
           padding: const .symmetric(vertical: 8),
-          child: Align(
-            alignment: .centerLeft,
-            child: Text(
-              context.l10n.castTitle,
-              style: const TextStyle(fontSize: 20, fontWeight: .w700),
-            ),
+          child: Text(
+            context.l10n.castTitle,
+            style: const TextStyle(fontSize: 20, fontWeight: .w700),
           ),
         ),
         if (casts.isEmpty)
@@ -35,44 +34,53 @@ class DetailCreditList extends StatelessWidget {
             child: Center(
               child: Text(
                 context.l10n.noCastAvailableText,
-                style: const TextStyle(fontSize: 22, fontWeight: .w500),
+                style: const TextStyle(fontSize: 18, fontWeight: .w500),
               ),
             ),
           )
         else
           SizedBox(
-            height: 120,
-            child: ListView.builder(
+            height: 130,
+            child: ListView.separated(
               itemCount: casts.length,
               scrollDirection: .horizontal,
+              separatorBuilder: (_, _) => const SizedBox(width: 16),
               itemBuilder: (_, index) {
                 final item = casts[index];
                 return InkWell(
                   onTap: () => onSelect(item.id, item.profilePath),
-                  child: Container(
-                    width: 100,
-                    padding: const .only(right: 10),
+                  child: SizedBox(
+                    width: 80,
                     child: Column(
                       mainAxisAlignment: .center,
                       children: <Widget>[
-                        Hero(
-                          tag: '${item.id}',
-                          child: MediaImage(
-                            imageUrl: item.profilePath != null
-                                ? '$imdbImageUri${item.profilePath}'
-                                : null,
+                        Padding(
+                          padding: const .only(bottom: 8),
+                          child: Hero(
+                            tag: '${item.id}',
+                            child: MediaImage(
+                              imageUrl: item.profilePath != null
+                                  ? '$imdbImageUri${item.profilePath}'
+                                  : null,
+                              size: (image: 35, icon: 30),
+                            ),
                           ),
                         ),
-                        Padding(
-                          padding: const .only(top: 10),
-                          child: Text(
-                            item.name,
-                            textAlign: .center,
-                            overflow: .ellipsis,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: .w400,
-                            ),
+                        Text(
+                          item.name,
+                          maxLines: 1,
+                          textAlign: .center,
+                          overflow: .ellipsis,
+                          style: const TextStyle(fontWeight: .w500),
+                        ),
+                        Text(
+                          item.character,
+                          maxLines: 1,
+                          textAlign: .center,
+                          overflow: .ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: colorScheme.onSurface.withValues(alpha: .6),
                           ),
                         ),
                       ],
