@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_series_app/core/common/utils.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/routes/app_route_path.dart';
 import 'package:movie_series_app/core/widgets/detail_screen/detail_body.dart';
@@ -10,7 +11,6 @@ import 'package:movie_series_app/core/widgets/detail_screen/detail_trailer_list.
 import 'package:movie_series_app/core/widgets/text/error_message.dart';
 import 'package:movie_series_app/features/movie_detail/repository/movie_detail_repository.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MovieDetailView extends HookConsumerWidget {
   const MovieDetailView({required this.movieId, this.movieImageUrl, super.key});
@@ -50,7 +50,7 @@ class MovieDetailView extends HookConsumerWidget {
                   children: <Widget>[
                     DetailBody.movie(
                       movie: movie,
-                      onGoWebSite: (url) async => _redirectTo(url),
+                      onGoWebSite: Utils.redirectTo,
                     ),
                     DetailCreditList(
                       casts: movie.credits,
@@ -60,9 +60,7 @@ class MovieDetailView extends HookConsumerWidget {
                     ),
                     DetailTrailerList(
                       trailers: movie.trailers,
-                      onSelect: (id) => _redirectTo(
-                        'https://www.youtube.com/watch?v=$id',
-                      ),
+                      onSelect: Utils.redirectToYoutube,
                     ),
                   ],
                 ),
@@ -94,12 +92,5 @@ class MovieDetailView extends HookConsumerWidget {
       AppRoutePath.movies.detail.define('$movieId').actor.define('$id').path,
       extra: {'posterPath': movieImageUrl, 'actorImage': path},
     );
-  }
-
-  Future<void> _redirectTo(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
   }
 }
