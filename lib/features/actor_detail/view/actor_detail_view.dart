@@ -101,7 +101,7 @@ class _ActorTitle extends StatelessWidget {
       TextSpan(
         text: name,
         children: <InlineSpan>[
-          TextSpan(text: isCollapsed ? ' · ' : '\n'),
+          TextSpan(text: isCollapsed ? ' • ' : '\n'),
           TextSpan(
             text: department,
             style: TextStyle(
