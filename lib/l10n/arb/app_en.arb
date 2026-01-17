@@ -84,12 +84,22 @@
   "@noDateAvailableText": {
     "description": "Date empty text"
   },
+  "synopsisTitle": "Synopsis",
+  "@synopsisTitle": {
+    "description": "Synopsis title text"
+  },
   "castTitle": "Cast",
+  "@castTitle": {
+    "description": "Cast title text"
+  },
   "noCastAvailableText": "No cast available",
   "@noCastAvailableText": {
     "description": "Cast empty list text"
   },
   "trailerTitle": "Trailers & Clips",
+  "@trailerTitle": {
+    "description": "Trailer title text"
+  },
   "noTrailerAvailableText": "No trailers available",
   "@noTrailerAvailableText": {
     "description": "Trailer empty list text"
