@@ -30,13 +30,11 @@ class DetailBody extends StatelessWidget {
 
     return Column(
       spacing: 10,
+      crossAxisAlignment: .start,
       children: <Widget>[
-        Align(
-          alignment: .centerLeft,
-          child: Text(
-            movie?.originalTitle ?? series?.originalName ?? '',
-            style: const TextStyle(fontSize: 25, fontWeight: .w700),
-          ),
+        Text(
+          movie?.originalTitle ?? series?.originalName ?? '',
+          style: const TextStyle(fontSize: 25, fontWeight: .w700),
         ),
         Row(
           crossAxisAlignment: .start,
@@ -59,16 +57,14 @@ class DetailBody extends StatelessWidget {
               mainDate ?? context.l10n.noDateAvailableText,
               style: const TextStyle(fontSize: 18, fontWeight: .w400),
             ),
-            if (series != null)
+            if (series != null && !(series?.inProduction ?? false))
               Text(
-                (series!.lastAirDate ?? '').isNotEmpty
-                    ? series!.lastAirDate!
-                    : context.l10n.noDateAvailableText,
+                series?.lastAirDate ?? context.l10n.noDateAvailableText,
                 style: const TextStyle(fontSize: 18, fontWeight: .w400),
               ),
           ],
         ),
-        if (movie != null && movie?.homepage != null)
+        if ((movie?.homepage ?? '').isNotEmpty)
           Text.rich(
             TextSpan(
               children: <TextSpan>[
@@ -82,19 +78,35 @@ class DetailBody extends StatelessWidget {
               ],
             ),
           ),
-        Text(
-          movie?.overview ?? series?.overview ?? '',
-          style: const TextStyle(fontSize: 16, fontWeight: .w400),
-        ),
         SizedBox(
-          height: 70,
+          height: 50,
           child: ListView.separated(
-            scrollDirection: .horizontal,
             itemCount: genres.length,
-            padding: const .all(10),
+            scrollDirection: .horizontal,
             separatorBuilder: (_, _) => const SizedBox(width: 8),
-            itemBuilder: (_, index) => GenreItem(name: genres[index].name),
+            itemBuilder: (_, index) => GenreItem(
+              name: genres[index].name,
+              showAvatar: false,
+            ),
           ),
+        ),
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: const .symmetric(vertical: 8),
+              child: Align(
+                alignment: .centerLeft,
+                child: Text(
+                  context.l10n.synopsisTitle,
+                  style: const TextStyle(fontSize: 20, fontWeight: .w700),
+                ),
+              ),
+            ),
+            Text(
+              movie?.overview ?? series?.overview ?? '',
+              style: const TextStyle(fontSize: 16, fontWeight: .w400),
+            ),
+          ],
         ),
       ],
     );
