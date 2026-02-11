@@ -32,7 +32,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^3.2.5
   json_serializable: ^6.11.2
-  riverpod_generator: ^4.0.0+1
+  riverpod_generator: ^4.0.3
   very_good_analysis: ^10.1.0
 
 flutter:
