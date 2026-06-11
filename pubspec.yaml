@@ -19,10 +19,10 @@ dependencies:
   go_router: ^17.3.0
   go_router_paths: ^0.2.2
   google_fonts: ^8.1.0
-  hooks_riverpod: ^3.3.1
+  hooks_riverpod: ^3.3.2
   intl: ^0.20.2
   json_annotation: ^4.11.0
-  riverpod_annotation: ^4.0.0
+  riverpod_annotation: ^4.0.3
   shared_preferences: ^2.5.5
   url_launcher: ^6.3.2
 
@@ -31,9 +31,9 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
-  freezed: ^3.2.5
-  json_serializable: ^6.13.0
-  riverpod_generator: ^4.0.3
+  freezed: ^3.2.6-dev.1
+  json_serializable: ^6.13.2
+  riverpod_generator: ^4.0.4
   very_good_analysis: ^10.2.0
 
 flutter:
