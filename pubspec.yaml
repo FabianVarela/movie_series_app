@@ -31,7 +31,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
-  freezed: ^3.2.6-dev.1
+  freezed: ^4.0.0-dev.3
   json_serializable: ^6.14.1
   riverpod_generator: ^4.0.4
   very_good_analysis: ^10.3.0
