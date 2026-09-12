@@ -1,12 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/widgets/container/shader_container.dart';
 
 class TransitionAppBar extends StatelessWidget {
-  const TransitionAppBar({
-    required this.child,
-    required this.titleBuilder,
-    super.key,
-  });
+  const new({required this.child, required this.titleBuilder, super.key});
 
   final Widget child;
   final Widget Function(double progress) titleBuilder;
@@ -25,7 +21,7 @@ class TransitionAppBar extends StatelessWidget {
 }
 
 class _TransitionAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _TransitionAppBarDelegate({
+  new({
     required this.titleBuilder,
     required this.child,
     required this.useGradient,

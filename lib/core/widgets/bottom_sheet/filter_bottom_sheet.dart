@@ -1,15 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
 typedef OptionItem = ({IconData icon, String title});
 
 class FilterBottomSheet extends HookWidget {
-  const FilterBottomSheet({
-    required this.optionFilterList,
-    this.initialFilter,
-    super.key,
-  });
+  const new({required this.optionFilterList, this.initialFilter, super.key});
 
   final List<OptionItem> optionFilterList;
   final int? initialFilter;
@@ -114,7 +110,7 @@ class FilterBottomSheet extends HookWidget {
 }
 
 class _SelectedFilterItem extends StatelessWidget {
-  const _SelectedFilterItem({
+  const new({
     required this.isSelected,
     required this.onSelected,
     required this.item,

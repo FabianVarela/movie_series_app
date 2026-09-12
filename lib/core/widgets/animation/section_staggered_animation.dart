@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SectionStaggeredAnimation extends HookWidget {
-  const SectionStaggeredAnimation({
+  const new({
     required this.controller,
     required this.child,
     this.startInterval = 0,

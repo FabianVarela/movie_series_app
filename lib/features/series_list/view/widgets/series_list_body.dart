@@ -1,7 +1,7 @@
 part of '../series_list_view.dart';
 
 class SeriesListBody extends ConsumerWidget {
-  const SeriesListBody({
+  const new({
     required this.onChangePage,
     required this.onSelectSeries,
     required this.arguments,

@@ -2,16 +2,16 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ShaderContainer extends StatefulWidget {
-  const ShaderContainer.file({
+  const new file({
     required this.child,
     required String this.filePath,
     super.key,
   }) : colors = null;
 
-  const ShaderContainer.gradient({
+  const new gradient({
     required this.child,
     required List<Color> this.colors,
     super.key,
@@ -62,9 +62,9 @@ class _ShaderContainerState extends State<ShaderContainer> {
 }
 
 class _ShaderPainter extends CustomPainter {
-  _ShaderPainter.shader({required FragmentShader this.shader}) : colors = null;
+  new shader({required FragmentShader this.shader}) : colors = null;
 
-  _ShaderPainter.gradient({required List<Color> this.colors}) : shader = null;
+  new gradient({required List<Color> this.colors}) : shader = null;
 
   final FragmentShader? shader;
   final List<Color>? colors;

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/widgets/animation/section_staggered_animation.dart';
 import 'package:movie_series_app/core/widgets/app_bar/transition_app_bar.dart';
@@ -18,7 +18,7 @@ part 'widgets/actor_credits_section.dart';
 part 'widgets/actor_data_section.dart';
 
 class ActorDetailView extends HookConsumerWidget {
-  const ActorDetailView({required this.personId, this.imageUrl, super.key});
+  const new({required this.personId, this.imageUrl, super.key});
 
   final int personId;
   final String? imageUrl;
@@ -82,7 +82,7 @@ class ActorDetailView extends HookConsumerWidget {
 }
 
 class _ActorTitle extends StatelessWidget {
-  const _ActorTitle({
+  const new({
     required this.name,
     required this.department,
     required this.progress,

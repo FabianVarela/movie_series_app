@@ -5,10 +5,9 @@ part 'genre_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class GenresModel {
-  const GenresModel({required this.genres});
+  const new({required this.genres});
 
-  factory GenresModel.fromJson(Map<String, dynamic> json) =>
-      _$GenresModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$GenresModelFromJson(json);
 
   final List<GenreModel> genres;
 }

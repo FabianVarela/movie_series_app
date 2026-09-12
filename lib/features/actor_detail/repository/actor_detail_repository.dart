@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'actor_detail_repository.g.dart';
 
 class ActorDetailRepository {
-  ActorDetailRepository({required this.dio, required this.apiKey});
+  new({required this.dio, required this.apiKey});
 
   final Dio dio;
   final String apiKey;
@@ -41,7 +41,7 @@ Future<ActorModel> fetchActor(
   required int personId,
   String? language,
 }) async {
-  return ref
+  return await ref
       .watch(actorDetailRepositoryProvider)
       .fetchActor(personId: personId, language: language);
 }

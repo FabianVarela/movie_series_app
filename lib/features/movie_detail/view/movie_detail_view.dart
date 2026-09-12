@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/common/utils.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/routes/app_route_path.dart';
@@ -13,7 +13,7 @@ import 'package:movie_series_app/features/movie_detail/repository/movie_detail_r
 import 'package:movie_series_app/l10n/l10n.dart';
 
 class MovieDetailView extends HookConsumerWidget {
-  const MovieDetailView({required this.movieId, this.movieImageUrl, super.key});
+  const new({required this.movieId, this.movieImageUrl, super.key});
 
   final int movieId;
   final String? movieImageUrl;

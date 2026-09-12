@@ -15,7 +15,7 @@ enum Gender {
 
 @JsonSerializable(createToJson: false)
 class ActorModel {
-  const ActorModel({
+  const new({
     required this.id,
     required this.name,
     required this.department,
@@ -31,8 +31,7 @@ class ActorModel {
     this.imagePath,
   });
 
-  factory ActorModel.fromJson(Map<String, dynamic> json) =>
-      _$ActorModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ActorModelFromJson(json);
 
   final int id;
   final String name;
@@ -74,7 +73,7 @@ class ActorModel {
 
 @JsonSerializable(createToJson: false)
 class ActorCreditModel {
-  const ActorCreditModel({
+  const new({
     required this.id,
     required this.title,
     required this.releaseDate,
@@ -83,7 +82,7 @@ class ActorCreditModel {
     this.posterPath,
   });
 
-  factory ActorCreditModel.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ActorCreditModelFromJson(json);
 
   final int id;

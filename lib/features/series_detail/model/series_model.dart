@@ -5,7 +5,7 @@ part 'series_model.g.dart';
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class SeriesModel {
-  const SeriesModel({
+  const new({
     required this.id,
     required this.originalName,
     required this.overview,
@@ -21,8 +21,7 @@ class SeriesModel {
     this.homepage,
   });
 
-  factory SeriesModel.fromJson(Map<String, dynamic> json) =>
-      _$SeriesModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$SeriesModelFromJson(json);
 
   final int id;
   final String originalName;

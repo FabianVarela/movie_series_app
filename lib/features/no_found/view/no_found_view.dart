@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/routes/app_route_path.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
 class NoFoundView extends StatelessWidget {
-  const NoFoundView({required this.error, super.key});
+  const new({required this.error, super.key});
 
   final String error;
 

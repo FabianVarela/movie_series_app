@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'movie_list_repository.g.dart';
 
 class MovieListRepository {
-  MovieListRepository({required this.dio, required this.apiKey});
+  new({required this.dio, required this.apiKey});
 
   final Dio dio;
   final String apiKey;
@@ -49,7 +49,7 @@ Future<ResultsModel> fetchMovies(
   int? genreId,
   String? language,
 }) async {
-  return ref
+  return await ref
       .watch(movieListRepositoryProvider)
       .fetchMovies(option: option, language: language, genreId: genreId);
 }

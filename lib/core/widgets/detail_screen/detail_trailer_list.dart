@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
 class DetailTrailerList extends StatelessWidget {
-  const DetailTrailerList({
-    required this.trailers,
-    required this.onSelect,
-    super.key,
-  });
+  const new({required this.trailers, required this.onSelect, super.key});
 
   final List<TrailerModel> trailers;
   final ValueSetter<String> onSelect;
@@ -57,7 +53,7 @@ class DetailTrailerList extends StatelessWidget {
 }
 
 class _TrailerItem extends StatelessWidget {
-  const _TrailerItem({required this.trailer});
+  const new({required this.trailer});
 
   final TrailerModel trailer;
 

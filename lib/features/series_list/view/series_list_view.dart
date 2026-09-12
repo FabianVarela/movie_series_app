@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/model/common_model.dart';
 import 'package:movie_series_app/core/provider/brightness_mode_provider.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
@@ -19,7 +19,7 @@ import 'package:movie_series_app/l10n/l10n.dart';
 part 'widgets/series_list_body.dart';
 
 class SeriesListView extends HookConsumerWidget {
-  const SeriesListView({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 typedef CircleColor = ({Color background, Color foreground});
 
 class GenreItem extends StatelessWidget {
-  const GenreItem({
+  const new({
     required this.name,
     this.showAvatar = true,
     this.onSelect,

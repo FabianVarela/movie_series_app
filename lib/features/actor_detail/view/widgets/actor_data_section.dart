@@ -1,7 +1,7 @@
 part of '../actor_detail_view.dart';
 
 class ActorDataSection extends HookWidget {
-  const ActorDataSection({required this.actor, super.key});
+  const new({required this.actor, super.key});
 
   final ActorModel actor;
 
@@ -84,7 +84,7 @@ class ActorDataSection extends HookWidget {
 }
 
 class _BiographySection extends HookWidget {
-  const _BiographySection({required this.biography});
+  const new({required this.biography});
 
   final String biography;
 

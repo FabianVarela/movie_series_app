@@ -1,7 +1,7 @@
 part of '../movie_list_view.dart';
 
 class MovieListBody extends ConsumerWidget {
-  const MovieListBody({
+  const new({
     required this.onChangePage,
     required this.onSelectMovie,
     required this.arguments,

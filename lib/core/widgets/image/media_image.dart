@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class MediaImage extends StatelessWidget {
-  const MediaImage({
+  const new({
     required this.imageUrl,
     this.size = const (image: 40, icon: 30),
     this.isCircular = true,

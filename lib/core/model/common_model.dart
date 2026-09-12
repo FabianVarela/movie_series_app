@@ -10,15 +10,14 @@ enum SeriesOption { airingToday, onTheAir, popular, topRated }
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class ResultsModel {
-  const ResultsModel({
+  const new({
     required this.page,
     required this.totalResults,
     required this.totalPages,
     required this.results,
   });
 
-  factory ResultsModel.fromJson(Map<String, dynamic> json) =>
-      _$ResultsModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ResultsModelFromJson(json);
 
   final int page;
   final int totalResults;
@@ -28,7 +27,7 @@ class ResultsModel {
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class ResultModel {
-  const ResultModel({
+  const new({
     required this.id,
     required this.originalTitle,
     required this.voteAverage,
@@ -36,8 +35,7 @@ class ResultModel {
     this.backdropPath,
   });
 
-  factory ResultModel.fromJson(Map<String, dynamic> json) =>
-      _$ResultModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ResultModelFromJson(json);
 
   final int id;
 
@@ -59,10 +57,9 @@ class ResultModel {
 
 @JsonSerializable(createToJson: false)
 class GenreModel {
-  const GenreModel({required this.id, required this.name});
+  const new({required this.id, required this.name});
 
-  factory GenreModel.fromJson(Map<String, dynamic> json) =>
-      _$GenreModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$GenreModelFromJson(json);
 
   final int id;
   final String name;
@@ -70,15 +67,14 @@ class GenreModel {
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class CreditsModel {
-  const CreditsModel({
+  const new({
     required this.id,
     required this.character,
     required this.name,
     required this.profilePath,
   });
 
-  factory CreditsModel.fromJson(Map<String, dynamic> json) =>
-      _$CreditsModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$CreditsModelFromJson(json);
 
   final int id;
   final String character;
@@ -88,7 +84,7 @@ class CreditsModel {
 
 @JsonSerializable(createToJson: false)
 class TrailerModel {
-  const TrailerModel({
+  const new({
     required this.id,
     required this.iso639,
     required this.iso3166,
@@ -99,8 +95,7 @@ class TrailerModel {
     required this.type,
   });
 
-  factory TrailerModel.fromJson(Map<String, dynamic> json) =>
-      _$TrailerModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$TrailerModelFromJson(json);
 
   final String id;
 
@@ -119,13 +114,13 @@ class TrailerModel {
 
 @JsonSerializable(createToJson: false)
 class ImagesResultModel {
-  const ImagesResultModel({
+  const new({
     this.backdrop = const [],
     this.posters = const [],
     this.logos = const [],
   });
 
-  factory ImagesResultModel.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$ImagesResultModelFromJson(json);
 
   final List<ImageModel> backdrop;
@@ -135,10 +130,9 @@ class ImagesResultModel {
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class ImageModel {
-  const ImageModel({required this.aspectRatio, required this.filePath});
+  const new({required this.aspectRatio, required this.filePath});
 
-  factory ImageModel.fromJson(Map<String, dynamic> json) =>
-      _$ImageModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$ImageModelFromJson(json);
 
   final double aspectRatio;
   final String filePath;

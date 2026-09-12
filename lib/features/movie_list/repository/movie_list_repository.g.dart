@@ -119,7 +119,7 @@ final class FetchMoviesProvider
   }
 }
 
-String _$fetchMoviesHash() => r'249dcebf7454228b7fea2f9dd34543bdda1b158a';
+String _$fetchMoviesHash() => r'9210a2c6bd607196ebb81bfaa49927530a78d6db';
 
 final class FetchMoviesFamily extends $Family
     with

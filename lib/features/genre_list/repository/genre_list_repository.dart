@@ -7,7 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'genre_list_repository.g.dart';
 
 class GenreListRepository {
-  GenreListRepository({required this.dio, required this.apiKey});
+  new({required this.dio, required this.apiKey});
 
   final Dio dio;
   final String apiKey;
@@ -42,5 +42,5 @@ Future<GenresModel> fetchGenres(
   String? language,
 }) async {
   final genreListRepository = ref.watch(genreListRepositoryProvider);
-  return genreListRepository.fetchGenres(type: type, language: language);
+  return await genreListRepository.fetchGenres(type: type, language: language);
 }

@@ -8,7 +8,7 @@ typedef Credits = ({
 enum _CreditType { movies, series }
 
 class ActorCreditsSection extends HookWidget {
-  const ActorCreditsSection({required this.credits, super.key});
+  const new({required this.credits, super.key});
 
   final Credits credits;
 

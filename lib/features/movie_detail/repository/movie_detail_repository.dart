@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'movie_detail_repository.g.dart';
 
 class MovieDetailRepository {
-  MovieDetailRepository({required this.dio, required this.apiKey});
+  new({required this.dio, required this.apiKey});
 
   final Dio dio;
   final String apiKey;
@@ -42,5 +42,8 @@ Future<MovieModel> fetchMovie(
   String? language,
 }) async {
   final movieDetailRepository = ref.watch(movieDetailRepositoryProvider);
-  return movieDetailRepository.fetchMovie(movieId: movieId, language: language);
+  return await movieDetailRepository.fetchMovie(
+    movieId: movieId,
+    language: language,
+  );
 }

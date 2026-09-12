@@ -115,7 +115,7 @@ final class FetchMovieProvider
   }
 }
 
-String _$fetchMovieHash() => r'7d02a3222e2ecd5fff65e787df615473703de261';
+String _$fetchMovieHash() => r'125911714d4e919d60120125a42a785e22a18c78';
 
 final class FetchMovieFamily extends $Family
     with

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class TitleSubtitle extends StatelessWidget {
-  const TitleSubtitle({
+  const new({
     required this.title,
     required this.value,
     this.icon,

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class DetailHeader extends StatelessWidget {
-  const DetailHeader({
+  const new({
     required this.id,
     required this.onDrag,
     this.imageUrl,
@@ -41,7 +41,7 @@ class DetailHeader extends StatelessWidget {
 }
 
 class DetailHeaderInfo extends StatelessWidget {
-  const DetailHeaderInfo({
+  const new({
     required this.mainInfo,
     required this.timeInfo,
     super.key,

@@ -1,7 +1,7 @@
 part of '../actor_detail_view.dart';
 
 class ActorCastItem extends StatelessWidget {
-  const ActorCastItem({required this.actorCredit, super.key});
+  const new({required this.actorCredit, super.key});
 
   final ActorCreditModel actorCredit;
 

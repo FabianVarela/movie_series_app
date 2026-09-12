@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/common/utils.dart';
 import 'package:movie_series_app/core/provider/language_provider.dart';
 import 'package:movie_series_app/core/routes/app_route_path.dart';
@@ -13,11 +13,7 @@ import 'package:movie_series_app/features/series_detail/repository/series_detail
 import 'package:movie_series_app/l10n/l10n.dart';
 
 class SeriesDetailView extends HookConsumerWidget {
-  const SeriesDetailView({
-    required this.seriesId,
-    this.seriesImageUrl,
-    super.key,
-  });
+  const new({required this.seriesId, this.seriesImageUrl, super.key});
 
   final int seriesId;
   final String? seriesImageUrl;

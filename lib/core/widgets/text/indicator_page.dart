@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/l10n/l10n.dart';
 
 class IndicatorPage extends StatelessWidget {
-  const IndicatorPage({this.start = 0, this.total = 0, super.key});
+  const new({this.start = 0, this.total = 0, super.key});
 
   final int start;
   final int total;

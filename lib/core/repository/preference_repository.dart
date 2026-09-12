@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'preference_repository.g.dart';
 
 class PreferenceRepository {
-  PreferenceRepository({required this.preferences});
+  new({required this.preferences});
 
   final SharedPreferences preferences;
 
@@ -17,13 +17,13 @@ class PreferenceRepository {
   }
 
   Future<bool> setLanguage(String language) async {
-    return preferences.setString(_languageKey, language);
+    return await preferences.setString(_languageKey, language);
   }
 
   Future<String?> getTheme() async => preferences.getString(_themeKey);
 
   Future<bool> setTheme(String theme) async {
-    return preferences.setString(_themeKey, theme);
+    return await preferences.setString(_themeKey, theme);
   }
 }
 

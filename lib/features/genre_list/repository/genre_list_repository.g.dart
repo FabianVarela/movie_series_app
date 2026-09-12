@@ -112,7 +112,7 @@ final class FetchGenresProvider
   }
 }
 
-String _$fetchGenresHash() => r'19b8e176388b176a80e97c94763328d02f184984';
+String _$fetchGenresHash() => r'a7d207f96fc93b23d2e9bbe6eac0f1d2bd37eee7';
 
 final class FetchGenresFamily extends $Family
     with

@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'series_detail_repository.g.dart';
 
 class SeriesDetailRepository {
-  SeriesDetailRepository({required this.dio, required this.apiKey});
+  new({required this.dio, required this.apiKey});
 
   final Dio dio;
   final String apiKey;
@@ -39,5 +39,8 @@ Future<SeriesModel> fetchSeries(
   String? language,
 }) async {
   final seriesDetailRepository = ref.watch(seriesDetailRepositoryProvider);
-  return seriesDetailRepository.fetchSeries(tvId: tvId, language: language);
+  return await seriesDetailRepository.fetchSeries(
+    tvId: tvId,
+    language: language,
+  );
 }

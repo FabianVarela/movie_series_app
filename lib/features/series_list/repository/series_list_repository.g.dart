@@ -120,7 +120,7 @@ final class FetchSeriesProvider
   }
 }
 
-String _$fetchSeriesHash() => r'90fa2617feeb19841a3ba538b60e66a8d5ffb659';
+String _$fetchSeriesHash() => r'105804da18866c3ad769e8bda22819ba0226d688';
 
 final class FetchSeriesFamily extends $Family
     with

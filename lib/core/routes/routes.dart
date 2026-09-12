@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_paths/go_router_paths.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movie_series_app/core/routes/app_route_path.dart';
 import 'package:movie_series_app/core/routes/navigation_scaffold.dart';
 import 'package:movie_series_app/core/routes/page_routes.dart';

@@ -5,7 +5,7 @@ part 'movie_model.g.dart';
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class MovieModel {
-  const MovieModel({
+  const new({
     required this.id,
     required this.originalTitle,
     required this.overview,
@@ -19,8 +19,7 @@ class MovieModel {
     this.homepage,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) =>
-      _$MovieModelFromJson(json);
+  factory fromJson(Map<String, dynamic> json) => _$MovieModelFromJson(json);
 
   final int id;
   final String originalTitle;
