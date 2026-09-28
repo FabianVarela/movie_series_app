@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_ui/material_ui.dart';
 
 class MovieSeriesTheme {
@@ -5,15 +6,12 @@ class MovieSeriesTheme {
     return ThemeData.from(
       useMaterial3: true,
       colorScheme: colorScheme,
-      // TODO(FV): Uncomment when fix this issue
-      /*
       textTheme: GoogleFonts.ubuntuTextTheme(
         Theme.of(context).textTheme.apply(
           bodyColor: colorScheme.onSurface,
           decorationColor: colorScheme.onSurface,
         ),
       ),
-      */
     );
   }
 }
