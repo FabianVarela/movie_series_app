@@ -8,7 +8,7 @@ environment:
   flutter: ^3.47.0
 
 dependencies:
-  cached_network_image: ^4.0.4
+  cached_network_image: ^4.0.5
   cupertino_ui: ^1.1.4
   dio: ^5.11.1
   flutter:
