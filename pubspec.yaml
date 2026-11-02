@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   cached_network_image: ^4.0.5
-  cupertino_ui: ^1.1.4
+  cupertino_ui: ^1.1.5
   dio: ^5.11.1
   flutter:
     sdk: flutter
